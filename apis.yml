@@ -1,0 +1,31 @@
+aid: microsoft-azure-functions
+url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/apis.yml
+apis:
+  - aid: microsoft-azure-functions:azure-functions-api
+    name: Azure Functions API
+    tags:
+      - Serverless\n      - Functions\n      - Event-Driven\n      - Compute
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://management.azure.com/
+    humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/
+    properties:
+      - url: https://learn.microsoft.com/en-us/azure/azure-functions/
+        type: Documentation
+    description: >-
+      Azure Functions provides serverless compute for running event-driven code triggered by HTTP requests, timers, queues, blobs, and other Azure services. The management API enables creating and configuring function apps, deployment slots, application settings, and scaling rules through Azure Resource Manager.
+common:
+  - type: Portal
+    url: https://portal.azure.com/
+  - type: Pricing
+    url: https://azure.microsoft.com/en-us/pricing/
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/azure/
+  - type: Terms of Service
+    url: https://www.microsoft.com/en-us/legal/terms-of-use
+  - type: Privacy Policy
+    url: https://privacy.microsoft.com/en-us/privacystatement
+  - type: Support
+    url: https://support.microsoft.com/
+maintainers:
+  - name: Kin Lane
+    email: kin@apievangelist.com
