@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-site-config-schema.json",
+  "title": "SiteConfig",
+  "description": "Configuration of an App Service app.",
+  "type": "object",
+  "properties": {
+    "numberOfWorkers": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of workers."
+    },
+    "defaultDocuments": {
+      "type": "array",
+      "description": "Default documents.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "netFrameworkVersion": {
+      "type": "string",
+      "description": ".NET Framework version.",
+      "default": "v4.6"
+    },
+    "phpVersion": {
+      "type": "string",
+      "description": "Version of PHP."
+    },
+    "pythonVersion": {
+      "type": "string",
+      "description": "Version of Python."
+    },
+    "nodeVersion": {
+      "type": "string",
+      "description": "Version of Node.js."
+    },
+    "powerShellVersion": {
+      "type": "string",
+      "description": "Version of PowerShell."
+    },
+    "linuxFxVersion": {
+      "type": "string",
+      "description": "Linux App Framework and version"
+    },
+    "windowsFxVersion": {
+      "type": "string",
+      "description": "Xenon App Framework and version"
+    },
+    "requestTracingEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if request tracing is enabled; otherwise, <code>false</code>."
+    },
+    "requestTracingExpirationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Request tracing expiration time."
+    },
+    "remoteDebuggingEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if remote debugging is enabled; otherwise, <code>false</code>."
+    },
+    "remoteDebuggingVersion": {
+      "type": "string",
+      "description": "Remote debugging version."
+    },
+    "httpLoggingEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if HTTP logging is enabled; otherwise, <code>false</code>."
+    },
+    "acrUseManagedIdentityCreds": {
+      "type": "boolean",
+      "description": "Flag to use Managed Identity Creds for ACR pull"
+    },
+    "acrUserManagedIdentityID": {
+      "type": "string",
+      "description": "If using user managed identity, the user managed identity ClientId"
+    },
+    "logsDirectorySizeLimit": {
+      "type": "integer",
+      "format": "int32",
+      "description": "HTTP logs directory size limit."
+    },
+    "detailedErrorLoggingEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if detailed error logging is enabled; otherwise, <code>false</code>."
+    },
+    "publishingUsername": {
+      "type": "string",
+      "description": "Publishing user name."
+    },
+    "appSettings": {
+      "type": "array",
+      "description": "Application settings. This property is not returned in response to normal create and read requests since it may contain sensitive information.",
+      "items": {
+        "$ref": "#/definitions/NameValuePair"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ],
+      "x-ms-mutability": [
+        "update",
+        "create"
+      ]
+    },
+    "metadata": {
+      "type": "array",
+      "description": "Application metadata. This property cannot be retrieved, since it may contain secrets.",
+      "items": {
+        "$ref": "#/definitions/NameValuePair"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ],
+      "x-ms-mutability": [
+        "update",
+        "create"
+      ]
+    },
+    "connectionStrings": {
+      "type": "array",
+      "description": "Connection strings. This property is not returned in response to normal create and read requests since it may contain sensitive information.",
+      "items": {
+        "$ref": "#/definitions/ConnStringInfo"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ],
+      "x-ms-mutability": [
+        "update",
+        "create"
+      ]
+    },
+    "machineKey": {
+      "$ref": "#/definitions/SiteMachineKey",
+      "description": "Site MachineKey.",
+      "readOnly": true
+    },
+    "handlerMappings": {
+      "type": "array",
+      "description": "Handler mappings.",
+      "items": {
+        "$ref": "#/definitions/HandlerMapping"
+      },
+      "x-ms-identifiers": [
+        "extension"
+      ]
+    },
+    "documentRoot": {
+      "type": "string",
+      "description": "Document root."
+    },
+    "scmType": {
+      "$ref": "#/definitions/ScmType",
+      "description": "SCM type."
+    },
+    "use32BitWorkerProcess": {
+      "type": "boolean",
+      "description": "<code>true</code> to use 32-bit worker process; otherwise, <code>false</code>."
+    },
+    "webSocketsEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if WebSocket is enabled; otherwise, <code>false</code>."
+    },
+    "alwaysOn": {
+      "type": "boolean",
+      "description": "<code>true</code> if Always On is enabled; otherwise, <code>false</code>."
+    },
+    "javaVersion": {
+      "type": "string",
+      "description": "Java version."
+    },
+    "javaContainer": {
+      "type": "string",
+      "description": "Java container."
+    },
+    "javaContainerVersion": {
+      "type": "string",
+      "description": "Java container version."
+    },
+    "appCommandLine": {
+      "type": "string",
+      "description": "App command line to launch."
+    },
+    "managedPipelineMode": {
+      "$ref": "#/definitions/ManagedPipelineMode",
+      "description": "Managed pipeline mode."
+    },
+    "virtualApplications": {
+      "type": "array",
+      "description": "Virtual applications.",
+      "items": {
+        "$ref": "#/definitions/VirtualApplication"
+      },
+      "x-ms-identifiers": [
+        "virtualPath"
+      ]
+    },
+    "loadBalancing": {
+      "$ref": "#/definitions/SiteLoadBalancing",
+      "description": "Site load balancing."
+    },
+    "experiments": {
+      "$ref": "#/definitions/Experiments",
+      "description": "This is work around for polymorphic types."
+    },
+    "limits": {
+      "$ref": "#/definitions/SiteLimits",
+      "description": "Site limits."
+    },
+    "autoHealEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if Auto Heal is enabled; otherwise, <code>false</code>."
+    },
+    "autoHealRules": {
+      "$ref": "#/definitions/AutoHealRules",
+      "description": "Auto Heal rules."
+    },
+    "tracingOptions": {
+      "type": "string",
+      "description": "Tracing options."
+    },
+    "vnetName": {
+      "type": "string",
+      "description": "Virtual Network name.",
+      "x-ms-mutability": [
+        "read",
+        "create"
+      ]
+    },
+    "vnetRouteAllEnabled": {
+      "type": "boolean",
+      "description": "Virtual Network Route All enabled. This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied."
+    },
+    "vnetPrivatePortsCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "The number of private ports assigned to this app. These will be assigned dynamically on runtime."
+    },
+    "cors": {
+      "$ref": "#/definitions/CorsSettings",
+      "description": "Cross-Origin Resource Sharing (CORS) settings."
+    },
+    "push": {
+      "$ref": "#/definitions/PushSettings",
+      "description": "Push endpoint settings."
+    },
+    "apiDefinition": {
+      "$ref": "#/definitions/ApiDefinitionInfo",
+      "description": "Information about the formal API definition for the app."
+    },
+    "apiManagementConfig": {
+      "$ref": "#/definitions/ApiManagementConfig",
+      "description": "Azure API management settings linked to the app."
+    },
+    "autoSwapSlotName": {
+      "type": "string",
+      "description": "Auto-swap slot name."
+    },
+    "localMySqlEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to enable local MySQL; otherwise, <code>false</code>.",
+      "default": false
+    },
+    "managedServiceIdentityId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Managed Service Identity Id"
+    },
+    "xManagedServiceIdentityId": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Explicit Managed Service Identity Id"
+    },
+    "keyVaultReferenceIdentity": {
+      "type": "string",
+      "description": "Identity to use for Key Vault Reference authentication."
+    },
+    "ipSecurityRestrictions": {
+      "type": "array",
+      "description": "IP security restrictions for main.",
+      "items": {
+        "$ref": "#/definitions/IpSecurityRestriction"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ]
+    },
+    "ipSecurityRestrictionsDefaultAction": {
+      "$ref": "#/definitions/DefaultAction",
+      "description": "Default action for main access restriction if no rules are matched."
+    },
+    "scmIpSecurityRestrictions": {
+      "type": "array",
+      "description": "IP security restrictions for scm.",
+      "items": {
+        "$ref": "#/definitions/IpSecurityRestriction"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ]
+    },
+    "scmIpSecurityRestrictionsDefaultAction": {
+      "$ref": "#/definitions/DefaultAction",
+      "description": "Default action for scm access restriction if no rules are matched."
+    },
+    "scmIpSecurityRestrictionsUseMain": {
+      "type": "boolean",
+      "description": "IP security restrictions for scm to use main."
+    },
+    "http20Enabled": {
+      "type": "boolean",
+      "description": "Http20Enabled: configures a web site to allow clients to connect over http2.0",
+      "default": true
+    },
+    "http20ProxyFlag": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Http20ProxyFlag: Configures a website to allow http2.0 to pass be proxied all the way to the app. 0 = disabled, 1 = pass through all http2 traffic, 2 = pass through gRPC only.",
+      "default": 0
+    },
+    "minTlsVersion": {
+      "$ref": "#/definitions/SupportedTlsVersions",
+      "description": "MinTlsVersion: configures the minimum version of TLS required for SSL requests"
+    },
+    "minTlsCipherSuite": {
+      "$ref": "#/definitions/TlsCipherSuites",
+      "description": "The minimum strength TLS cipher suite allowed for an application"
+    },
+    "scmMinTlsVersion": {
+      "$ref": "#/definitions/SupportedTlsVersions",
+      "description": "ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site"
+    },
+    "ftpsState": {
+      "$ref": "#/definitions/FtpsState",
+      "description": "State of FTP / FTPS service"
+    },
+    "preWarmedInstanceCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of preWarmed instances.\nThis setting only applies to the Consumption and Elastic Plans",
+      "minimum": 0,
+      "maximum": 10
+    },
+    "functionAppScaleLimit": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Maximum number of workers that a site can scale out to.\nThis setting only applies to the Consumption and Elastic Premium Plans",
+      "minimum": 0
+    },
+    "elasticWebAppScaleLimit": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Maximum number of workers that a site can scale out to.\nThis setting only applies to apps in plans where ElasticScaleEnabled is <code>true</code>",
+      "minimum": 0
+    },
+    "healthCheckPath": {
+      "type": "string",
+      "description": "Health check path"
+    },
+    "functionsRuntimeScaleMonitoringEnabled": {
+      "type": "boolean",
+      "description": "Gets or sets a value indicating whether functions runtime scale monitoring is enabled. When enabled,\nthe ScaleController will not monitor event sources directly, but will instead call to the\nruntime to get scale status."
+    },
+    "websiteTimeZone": {
+      "type": "string",
+      "description": "Sets the time zone a site uses for generating timestamps. Compatible with Linux and Windows App Service. Setting the WEBSITE_TIME_ZONE app setting takes precedence over this config. For Linux, expects tz database values https://www.iana.org/time-zones (for a quick reference see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For Windows, expects one of the time zones listed under HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Time Zones"
+    },
+    "minimumElasticInstanceCount": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Number of minimum instance count for a site\nThis setting only applies to the Elastic Plans",
+      "minimum": 0,
+      "maximum": 20
+    },
+    "azureStorageAccounts": {
+      "type": "object",
+      "description": "List of Azure Storage Accounts.",
+      "additionalProperties": {
+        "$ref": "#/definitions/AzureStorageInfoValue"
+      }
+    },
+    "publicNetworkAccess": {
+      "type": "string",
+      "description": "Property to allow or block all public traffic."
+    }
+  }
+}

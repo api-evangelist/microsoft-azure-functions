@@ -1,0 +1,12 @@
+{
+  "function_app_id": "/subscriptions/sub123/resourceGroups/rg1/providers/Microsoft.Web/sites/myFuncApp",
+  "script_root_path_href": "example_value",
+  "script_href": "example_value",
+  "config_href": "example_value",
+  "test_data_href": "example_value",
+  "secrets_file_href": "example_value",
+  "href": "example_value",
+  "config": "example_value",
+  "files": {},
+  "test_data": "example_value"
+}

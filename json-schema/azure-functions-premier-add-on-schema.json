@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-premier-add-on-schema.json",
+  "title": "PremierAddOn",
+  "description": "Premier add-on.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/PremierAddOnProperties",
+      "description": "PremierAddOn resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

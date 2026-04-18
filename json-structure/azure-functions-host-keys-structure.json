@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-host-keys-structure.json",
+  "name": "HostKeys",
+  "description": "Functions host level keys.",
+  "type": "object",
+  "properties": {
+    "masterKey": {
+      "type": "string",
+      "description": "Secret key."
+    },
+    "functionKeys": {
+      "type": "object",
+      "description": "Host level function keys.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "systemKeys": {
+      "type": "object",
+      "description": "System keys.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

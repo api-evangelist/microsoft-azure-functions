@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-site-auth-settings-schema.json",
+  "title": "SiteAuthSettings",
+  "description": "Configuration settings for the Azure App Service Authentication / Authorization feature.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/SiteAuthSettingsProperties",
+      "description": "SiteAuthSettings resource specific properties",
+      "x-ms-client-flatten": true
+    }
+  }
+}

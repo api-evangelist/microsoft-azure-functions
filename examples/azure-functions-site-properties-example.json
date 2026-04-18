@@ -1,0 +1,18 @@
+{
+  "state": "Running",
+  "hostNames": [
+    "myFunctionApp"
+  ],
+  "repositorySiteName": "myFunctionApp",
+  "usageState": "Running",
+  "enabled": true,
+  "enabledHostNames": [
+    "myFunctionApp"
+  ],
+  "availabilityState": "Running",
+  "hostNameSslStates": [
+    "myFunctionApp"
+  ],
+  "serverFarmId": "/subscriptions/sub123/resourceGroups/rg1/providers/Microsoft.Web/sites/myFuncApp",
+  "reserved": true
+}

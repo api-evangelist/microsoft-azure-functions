@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-migrate-my-sql-request-structure.json",
+  "name": "MigrateMySqlRequest",
+  "description": "MySQL migration request.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/MigrateMySqlRequestProperties",
+      "description": "MigrateMySqlRequest resource specific properties",
+      "x-ms-client-flatten": true
+    }
+  }
+}

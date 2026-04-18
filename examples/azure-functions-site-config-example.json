@@ -1,0 +1,14 @@
+{
+  "numberOfWorkers": 42,
+  "defaultDocuments": [
+    "example_value"
+  ],
+  "netFrameworkVersion": "example_value",
+  "phpVersion": "example_value",
+  "pythonVersion": "example_value",
+  "nodeVersion": "example_value",
+  "powerShellVersion": "example_value",
+  "linuxFxVersion": "example_value",
+  "windowsFxVersion": "example_value",
+  "requestTracingEnabled": true
+}

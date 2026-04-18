@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-web-job-schema.json",
+  "title": "WebJob",
+  "description": "Web Job Information.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/WebJobProperties",
+      "description": "WebJob resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

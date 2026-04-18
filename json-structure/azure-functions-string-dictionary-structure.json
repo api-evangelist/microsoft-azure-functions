@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-string-dictionary-structure.json",
+  "name": "StringDictionary",
+  "description": "String dictionary resource.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "description": "Settings.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "x-ms-client-flatten": true
+    }
+  }
+}

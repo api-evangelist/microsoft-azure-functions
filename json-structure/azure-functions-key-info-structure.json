@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-key-info-structure.json",
+  "name": "KeyInfo",
+  "description": "Function key info.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Key name"
+    },
+    "value": {
+      "type": "string",
+      "description": "Key value"
+    }
+  }
+}

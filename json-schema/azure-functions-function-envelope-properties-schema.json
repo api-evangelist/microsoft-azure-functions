@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-function-envelope-properties-schema.json",
+  "title": "FunctionEnvelopeProperties",
+  "description": "FunctionEnvelope resource specific properties",
+  "type": "object",
+  "properties": {
+    "function_app_id": {
+      "type": "string",
+      "description": "Function App ID.",
+      "x-ms-client-name": "functionAppId"
+    },
+    "script_root_path_href": {
+      "type": "string",
+      "description": "Script root path URI.",
+      "x-ms-client-name": "scriptRootPathHref"
+    },
+    "script_href": {
+      "type": "string",
+      "description": "Script URI.",
+      "x-ms-client-name": "scriptHref"
+    },
+    "config_href": {
+      "type": "string",
+      "description": "Config URI.",
+      "x-ms-client-name": "configHref"
+    },
+    "test_data_href": {
+      "type": "string",
+      "description": "Test data URI.",
+      "x-ms-client-name": "testDataHref"
+    },
+    "secrets_file_href": {
+      "type": "string",
+      "description": "Secrets file URI.",
+      "x-ms-client-name": "secretsFileHref"
+    },
+    "href": {
+      "type": "string",
+      "description": "Function URI."
+    },
+    "config": {
+      "description": "Config information."
+    },
+    "files": {
+      "type": "object",
+      "description": "File list.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "test_data": {
+      "type": "string",
+      "description": "Test data used when testing via the Azure Portal.",
+      "x-ms-client-name": "testData"
+    },
+    "invoke_url_template": {
+      "type": "string",
+      "description": "The invocation URL",
+      "x-ms-client-name": "invokeUrlTemplate"
+    },
+    "language": {
+      "type": "string",
+      "description": "The function language"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "description": "Gets or sets a value indicating whether the function is disabled"
+    }
+  }
+}

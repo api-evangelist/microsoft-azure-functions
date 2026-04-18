@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-certificate-structure.json",
+  "name": "Certificate",
+  "description": "SSL certificate for an app.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/CertificateProperties",
+      "description": "Certificate resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind."
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "properties": "example_value",
+  "identity": "/subscriptions/sub123/resourceGroups/rg1/providers/Microsoft.Web/sites/myFuncApp",
+  "extendedLocation": "eastus",
+  "kind": "functionapp"
+}

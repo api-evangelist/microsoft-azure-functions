@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-backup-request-schema.json",
+  "title": "BackupRequest",
+  "description": "Description of a backup which will be performed.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/BackupRequestProperties",
+      "description": "BackupRequest resource specific properties",
+      "x-ms-client-flatten": true
+    }
+  }
+}

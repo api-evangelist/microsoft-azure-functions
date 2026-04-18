@@ -1,0 +1,100 @@
+vocabulary: 1.0.0
+info:
+  provider: Microsoft Azure Functions
+  description: Vocabulary for Azure Functions covering management API (518 endpoints)
+    and runtime API for serverless compute.
+  created: '2026-04-17'
+  modified: '2026-04-17'
+operational:
+  apis:
+  - name: Azure Functions Management API
+    namespace: azure-functions-mgmt
+    baseUrl: https://management.azure.com
+    status: active
+  - name: Azure Functions Runtime API
+    namespace: azure-functions-runtime
+    baseUrl: https://{app}.azurewebsites.net
+    status: active
+  resources:
+  - name: function-apps
+    description: Azure Functions application instances.
+    actions:
+    - list
+    - get
+    - create
+    - update
+    - delete
+  - name: functions
+    description: Individual functions within a function app.
+    actions:
+    - list
+    - get
+    - create
+    - delete
+  - name: deployment-slots
+    description: Staging and production deployment slots.
+    actions:
+    - list
+    - get
+    - create
+    - update
+    - delete
+    - swap
+  - name: host-keys
+    description: Host-level authentication keys.
+    actions:
+    - list
+    - create
+    - delete
+  - name: function-keys
+    description: Function-level authentication keys.
+    actions:
+    - list
+    - create
+    - delete
+  - name: app-settings
+    description: Application configuration settings.
+    actions:
+    - list
+    - update
+  - name: deployments
+    description: Function app deployments.
+    actions:
+    - list
+    - get
+    - create
+    - delete
+  - name: site-extensions
+    description: Installed site extensions.
+    actions:
+    - list
+    - get
+    - install
+    - delete
+capability:
+  personas:
+  - id: developer
+    name: Functions Developer
+  - id: devops-engineer
+    name: DevOps Engineer
+  - id: cloud-architect
+    name: Cloud Architect
+  - id: platform-engineer
+    name: Platform Engineer
+  domains:
+  - name: compute
+    resources:
+    - function-apps
+    - functions
+  - name: deployment
+    resources:
+    - deployment-slots
+    - deployments
+  - name: configuration
+    resources:
+    - app-settings
+    - host-keys
+    - function-keys
+  - name: extensions
+    resources:
+    - site-extensions

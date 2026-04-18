@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-slot-config-names-resource-structure.json",
+  "name": "SlotConfigNamesResource",
+  "description": "Slot Config names azure resource.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/SlotConfigNames",
+      "description": "Core resource properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

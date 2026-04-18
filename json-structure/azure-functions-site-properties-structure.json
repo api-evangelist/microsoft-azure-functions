@@ -1,0 +1,299 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-site-properties-structure.json",
+  "name": "SiteProperties",
+  "description": "Site resource specific properties",
+  "type": "object",
+  "properties": {
+    "state": {
+      "type": "string",
+      "description": "Current state of the app.",
+      "readOnly": true
+    },
+    "hostNames": {
+      "type": "array",
+      "description": "Hostnames associated with the app.",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true
+    },
+    "repositorySiteName": {
+      "type": "string",
+      "description": "Name of the repository site.",
+      "readOnly": true
+    },
+    "usageState": {
+      "$ref": "#/definitions/UsageState",
+      "description": "State indicating whether the app has exceeded its quota usage. Read-only.",
+      "readOnly": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "<code>true</code> if the app is enabled; otherwise, <code>false</code>. Setting this value to false disables the app (takes the app offline)."
+    },
+    "enabledHostNames": {
+      "type": "array",
+      "description": "Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,\nthe app is not served on those hostnames.",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true
+    },
+    "availabilityState": {
+      "$ref": "#/definitions/SiteAvailabilityState",
+      "description": "Management information availability state for the app.",
+      "readOnly": true
+    },
+    "hostNameSslStates": {
+      "type": "array",
+      "description": "Hostname SSL states are used to manage the SSL bindings for app's hostnames.",
+      "items": {
+        "$ref": "#/definitions/HostNameSslState"
+      },
+      "x-ms-identifiers": [
+        "name"
+      ]
+    },
+    "serverFarmId": {
+      "type": "string",
+      "description": "Resource ID of the associated App Service plan, formatted as: \"/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}\"."
+    },
+    "reserved": {
+      "type": "boolean",
+      "description": "<code>true</code> if reserved; otherwise, <code>false</code>.",
+      "default": false,
+      "x-ms-mutability": [
+        "read",
+        "create"
+      ]
+    },
+    "isXenon": {
+      "type": "boolean",
+      "description": "Obsolete: Hyper-V sandbox.",
+      "default": false,
+      "x-ms-mutability": [
+        "read",
+        "create"
+      ]
+    },
+    "hyperV": {
+      "type": "boolean",
+      "description": "Hyper-V sandbox.",
+      "default": false,
+      "x-ms-mutability": [
+        "read",
+        "create"
+      ]
+    },
+    "lastModifiedTimeUtc": {
+      "type": "datetime",
+      "description": "Last time the app was modified, in UTC. Read-only.",
+      "readOnly": true
+    },
+    "dnsConfiguration": {
+      "$ref": "#/definitions/SiteDnsConfig",
+      "description": "Property to configure various DNS related settings for a site."
+    },
+    "outboundVnetRouting": {
+      "$ref": "#/definitions/OutboundVnetRouting",
+      "description": "Property to configure various outbound traffic routing options over virtual network for a site"
+    },
+    "siteConfig": {
+      "$ref": "#/definitions/SiteConfig",
+      "description": "Configuration of an App Service app. This property is not returned in response to normal create and read requests since it may contain sensitive information.",
+      "x-ms-mutability": [
+        "update",
+        "create"
+      ]
+    },
+    "functionAppConfig": {
+      "$ref": "#/definitions/FunctionAppConfig",
+      "description": "Configuration specific of the Azure Function app."
+    },
+    "daprConfig": {
+      "$ref": "#/definitions/DaprConfig",
+      "description": "Dapr configuration of the app."
+    },
+    "workloadProfileName": {
+      "type": "string",
+      "description": "Workload profile name for function app to execute on."
+    },
+    "resourceConfig": {
+      "$ref": "#/definitions/ResourceConfig",
+      "description": "Function app resource requirements."
+    },
+    "trafficManagerHostNames": {
+      "type": "array",
+      "description": "Azure Traffic Manager hostnames associated with the app. Read-only.",
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true
+    },
+    "scmSiteAlsoStopped": {
+      "type": "boolean",
+      "description": "<code>true</code> to stop SCM (KUDU) site when the app is stopped; otherwise, <code>false</code>. The default is <code>false</code>.",
+      "default": false
+    },
+    "targetSwapSlot": {
+      "type": "string",
+      "description": "Specifies which deployment slot this app will swap into. Read-only.",
+      "readOnly": true
+    },
+    "hostingEnvironmentProfile": {
+      "$ref": "#/definitions/HostingEnvironmentProfile",
+      "description": "App Service Environment to use for the app.",
+      "x-ms-mutability": [
+        "read",
+        "create"
+      ]
+    },
+    "clientAffinityEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to enable client affinity; <code>false</code> to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is <code>true</code>.",
+      "default": false
+    },
+    "clientAffinityPartitioningEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to enable client affinity partitioning using CHIPS cookies, this will add the <code>partitioned</code> property to the affinity cookies; <code>false</code> to stop sending partitioned affinity cookies. Default is <code>false</code>."
+    },
+    "clientAffinityProxyEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to override client affinity cookie domain with X-Forwarded-Host request header. <code>false</code> to use default domain. Default is <code>false</code>."
+    },
+    "clientCertEnabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to enable client certificate authentication (TLS mutual authentication); otherwise, <code>false</code>. Default is <code>false</code>."
+    },
+    "clientCertMode": {
+      "$ref": "#/definitions/ClientCertMode",
+      "description": "This composes with ClientCertEnabled setting.\n- ClientCertEnabled: false means ClientCert is ignored.\n- ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.\n- ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted."
+    },
+    "clientCertExclusionPaths": {
+      "type": "string",
+      "description": "client certificate authentication comma-separated exclusion paths"
+    },
+    "ipMode": {
+      "$ref": "#/definitions/IPMode",
+      "description": "Specifies the IP mode of the app."
+    },
+    "endToEndEncryptionEnabled": {
+      "type": "boolean",
+      "description": "Whether to use end to end encryption between the FrontEnd and the Worker"
+    },
+    "sshEnabled": {
+      "type": "boolean",
+      "description": "Whether to enable ssh access."
+    },
+    "hostNamesDisabled": {
+      "type": "boolean",
+      "description": "<code>true</code> to disable the public hostnames of the app; otherwise, <code>false</code>.\nIf <code>true</code>, the app is only accessible via API management process."
+    },
+    "customDomainVerificationId": {
+      "type": "string",
+      "description": "Unique identifier that verifies the custom domains assigned to the app. Customer will add this id to a txt record for verification."
+    },
+    "outboundIpAddresses": {
+      "type": "string",
+      "description": "List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only.",
+      "readOnly": true
+    },
+    "possibleOutboundIpAddresses": {
+      "type": "string",
+      "description": "List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only.",
+      "readOnly": true
+    },
+    "containerSize": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Size of the function container."
+    },
+    "dailyMemoryTimeQuota": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Maximum allowed daily memory-time quota (applicable on dynamic apps only)."
+    },
+    "suspendedTill": {
+      "type": "datetime",
+      "description": "App suspended till in case memory-time quota is exceeded.",
+      "readOnly": true
+    },
+    "maxNumberOfWorkers": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Maximum number of workers.\nThis only applies to Functions container.",
+      "readOnly": true
+    },
+    "cloningInfo": {
+      "$ref": "#/definitions/CloningInfo",
+      "description": "If specified during app creation, the app is cloned from a source app.",
+      "x-ms-mutability": [
+        "create"
+      ]
+    },
+    "resourceGroup": {
+      "type": "string",
+      "description": "Name of the resource group the app belongs to. Read-only.",
+      "readOnly": true
+    },
+    "isDefaultContainer": {
+      "type": "boolean",
+      "description": "<code>true</code> if the app is a default container; otherwise, <code>false</code>.",
+      "readOnly": true
+    },
+    "defaultHostName": {
+      "type": "string",
+      "description": "Default hostname of the app. Read-only.",
+      "readOnly": true
+    },
+    "slotSwapStatus": {
+      "$ref": "#/definitions/SlotSwapStatus",
+      "description": "Status of the last deployment slot swap operation.",
+      "readOnly": true
+    },
+    "httpsOnly": {
+      "type": "boolean",
+      "description": "HttpsOnly: configures a web site to accept only https requests. Issues redirect for\nhttp requests"
+    },
+    "redundancyMode": {
+      "$ref": "#/definitions/RedundancyMode",
+      "description": "Site redundancy mode"
+    },
+    "inProgressOperationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Specifies an operation id if this site has a pending operation.",
+      "readOnly": true
+    },
+    "publicNetworkAccess": {
+      "type": "string",
+      "description": "Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled' or an empty string."
+    },
+    "storageAccountRequired": {
+      "type": "boolean",
+      "description": "Checks if Customer provided storage account is required"
+    },
+    "keyVaultReferenceIdentity": {
+      "type": "string",
+      "description": "Identity to use for Key Vault Reference authentication."
+    },
+    "autoGeneratedDomainNameLabelScope": {
+      "$ref": "#/definitions/AutoGeneratedDomainNameLabelScope",
+      "description": "Specifies the scope of uniqueness for the default hostname during resource creation"
+    },
+    "virtualNetworkSubnetId": {
+      "type": "string",
+      "description": "Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration.\nThis must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}"
+    },
+    "managedEnvironmentId": {
+      "type": "string",
+      "description": "Azure Resource Manager ID of the customer's selected Managed Environment on which to host this app. This must be of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.App/managedEnvironments/{managedEnvironmentName}"
+    },
+    "sku": {
+      "type": "string",
+      "description": "Current SKU of application based on associated App Service Plan. Some valid SKU values are Free, Shared, Basic, Dynamic, FlexConsumption, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2",
+      "readOnly": true
+    }
+  }
+}

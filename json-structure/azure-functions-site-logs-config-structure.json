@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-site-logs-config-structure.json",
+  "name": "SiteLogsConfig",
+  "description": "Configuration of App Service site logs.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/SiteLogsConfigProperties",
+      "description": "SiteLogsConfig resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

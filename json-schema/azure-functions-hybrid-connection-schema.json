@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-hybrid-connection-schema.json",
+  "title": "HybridConnection",
+  "description": "Hybrid Connection contract. This is used to configure a Hybrid Connection.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/HybridConnectionProperties",
+      "description": "HybridConnection resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

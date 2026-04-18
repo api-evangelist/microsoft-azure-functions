@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-function-envelope-structure.json",
+  "name": "FunctionEnvelope",
+  "description": "Function information.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/FunctionEnvelopeProperties",
+      "description": "FunctionEnvelope resource specific properties",
+      "x-ms-client-flatten": true
+    },
+    "kind": {
+      "type": "string",
+      "description": "Kind of resource."
+    }
+  }
+}

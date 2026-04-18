@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-restore-request-structure.json",
+  "name": "RestoreRequest",
+  "description": "Description of a restore request.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "$ref": "#/definitions/RestoreRequestProperties",
+      "description": "RestoreRequest resource specific properties",
+      "x-ms-client-flatten": true
+    }
+  }
+}

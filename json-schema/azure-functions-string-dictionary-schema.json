@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-schema/azure-functions-string-dictionary-schema.json",
+  "title": "StringDictionary",
+  "description": "String dictionary resource.",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "description": "Settings.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "x-ms-client-flatten": true
+    }
+  }
+}

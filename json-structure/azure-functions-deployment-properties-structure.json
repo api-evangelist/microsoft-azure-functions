@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/json-structure/azure-functions-deployment-properties-structure.json",
+  "name": "DeploymentProperties",
+  "description": "Deployment resource specific properties",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer",
+      "format": "int32",
+      "description": "Deployment status."
+    },
+    "message": {
+      "type": "string",
+      "description": "Details about deployment status."
+    },
+    "author": {
+      "type": "string",
+      "description": "Who authored the deployment."
+    },
+    "deployer": {
+      "type": "string",
+      "description": "Who performed the deployment."
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Author email.",
+      "x-ms-client-name": "authorEmail"
+    },
+    "start_time": {
+      "type": "datetime",
+      "description": "Start time.",
+      "x-ms-client-name": "startTime"
+    },
+    "end_time": {
+      "type": "datetime",
+      "description": "End time.",
+      "x-ms-client-name": "endTime"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "True if deployment is currently active, false if completed and null if not started."
+    },
+    "details": {
+      "type": "string",
+      "description": "Details on deployment."
+    }
+  }
+}
