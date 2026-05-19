@@ -1,0 +1,320 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — WorkflowTriggers
+  description: 'WebApps API Client — WorkflowTriggers. 5 operations. Lead operation: WorkflowTriggers. Self-contained Naftiko
+    capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - WorkflowTriggers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-workflowtriggers
+    baseUri: https://management.azure.com
+    description: WebApps API Client — WorkflowTriggers business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers
+      operations:
+      - name: workflowtriggerslist
+        method: GET
+        description: Gets a list of workflow triggers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: $top
+          in: query
+          type: integer
+          description: The number of items to be included in the result.
+        - name: $filter
+          in: query
+          type: string
+          description: The filter to apply on the operation.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}
+      operations:
+      - name: workflowtriggersget
+        method: GET
+        description: Gets a workflow trigger.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/listCallbackUrl
+      operations:
+      - name: workflowtriggerslistcallbackurl
+        method: POST
+        description: Get the callback URL for a workflow trigger.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/run
+      operations:
+      - name: workflowtriggersrun
+        method: POST
+        description: Runs a workflow trigger.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/schemas/json
+      operations:
+      - name: workflowtriggersgetschemajson
+        method: GET
+        description: Get the trigger schema as JSON.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-workflowtriggers-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — WorkflowTriggers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: workflowtriggerslist
+        description: Gets a list of workflow triggers.
+        call: azure-functions-management-workflowtriggers.workflowtriggerslist
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          $top: rest.$top
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: workflowtriggersget
+        description: Gets a workflow trigger.
+        call: azure-functions-management-workflowtriggers.workflowtriggersget
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/listcallbackurl
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: workflowtriggerslistcallbackurl
+        description: Get the callback URL for a workflow trigger.
+        call: azure-functions-management-workflowtriggers.workflowtriggerslistcallbackurl
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/run
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: workflowtriggersrun
+        description: Runs a workflow trigger.
+        call: azure-functions-management-workflowtriggers.workflowtriggersrun
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/schemas/json
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: workflowtriggersgetschemajson
+        description: Get the trigger schema as JSON.
+        call: azure-functions-management-workflowtriggers.workflowtriggersgetschemajson
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-workflowtriggers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — WorkflowTriggers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: gets-list-workflow-triggers
+      description: Gets a list of workflow triggers.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-workflowtriggers.workflowtriggerslist
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        $top: tools.$top
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-workflow-trigger
+      description: Gets a workflow trigger.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-workflowtriggers.workflowtriggersget
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-callback-url-workflow-trigger
+      description: Get the callback URL for a workflow trigger.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-workflowtriggers.workflowtriggerslistcallbackurl
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: runs-workflow-trigger
+      description: Runs a workflow trigger.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-workflowtriggers.workflowtriggersrun
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-trigger-schema-json
+      description: Get the trigger schema as JSON.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-workflowtriggers.workflowtriggersgetschemajson
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+      outputParameters:
+      - type: object
+        mapping: $.

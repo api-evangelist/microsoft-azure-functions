@@ -1,0 +1,270 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — Certificates
+  description: 'WebApps API Client — Certificates. 6 operations. Lead operation: Get all certificates for a subscription..
+    Self-contained Naftiko capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - Certificates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-certificates
+    baseUri: https://management.azure.com
+    description: WebApps API Client — Certificates business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-certificates
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/certificates
+      operations:
+      - name: certificateslist
+        method: GET
+        description: Get all certificates for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $filter
+          in: query
+          type: string
+          description: 'Return only information specified in the filter (using OData syntax). For example: $filter=KeyVaultId
+            eq ''KeyVaultId'''
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/certificates
+      operations:
+      - name: certificateslistbyresourcegroup
+        method: GET
+        description: Get all certificates in a resource group.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/certificates/{name}
+      operations:
+      - name: certificatesget
+        method: GET
+        description: Get a certificate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the certificate.
+          required: true
+      - name: certificatescreateorupdate
+        method: PUT
+        description: Create or update a certificate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the certificate.
+          required: true
+        - name: certificateEnvelope
+          in: body
+          type: string
+          description: Details of certificate, if it exists already.
+          required: true
+      - name: certificatesupdate
+        method: PATCH
+        description: Create or update a certificate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the certificate.
+          required: true
+        - name: certificateEnvelope
+          in: body
+          type: string
+          description: Details of certificate, if it exists already.
+          required: true
+      - name: certificatesdelete
+        method: DELETE
+        description: Delete a certificate.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the certificate.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-certificates-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — Certificates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/certificates
+      name: subscriptions-subscriptionid-providers-microsoft-web-certificates
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-certificates.
+      operations:
+      - method: GET
+        name: certificateslist
+        description: Get all certificates for a subscription.
+        call: azure-functions-management-certificates.certificateslist
+        with:
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/certificates
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: certificateslistbyresourcegroup
+        description: Get all certificates in a resource group.
+        call: azure-functions-management-certificates.certificateslistbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/certificates/{name}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: certificatesget
+        description: Get a certificate.
+        call: azure-functions-management-certificates.certificatesget
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: certificatescreateorupdate
+        description: Create or update a certificate.
+        call: azure-functions-management-certificates.certificatescreateorupdate
+        with:
+          name: rest.name
+          certificateEnvelope: rest.certificateEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: certificatesupdate
+        description: Create or update a certificate.
+        call: azure-functions-management-certificates.certificatesupdate
+        with:
+          name: rest.name
+          certificateEnvelope: rest.certificateEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: certificatesdelete
+        description: Delete a certificate.
+        call: azure-functions-management-certificates.certificatesdelete
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-certificates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — Certificates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-all-certificates-subscription
+      description: Get all certificates for a subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-certificates.certificateslist
+      with:
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-certificates-resource-group
+      description: Get all certificates in a resource group.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-certificates.certificateslistbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-certificate
+      description: Get a certificate.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-certificates.certificatesget
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-certificate
+      description: Create or update a certificate.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-certificates.certificatescreateorupdate
+      with:
+        name: tools.name
+        certificateEnvelope: tools.certificateEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-certificate-2
+      description: Create or update a certificate.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-certificates.certificatesupdate
+      with:
+        name: tools.name
+        certificateEnvelope: tools.certificateEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-certificate
+      description: Delete a certificate.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-management-certificates.certificatesdelete
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

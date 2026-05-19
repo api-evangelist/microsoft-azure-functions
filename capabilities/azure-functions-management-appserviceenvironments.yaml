@@ -1,0 +1,2124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — AppServiceEnvironments
+  description: 'WebApps API Client — AppServiceEnvironments. 48 operations. Lead operation: Get all App Service Environments
+    for a subscription.. Self-contained Naftiko capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - AppServiceEnvironments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-appserviceenvironments
+    baseUri: https://management.azure.com
+    description: WebApps API Client — AppServiceEnvironments business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-hostingEnvironments
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/hostingEnvironments
+      operations:
+      - name: appserviceenvironmentslist
+        method: GET
+        description: Get all App Service Environments for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments
+      operations:
+      - name: appserviceenvironmentslistbyresourcegroup
+        method: GET
+        description: Get all App Service Environments in a resource group.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}
+      operations:
+      - name: appserviceenvironmentsget
+        method: GET
+        description: Get the properties of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentscreateorupdate
+        method: PUT
+        description: Create or update an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: hostingEnvironmentEnvelope
+          in: body
+          type: string
+          description: Configuration details of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentsupdate
+        method: PATCH
+        description: Create or update an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: hostingEnvironmentEnvelope
+          in: body
+          type: string
+          description: Configuration details of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentsdelete
+        method: DELETE
+        description: Delete an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: forceDelete
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to force the deletion even if the App Service Environment contains resources.
+            The default is <code>false</code>.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/capacities/compute
+      operations:
+      - name: appserviceenvironmentslistcapacities
+        method: GET
+        description: Get the used, available, and total worker capacity an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/capacities/virtualip
+      operations:
+      - name: appserviceenvironmentsgetvipinfo
+        method: GET
+        description: Get IP addresses assigned to an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/changeVirtualNetwork
+      operations:
+      - name: appserviceenvironmentschangevnet
+        method: POST
+        description: Move an App Service Environment to a different VNET.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: vnetInfo
+          in: body
+          type: string
+          description: Details for the new virtual network.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/configurations/customdnssuffix
+      operations:
+      - name: appserviceenvironmentsgetasecustomdnssuffixconfiguration
+        method: GET
+        description: Get Custom Dns Suffix configuration of an App Service Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentsupdateasecustomdnssuffixconfiguration
+        method: PUT
+        description: Update Custom Dns Suffix configuration of an App Service Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: customDnsSuffixConfiguration
+          in: body
+          type: string
+          required: true
+      - name: appserviceenvironmentsdeleteasecustomdnssuffixconfiguration
+        method: DELETE
+        description: Delete Custom Dns Suffix configuration of an App Service Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/configurations/networking
+      operations:
+      - name: appserviceenvironmentsgetasev3networkingconfiguration
+        method: GET
+        description: Get networking configuration of an App Service Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentsupdateasenetworkingconfiguration
+        method: PUT
+        description: Update networking configuration of an App Service Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: aseNetworkingConfiguration
+          in: body
+          type: string
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/diagnostics
+      operations:
+      - name: appserviceenvironmentslistdiagnostics
+        method: GET
+        description: Get diagnostic information for an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/inboundNetworkDependenciesEndpoints
+      operations:
+      - name: appserviceenvironmentsgetinboundnetworkdependenciesendpoints
+        method: GET
+        description: Get the network endpoints of all inbound dependencies of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools
+      operations:
+      - name: appserviceenvironmentslistmultirolepools
+        method: GET
+        description: Get all multi-role pools.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default
+      operations:
+      - name: appserviceenvironmentsgetmultirolepool
+        method: GET
+        description: Get properties of a multi-role pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+      - name: appserviceenvironmentscreateorupdatemultirolepool
+        method: PUT
+        description: Create or update a multi-role pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: multiRolePoolEnvelope
+          in: body
+          type: string
+          description: Properties of the multi-role pool.
+          required: true
+      - name: appserviceenvironmentsupdatemultirolepool
+        method: PATCH
+        description: Create or update a multi-role pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: multiRolePoolEnvelope
+          in: body
+          type: string
+          description: Properties of the multi-role pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/metricdefinitions
+      operations:
+      - name: appserviceenvironmentslistmultirolemetricdefinitions
+        method: GET
+        description: Get metric definitions for a multi-role pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/skus
+      operations:
+      - name: appserviceenvironmentslistmultirolepoolskus
+        method: GET
+        description: Get available SKUs for scaling a multi-role pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/usages
+      operations:
+      - name: appserviceenvironmentslistmultiroleusages
+        method: GET
+        description: Get usage metrics for a multi-role pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/operations
+      operations:
+      - name: appserviceenvironmentslistoperations
+        method: GET
+        description: List all currently running operations on the App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/outboundNetworkDependenciesEndpoints
+      operations:
+      - name: appserviceenvironmentsgetoutboundnetworkdependenciesendpoints
+        method: GET
+        description: Get the network endpoints of all outbound dependencies of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections
+      operations:
+      - name: appserviceenvironmentsgetprivateendpointconnectionlist
+        method: GET
+        description: Gets the list of private endpoints associated with a hosting environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateEndpointConnections/{privateEndpointConnectionName}
+      operations:
+      - name: appserviceenvironmentsgetprivateendpointconnection
+        method: GET
+        description: Gets a private endpoint connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: privateEndpointConnectionName
+          in: path
+          type: string
+          description: Name of the private endpoint connection.
+          required: true
+      - name: appserviceenvironmentsapproveorrejectprivateendpointconnection
+        method: PUT
+        description: Approves or rejects a private endpoint connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: privateEndpointConnectionName
+          in: path
+          type: string
+          description: Name of the private endpoint connection.
+          required: true
+        - name: privateEndpointWrapper
+          in: body
+          type: string
+          required: true
+      - name: appserviceenvironmentsdeleteprivateendpointconnection
+        method: DELETE
+        description: Deletes a private endpoint connection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: privateEndpointConnectionName
+          in: path
+          type: string
+          description: Name of the private endpoint connection.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/privateLinkResources
+      operations:
+      - name: appserviceenvironmentsgetprivatelinkresources
+        method: GET
+        description: Gets the private link resources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/reboot
+      operations:
+      - name: appserviceenvironmentsreboot
+        method: POST
+        description: Reboot all machines in an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/resume
+      operations:
+      - name: appserviceenvironmentsresume
+        method: POST
+        description: Resume an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/serverfarms
+      operations:
+      - name: appserviceenvironmentslistappserviceplans
+        method: GET
+        description: Get all App Service plans in an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/sites
+      operations:
+      - name: appserviceenvironmentslistwebapps
+        method: GET
+        description: Get all apps in an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: propertiesToInclude
+          in: query
+          type: string
+          description: Comma separated list of app properties to include.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/suspend
+      operations:
+      - name: appserviceenvironmentssuspend
+        method: POST
+        description: Suspend an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/testUpgradeAvailableNotification
+      operations:
+      - name: appserviceenvironmentstestupgradeavailablenotification
+        method: POST
+        description: Send a test notification that an upgrade is available for this App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/upgrade
+      operations:
+      - name: appserviceenvironmentsupgrade
+        method: POST
+        description: Initiate an upgrade of an App Service Environment if one is available.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/usages
+      operations:
+      - name: appserviceenvironmentslistusages
+        method: GET
+        description: Get global usage metrics of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: $filter
+          in: query
+          type: string
+          description: 'Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value
+            eq ''Metric1'' or name.value eq ''Metric2'') and s'
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools
+      operations:
+      - name: appserviceenvironmentslistworkerpools
+        method: GET
+        description: Get all worker pools of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}
+      operations:
+      - name: appserviceenvironmentsgetworkerpool
+        method: GET
+        description: Get properties of a worker pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+      - name: appserviceenvironmentscreateorupdateworkerpool
+        method: PUT
+        description: Create or update a worker pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+        - name: workerPoolEnvelope
+          in: body
+          type: string
+          description: Properties of the worker pool.
+          required: true
+      - name: appserviceenvironmentsupdateworkerpool
+        method: PATCH
+        description: Create or update a worker pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+        - name: workerPoolEnvelope
+          in: body
+          type: string
+          description: Properties of the worker pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/metricdefinitions
+      operations:
+      - name: appserviceenvironmentslistwebworkermetricdefinitions
+        method: GET
+        description: Get metric definitions for a worker pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/skus
+      operations:
+      - name: appserviceenvironmentslistworkerpoolskus
+        method: GET
+        description: Get available SKUs for scaling a worker pool.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/usages
+      operations:
+      - name: appserviceenvironmentslistwebworkerusages
+        method: GET
+        description: Get usage metrics for a worker pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Web/hostingEnvironments/{name}/diagnostics/{diagnosticsName}
+      operations:
+      - name: appserviceenvironmentsgetdiagnosticsitem
+        method: GET
+        description: Get a diagnostics item for an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: diagnosticsName
+          in: path
+          type: string
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/instances/{instance}/metricdefinitions
+      operations:
+      - name: appserviceenvironmentslistmultirolepoolinstancemetricdefinitions
+        method: GET
+        description: Get metric definitions for a specific instance of a multi-role pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: instance
+          in: path
+          type: string
+          description: Name of the instance in the multi-role pool.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/instances/{instance}/metricdefinitions
+      operations:
+      - name: appserviceenvironmentslistworkerpoolinstancemetricdefinitions
+        method: GET
+        description: Get metric definitions for a specific instance of a worker pool of an App Service Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: workerPoolName
+          in: path
+          type: string
+          description: Name of the worker pool.
+          required: true
+        - name: instance
+          in: path
+          type: string
+          description: Name of the instance in the worker pool.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-appserviceenvironments-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — AppServiceEnvironments. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/hostingenvironments
+      name: subscriptions-subscriptionid-providers-microsoft-web-hostingenvironments
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-hostingEnvironments.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslist
+        description: Get all App Service Environments for a subscription.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistbyresourcegroup
+        description: Get all App Service Environments in a resource group.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsget
+        description: Get the properties of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsget
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentscreateorupdate
+        description: Create or update an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdate
+        with:
+          name: rest.name
+          hostingEnvironmentEnvelope: rest.hostingEnvironmentEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: appserviceenvironmentsupdate
+        description: Create or update an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdate
+        with:
+          name: rest.name
+          hostingEnvironmentEnvelope: rest.hostingEnvironmentEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: appserviceenvironmentsdelete
+        description: Delete an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdelete
+        with:
+          name: rest.name
+          forceDelete: rest.forceDelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/capacities/compute
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistcapacities
+        description: Get the used, available, and total worker capacity an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistcapacities
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/capacities/virtualip
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetvipinfo
+        description: Get IP addresses assigned to an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetvipinfo
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/changevirtualnetwork
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentschangevnet
+        description: Move an App Service Environment to a different VNET.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentschangevnet
+        with:
+          name: rest.name
+          vnetInfo: rest.vnetInfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/configurations/customdnssuffix
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetasecustomdnssuffixconfiguration
+        description: Get Custom Dns Suffix configuration of an App Service Environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetasecustomdnssuffixconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentsupdateasecustomdnssuffixconfiguration
+        description: Update Custom Dns Suffix configuration of an App Service Environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateasecustomdnssuffixconfiguration
+        with:
+          name: rest.name
+          customDnsSuffixConfiguration: rest.customDnsSuffixConfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: appserviceenvironmentsdeleteasecustomdnssuffixconfiguration
+        description: Delete Custom Dns Suffix configuration of an App Service Environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdeleteasecustomdnssuffixconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/configurations/networking
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetasev3networkingconfiguration
+        description: Get networking configuration of an App Service Environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetasev3networkingconfiguration
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentsupdateasenetworkingconfiguration
+        description: Update networking configuration of an App Service Environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateasenetworkingconfiguration
+        with:
+          name: rest.name
+          aseNetworkingConfiguration: rest.aseNetworkingConfiguration
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/diagnostics
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistdiagnostics
+        description: Get diagnostic information for an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistdiagnostics
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/inboundnetworkdependenciesendpoints
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetinboundnetworkdependenciesendpoints
+        description: Get the network endpoints of all inbound dependencies of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetinboundnetworkdependenciesendpoints
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistmultirolepools
+        description: Get all multi-role pools.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepools
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools/default
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetmultirolepool
+        description: Get properties of a multi-role pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetmultirolepool
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentscreateorupdatemultirolepool
+        description: Create or update a multi-role pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdatemultirolepool
+        with:
+          name: rest.name
+          multiRolePoolEnvelope: rest.multiRolePoolEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: appserviceenvironmentsupdatemultirolepool
+        description: Create or update a multi-role pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdatemultirolepool
+        with:
+          name: rest.name
+          multiRolePoolEnvelope: rest.multiRolePoolEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools/default/metricdefinitions
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistmultirolemetricdefinitions
+        description: Get metric definitions for a multi-role pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolemetricdefinitions
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools/default/skus
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistmultirolepoolskus
+        description: Get available SKUs for scaling a multi-role pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepoolskus
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools/default/usages
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistmultiroleusages
+        description: Get usage metrics for a multi-role pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultiroleusages
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/operations
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistoperations
+        description: List all currently running operations on the App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistoperations
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/outboundnetworkdependenciesendpoints
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetoutboundnetworkdependenciesendpoints
+        description: Get the network endpoints of all outbound dependencies of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetoutboundnetworkdependenciesendpoints
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/privateendpointconnections
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetprivateendpointconnectionlist
+        description: Gets the list of private endpoints associated with a hosting environment
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivateendpointconnectionlist
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/privateendpointconnections/{privateendpointconnectionname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetprivateendpointconnection
+        description: Gets a private endpoint connection
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivateendpointconnection
+        with:
+          name: rest.name
+          privateEndpointConnectionName: rest.privateEndpointConnectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentsapproveorrejectprivateendpointconnection
+        description: Approves or rejects a private endpoint connection
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsapproveorrejectprivateendpointconnection
+        with:
+          name: rest.name
+          privateEndpointConnectionName: rest.privateEndpointConnectionName
+          privateEndpointWrapper: rest.privateEndpointWrapper
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: appserviceenvironmentsdeleteprivateendpointconnection
+        description: Deletes a private endpoint connection
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdeleteprivateendpointconnection
+        with:
+          name: rest.name
+          privateEndpointConnectionName: rest.privateEndpointConnectionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/privatelinkresources
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetprivatelinkresources
+        description: Gets the private link resources
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivatelinkresources
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/reboot
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentsreboot
+        description: Reboot all machines in an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsreboot
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/resume
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentsresume
+        description: Resume an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsresume
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/serverfarms
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistappserviceplans
+        description: Get all App Service plans in an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistappserviceplans
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/sites
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistwebapps
+        description: Get all apps in an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebapps
+        with:
+          name: rest.name
+          propertiesToInclude: rest.propertiesToInclude
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/suspend
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentssuspend
+        description: Suspend an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentssuspend
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/testupgradeavailablenotification
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentstestupgradeavailablenotification
+        description: Send a test notification that an upgrade is available for this App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentstestupgradeavailablenotification
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/upgrade
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: appserviceenvironmentsupgrade
+        description: Initiate an upgrade of an App Service Environment if one is available.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupgrade
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/usages
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistusages
+        description: Get global usage metrics of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistusages
+        with:
+          name: rest.name
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistworkerpools
+        description: Get all worker pools of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpools
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools/{workerpoolname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetworkerpool
+        description: Get properties of a worker pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetworkerpool
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: appserviceenvironmentscreateorupdateworkerpool
+        description: Create or update a worker pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdateworkerpool
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+          workerPoolEnvelope: rest.workerPoolEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: appserviceenvironmentsupdateworkerpool
+        description: Create or update a worker pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateworkerpool
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+          workerPoolEnvelope: rest.workerPoolEnvelope
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools/{workerpoolname}/metricdefinitions
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistwebworkermetricdefinitions
+        description: Get metric definitions for a worker pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebworkermetricdefinitions
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools/{workerpoolname}/skus
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistworkerpoolskus
+        description: Get available SKUs for scaling a worker pool.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpoolskus
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools/{workerpoolname}/usages
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistwebworkerusages
+        description: Get usage metrics for a worker pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebworkerusages
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/diagnostics/{diagnosticsname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentsgetdiagnosticsitem
+        description: Get a diagnostics item for an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetdiagnosticsitem
+        with:
+          name: rest.name
+          diagnosticsName: rest.diagnosticsName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/multirolepools/default/instances/{instance}/metricdefinitions
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistmultirolepoolinstancemetricdefinitions
+        description: Get metric definitions for a specific instance of a multi-role pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepoolinstancemetricdefinitions
+        with:
+          name: rest.name
+          instance: rest.instance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{name}/workerpools/{workerpoolname}/instances/{instance}/metricdefinitions
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-microsof.
+      operations:
+      - method: GET
+        name: appserviceenvironmentslistworkerpoolinstancemetricdefinitions
+        description: Get metric definitions for a specific instance of a worker pool of an App Service Environment.
+        call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpoolinstancemetricdefinitions
+        with:
+          name: rest.name
+          workerPoolName: rest.workerPoolName
+          instance: rest.instance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-appserviceenvironments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — AppServiceEnvironments. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-all-app-service-environments
+      description: Get all App Service Environments for a subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-app-service-environments-2
+      description: Get all App Service Environments in a resource group.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-properties-app-service-environment
+      description: Get the properties of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsget
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-app-service-environment
+      description: Create or update an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdate
+      with:
+        name: tools.name
+        hostingEnvironmentEnvelope: tools.hostingEnvironmentEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-app-service-environment-2
+      description: Create or update an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdate
+      with:
+        name: tools.name
+        hostingEnvironmentEnvelope: tools.hostingEnvironmentEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-app-service-environment
+      description: Delete an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdelete
+      with:
+        name: tools.name
+        forceDelete: tools.forceDelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-used-available-and-total
+      description: Get the used, available, and total worker capacity an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistcapacities
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ip-addresses-assigned-app
+      description: Get IP addresses assigned to an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetvipinfo
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: move-app-service-environment-different
+      description: Move an App Service Environment to a different VNET.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentschangevnet
+      with:
+        name: tools.name
+        vnetInfo: tools.vnetInfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-custom-dns-suffix-configuration
+      description: Get Custom Dns Suffix configuration of an App Service Environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetasecustomdnssuffixconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-custom-dns-suffix-configuration
+      description: Update Custom Dns Suffix configuration of an App Service Environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateasecustomdnssuffixconfiguration
+      with:
+        name: tools.name
+        customDnsSuffixConfiguration: tools.customDnsSuffixConfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-custom-dns-suffix-configuration
+      description: Delete Custom Dns Suffix configuration of an App Service Environment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdeleteasecustomdnssuffixconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-networking-configuration-app-service
+      description: Get networking configuration of an App Service Environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetasev3networkingconfiguration
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-networking-configuration-app-service
+      description: Update networking configuration of an App Service Environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateasenetworkingconfiguration
+      with:
+        name: tools.name
+        aseNetworkingConfiguration: tools.aseNetworkingConfiguration
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-diagnostic-information-app-service
+      description: Get diagnostic information for an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistdiagnostics
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-network-endpoints-all-inbound
+      description: Get the network endpoints of all inbound dependencies of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetinboundnetworkdependenciesendpoints
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-multi-role-pools
+      description: Get all multi-role pools.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepools
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-properties-multi-role-pool
+      description: Get properties of a multi-role pool.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetmultirolepool
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-multi-role-pool
+      description: Create or update a multi-role pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdatemultirolepool
+      with:
+        name: tools.name
+        multiRolePoolEnvelope: tools.multiRolePoolEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-multi-role-pool-2
+      description: Create or update a multi-role pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdatemultirolepool
+      with:
+        name: tools.name
+        multiRolePoolEnvelope: tools.multiRolePoolEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-definitions-multi-role
+      description: Get metric definitions for a multi-role pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolemetricdefinitions
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-available-skus-scaling-multi
+      description: Get available SKUs for scaling a multi-role pool.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepoolskus
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-usage-metrics-multi-role
+      description: Get usage metrics for a multi-role pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultiroleusages
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-currently-running-operations
+      description: List all currently running operations on the App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistoperations
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-network-endpoints-all-outbound
+      description: Get the network endpoints of all outbound dependencies of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetoutboundnetworkdependenciesendpoints
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-list-private-endpoints-associated
+      description: Gets the list of private endpoints associated with a hosting environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivateendpointconnectionlist
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-private-endpoint-connection
+      description: Gets a private endpoint connection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivateendpointconnection
+      with:
+        name: tools.name
+        privateEndpointConnectionName: tools.privateEndpointConnectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: approves-rejects-private-endpoint-connection
+      description: Approves or rejects a private endpoint connection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsapproveorrejectprivateendpointconnection
+      with:
+        name: tools.name
+        privateEndpointConnectionName: tools.privateEndpointConnectionName
+        privateEndpointWrapper: tools.privateEndpointWrapper
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-private-endpoint-connection
+      description: Deletes a private endpoint connection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsdeleteprivateendpointconnection
+      with:
+        name: tools.name
+        privateEndpointConnectionName: tools.privateEndpointConnectionName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-private-link-resources
+      description: Gets the private link resources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetprivatelinkresources
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reboot-all-machines-app-service
+      description: Reboot all machines in an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsreboot
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-app-service-environment
+      description: Resume an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsresume
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-app-service-plans
+      description: Get all App Service plans in an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistappserviceplans
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-apps-app-service
+      description: Get all apps in an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebapps
+      with:
+        name: tools.name
+        propertiesToInclude: tools.propertiesToInclude
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-app-service-environment
+      description: Suspend an App Service Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentssuspend
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-test-notification-that-upgrade
+      description: Send a test notification that an upgrade is available for this App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentstestupgradeavailablenotification
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: initiate-upgrade-app-service-environment
+      description: Initiate an upgrade of an App Service Environment if one is available.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupgrade
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-global-usage-metrics-app
+      description: Get global usage metrics of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistusages
+      with:
+        name: tools.name
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-worker-pools-app
+      description: Get all worker pools of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpools
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-properties-worker-pool
+      description: Get properties of a worker pool.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetworkerpool
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-worker-pool
+      description: Create or update a worker pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentscreateorupdateworkerpool
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+        workerPoolEnvelope: tools.workerPoolEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-worker-pool-2
+      description: Create or update a worker pool.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsupdateworkerpool
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+        workerPoolEnvelope: tools.workerPoolEnvelope
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-definitions-worker-pool
+      description: Get metric definitions for a worker pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebworkermetricdefinitions
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-available-skus-scaling-worker
+      description: Get available SKUs for scaling a worker pool.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpoolskus
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-usage-metrics-worker-pool
+      description: Get usage metrics for a worker pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistwebworkerusages
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-diagnostics-item-app-service
+      description: Get a diagnostics item for an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentsgetdiagnosticsitem
+      with:
+        name: tools.name
+        diagnosticsName: tools.diagnosticsName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-definitions-specific-instance
+      description: Get metric definitions for a specific instance of a multi-role pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistmultirolepoolinstancemetricdefinitions
+      with:
+        name: tools.name
+        instance: tools.instance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-metric-definitions-specific-instance-2
+      description: Get metric definitions for a specific instance of a worker pool of an App Service Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-appserviceenvironments.appserviceenvironmentslistworkerpoolinstancemetricdefinitions
+      with:
+        name: tools.name
+        workerPoolName: tools.workerPoolName
+        instance: tools.instance
+      outputParameters:
+      - type: object
+        mapping: $.

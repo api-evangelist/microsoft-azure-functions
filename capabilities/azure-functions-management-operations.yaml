@@ -1,0 +1,68 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — Operations
+  description: 'WebApps API Client — Operations. 1 operations. Lead operation: Gets all available operations for the Microsoft.Web
+    resource provider. Also exposes resource metric definitions. Self-contained Naftiko capability covering one Microsoft
+    Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - Operations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-operations
+    baseUri: https://management.azure.com
+    description: WebApps API Client — Operations business capability. Self-contained, no shared references.
+    resources:
+    - name: providers-Microsoft.Web-operations
+      path: /providers/Microsoft.Web/operations
+      operations:
+      - name: providerlistoperations
+        method: GET
+        description: Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-operations-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — Operations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/providers/microsoft-web/operations
+      name: providers-microsoft-web-operations
+      description: REST surface for providers-Microsoft.Web-operations.
+      operations:
+      - method: GET
+        name: providerlistoperations
+        description: Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+        call: azure-functions-management-operations.providerlistoperations
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-operations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — Operations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: gets-all-available-operations-microsoft-web
+      description: Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-operations.providerlistoperations
+      outputParameters:
+      - type: object
+        mapping: $.

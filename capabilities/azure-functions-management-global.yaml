@@ -1,0 +1,161 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — Global
+  description: 'WebApps API Client — Global. 3 operations. Lead operation: Get deleted app for a subscription.. Self-contained
+    Naftiko capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - Global
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-global
+    baseUri: https://management.azure.com
+    description: WebApps API Client — Global business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-deletedSites-deletedSiteId
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites/{deletedSiteId}
+      operations:
+      - name: globalgetdeletedwebapp
+        method: GET
+        description: Get deleted app for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deletedSiteId
+          in: path
+          type: string
+          description: The numeric ID of the deleted app, e.g. 12345
+          required: true
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-deletedSites-deletedSiteId-
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites/{deletedSiteId}/snapshots
+      operations:
+      - name: globalgetdeletedwebappsnapshots
+        method: GET
+        description: Get all deleted apps for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deletedSiteId
+          in: path
+          type: string
+          description: The numeric ID of the deleted app, e.g. 12345
+          required: true
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-locations-location-operatio
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/operations/{operationId}
+      operations:
+      - name: globalgetsubscriptionoperationwithasyncresponse
+        method: GET
+        description: Gets an operation in a subscription and given region
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: operationId
+          in: path
+          type: string
+          description: Operation Id
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-global-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — Global. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/deletedsites/{deletedsiteid}
+      name: subscriptions-subscriptionid-providers-microsoft-web-deletedsites-deletedsiteid
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-deletedSites-deletedSiteId.
+      operations:
+      - method: GET
+        name: globalgetdeletedwebapp
+        description: Get deleted app for a subscription.
+        call: azure-functions-management-global.globalgetdeletedwebapp
+        with:
+          deletedSiteId: rest.deletedSiteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/deletedsites/{deletedsiteid}/snapshots
+      name: subscriptions-subscriptionid-providers-microsoft-web-deletedsites-deletedsiteid
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-deletedSites-deletedSiteId-.
+      operations:
+      - method: GET
+        name: globalgetdeletedwebappsnapshots
+        description: Get all deleted apps for a subscription.
+        call: azure-functions-management-global.globalgetdeletedwebappsnapshots
+        with:
+          deletedSiteId: rest.deletedSiteId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/locations/{location}/operations/{operationid}
+      name: subscriptions-subscriptionid-providers-microsoft-web-locations-location-operatio
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-locations-location-operatio.
+      operations:
+      - method: GET
+        name: globalgetsubscriptionoperationwithasyncresponse
+        description: Gets an operation in a subscription and given region
+        call: azure-functions-management-global.globalgetsubscriptionoperationwithasyncresponse
+        with:
+          operationId: rest.operationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-global-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — Global. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-deleted-app-subscription
+      description: Get deleted app for a subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-global.globalgetdeletedwebapp
+      with:
+        deletedSiteId: tools.deletedSiteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-deleted-apps-subscription
+      description: Get all deleted apps for a subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-global.globalgetdeletedwebappsnapshots
+      with:
+        deletedSiteId: tools.deletedSiteId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-operation-subscription-and-given
+      description: Gets an operation in a subscription and given region
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-global.globalgetsubscriptionoperationwithasyncresponse
+      with:
+        operationId: tools.operationId
+      outputParameters:
+      - type: object
+        mapping: $.

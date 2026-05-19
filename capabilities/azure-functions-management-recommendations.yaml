@@ -1,0 +1,793 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — Recommendations
+  description: 'WebApps API Client — Recommendations. 15 operations. Lead operation: List all recommendations for a subscription..
+    Self-contained Naftiko capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - Recommendations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-recommendations
+    baseUri: https://management.azure.com
+    description: WebApps API Client — Recommendations business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-recommendations
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/recommendations
+      operations:
+      - name: recommendationslist
+        method: GET
+        description: List all recommendations for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: featured
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>,
+            which returns all recommendations.
+        - name: $filter
+          in: query
+          type: string
+          description: 'Filter is specified by using OData syntax. Example: $filter=channel eq ''Api'' or channel eq ''Notification''
+            and startTime eq 2014-01-01T00:00:00Z and endTime eq 2'
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-recommendations-reset
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/recommendations/reset
+      operations:
+      - name: recommendationsresetallfilters
+        method: POST
+        description: Reset all recommendation opt-out settings for a subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-recommendations-name-disabl
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/recommendations/{name}/disable
+      operations:
+      - name: recommendationsdisablerecommendationforsubscription
+        method: POST
+        description: Disables the specified rule so it will not apply to a subscription in the future.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Rule name
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendationHistory
+      operations:
+      - name: recommendationslisthistoryforhostingenvironment
+        method: GET
+        description: Get past recommendations for an app, optionally specified by the time range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: expiredOnly
+          in: query
+          type: boolean
+          description: Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns
+            only expired recommendations.
+        - name: $filter
+          in: query
+          type: string
+          description: 'Filter is specified by using OData syntax. Example: $filter=channel eq ''Api'' or channel eq ''Notification''
+            and startTime eq 2014-01-01T00:00:00Z and endTime eq 2'
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendations
+      operations:
+      - name: recommendationslistrecommendedrulesforhostingenvironment
+        method: GET
+        description: Get all recommendations for a hosting environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: featured
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>,
+            which returns all recommendations.
+        - name: $filter
+          in: query
+          type: string
+          description: 'Return only channels specified in the filter. Filter is specified by using OData syntax. Example:
+            $filter=channel eq ''Api'' or channel eq ''Notification'''
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendations/disable
+      operations:
+      - name: recommendationsdisableallforhostingenvironment
+        method: POST
+        description: Disable all recommendations for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: environmentName
+          in: query
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendations/reset
+      operations:
+      - name: recommendationsresetallfiltersforhostingenvironment
+        method: POST
+        description: Reset all recommendation opt-out settings for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the App Service Environment.
+          required: true
+        - name: environmentName
+          in: query
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendations/{name}
+      operations:
+      - name: recommendationsgetruledetailsbyhostingenvironment
+        method: GET
+        description: Get a recommendation rule for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the hosting environment.
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: Name of the recommendation.
+          required: true
+        - name: updateSeen
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to update the last-seen timestamp of the recommendation object.
+        - name: recommendationId
+          in: query
+          type: string
+          description: The GUID of the recommendation object if you query an expired one. You don't need to specify it to
+            query an active entry.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{hostingEnvironmentName}/recommendations/{name}/disable
+      operations:
+      - name: recommendationsdisablerecommendationforhostingenvironment
+        method: POST
+        description: Disables the specific rule for a web site permanently.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hostingEnvironmentName
+          in: path
+          type: string
+          description: Name of the hosting environment.
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: Name of the recommendation.
+          required: true
+        - name: environmentName
+          in: query
+          type: string
+          description: Site name
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendationHistory
+      operations:
+      - name: recommendationslisthistoryforwebapp
+        method: GET
+        description: Get past recommendations for an app, optionally specified by the time range.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: expiredOnly
+          in: query
+          type: boolean
+          description: Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns
+            only expired recommendations.
+        - name: $filter
+          in: query
+          type: string
+          description: 'Filter is specified by using OData syntax. Example: $filter=channel eq ''Api'' or channel eq ''Notification''
+            and startTime eq 2014-01-01T00:00:00Z and endTime eq 2'
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendations
+      operations:
+      - name: recommendationslistrecommendedrulesforwebapp
+        method: GET
+        description: Get all recommendations for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: featured
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>,
+            which returns all recommendations.
+        - name: $filter
+          in: query
+          type: string
+          description: 'Return only channels specified in the filter. Filter is specified by using OData syntax. Example:
+            $filter=channel eq ''Api'' or channel eq ''Notification'''
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendations/disable
+      operations:
+      - name: recommendationsdisableallforwebapp
+        method: POST
+        description: Disable all recommendations for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendations/reset
+      operations:
+      - name: recommendationsresetallfiltersforwebapp
+        method: POST
+        description: Reset all recommendation opt-out settings for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendations/{name}
+      operations:
+      - name: recommendationsgetruledetailsbywebapp
+        method: GET
+        description: Get a recommendation rule for an app.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: Name of the recommendation.
+          required: true
+        - name: updateSeen
+          in: query
+          type: boolean
+          description: Specify <code>true</code> to update the last-seen timestamp of the recommendation object.
+        - name: recommendationId
+          in: query
+          type: string
+          description: The GUID of the recommendation object if you query an expired one. You don't need to specify it to
+            query an active entry.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/recommendations/{name}/disable
+      operations:
+      - name: recommendationsdisablerecommendationforsite
+        method: POST
+        description: Disables the specific rule for a web site permanently.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: siteName
+          in: path
+          type: string
+          description: Name of the app.
+          required: true
+        - name: name
+          in: path
+          type: string
+          description: Name of the recommendation.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-recommendations-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — Recommendations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/recommendations
+      name: subscriptions-subscriptionid-providers-microsoft-web-recommendations
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-recommendations.
+      operations:
+      - method: GET
+        name: recommendationslist
+        description: List all recommendations for a subscription.
+        call: azure-functions-management-recommendations.recommendationslist
+        with:
+          featured: rest.featured
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/recommendations/reset
+      name: subscriptions-subscriptionid-providers-microsoft-web-recommendations-reset
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-recommendations-reset.
+      operations:
+      - method: POST
+        name: recommendationsresetallfilters
+        description: Reset all recommendation opt-out settings for a subscription.
+        call: azure-functions-management-recommendations.recommendationsresetallfilters
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/recommendations/{name}/disable
+      name: subscriptions-subscriptionid-providers-microsoft-web-recommendations-name-disabl
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-recommendations-name-disabl.
+      operations:
+      - method: POST
+        name: recommendationsdisablerecommendationforsubscription
+        description: Disables the specified rule so it will not apply to a subscription in the future.
+        call: azure-functions-management-recommendations.recommendationsdisablerecommendationforsubscription
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendationhistory
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationslisthistoryforhostingenvironment
+        description: Get past recommendations for an app, optionally specified by the time range.
+        call: azure-functions-management-recommendations.recommendationslisthistoryforhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          expiredOnly: rest.expiredOnly
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendations
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationslistrecommendedrulesforhostingenvironment
+        description: Get all recommendations for a hosting environment.
+        call: azure-functions-management-recommendations.recommendationslistrecommendedrulesforhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          featured: rest.featured
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendations/disable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsdisableallforhostingenvironment
+        description: Disable all recommendations for an app.
+        call: azure-functions-management-recommendations.recommendationsdisableallforhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          environmentName: rest.environmentName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendations/reset
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsresetallfiltersforhostingenvironment
+        description: Reset all recommendation opt-out settings for an app.
+        call: azure-functions-management-recommendations.recommendationsresetallfiltersforhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          environmentName: rest.environmentName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendations/{name}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationsgetruledetailsbyhostingenvironment
+        description: Get a recommendation rule for an app.
+        call: azure-functions-management-recommendations.recommendationsgetruledetailsbyhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          name: rest.name
+          updateSeen: rest.updateSeen
+          recommendationId: rest.recommendationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/hostingenvironments/{hostingenvironmentname}/recommendations/{name}/disable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsdisablerecommendationforhostingenvironment
+        description: Disables the specific rule for a web site permanently.
+        call: azure-functions-management-recommendations.recommendationsdisablerecommendationforhostingenvironment
+        with:
+          hostingEnvironmentName: rest.hostingEnvironmentName
+          name: rest.name
+          environmentName: rest.environmentName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendationhistory
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationslisthistoryforwebapp
+        description: Get past recommendations for an app, optionally specified by the time range.
+        call: azure-functions-management-recommendations.recommendationslisthistoryforwebapp
+        with:
+          siteName: rest.siteName
+          expiredOnly: rest.expiredOnly
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendations
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationslistrecommendedrulesforwebapp
+        description: Get all recommendations for an app.
+        call: azure-functions-management-recommendations.recommendationslistrecommendedrulesforwebapp
+        with:
+          siteName: rest.siteName
+          featured: rest.featured
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendations/disable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsdisableallforwebapp
+        description: Disable all recommendations for an app.
+        call: azure-functions-management-recommendations.recommendationsdisableallforwebapp
+        with:
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendations/reset
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsresetallfiltersforwebapp
+        description: Reset all recommendation opt-out settings for an app.
+        call: azure-functions-management-recommendations.recommendationsresetallfiltersforwebapp
+        with:
+          siteName: rest.siteName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendations/{name}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: recommendationsgetruledetailsbywebapp
+        description: Get a recommendation rule for an app.
+        call: azure-functions-management-recommendations.recommendationsgetruledetailsbywebapp
+        with:
+          siteName: rest.siteName
+          name: rest.name
+          updateSeen: rest.updateSeen
+          recommendationId: rest.recommendationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{sitename}/recommendations/{name}/disable
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: recommendationsdisablerecommendationforsite
+        description: Disables the specific rule for a web site permanently.
+        call: azure-functions-management-recommendations.recommendationsdisablerecommendationforsite
+        with:
+          siteName: rest.siteName
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-recommendations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — Recommendations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-recommendations-subscription
+      description: List all recommendations for a subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationslist
+      with:
+        featured: tools.featured
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-all-recommendation-opt-out
+      description: Reset all recommendation opt-out settings for a subscription.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsresetallfilters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disables-specified-rule-so-it
+      description: Disables the specified rule so it will not apply to a subscription in the future.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsdisablerecommendationforsubscription
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-past-recommendations-app-optionally
+      description: Get past recommendations for an app, optionally specified by the time range.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationslisthistoryforhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        expiredOnly: tools.expiredOnly
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-recommendations-hosting-environment
+      description: Get all recommendations for a hosting environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationslistrecommendedrulesforhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        featured: tools.featured
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-all-recommendations-app
+      description: Disable all recommendations for an app.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsdisableallforhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        environmentName: tools.environmentName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-all-recommendation-opt-out-2
+      description: Reset all recommendation opt-out settings for an app.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsresetallfiltersforhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        environmentName: tools.environmentName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-recommendation-rule-app
+      description: Get a recommendation rule for an app.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationsgetruledetailsbyhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        name: tools.name
+        updateSeen: tools.updateSeen
+        recommendationId: tools.recommendationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disables-specific-rule-web-site
+      description: Disables the specific rule for a web site permanently.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsdisablerecommendationforhostingenvironment
+      with:
+        hostingEnvironmentName: tools.hostingEnvironmentName
+        name: tools.name
+        environmentName: tools.environmentName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-past-recommendations-app-optionally-2
+      description: Get past recommendations for an app, optionally specified by the time range.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationslisthistoryforwebapp
+      with:
+        siteName: tools.siteName
+        expiredOnly: tools.expiredOnly
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-recommendations-app
+      description: Get all recommendations for an app.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationslistrecommendedrulesforwebapp
+      with:
+        siteName: tools.siteName
+        featured: tools.featured
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disable-all-recommendations-app-2
+      description: Disable all recommendations for an app.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsdisableallforwebapp
+      with:
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reset-all-recommendation-opt-out-3
+      description: Reset all recommendation opt-out settings for an app.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsresetallfiltersforwebapp
+      with:
+        siteName: tools.siteName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-recommendation-rule-app-2
+      description: Get a recommendation rule for an app.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-recommendations.recommendationsgetruledetailsbywebapp
+      with:
+        siteName: tools.siteName
+        name: tools.name
+        updateSeen: tools.updateSeen
+        recommendationId: tools.recommendationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: disables-specific-rule-web-site-2
+      description: Disables the specific rule for a web site permanently.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-recommendations.recommendationsdisablerecommendationforsite
+      with:
+        siteName: tools.siteName
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.

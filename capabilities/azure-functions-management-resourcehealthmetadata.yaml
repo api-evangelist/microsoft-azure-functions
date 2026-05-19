@@ -1,0 +1,282 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — ResourceHealthMetadata
+  description: 'WebApps API Client — ResourceHealthMetadata. 6 operations. Lead operation: List all ResourceHealthMetadata
+    for all sites in the subscription.. Self-contained Naftiko capability covering one Microsoft Azure Functions business
+    surface.'
+  tags:
+  - Microsoft Azure Functions
+  - ResourceHealthMetadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-resourcehealthmetadata
+    baseUri: https://management.azure.com
+    description: WebApps API Client — ResourceHealthMetadata business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-providers-Microsoft.Web-resourceHealthMetadata
+      path: /subscriptions/{subscriptionId}/providers/Microsoft.Web/resourceHealthMetadata
+      operations:
+      - name: resourcehealthmetadatalist
+        method: GET
+        description: List all ResourceHealthMetadata for all sites in the subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/resourceHealthMetadata
+      operations:
+      - name: resourcehealthmetadatalistbyresourcegroup
+        method: GET
+        description: List all ResourceHealthMetadata for all sites in the resource group in the subscription.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/resourceHealthMetadata
+      operations:
+      - name: resourcehealthmetadatalistbysite
+        method: GET
+        description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/resourceHealthMetadata/default
+      operations:
+      - name: resourcehealthmetadatagetbysite
+        method: GET
+        description: Gets the category of ResourceHealthMetadata to use for the given site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/resourceHealthMetadata
+      operations:
+      - name: resourcehealthmetadatalistbysiteslot
+        method: GET
+        description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app
+          required: true
+        - name: slot
+          in: path
+          type: string
+          description: Name of web app slot. If not specified then will default to production slot.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/resourceHealthMetadata/default
+      operations:
+      - name: resourcehealthmetadatagetbysiteslot
+        method: GET
+        description: Gets the category of ResourceHealthMetadata to use for the given site
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Name of web app
+          required: true
+        - name: slot
+          in: path
+          type: string
+          description: Name of web app slot. If not specified then will default to production slot.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-resourcehealthmetadata-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — ResourceHealthMetadata. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/providers/microsoft-web/resourcehealthmetadata
+      name: subscriptions-subscriptionid-providers-microsoft-web-resourcehealthmetadata
+      description: REST surface for subscriptions-subscriptionId-providers-Microsoft.Web-resourceHealthMetadata.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatalist
+        description: List all ResourceHealthMetadata for all sites in the subscription.
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/resourcehealthmetadata
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatalistbyresourcegroup
+        description: List all ResourceHealthMetadata for all sites in the resource group in the subscription.
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbyresourcegroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/resourcehealthmetadata
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatalistbysite
+        description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbysite
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/resourcehealthmetadata/default
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatagetbysite
+        description: Gets the category of ResourceHealthMetadata to use for the given site
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatagetbysite
+        with:
+          name: rest.name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/slots/{slot}/resourcehealthmetadata
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatalistbysiteslot
+        description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbysiteslot
+        with:
+          name: rest.name
+          slot: rest.slot
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/slots/{slot}/resourcehealthmetadata/default
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: resourcehealthmetadatagetbysiteslot
+        description: Gets the category of ResourceHealthMetadata to use for the given site
+        call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatagetbysiteslot
+        with:
+          name: rest.name
+          slot: rest.slot
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-resourcehealthmetadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — ResourceHealthMetadata. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-all-resourcehealthmetadata-all-sites
+      description: List all ResourceHealthMetadata for all sites in the subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-resourcehealthmetadata-all-sites-2
+      description: List all ResourceHealthMetadata for all sites in the resource group in the subscription.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbyresourcegroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-category-resourcehealthmetadata-use-given
+      description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbysite
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-category-resourcehealthmetadata-use-given-2
+      description: Gets the category of ResourceHealthMetadata to use for the given site
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatagetbysite
+      with:
+        name: tools.name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-category-resourcehealthmetadata-use-given-3
+      description: Gets the category of ResourceHealthMetadata to use for the given site as a collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatalistbysiteslot
+      with:
+        name: tools.name
+        slot: tools.slot
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-category-resourcehealthmetadata-use-given-4
+      description: Gets the category of ResourceHealthMetadata to use for the given site
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-resourcehealthmetadata.resourcehealthmetadatagetbysiteslot
+      with:
+        name: tools.name
+        slot: tools.slot
+      outputParameters:
+      - type: object
+        mapping: $.

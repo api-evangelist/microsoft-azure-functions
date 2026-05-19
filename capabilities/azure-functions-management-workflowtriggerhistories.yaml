@@ -1,0 +1,229 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: WebApps API Client — WorkflowTriggerHistories
+  description: 'WebApps API Client — WorkflowTriggerHistories. 3 operations. Lead operation: WorkflowTriggerHistories. Self-contained
+    Naftiko capability covering one Microsoft Azure Functions business surface.'
+  tags:
+  - Microsoft Azure Functions
+  - WorkflowTriggerHistories
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_AZURE_FUNCTIONS_API_KEY: MICROSOFT_AZURE_FUNCTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: azure-functions-management-workflowtriggerhistories
+    baseUri: https://management.azure.com
+    description: WebApps API Client — WorkflowTriggerHistories business capability. Self-contained, no shared references.
+    resources:
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories
+      operations:
+      - name: workflowtriggerhistorieslist
+        method: GET
+        description: Gets a list of workflow trigger histories.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+        - name: $top
+          in: query
+          type: integer
+          description: The number of items to be included in the result.
+        - name: $filter
+          in: query
+          type: string
+          description: 'The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId.'
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories/{historyName}
+      operations:
+      - name: workflowtriggerhistoriesget
+        method: GET
+        description: Gets a workflow trigger history.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+        - name: historyName
+          in: path
+          type: string
+          description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
+          required: true
+    - name: subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof
+      path: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories/{historyName}/resubmit
+      operations:
+      - name: workflowtriggerhistoriesresubmit
+        method: POST
+        description: Resubmits a workflow run based on the trigger history.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Site name.
+          required: true
+        - name: workflowName
+          in: path
+          type: string
+          description: The workflow name.
+          required: true
+        - name: triggerName
+          in: path
+          type: string
+          description: The workflow trigger name.
+          required: true
+        - name: historyName
+          in: path
+          type: string
+          description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
+          required: true
+  exposes:
+  - type: rest
+    namespace: azure-functions-management-workflowtriggerhistories-rest
+    port: 8080
+    description: REST adapter for WebApps API Client — WorkflowTriggerHistories. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/histories
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: workflowtriggerhistorieslist
+        description: Gets a list of workflow trigger histories.
+        call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistorieslist
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+          $top: rest.$top
+          $filter: rest.$filter
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/histories/{historyname}
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: GET
+        name: workflowtriggerhistoriesget
+        description: Gets a workflow trigger history.
+        call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistoriesget
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+          historyName: rest.historyName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/subscriptions/{subscriptionid}/resourcegroups/{resourcegroupname}/providers/microsoft-web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowname}/triggers/{triggername}/histories/{historyname}/resubmit
+      name: subscriptions-subscriptionid-resourcegroups-resourcegroupname-providers-microsof
+      description: REST surface for subscriptions-subscriptionId-resourceGroups-resourceGroupName-providers-Microsof.
+      operations:
+      - method: POST
+        name: workflowtriggerhistoriesresubmit
+        description: Resubmits a workflow run based on the trigger history.
+        call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistoriesresubmit
+        with:
+          name: rest.name
+          workflowName: rest.workflowName
+          triggerName: rest.triggerName
+          historyName: rest.historyName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: azure-functions-management-workflowtriggerhistories-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for WebApps API Client — WorkflowTriggerHistories. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: gets-list-workflow-trigger-histories
+      description: Gets a list of workflow trigger histories.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistorieslist
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+        $top: tools.$top
+        $filter: tools.$filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gets-workflow-trigger-history
+      description: Gets a workflow trigger history.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistoriesget
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+        historyName: tools.historyName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resubmits-workflow-run-based-trigger
+      description: Resubmits a workflow run based on the trigger history.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: azure-functions-management-workflowtriggerhistories.workflowtriggerhistoriesresubmit
+      with:
+        name: tools.name
+        workflowName: tools.workflowName
+        triggerName: tools.triggerName
+        historyName: tools.historyName
+      outputParameters:
+      - type: object
+        mapping: $.
