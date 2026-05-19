@@ -10,7 +10,7 @@ type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-04-17'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
   - Azure
@@ -190,6 +190,9 @@ common:
         description: Run functions on dedicated App Service plans for predictable pricing and always-on execution.
       - name: Container Apps
         description: Run containerized functions on Azure Container Apps for Kubernetes-based hosting.
+  - name: MCP Server
+    url: https://github.com/Azure/azure-functions-mcp-extension
+    type: MCPServer
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
