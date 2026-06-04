@@ -1,0 +1,157 @@
+arazzo: 1.0.1
+info:
+  title: Preview and Swap a Slot Into Production
+  summary: Diff a staging slot against a target, swap it in, and confirm the app is running.
+  description: >-
+    The blue-green release flow for Azure Functions. The workflow first computes
+    the configuration differences between the source slot and the target slot so
+    the caller can review what will change, then performs the slot swap, accepting
+    the long-running 202 response, and finally polls the function app until it
+    reports a Running state after the swap. Every step spells out its ARM request
+    inline — including the required api-version query parameter and the
+    CsmSlotEntity swap envelope — so the flow can be read and executed without
+    opening the underlying OpenAPI description. All requests are authorized with
+    the azure_auth OAuth2 bearer token carried by the Azure Resource Manager
+    endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: swap-slot-to-production
+  summary: Preview slot differences, swap the slot, and confirm the app is running.
+  description: >-
+    Computes the differences between the source and target slots, swaps the
+    source slot into the target, and polls the function app until it reports
+    Running.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - slot
+    - targetSlot
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      slot:
+        type: string
+        description: The source slot to swap from (e.g. "staging").
+      targetSlot:
+        type: string
+        description: The target slot to swap into (e.g. "production").
+      preserveVnet:
+        type: boolean
+        description: Whether to preserve the VNet configuration through the swap.
+        default: true
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: previewDifferences
+    description: >-
+      Compute the configuration differences between the source slot and the
+      target slot so the caller can review what the swap will change.
+    operationId: WebApps_ListSlotDifferencesSlot
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: slot
+      in: path
+      value: $inputs.slot
+    requestBody:
+      contentType: application/json
+      payload:
+        targetSlot: $inputs.targetSlot
+        preserveVnet: $inputs.preserveVnet
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      differences: $response.body#/value
+    onSuccess:
+    - name: swap
+      type: goto
+      stepId: swapSlot
+  - stepId: swapSlot
+    description: >-
+      Swap the source slot into the target slot. ARM returns 202 when the swap is
+      accepted as a long-running operation.
+    operationId: WebApps_SwapSlotSlot
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: slot
+      in: path
+      value: $inputs.slot
+    requestBody:
+      contentType: application/json
+      payload:
+        targetSlot: $inputs.targetSlot
+        preserveVnet: $inputs.preserveVnet
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      swapStatus: $statusCode
+    onSuccess:
+    - name: confirm
+      type: goto
+      stepId: pollAppState
+  - stepId: pollAppState
+    description: >-
+      Read the function app and confirm it reports a Running state after the
+      swap. Use this step in a retry loop until the swap operation completes.
+    operationId: WebApps_Get
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.state == "Running"
+      type: jsonpath
+    outputs:
+      appState: $response.body#/properties/state
+  outputs:
+    differences: $steps.previewDifferences.outputs.differences
+    swapStatus: $steps.swapSlot.outputs.swapStatus
+    appState: $steps.pollAppState.outputs.appState

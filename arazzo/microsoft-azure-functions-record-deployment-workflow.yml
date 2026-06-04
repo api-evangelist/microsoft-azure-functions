@@ -1,0 +1,155 @@
+arazzo: 1.0.1
+info:
+  title: Record a Deployment and Verify the Deployment Log
+  summary: Create a deployment record on a function app, read it back, and list all deployments.
+  description: >-
+    A deployment-bookkeeping flow that writes a deployment record into a function
+    app's Kudu deployment history. The workflow creates the deployment via
+    create-or-update, reads it back by id to confirm its status, and then lists
+    all deployments so the caller can see the new record in context. This is the
+    pattern used by CI systems that stamp a deployment marker after pushing code.
+    Every step spells out its ARM request inline — including the required
+    api-version query parameter and the {properties:{...}} Deployment envelope —
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description. All requests are authorized with the azure_auth OAuth2 bearer
+    token carried by the Azure Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: record-deployment
+  summary: Create a deployment record, verify it, and list all deployments.
+  description: >-
+    Creates a deployment record on the function app, reads it back by id, and
+    lists the full deployment history.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - deploymentId
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      deploymentId:
+        type: string
+        description: The id to assign to the deployment record.
+      status:
+        type: integer
+        description: The deployment status code to record (e.g. 4 for Success).
+        default: 4
+      message:
+        type: string
+        description: A human-readable message describing the deployment.
+      author:
+        type: string
+        description: The author/committer associated with the deployment.
+      deployer:
+        type: string
+        description: The system that performed the deployment (e.g. "CI").
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: createDeployment
+    description: >-
+      Create or update the deployment record on the function app.
+    operationId: WebApps_CreateDeployment
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: id
+      in: path
+      value: $inputs.deploymentId
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          status: $inputs.status
+          message: $inputs.message
+          author: $inputs.author
+          deployer: $inputs.deployer
+          active: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deploymentResourceId: $response.body#/id
+    onSuccess:
+    - name: verify
+      type: goto
+      stepId: getDeployment
+  - stepId: getDeployment
+    description: >-
+      Read the deployment record back by id to confirm its status and metadata.
+    operationId: WebApps_GetDeployment
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: id
+      in: path
+      value: $inputs.deploymentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      recordedStatus: $response.body#/properties/status
+      active: $response.body#/properties/active
+    onSuccess:
+    - name: list
+      type: goto
+      stepId: listDeployments
+  - stepId: listDeployments
+    description: >-
+      List the full deployment history so the new record appears in context.
+    operationId: WebApps_ListDeployments
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      deployments: $response.body#/value
+  outputs:
+    deploymentResourceId: $steps.createDeployment.outputs.deploymentResourceId
+    recordedStatus: $steps.getDeployment.outputs.recordedStatus
+    deployments: $steps.listDeployments.outputs.deployments

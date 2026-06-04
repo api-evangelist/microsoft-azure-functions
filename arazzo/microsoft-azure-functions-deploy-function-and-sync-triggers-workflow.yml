@@ -1,0 +1,144 @@
+arazzo: 1.0.1
+info:
+  title: Deploy a Function and Sync Its Triggers
+  summary: Create a function, sync the function app's triggers, and list the resulting trigger status.
+  description: >-
+    A post-deploy reconciliation flow. After a new function is created, the scale
+    controller must be told to re-read the function app's trigger metadata so the
+    new function is dispatched correctly. This workflow creates the function,
+    issues a sync-functions call to refresh the trigger registration, and then
+    reads the sync-function-trigger status so the caller can confirm the trigger
+    URL and key are in place. Every step spells out its ARM request inline —
+    including the required api-version query parameter and the {properties:{...}}
+    function envelope — so the flow can be read and executed without opening the
+    underlying OpenAPI description. All requests are authorized with the
+    azure_auth OAuth2 bearer token carried by the Azure Resource Manager
+    endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: deploy-function-and-sync-triggers
+  summary: Create a function, sync triggers, and confirm the trigger status.
+  description: >-
+    Creates a function, refreshes the function app's trigger registration via
+    sync-functions, and reads the sync-function-trigger status to confirm.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - functionName
+    - config
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      functionName:
+        type: string
+        description: The name of the function to create.
+      config:
+        type: object
+        description: The function.json-style binding configuration object for the function.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: createFunction
+    description: >-
+      Create the function inside the function app. ARM returns 201 when the
+      function resource is created.
+    operationId: WebApps_CreateFunction
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: functionName
+      in: path
+      value: $inputs.functionName
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          config: $inputs.config
+          isDisabled: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      functionId: $response.body#/id
+    onSuccess:
+    - name: sync
+      type: goto
+      stepId: syncFunctions
+  - stepId: syncFunctions
+    description: >-
+      Refresh the function app's trigger registration so the new function is
+      dispatched. ARM returns 204 with no body on success.
+    operationId: WebApps_SyncFunctions
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      syncStatus: $statusCode
+    onSuccess:
+    - name: confirm
+      type: goto
+      stepId: triggerStatus
+  - stepId: triggerStatus
+    description: >-
+      Read the sync-function-trigger status to confirm the trigger URL and key
+      are registered.
+    operationId: WebApps_ListSyncFunctionTriggers
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      triggerUrl: $response.body#/trigger_url
+      key: $response.body#/key
+  outputs:
+    functionId: $steps.createFunction.outputs.functionId
+    syncStatus: $steps.syncFunctions.outputs.syncStatus
+    triggerUrl: $steps.triggerStatus.outputs.triggerUrl

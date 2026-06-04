@@ -1,0 +1,129 @@
+arazzo: 1.0.1
+info:
+  title: Create a Function in a Function App and Verify It
+  summary: Create a single function inside an existing function app, then read it back to confirm it exists.
+  description: >-
+    A focused authoring flow that writes one function definition into an existing
+    Azure function app. The workflow performs an ARM create-or-update against the
+    sites/functions resource with the function configuration envelope, then reads
+    the function back by name to confirm it was persisted and to capture its
+    invoke URL template. Every step spells out its ARM request inline — including
+    the required api-version query parameter and the {properties:{...}} envelope —
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description. All requests are authorized with the azure_auth OAuth2 bearer
+    token carried by the Azure Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: create-function-and-verify
+  summary: Create one function in a function app and read it back to verify.
+  description: >-
+    Creates a function via sites/functions create-or-update and then fetches it
+    by name, returning the persisted configuration and invoke URL template.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - functionName
+    - config
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the existing function app.
+      functionName:
+        type: string
+        description: The name of the function to create.
+      config:
+        type: object
+        description: The function.json-style binding configuration object for the function.
+      files:
+        type: object
+        description: Optional map of file name to file contents for the function.
+      language:
+        type: string
+        description: Optional function language (e.g. "node", "dotnet", "python").
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: createFunction
+    description: >-
+      Create or update the function inside the function app. ARM returns 201 when
+      the function resource is created.
+    operationId: WebApps_CreateFunction
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: functionName
+      in: path
+      value: $inputs.functionName
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          config: $inputs.config
+          files: $inputs.files
+          language: $inputs.language
+          isDisabled: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      functionId: $response.body#/id
+      href: $response.body#/properties/href
+    onSuccess:
+    - name: verify
+      type: goto
+      stepId: getFunction
+  - stepId: getFunction
+    description: >-
+      Read the function back by name to confirm it was persisted and capture its
+      invoke URL template.
+    operationId: WebApps_GetFunction
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: functionName
+      in: path
+      value: $inputs.functionName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functionId: $response.body#/id
+      invokeUrlTemplate: $response.body#/properties/invoke_url_template
+      isDisabled: $response.body#/properties/isDisabled
+  outputs:
+    functionId: $steps.getFunction.outputs.functionId
+    invokeUrlTemplate: $steps.getFunction.outputs.invokeUrlTemplate
+    isDisabled: $steps.getFunction.outputs.isDisabled

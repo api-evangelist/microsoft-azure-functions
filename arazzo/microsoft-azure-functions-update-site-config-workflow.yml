@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Update Function App Site Configuration and Restart
+  summary: Read the web site configuration, apply changes, then restart the app to pick them up.
+  description: >-
+    A configuration-and-recycle flow for a function app's site (web) configuration.
+    The workflow reads the current SiteConfigResource, applies the caller-supplied
+    configuration via create-or-update, and then restarts the app so the new
+    settings take effect. This mirrors the common operational pattern where a
+    runtime configuration change — such as toggling alwaysOn or changing the
+    netFrameworkVersion — requires a recycle. Every step spells out its ARM
+    request inline — including the required api-version query parameter and the
+    {properties:{...}} SiteConfigResource envelope — so the flow can be read and
+    executed without opening the underlying OpenAPI description. All requests are
+    authorized with the azure_auth OAuth2 bearer token carried by the Azure
+    Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: update-site-config
+  summary: Read, update, and apply site configuration with a restart.
+  description: >-
+    Reads the current web site configuration, applies the supplied configuration
+    properties, and restarts the function app to pick up the changes.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - config
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      config:
+        type: object
+        description: The SiteConfig properties object to apply (e.g. {alwaysOn:true}).
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: readConfig
+    description: >-
+      Read the current web site configuration so the caller has the baseline
+      before applying changes.
+    operationId: WebApps_GetConfiguration
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      previousConfig: $response.body#/properties
+    onSuccess:
+    - name: apply
+      type: goto
+      stepId: applyConfig
+  - stepId: applyConfig
+    description: >-
+      Apply the supplied configuration via create-or-update of the web config.
+    operationId: WebApps_CreateOrUpdateConfiguration
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    requestBody:
+      contentType: application/json
+      payload:
+        properties: $inputs.config
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appliedConfig: $response.body#/properties
+    onSuccess:
+    - name: recycle
+      type: goto
+      stepId: restartApp
+  - stepId: restartApp
+    description: >-
+      Restart the function app so the new configuration takes effect.
+    operationId: WebApps_Restart
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: synchronous
+      in: query
+      value: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      restartStatus: $statusCode
+  outputs:
+    previousConfig: $steps.readConfig.outputs.previousConfig
+    appliedConfig: $steps.applyConfig.outputs.appliedConfig
+    restartStatus: $steps.restartApp.outputs.restartStatus

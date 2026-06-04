@@ -1,0 +1,132 @@
+arazzo: 1.0.1
+info:
+  title: Update Function App Settings and Confirm Them
+  summary: Read the current app settings, write a merged set, and list them back to confirm.
+  description: >-
+    A safe configuration-update flow for a function app's application settings.
+    The workflow first reads the current app settings via the list action, then
+    writes the caller-supplied settings as a full StringDictionary replacement,
+    and finally lists the settings again to confirm the new values are in place.
+    Because the settings PUT is a full replacement, the initial read gives the
+    caller the prior values to merge against. Every step spells out its ARM
+    request inline — including the required api-version query parameter and the
+    {properties:{...}} StringDictionary envelope — so the flow can be read and
+    executed without opening the underlying OpenAPI description. All requests are
+    authorized with the azure_auth OAuth2 bearer token carried by the Azure
+    Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: update-app-settings
+  summary: Read, replace, and confirm a function app's application settings.
+  description: >-
+    Lists current app settings, replaces them with the supplied StringDictionary,
+    and lists them again to confirm the update.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - settings
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      settings:
+        type: object
+        description: The complete map of app setting name/value pairs to write (full replacement).
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: readCurrentSettings
+    description: >-
+      List the current application settings before overwriting them so the caller
+      retains the prior values for merging.
+    operationId: WebApps_ListApplicationSettings
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      previousSettings: $response.body#/properties
+    onSuccess:
+    - name: write
+      type: goto
+      stepId: writeSettings
+  - stepId: writeSettings
+    description: >-
+      Replace the application settings with the supplied StringDictionary. This
+      is a full replacement, so the payload must contain all settings to retain.
+    operationId: WebApps_UpdateApplicationSettings
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    requestBody:
+      contentType: application/json
+      payload:
+        properties: $inputs.settings
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      writtenSettings: $response.body#/properties
+    onSuccess:
+    - name: confirm
+      type: goto
+      stepId: confirmSettings
+  - stepId: confirmSettings
+    description: >-
+      List the application settings again to confirm the new values are in place.
+    operationId: WebApps_ListApplicationSettings
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentSettings: $response.body#/properties
+  outputs:
+    previousSettings: $steps.readCurrentSettings.outputs.previousSettings
+    currentSettings: $steps.confirmSettings.outputs.currentSettings

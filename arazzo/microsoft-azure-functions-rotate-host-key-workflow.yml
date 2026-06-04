@@ -1,0 +1,124 @@
+arazzo: 1.0.1
+info:
+  title: Rotate a Host-Level Key and List All Host Keys
+  summary: Create or update a host key (function or system) of a function app, then list all host keys to confirm.
+  description: >-
+    A host-scoped secret-rotation flow. Host keys grant access across every
+    function in a function app, so this workflow create-or-updates a named host
+    key of a chosen key type and then lists the full host key set (master,
+    function, and system keys) to confirm the rotation. Every step spells out its
+    ARM request inline — including the required api-version query parameter and
+    the {properties:{...}} KeyInfo envelope — so the flow can be read and executed
+    without opening the underlying OpenAPI description. All requests are
+    authorized with the azure_auth OAuth2 bearer token carried by the Azure
+    Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: rotate-host-key
+  summary: Set a host key and confirm via the full host key listing.
+  description: >-
+    Creates or updates a host-level key of a given key type, then lists all host
+    keys to confirm the rotation took effect.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - keyType
+    - keyName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      keyType:
+        type: string
+        description: The host key type ("functionKeys" or "systemKeys").
+      keyName:
+        type: string
+        description: The name of the host key to create or update.
+      keyValue:
+        type: string
+        description: Optional explicit key value; omit to let the platform generate one.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: setHostKey
+    description: >-
+      Create or update the named host key of the given key type. ARM returns 200
+      when an existing key is updated or 201 when a new key is created.
+    operationId: WebApps_CreateOrUpdateHostSecret
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: keyType
+      in: path
+      value: $inputs.keyType
+    - name: keyName
+      in: path
+      value: $inputs.keyName
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          name: $inputs.keyName
+          value: $inputs.keyValue
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      rotatedKeyName: $response.body#/properties/name
+      rotatedKeyValue: $response.body#/properties/value
+    onSuccess:
+    - name: confirm
+      type: goto
+      stepId: listHostKeys
+  - stepId: listHostKeys
+    description: >-
+      List the full host key set (master, function, and system keys) to confirm
+      the rotated key is present.
+    operationId: WebApps_ListHostKeys
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functionKeys: $response.body#/functionKeys
+      systemKeys: $response.body#/systemKeys
+  outputs:
+    rotatedKeyName: $steps.setHostKey.outputs.rotatedKeyName
+    rotatedKeyValue: $steps.setHostKey.outputs.rotatedKeyValue
+    functionKeys: $steps.listHostKeys.outputs.functionKeys
+    systemKeys: $steps.listHostKeys.outputs.systemKeys

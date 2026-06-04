@@ -1,0 +1,158 @@
+arazzo: 1.0.1
+info:
+  title: Provision a Staging Deployment Slot
+  summary: Create a deployment slot on a function app, poll it until running, and ensure it is started.
+  description: >-
+    A slot-provisioning flow that stands up a named deployment slot (such as
+    "staging") on an existing function app. The workflow create-or-updates the
+    slot resource, accepts the long-running 202 response, polls the slot until it
+    reports a Running state, and then explicitly starts it to guarantee it is
+    live before any swap. Every step spells out its ARM request inline —
+    including the required api-version query parameter and the {properties:{...}}
+    Site envelope — so the flow can be read and executed without opening the
+    underlying OpenAPI description. All requests are authorized with the
+    azure_auth OAuth2 bearer token carried by the Azure Resource Manager
+    endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: provision-staging-slot
+  summary: Create a deployment slot, wait for it to run, and start it.
+  description: >-
+    Creates a named deployment slot, polls it until it reports Running, and
+    starts it so it is live before a future swap.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - slot
+    - location
+    - serverFarmId
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the parent function app.
+      slot:
+        type: string
+        description: The name of the deployment slot to create (e.g. "staging").
+      location:
+        type: string
+        description: The Azure region for the slot (matches the parent app region).
+      serverFarmId:
+        type: string
+        description: The resource id of the App Service plan / serverFarm hosting the slot.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: createSlot
+    description: >-
+      Create or update the deployment slot. ARM returns 202 when the create is
+      accepted as a long-running operation.
+    operationId: WebApps_CreateOrUpdateSlot
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: slot
+      in: path
+      value: $inputs.slot
+    requestBody:
+      contentType: application/json
+      payload:
+        kind: functionapp
+        location: $inputs.location
+        properties:
+          serverFarmId: $inputs.serverFarmId
+          httpsOnly: true
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      slotId: $response.body#/id
+    onSuccess:
+    - name: waitForSlot
+      type: goto
+      stepId: pollSlotState
+  - stepId: pollSlotState
+    description: >-
+      Read the slot resource and confirm it reports a Running state. Use this
+      step in a retry loop until the slot finishes provisioning.
+    operationId: WebApps_GetSlot
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: slot
+      in: path
+      value: $inputs.slot
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.state == "Running"
+      type: jsonpath
+    outputs:
+      slotState: $response.body#/properties/state
+      slotHostName: $response.body#/properties/defaultHostName
+    onSuccess:
+    - name: ensureStarted
+      type: goto
+      stepId: startSlot
+  - stepId: startSlot
+    description: >-
+      Explicitly start the slot to guarantee it is live before any swap.
+    operationId: WebApps_StartSlot
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: slot
+      in: path
+      value: $inputs.slot
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      startStatus: $statusCode
+  outputs:
+    slotId: $steps.createSlot.outputs.slotId
+    slotState: $steps.pollSlotState.outputs.slotState
+    slotHostName: $steps.pollSlotState.outputs.slotHostName
+    startStatus: $steps.startSlot.outputs.startStatus

@@ -1,0 +1,125 @@
+arazzo: 1.0.1
+info:
+  title: Inspect a Function App and Issue an Admin Token
+  summary: Read a function app, list its functions, and issue a Functions admin token for the runtime API.
+  description: >-
+    A read-and-authorize flow for tooling that needs to call a function app's
+    Kudu/admin runtime API. The workflow reads the function app resource to
+    confirm it exists and is running, enumerates its functions so the caller
+    knows what is deployed, and finally issues a short-lived Functions admin
+    token that can be presented to the runtime admin endpoints. Every step spells
+    out its ARM request inline — including the required api-version query
+    parameter — so the flow can be read and executed without opening the
+    underlying OpenAPI description. All requests are authorized with the
+    azure_auth OAuth2 bearer token carried by the Azure Resource Manager
+    endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: inspect-app-and-issue-admin-token
+  summary: Read the app, list its functions, and mint a Functions admin token.
+  description: >-
+    Reads the function app, lists its functions, and issues a Functions admin
+    token for use against the runtime admin API.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: getApp
+    description: >-
+      Read the function app resource to confirm it exists and capture its state
+      and default host name.
+    operationId: WebApps_Get
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      appState: $response.body#/properties/state
+      defaultHostName: $response.body#/properties/defaultHostName
+    onSuccess:
+    - name: list
+      type: goto
+      stepId: listFunctions
+  - stepId: listFunctions
+    description: >-
+      Enumerate the functions deployed into the app.
+    operationId: WebApps_ListFunctions
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functions: $response.body#/value
+    onSuccess:
+    - name: token
+      type: goto
+      stepId: issueAdminToken
+  - stepId: issueAdminToken
+    description: >-
+      Issue a Functions admin token for use against the runtime admin API. The
+      response body is the raw token string.
+    operationId: WebApps_GetFunctionsAdminToken
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      adminToken: $response.body
+  outputs:
+    appState: $steps.getApp.outputs.appState
+    functions: $steps.listFunctions.outputs.functions
+    adminToken: $steps.issueAdminToken.outputs.adminToken

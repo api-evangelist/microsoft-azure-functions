@@ -1,0 +1,148 @@
+arazzo: 1.0.1
+info:
+  title: Provision an Azure Function App and Confirm It Is Running
+  summary: Create a function app, poll until it reports a running state, then list its functions.
+  description: >-
+    The foundational serverless provisioning flow on Azure. The workflow issues
+    an ARM create-or-update against the Microsoft.Web/sites resource to stand up
+    a Consumption-plan function app, accepts the long-running 202 response, then
+    repeatedly reads the site resource until its state reports Running. Once the
+    app is healthy it enumerates the deployed functions so the caller has the
+    final inventory. Every step spells out its ARM request inline — including the
+    required api-version query parameter and the {properties:{...}} envelope — so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description. All requests are authorized with the azure_auth OAuth2 bearer
+    token carried by the Azure Resource Manager endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: provision-function-app
+  summary: Create a function app, wait for it to run, and list its functions.
+  description: >-
+    Creates a Microsoft.Web/sites function app, polls the site resource until it
+    reports a Running state, and finally lists the functions deployed into it.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - location
+    - serverFarmId
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that will contain the function app.
+      name:
+        type: string
+        description: The globally unique name of the function app to create.
+      location:
+        type: string
+        description: The Azure region for the function app (e.g. "East US").
+      serverFarmId:
+        type: string
+        description: The resource id of the App Service plan / serverFarm to host the app.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: createFunctionApp
+    description: >-
+      Create or update the Microsoft.Web/sites resource as a function app. ARM
+      returns 202 when the create is accepted as a long-running operation, or 200
+      when it completes synchronously.
+    operationId: WebApps_CreateOrUpdate
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    requestBody:
+      contentType: application/json
+      payload:
+        kind: functionapp
+        location: $inputs.location
+        properties:
+          serverFarmId: $inputs.serverFarmId
+          reserved: false
+          httpsOnly: true
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      siteId: $response.body#/id
+      initialState: $response.body#/properties/state
+    onSuccess:
+    - name: waitForApp
+      type: goto
+      stepId: pollAppState
+  - stepId: pollAppState
+    description: >-
+      Read the function app resource and confirm it reports a Running state. Use
+      this step in a retry loop until the state transitions out of provisioning.
+    operationId: WebApps_Get
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.properties.state == "Running"
+      type: jsonpath
+    outputs:
+      appState: $response.body#/properties/state
+      defaultHostName: $response.body#/properties/defaultHostName
+    onSuccess:
+    - name: appRunning
+      type: goto
+      stepId: listFunctions
+  - stepId: listFunctions
+    description: >-
+      Enumerate the functions deployed into the now-running function app.
+    operationId: WebApps_ListFunctions
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      functions: $response.body#/value
+  outputs:
+    siteId: $steps.createFunctionApp.outputs.siteId
+    appState: $steps.pollAppState.outputs.appState
+    defaultHostName: $steps.pollAppState.outputs.defaultHostName
+    functions: $steps.listFunctions.outputs.functions

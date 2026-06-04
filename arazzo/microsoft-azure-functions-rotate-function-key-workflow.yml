@@ -1,0 +1,126 @@
+arazzo: 1.0.1
+info:
+  title: Rotate a Function Key and Confirm It
+  summary: Create or update a named function key, then list the function keys to confirm the new value is in place.
+  description: >-
+    A secret-rotation flow for a single function's access keys. The workflow
+    issues an ARM create-or-update against the sites/functions/keys resource to
+    set a named key (optionally to a caller-supplied value, otherwise letting the
+    platform generate one), then lists all keys for that function to confirm the
+    rotated key is present. Every step spells out its ARM request inline —
+    including the required api-version query parameter and the {properties:{...}}
+    KeyInfo envelope — so the flow can be read and executed without opening the
+    underlying OpenAPI description. All requests are authorized with the
+    azure_auth OAuth2 bearer token carried by the Azure Resource Manager
+    endpoint.
+  version: 1.0.0
+sourceDescriptions:
+- name: azureFunctionsApi
+  url: ../openapi/azure-functions-management-api.json
+  type: openapi
+workflows:
+- workflowId: rotate-function-key
+  summary: Set a named function key and confirm it via the key listing.
+  description: >-
+    Creates or updates a single function key and then lists the function's keys
+    to confirm the rotation took effect.
+  inputs:
+    type: object
+    required:
+    - subscriptionId
+    - resourceGroupName
+    - name
+    - functionName
+    - keyName
+    properties:
+      subscriptionId:
+        type: string
+        description: The Azure subscription identifier (GUID).
+      resourceGroupName:
+        type: string
+        description: The resource group that contains the function app.
+      name:
+        type: string
+        description: The name of the function app.
+      functionName:
+        type: string
+        description: The name of the function whose key is being rotated.
+      keyName:
+        type: string
+        description: The name of the key to create or update (e.g. "default").
+      keyValue:
+        type: string
+        description: Optional explicit key value; omit to let the platform generate one.
+      apiVersion:
+        type: string
+        description: The ARM api-version to use for all requests.
+        default: "2024-11-01"
+  steps:
+  - stepId: setFunctionKey
+    description: >-
+      Create or update the named function key. ARM returns 200 when an existing
+      key is updated or 201 when a new key is created.
+    operationId: WebApps_CreateOrUpdateFunctionSecret
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: functionName
+      in: path
+      value: $inputs.functionName
+    - name: keyName
+      in: path
+      value: $inputs.keyName
+    requestBody:
+      contentType: application/json
+      payload:
+        properties:
+          name: $inputs.keyName
+          value: $inputs.keyValue
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      rotatedKeyName: $response.body#/properties/name
+      rotatedKeyValue: $response.body#/properties/value
+    onSuccess:
+    - name: confirm
+      type: goto
+      stepId: listFunctionKeys
+  - stepId: listFunctionKeys
+    description: >-
+      List all keys for the function to confirm the rotated key is present. The
+      response is a StringDictionary whose properties map key names to values.
+    operationId: WebApps_ListFunctionKeys
+    parameters:
+    - name: api-version
+      in: query
+      value: $inputs.apiVersion
+    - name: subscriptionId
+      in: path
+      value: $inputs.subscriptionId
+    - name: resourceGroupName
+      in: path
+      value: $inputs.resourceGroupName
+    - name: name
+      in: path
+      value: $inputs.name
+    - name: functionName
+      in: path
+      value: $inputs.functionName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      keys: $response.body#/properties
+  outputs:
+    rotatedKeyName: $steps.setFunctionKey.outputs.rotatedKeyName
+    rotatedKeyValue: $steps.setFunctionKey.outputs.rotatedKeyValue
+    keys: $steps.listFunctionKeys.outputs.keys
