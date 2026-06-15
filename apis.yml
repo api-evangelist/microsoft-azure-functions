@@ -1,8 +1,10 @@
 aid: microsoft-azure-functions
 name: Microsoft Azure Functions
-description: Azure Functions is a serverless compute platform from Microsoft Azure enabling event-driven code execution triggered
-  by HTTP requests, timers, queues, blobs, and other Azure services. The Azure Functions management API provides programmatic
-  access to function app lifecycle management, deployment, configuration, scaling, and monitoring through Azure Resource Manager.
+description: >-
+  Azure Functions is a serverless compute platform from Microsoft Azure enabling event-driven code execution triggered
+  by HTTP requests, timers, queues, blobs, and other Azure services. The Azure Functions management API provides
+  programmatic access to function app lifecycle management, deployment, configuration, scaling, and monitoring through
+  Azure Resource Manager.
 type: Index
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/apis.yml
@@ -10,260 +12,222 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 tags:
-- Azure
-- Cloud
-- Compute
-- Event-Driven
-- Microsoft
-- Serverless
+  - Azure
+  - Cloud
+  - Compute
+  - Event-Driven
+  - Microsoft
+  - Serverless
 apis:
-- aid: microsoft-azure-functions:azure-functions-management-api
-  name: Azure Functions Management API
-  description: The Azure App Service / Web Apps REST API provides management operations for Azure Functions apps including
-    creating and configuring function apps, managing deployment slots, application settings, host keys, function keys, scaling
-    configuration, and monitoring. Part of the Azure Resource Manager API surface.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
-  properties:
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - aid: microsoft-azure-functions:azure-functions-management-api
+    name: Azure Functions Management API
+    description: >-
+      The Azure App Service / Web Apps REST API provides management operations for Azure Functions apps including
+      creating and configuring function apps, managing deployment slots, application settings, host keys, function keys,
+      scaling configuration, and monitoring. Part of the Azure Resource Manager API surface.
+    humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+    baseURL: https://management.azure.com
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+      - type: GettingStarted
+        url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+      - type: APIReference
+        url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+      - type: Authentication
+        url: https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+      - type: OpenAPI
+        url: openapi/azure-functions-management-api.json
+    tags:
+      - App Service
+      - Deployment
+      - Functions
+      - Management
+      - Resource Manager
+      - Serverless
+  - aid: microsoft-azure-functions:azure-functions-runtime-api
+    name: Azure Functions Runtime API
+    description: >-
+      The Azure Functions host runtime provides HTTP endpoints for function invocation, admin operations, host status,
+      function management, and key management. Includes endpoints for listing functions, getting function status,
+      managing host and function keys, and triggering function execution.
+    humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+    baseURL: https://{functionapp}.azurewebsites.net
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+      - type: GettingStarted
+        url: https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp
+      - type: Authentication
+        url: https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts
+    tags:
+      - Event-Driven
+      - Functions
+      - HTTP Trigger
+      - Runtime
+      - Serverless
+common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/microsoft-azure-functions/overview
+  - type: ArazzoWorkflows
+    url: arazzo/
+    workflows:
+      - url: arazzo/microsoft-azure-functions-create-function-and-verify-workflow.yml
+        name: Create a Function in a Function App and Verify It
+        summary: Create a single function inside an existing function app, then read it back to confirm it exists.
+      - url: arazzo/microsoft-azure-functions-deploy-function-and-sync-triggers-workflow.yml
+        name: Deploy a Function and Sync Its Triggers
+        summary: Create a function, sync the function app's triggers, and list the resulting trigger status.
+      - url: arazzo/microsoft-azure-functions-inspect-app-and-issue-admin-token-workflow.yml
+        name: Inspect a Function App and Issue an Admin Token
+        summary: Read a function app, list its functions, and issue a Functions admin token for the runtime API.
+      - url: arazzo/microsoft-azure-functions-provision-function-app-workflow.yml
+        name: Provision an Azure Function App and Confirm It Is Running
+        summary: Create a function app, poll until it reports a running state, then list its functions.
+      - url: arazzo/microsoft-azure-functions-provision-staging-slot-workflow.yml
+        name: Provision a Staging Deployment Slot
+        summary: Create a deployment slot on a function app, poll it until running, and ensure it is started.
+      - url: arazzo/microsoft-azure-functions-record-deployment-workflow.yml
+        name: Record a Deployment and Verify the Deployment Log
+        summary: Create a deployment record on a function app, read it back, and list all deployments.
+      - url: arazzo/microsoft-azure-functions-rotate-function-key-workflow.yml
+        name: Rotate a Function Key and Confirm It
+        summary: Create or update a named function key, then list the function keys to confirm the new value is in place.
+      - url: arazzo/microsoft-azure-functions-rotate-host-key-workflow.yml
+        name: Rotate a Host-Level Key and List All Host Keys
+        summary: Create or update a host key (function or system) of a function app, then list all host keys to confirm.
+      - url: arazzo/microsoft-azure-functions-swap-slot-to-production-workflow.yml
+        name: Preview and Swap a Slot Into Production
+        summary: Diff a staging slot against a target, swap it in, and confirm the app is running.
+      - url: arazzo/microsoft-azure-functions-update-app-settings-workflow.yml
+        name: Update Function App Settings and Confirm Them
+        summary: Read the current app settings, write a merged set, and list them back to confirm.
+      - url: arazzo/microsoft-azure-functions-update-site-config-workflow.yml
+        name: Update Function App Site Configuration and Restart
+        summary: Read the web site configuration, apply changes, then restart the app to pick them up.
+  - type: Portal
+    url: https://portal.azure.com/
   - type: GettingStarted
     url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-  - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
-  - type: Authentication
-    url: https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-  - type: OpenAPI
-    url: openapi/azure-functions-management-api.json
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-general.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-appserviceenvironments.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-appserviceplans.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-certificates.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-deletedwebapps.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-diagnostics.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-global.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-kubeenvironments.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-operations.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-provider.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-recommendations.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-resourcehealthmetadata.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-sitecertificates.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-staticsites.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-webapps.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflowrunactions.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflowruns.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflowtriggerhistories.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflowtriggers.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflowversions.yaml
-  - type: NaftikoCapability
-    url: capabilities/azure-functions-management-workflows.yaml
-  tags:
-  - App Service
-  - Deployment
-  - Functions
-  - Management
-  - Resource Manager
-  - Serverless
-- aid: microsoft-azure-functions:azure-functions-runtime-api
-  name: Azure Functions Runtime API
-  description: The Azure Functions host runtime provides HTTP endpoints for function invocation, admin operations, host status,
-    function management, and key management. Includes endpoints for listing functions, getting function status, managing host
-    and function keys, and triggering function execution.
-  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
-  baseURL: https://{functionapp}.azurewebsites.net
-  properties:
   - type: Documentation
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp
-  - type: Authentication
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts
-  tags:
-  - Event-Driven
-  - Functions
-  - HTTP Trigger
-  - Runtime
-  - Serverless
-common:
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/microsoft-azure-functions-create-function-and-verify-workflow.yml
-    name: Create a Function in a Function App and Verify It
-    summary: Create a single function inside an existing function app, then read it back to confirm it exists.
-  - url: arazzo/microsoft-azure-functions-deploy-function-and-sync-triggers-workflow.yml
-    name: Deploy a Function and Sync Its Triggers
-    summary: Create a function, sync the function app's triggers, and list the resulting trigger status.
-  - url: arazzo/microsoft-azure-functions-inspect-app-and-issue-admin-token-workflow.yml
-    name: Inspect a Function App and Issue an Admin Token
-    summary: Read a function app, list its functions, and issue a Functions admin token for the runtime API.
-  - url: arazzo/microsoft-azure-functions-provision-function-app-workflow.yml
-    name: Provision an Azure Function App and Confirm It Is Running
-    summary: Create a function app, poll until it reports a running state, then list its functions.
-  - url: arazzo/microsoft-azure-functions-provision-staging-slot-workflow.yml
-    name: Provision a Staging Deployment Slot
-    summary: Create a deployment slot on a function app, poll it until running, and ensure it is started.
-  - url: arazzo/microsoft-azure-functions-record-deployment-workflow.yml
-    name: Record a Deployment and Verify the Deployment Log
-    summary: Create a deployment record on a function app, read it back, and list all deployments.
-  - url: arazzo/microsoft-azure-functions-rotate-function-key-workflow.yml
-    name: Rotate a Function Key and Confirm It
-    summary: Create or update a named function key, then list the function keys to confirm the new value is in place.
-  - url: arazzo/microsoft-azure-functions-rotate-host-key-workflow.yml
-    name: Rotate a Host-Level Key and List All Host Keys
-    summary: Create or update a host key (function or system) of a function app, then list all host keys to confirm.
-  - url: arazzo/microsoft-azure-functions-swap-slot-to-production-workflow.yml
-    name: Preview and Swap a Slot Into Production
-    summary: Diff a staging slot against a target, swap it in, and confirm the app is running.
-  - url: arazzo/microsoft-azure-functions-update-app-settings-workflow.yml
-    name: Update Function App Settings and Confirm Them
-    summary: Read the current app settings, write a merged set, and list them back to confirm.
-  - url: arazzo/microsoft-azure-functions-update-site-config-workflow.yml
-    name: Update Function App Site Configuration and Restart
-    summary: Read the web site configuration, apply changes, then restart the app to pick them up.
-- type: Portal
-  url: https://portal.azure.com/
-- type: GettingStarted
-  url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-- type: Documentation
-  url: https://learn.microsoft.com/en-us/azure/azure-functions/
-- type: Pricing
-  url: https://azure.microsoft.com/en-us/pricing/details/functions/
-- type: TermsOfService
-  url: https://www.microsoft.com/en-us/legal/terms-of-use
-- type: PrivacyPolicy
-  url: https://privacy.microsoft.com/en-us/privacystatement
-- type: Support
-  url: https://azure.microsoft.com/en-us/support/
-- type: StatusPage
-  url: https://status.azure.com/
-- type: Blog
-  url: https://azure.microsoft.com/en-us/blog/
-- type: ChangeLog
-  url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions
-- type: GitHubOrganization
-  url: https://github.com/Azure
-- type: GitHubRepository
-  url: https://github.com/Azure/azure-functions-host
-- type: GitHubRepository
-  url: https://github.com/Azure/azure-functions-core-tools
-- type: SDK
-  url: https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker
-  title: .NET SDK
-- type: SDK
-  url: https://pypi.org/project/azure-functions/
-  title: Python SDK
-- type: SDK
-  url: https://www.npmjs.com/package/@azure/functions
-  title: Node.js SDK
-- type: SDK
-  url: https://central.sonatype.com/artifact/com.microsoft.azure.functions/azure-functions-java-library
-  title: Java SDK
-- type: CLI
-  url: https://github.com/Azure/azure-functions-core-tools
-  title: Azure Functions Core Tools
-- type: CLI
-  url: https://learn.microsoft.com/en-us/cli/azure/functionapp
-  title: Azure CLI (az functionapp)
-- type: Training
-  url: https://learn.microsoft.com/en-us/training/paths/create-serverless-applications/
-- type: StackOverflow
-  url: https://stackoverflow.com/questions/tagged/azure-functions
-- type: X
-  url: https://x.com/AzureFunctions
-- type: Features
-  data:
-  - name: HTTP Triggers
-    description: Execute functions via HTTP requests with RESTful endpoint support and built-in authentication.
-  - name: Timer Triggers
-    description: Schedule function execution using CRON expressions for recurring tasks.
-  - name: Queue Triggers
-    description: Process messages from Azure Storage Queues and Service Bus for async workloads.
-  - name: Blob Triggers
-    description: React to blob storage changes for file processing and data pipeline automation.
-  - name: Event Grid Triggers
-    description: Handle events from Azure Event Grid for event-driven architectures.
-  - name: Cosmos DB Triggers
-    description: Process database changes in Azure Cosmos DB using the change feed.
-  - name: Durable Functions
-    description: Orchestrate complex stateful workflows with function chaining, fan-out/fan-in, and human interaction patterns.
-  - name: Deployment Slots
-    description: Manage staging and production slots for zero-downtime deployments and traffic splitting.
-  - name: Custom Handlers
-    description: Run functions in any language by implementing a lightweight HTTP server.
-  - name: Managed Identity
-    description: Authenticate to Azure services without managing credentials using system or user-assigned identities.
-  - name: Scaling
-    description: Automatic scaling from zero to thousands of instances based on event load.
-  - name: Premium Plan
-    description: Pre-warmed instances, VNET integration, and unlimited execution duration for enterprise workloads.
-- type: UseCases
-  data:
-  - name: API Backend
-    description: Build serverless REST APIs with HTTP-triggered functions and Azure API Management integration.
-  - name: Event Processing
-    description: Process events from queues, topics, Event Grid, and IoT Hub for real-time data pipelines.
-  - name: Scheduled Tasks
-    description: Run scheduled jobs for data cleanup, report generation, and system maintenance.
-  - name: File Processing
-    description: Transform, validate, and process files uploaded to blob storage.
-  - name: Webhook Handling
-    description: Receive and process webhooks from third-party services and SaaS platforms.
-  - name: Microservices
-    description: Build lightweight microservices with independent scaling and deployment.
-  - name: Data Transformation
-    description: ETL workloads for transforming and loading data between Azure services.
-  - name: IoT Backend
-    description: Process IoT device telemetry and events with Event Hub and IoT Hub triggers.
-- type: Integrations
-  data:
-  - name: Azure API Management
-    description: Front Azure Functions with API Management for rate limiting, authentication, and developer portal.
-  - name: Azure DevOps
-    description: CI/CD pipeline integration for automated function deployment and testing.
-  - name: GitHub Actions
-    description: Deploy Azure Functions directly from GitHub repositories with Actions workflows.
-  - name: Visual Studio Code
-    description: Full development experience with the Azure Functions VS Code extension.
-  - name: Azure Monitor
-    description: Application Insights integration for function monitoring, logging, and diagnostics.
-  - name: Azure Key Vault
-    description: Secure secrets management with Key Vault references in application settings.
-  - name: Terraform
-    description: Infrastructure-as-code management of function apps with the AzureRM Terraform provider.
-- type: Solutions
-  data:
-  - name: Consumption Plan
-    description: Pay-per-execution pricing with automatic scaling and 5-minute execution timeout.
-  - name: Premium Plan
-    description: Pre-warmed instances, VNET integration, unlimited duration, and larger instance sizes.
-  - name: Dedicated Plan
-    description: Run functions on dedicated App Service plans for predictable pricing and always-on execution.
-  - name: Container Apps
-    description: Run containerized functions on Azure Container Apps for Kubernetes-based hosting.
-- name: MCP Server
-  url: https://github.com/Azure/azure-functions-mcp-extension
-  type: MCPServer
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/
+  - type: Pricing
+    url: https://azure.microsoft.com/en-us/pricing/details/functions/
+  - type: TermsOfService
+    url: https://www.microsoft.com/en-us/legal/terms-of-use
+  - type: PrivacyPolicy
+    url: https://privacy.microsoft.com/en-us/privacystatement
+  - type: Support
+    url: https://azure.microsoft.com/en-us/support/
+  - type: StatusPage
+    url: https://status.azure.com/
+  - type: Blog
+    url: https://azure.microsoft.com/en-us/blog/
+  - type: ChangeLog
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-versions
+  - type: GitHubOrganization
+    url: https://github.com/Azure
+  - type: GitHubRepository
+    url: https://github.com/Azure/azure-functions-host
+  - type: GitHubRepository
+    url: https://github.com/Azure/azure-functions-core-tools
+  - type: SDK
+    url: https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker
+    title: .NET SDK
+  - type: SDK
+    url: https://pypi.org/project/azure-functions/
+    title: Python SDK
+  - type: SDK
+    url: https://www.npmjs.com/package/@azure/functions
+    title: Node.js SDK
+  - type: SDK
+    url: https://central.sonatype.com/artifact/com.microsoft.azure.functions/azure-functions-java-library
+    title: Java SDK
+  - type: CLI
+    url: https://github.com/Azure/azure-functions-core-tools
+    title: Azure Functions Core Tools
+  - type: CLI
+    url: https://learn.microsoft.com/en-us/cli/azure/functionapp
+    title: Azure CLI (az functionapp)
+  - type: Training
+    url: https://learn.microsoft.com/en-us/training/paths/create-serverless-applications/
+  - type: StackOverflow
+    url: https://stackoverflow.com/questions/tagged/azure-functions
+  - type: X
+    url: https://x.com/AzureFunctions
+  - type: Features
+    data:
+      - name: HTTP Triggers
+        description: Execute functions via HTTP requests with RESTful endpoint support and built-in authentication.
+      - name: Timer Triggers
+        description: Schedule function execution using CRON expressions for recurring tasks.
+      - name: Queue Triggers
+        description: Process messages from Azure Storage Queues and Service Bus for async workloads.
+      - name: Blob Triggers
+        description: React to blob storage changes for file processing and data pipeline automation.
+      - name: Event Grid Triggers
+        description: Handle events from Azure Event Grid for event-driven architectures.
+      - name: Cosmos DB Triggers
+        description: Process database changes in Azure Cosmos DB using the change feed.
+      - name: Durable Functions
+        description: Orchestrate complex stateful workflows with function chaining, fan-out/fan-in, and human interaction patterns.
+      - name: Deployment Slots
+        description: Manage staging and production slots for zero-downtime deployments and traffic splitting.
+      - name: Custom Handlers
+        description: Run functions in any language by implementing a lightweight HTTP server.
+      - name: Managed Identity
+        description: Authenticate to Azure services without managing credentials using system or user-assigned identities.
+      - name: Scaling
+        description: Automatic scaling from zero to thousands of instances based on event load.
+      - name: Premium Plan
+        description: Pre-warmed instances, VNET integration, and unlimited execution duration for enterprise workloads.
+  - type: UseCases
+    data:
+      - name: API Backend
+        description: Build serverless REST APIs with HTTP-triggered functions and Azure API Management integration.
+      - name: Event Processing
+        description: Process events from queues, topics, Event Grid, and IoT Hub for real-time data pipelines.
+      - name: Scheduled Tasks
+        description: Run scheduled jobs for data cleanup, report generation, and system maintenance.
+      - name: File Processing
+        description: Transform, validate, and process files uploaded to blob storage.
+      - name: Webhook Handling
+        description: Receive and process webhooks from third-party services and SaaS platforms.
+      - name: Microservices
+        description: Build lightweight microservices with independent scaling and deployment.
+      - name: Data Transformation
+        description: ETL workloads for transforming and loading data between Azure services.
+      - name: IoT Backend
+        description: Process IoT device telemetry and events with Event Hub and IoT Hub triggers.
+  - type: Integrations
+    data:
+      - name: Azure API Management
+        description: Front Azure Functions with API Management for rate limiting, authentication, and developer portal.
+      - name: Azure DevOps
+        description: CI/CD pipeline integration for automated function deployment and testing.
+      - name: GitHub Actions
+        description: Deploy Azure Functions directly from GitHub repositories with Actions workflows.
+      - name: Visual Studio Code
+        description: Full development experience with the Azure Functions VS Code extension.
+      - name: Azure Monitor
+        description: Application Insights integration for function monitoring, logging, and diagnostics.
+      - name: Azure Key Vault
+        description: Secure secrets management with Key Vault references in application settings.
+      - name: Terraform
+        description: Infrastructure-as-code management of function apps with the AzureRM Terraform provider.
+  - type: Solutions
+    data:
+      - name: Consumption Plan
+        description: Pay-per-execution pricing with automatic scaling and 5-minute execution timeout.
+      - name: Premium Plan
+        description: Pre-warmed instances, VNET integration, unlimited duration, and larger instance sizes.
+      - name: Dedicated Plan
+        description: Run functions on dedicated App Service plans for predictable pricing and always-on execution.
+      - name: Container Apps
+        description: Run containerized functions on Azure Container Apps for Kubernetes-based hosting.
+  - name: MCP Server
+    url: https://github.com/Azure/azure-functions-mcp-extension
+    type: MCPServer
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
