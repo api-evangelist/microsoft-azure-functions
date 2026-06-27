@@ -9,8 +9,8 @@
       "method": "feed"
     },
     {
-      "source": "https://status.azure.com/feed/",
-      "feed_url": "https://status.azure.com/feed/",
+      "source": "https://azure.status.microsoft/feed/",
+      "feed_url": "https://azure.status.microsoft/feed/",
       "title": "",
       "saved": 0,
       "method": "feed"
@@ -23,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 32,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 33,
+  "fetched": "2026-06-27T12:03:07Z"
 }
