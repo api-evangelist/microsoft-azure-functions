@@ -67,6 +67,10 @@ apis:
       - Runtime
       - Serverless
 common:
+  - type: DomainSecurity
+    url: security/microsoft-azure-functions-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-azure-functions-authentication.yml
   - type: OAuthScopes
     url: scopes/microsoft-azure-functions-scopes.yml
   - type: PostmanWorkspace
