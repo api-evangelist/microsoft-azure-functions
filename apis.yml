@@ -67,6 +67,8 @@ apis:
       - Runtime
       - Serverless
 common:
+  - type: OAuthScopes
+    url: scopes/microsoft-azure-functions-scopes.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/microsoft-azure-functions/overview
   - type: Arazzo
