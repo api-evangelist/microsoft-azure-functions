@@ -67,6 +67,8 @@ apis:
       - Runtime
       - Serverless
 common:
+  - type: AgenticAccess
+    url: agentic-access/microsoft-azure-functions-agentic-access.yml
   - type: DomainSecurity
     url: security/microsoft-azure-functions-domain-security.yml
   - type: Authentication
