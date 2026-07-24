@@ -1,0 +1,513 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments WorkflowVersions API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: WorkflowVersions
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/versions
+  : get:
+      operationId: WorkflowVersions_List
+      tags:
+      - WorkflowVersions
+      description: Gets a list of workflow versions.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: $top
+        in: query
+        description: The number of items to be included in the result.
+        required: false
+        type: integer
+        format: int32
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowVersionListResult'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        List a workflows versions:
+          $ref: ./examples/WorkflowVersions_List.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/versions/{versionId}
+  : get:
+      operationId: WorkflowVersions_Get
+      tags:
+      - WorkflowVersions
+      description: Gets a workflow version.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: versionId
+        in: path
+        description: The workflow versionId.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowVersion'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get a workflow version:
+          $ref: ./examples/WorkflowVersions_Get.json
+definitions:
+  FlowAccessControlConfiguration:
+    type: object
+    description: The access control configuration.
+    properties:
+      triggers:
+        $ref: '#/definitions/FlowAccessControlConfigurationPolicy'
+        description: The access control configuration for invoking workflow triggers.
+      contents:
+        $ref: '#/definitions/FlowAccessControlConfigurationPolicy'
+        description: The access control configuration for accessing workflow run contents.
+      actions:
+        $ref: '#/definitions/FlowAccessControlConfigurationPolicy'
+        description: The access control configuration for workflow actions.
+      workflowManagement:
+        $ref: '#/definitions/FlowAccessControlConfigurationPolicy'
+        description: The access control configuration for workflow management.
+  WorkflowVersionListResult:
+    type: object
+    description: The response of a WorkflowVersion list operation.
+    properties:
+      value:
+        type: array
+        description: The WorkflowVersion items on this page
+        items:
+          $ref: '#/definitions/WorkflowVersion'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  WorkflowProvisioningState:
+    type: string
+    description: The workflow provisioning state.
+    enum:
+    - NotSpecified
+    - Accepted
+    - Running
+    - Ready
+    - Creating
+    - Created
+    - Deleting
+    - Deleted
+    - Canceled
+    - Failed
+    - Succeeded
+    - Moving
+    - Updating
+    - Registering
+    - Registered
+    - Unregistering
+    - Unregistered
+    - Completed
+    - Renewing
+    - Pending
+    - Waiting
+    - InProgress
+    x-ms-enum:
+      name: WorkflowProvisioningState
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Accepted
+        value: Accepted
+      - name: Running
+        value: Running
+      - name: Ready
+        value: Ready
+      - name: Creating
+        value: Creating
+      - name: Created
+        value: Created
+      - name: Deleting
+        value: Deleting
+      - name: Deleted
+        value: Deleted
+      - name: Canceled
+        value: Canceled
+      - name: Failed
+        value: Failed
+      - name: Succeeded
+        value: Succeeded
+      - name: Moving
+        value: Moving
+      - name: Updating
+        value: Updating
+      - name: Registering
+        value: Registering
+      - name: Registered
+        value: Registered
+      - name: Unregistering
+        value: Unregistering
+      - name: Unregistered
+        value: Unregistered
+      - name: Completed
+        value: Completed
+      - name: Renewing
+        value: Renewing
+      - name: Pending
+        value: Pending
+      - name: Waiting
+        value: Waiting
+      - name: InProgress
+        value: InProgress
+  WorkflowSkuName:
+    type: string
+    description: The sku name.
+    enum:
+    - NotSpecified
+    - Free
+    - Shared
+    - Basic
+    - Standard
+    - Premium
+    x-ms-enum:
+      name: WorkflowSkuName
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Free
+        value: Free
+      - name: Shared
+        value: Shared
+      - name: Basic
+        value: Basic
+      - name: Standard
+        value: Standard
+      - name: Premium
+        value: Premium
+  FlowEndpointsConfiguration:
+    type: object
+    description: The endpoints configuration.
+    properties:
+      workflow:
+        $ref: '#/definitions/FlowEndpoints'
+        description: The workflow endpoints.
+      connector:
+        $ref: '#/definitions/FlowEndpoints'
+        description: The connector endpoints.
+  OpenAuthenticationAccessPolicy:
+    type: object
+    description: Open authentication access policy defined by user.
+    properties:
+      type:
+        $ref: '#/definitions/OpenAuthenticationProviderType'
+        description: Type of provider for OAuth.
+      claims:
+        type: array
+        description: The access policy claims.
+        items:
+          $ref: '#/definitions/OpenAuthenticationPolicyClaim'
+        x-ms-identifiers:
+        - name
+  WorkflowVersionProperties:
+    type: object
+    description: The workflow version properties.
+    properties:
+      provisioningState:
+        $ref: '#/definitions/WorkflowProvisioningState'
+        description: The provisioning state.
+        readOnly: true
+      createdTime:
+        type: string
+        format: date-time
+        description: Gets the created time.
+        readOnly: true
+      changedTime:
+        type: string
+        format: date-time
+        description: Gets the changed time.
+        readOnly: true
+      state:
+        $ref: '#/definitions/WorkflowState'
+        description: The state.
+      version:
+        type: string
+        description: Gets the version.
+        readOnly: true
+      accessEndpoint:
+        type: string
+        description: Gets the access endpoint.
+        readOnly: true
+      endpointsConfiguration:
+        $ref: '#/definitions/FlowEndpointsConfiguration'
+        description: The endpoints configuration.
+      accessControl:
+        $ref: '#/definitions/FlowAccessControlConfiguration'
+        description: The access control configuration.
+      sku:
+        $ref: '#/definitions/WorkflowSku'
+        description: The sku.
+        readOnly: true
+      integrationAccount:
+        $ref: '#/definitions/ResourceReference'
+        description: The integration account.
+      definition:
+        description: The definition.
+      parameters:
+        type: object
+        description: The parameters.
+        additionalProperties:
+          $ref: '#/definitions/WorkflowParameter'
+  OpenAuthenticationAccessPolicies:
+    type: object
+    description: AuthenticationPolicy of type Open.
+    properties:
+      policies:
+        type: object
+        description: Open authentication policies.
+        additionalProperties:
+          $ref: '#/definitions/OpenAuthenticationAccessPolicy'
+  ErrorProperties:
+    type: object
+    description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message indicating why the operation failed.
+  FlowEndpoints:
+    type: object
+    description: The flow endpoints configuration.
+    properties:
+      outgoingIpAddresses:
+        type: array
+        description: The outgoing ip address.
+        items:
+          $ref: '#/definitions/IpAddress'
+        x-ms-identifiers:
+        - address
+      accessEndpointIpAddresses:
+        type: array
+        description: The access endpoint ip address.
+        items:
+          $ref: '#/definitions/IpAddress'
+        x-ms-identifiers:
+        - address
+  OpenAuthenticationPolicyClaim:
+    type: object
+    description: Open authentication policy claim.
+    properties:
+      name:
+        type: string
+        description: The name of the claim.
+      value:
+        type: string
+        description: The value of the claim.
+  WorkflowSku:
+    type: object
+    description: The sku type.
+    properties:
+      name:
+        $ref: '#/definitions/WorkflowSkuName'
+        description: The name.
+      plan:
+        $ref: '#/definitions/ResourceReference'
+        description: The reference to plan.
+    required:
+    - name
+  ResourceReference:
+    type: object
+    description: The resource reference.
+    properties:
+      id:
+        type: string
+        description: The resource id.
+      name:
+        type: string
+        description: Gets the resource name.
+        readOnly: true
+      type:
+        type: string
+        description: Gets the resource type.
+        readOnly: true
+  IpAddress:
+    type: object
+    description: The ip address.
+    properties:
+      address:
+        type: string
+        description: The address.
+  FlowAccessControlConfigurationPolicy:
+    type: object
+    description: The access control configuration policy.
+    properties:
+      allowedCallerIpAddresses:
+        type: array
+        description: The allowed caller IP address ranges.
+        items:
+          $ref: '#/definitions/IpAddressRange'
+        x-ms-identifiers: []
+      openAuthenticationPolicies:
+        $ref: '#/definitions/OpenAuthenticationAccessPolicies'
+        description: The authentication policies for workflow.
+  WorkflowParameter:
+    type: object
+    description: The workflow parameters.
+    properties:
+      type:
+        $ref: '#/definitions/ParameterType'
+        description: The type.
+      value:
+        description: The value.
+      metadata:
+        description: The metadata.
+      description:
+        type: string
+        description: The description.
+  WorkflowState:
+    type: string
+    description: The workflow state.
+    enum:
+    - NotSpecified
+    - Completed
+    - Enabled
+    - Disabled
+    - Deleted
+    - Suspended
+    x-ms-enum:
+      name: WorkflowState
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Completed
+        value: Completed
+      - name: Enabled
+        value: Enabled
+      - name: Disabled
+        value: Disabled
+      - name: Deleted
+        value: Deleted
+      - name: Suspended
+        value: Suspended
+  ErrorResponse:
+    type: object
+    description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+    properties:
+      error:
+        $ref: '#/definitions/ErrorProperties'
+        description: The error properties.
+  IpAddressRange:
+    type: object
+    description: The ip address range.
+    properties:
+      addressRange:
+        type: string
+        description: The IP address range.
+  WorkflowVersion:
+    type: object
+    description: The workflow version.
+    properties:
+      properties:
+        $ref: '#/definitions/WorkflowVersionProperties'
+        description: The workflow version properties.
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+  OpenAuthenticationProviderType:
+    type: string
+    description: Open authentication policy provider type.
+    enum:
+    - AAD
+    x-ms-enum:
+      name: OpenAuthenticationProviderType
+      modelAsString: true
+      values:
+      - name: AAD
+        value: AAD
+  ParameterType:
+    type: string
+    description: The parameter type.
+    enum:
+    - NotSpecified
+    - String
+    - SecureString
+    - Int
+    - Float
+    - Bool
+    - Array
+    - Object
+    - SecureObject
+    x-ms-enum:
+      name: ParameterType
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: String
+        value: String
+      - name: SecureString
+        value: SecureString
+      - name: Int
+        value: Int
+      - name: Float
+        value: Float
+      - name: Bool
+        value: Bool
+      - name: Array
+        value: Array
+      - name: Object
+        value: Object
+      - name: SecureObject
+        value: SecureObject
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

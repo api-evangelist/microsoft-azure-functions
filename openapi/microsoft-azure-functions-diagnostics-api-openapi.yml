@@ -1,0 +1,1828 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments Diagnostics API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Diagnostics
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/detectors
+  : get:
+      operationId: Diagnostics_ListHostingEnvironmentDetectorResponses
+      tags:
+      - Diagnostics
+      summary: List Hosting Environment Detector Responses
+      description: Description for List Hosting Environment Detector Responses
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: App Service Environment Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponseCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Service Environment Detector Responses:
+          $ref: ./examples/Diagnostics_ListHostingEnvironmentDetectorResponses.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/detectors/{detectorName}
+  : get:
+      operationId: Diagnostics_GetHostingEnvironmentDetectorResponse
+      tags:
+      - Diagnostics
+      summary: Get Hosting Environment Detector Response
+      description: Description for Get Hosting Environment Detector Response
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: App Service Environment Name
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Resource Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Service Environment Detector Responses:
+          $ref: ./examples/Diagnostics_GetHostingEnvironmentDetectorResponse.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/detectors:
+    get:
+      operationId: Diagnostics_ListSiteDetectorResponses
+      tags:
+      - Diagnostics
+      summary: List Site Detector Responses
+      description: Description for List Site Detector Responses
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponseCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector Responses:
+          $ref: ./examples/Diagnostics_ListSiteDetectorResponses.json
+        Get App Slot Detector Responses:
+          $ref: ./examples/Diagnostics_ListSiteDetectorResponsesSlot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/detectors/{detectorName}
+  : get:
+      operationId: Diagnostics_GetSiteDetectorResponse
+      tags:
+      - Diagnostics
+      summary: Get site detector response
+      description: Description for Get site detector response
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Resource Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector Response:
+          $ref: ./examples/Diagnostics_GetSiteDetectorResponse.json
+        Get App Slot Detector Response:
+          $ref: ./examples/Diagnostics_GetSiteDetectorResponseSlot.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics:
+    get:
+      operationId: Diagnostics_ListSiteDiagnosticCategories
+      tags:
+      - Diagnostics
+      summary: Get Diagnostics Categories
+      description: Description for Get Diagnostics Categories
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticCategoryCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Diagnostic Categories:
+          $ref: ./examples/Diagnostics_ListSiteDiagnosticCategories.json
+        List App Slot Diagnostic Categories:
+          $ref: ./examples/Diagnostics_ListSiteDiagnosticCategoriesSlot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}
+  : get:
+      operationId: Diagnostics_GetSiteDiagnosticCategory
+      tags:
+      - Diagnostics
+      summary: Get Diagnostics Category
+      description: Description for Get Diagnostics Category
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticCategory'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Diagnostic Category:
+          $ref: ./examples/Diagnostics_GetSiteDiagnosticCategory.json
+        Get App Slot Diagnostic Category:
+          $ref: ./examples/Diagnostics_GetSiteDiagnosticCategorySlot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses
+  : get:
+      operationId: Diagnostics_ListSiteAnalyses
+      tags:
+      - Diagnostics
+      summary: Get Site Analyses
+      description: Description for Get Site Analyses
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticAnalysisCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Analyses:
+          $ref: ./examples/Diagnostics_ListSiteAnalyses.json
+        List App Slot Analyses:
+          $ref: ./examples/Diagnostics_ListSiteAnalysesSlot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses/{analysisName}
+  : get:
+      operationId: Diagnostics_GetSiteAnalysis
+      tags:
+      - Diagnostics
+      summary: Get Site Analysis
+      description: Description for Get Site Analysis
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: analysisName
+        in: path
+        description: Analysis Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/AnalysisDefinition'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Analysis:
+          $ref: ./examples/Diagnostics_GetSiteAnalysis.json
+        Get App Slot Analysis:
+          $ref: ./examples/Diagnostics_GetSiteAnalysisSlot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses/{analysisName}/execute
+  : post:
+      operationId: Diagnostics_ExecuteSiteAnalysis
+      tags:
+      - Diagnostics
+      summary: Execute Analysis
+      description: Description for Execute Analysis
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: analysisName
+        in: path
+        description: Analysis Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticAnalysis'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Execute site analysis:
+          $ref: ./examples/Diagnostics_ExecuteSiteAnalysis.json
+        Execute site slot analysis:
+          $ref: ./examples/Diagnostics_ExecuteSiteAnalysisSlot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors
+  : get:
+      operationId: Diagnostics_ListSiteDetectors
+      tags:
+      - Diagnostics
+      summary: Get Detectors
+      description: Description for Get Detectors
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticDetectorCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Detectors:
+          $ref: ./examples/Diagnostics_ListSiteDetectors.json
+        List App Slot Detectors:
+          $ref: ./examples/Diagnostics_ListSiteDetectorsSlot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors/{detectorName}
+  : get:
+      operationId: Diagnostics_GetSiteDetector
+      tags:
+      - Diagnostics
+      summary: Get Detector
+      description: Description for Get Detector
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorDefinitionResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector:
+          $ref: ./examples/Diagnostics_GetSiteDetector.json
+        Get App Slot Detector:
+          $ref: ./examples/Diagnostics_GetSiteDetectorSlot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors/{detectorName}/execute
+  : post:
+      operationId: Diagnostics_ExecuteSiteDetector
+      tags:
+      - Diagnostics
+      summary: Execute Detector
+      description: Description for Execute Detector
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticDetectorResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Execute site detector:
+          $ref: ./examples/Diagnostics_ExecuteSiteDetector.json
+        Execute site slot detector:
+          $ref: ./examples/Diagnostics_ExecuteSiteDetectorSlot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors
+  : get:
+      operationId: Diagnostics_ListSiteDetectorResponsesSlot
+      tags:
+      - Diagnostics
+      summary: List Site Detector Responses
+      description: Description for List Site Detector Responses
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponseCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector Responses:
+          $ref: ./examples/Diagnostics_ListSiteDetectorResponses_Slot.json
+        Get App Slot Detector Responses:
+          $ref: ./examples/Diagnostics_ListSiteDetectorResponsesSlot_Slot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors/{detectorName}
+  : get:
+      operationId: Diagnostics_GetSiteDetectorResponseSlot
+      tags:
+      - Diagnostics
+      summary: Get site detector response
+      description: Description for Get site detector response
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Resource Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector Response:
+          $ref: ./examples/Diagnostics_GetSiteDetectorResponse_Slot.json
+        Get App Slot Detector Response:
+          $ref: ./examples/Diagnostics_GetSiteDetectorResponseSlot_Slot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics
+  : get:
+      operationId: Diagnostics_ListSiteDiagnosticCategoriesSlot
+      tags:
+      - Diagnostics
+      summary: Get Diagnostics Categories
+      description: Description for Get Diagnostics Categories
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticCategoryCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Diagnostic Categories:
+          $ref: ./examples/Diagnostics_ListSiteDiagnosticCategories_Slot.json
+        List App Slot Diagnostic Categories:
+          $ref: ./examples/Diagnostics_ListSiteDiagnosticCategoriesSlot_Slot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}
+  : get:
+      operationId: Diagnostics_GetSiteDiagnosticCategorySlot
+      tags:
+      - Diagnostics
+      summary: Get Diagnostics Category
+      description: Description for Get Diagnostics Category
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticCategory'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Diagnostic Category:
+          $ref: ./examples/Diagnostics_GetSiteDiagnosticCategory_Slot.json
+        Get App Slot Diagnostic Category:
+          $ref: ./examples/Diagnostics_GetSiteDiagnosticCategorySlot_Slot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses
+  : get:
+      operationId: Diagnostics_ListSiteAnalysesSlot
+      tags:
+      - Diagnostics
+      summary: Get Site Analyses
+      description: Description for Get Site Analyses
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot - optional
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticAnalysisCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Analyses:
+          $ref: ./examples/Diagnostics_ListSiteAnalyses_Slot.json
+        List App Slot Analyses:
+          $ref: ./examples/Diagnostics_ListSiteAnalysesSlot_Slot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses/{analysisName}
+  : get:
+      operationId: Diagnostics_GetSiteAnalysisSlot
+      tags:
+      - Diagnostics
+      summary: Get Site Analysis
+      description: Description for Get Site Analysis
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot - optional
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: analysisName
+        in: path
+        description: Analysis Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/AnalysisDefinition'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Analysis:
+          $ref: ./examples/Diagnostics_GetSiteAnalysis_Slot.json
+        Get App Slot Analysis:
+          $ref: ./examples/Diagnostics_GetSiteAnalysisSlot_Slot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses/{analysisName}/execute
+  : post:
+      operationId: Diagnostics_ExecuteSiteAnalysisSlot
+      tags:
+      - Diagnostics
+      summary: Execute Analysis
+      description: Description for Execute Analysis
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot - optional
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: analysisName
+        in: path
+        description: Analysis Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticAnalysis'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Execute site analysis:
+          $ref: ./examples/Diagnostics_ExecuteSiteAnalysis_Slot.json
+        Execute site slot analysis:
+          $ref: ./examples/Diagnostics_ExecuteSiteAnalysisSlot_Slot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors
+  : get:
+      operationId: Diagnostics_ListSiteDetectorsSlot
+      tags:
+      - Diagnostics
+      summary: Get Detectors
+      description: Description for Get Detectors
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticDetectorCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List App Detectors:
+          $ref: ./examples/Diagnostics_ListSiteDetectors_Slot.json
+        List App Slot Detectors:
+          $ref: ./examples/Diagnostics_ListSiteDetectorsSlot_Slot.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors/{detectorName}
+  : get:
+      operationId: Diagnostics_GetSiteDetectorSlot
+      tags:
+      - Diagnostics
+      summary: Get Detector
+      description: Description for Get Detector
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Name
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DetectorDefinitionResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get App Detector:
+          $ref: ./examples/Diagnostics_GetSiteDetector_Slot.json
+        Get App Slot Detector:
+          $ref: ./examples/Diagnostics_GetSiteDetectorSlot_Slot.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors/{detectorName}/execute
+  : post:
+      operationId: Diagnostics_ExecuteSiteDetectorSlot
+      tags:
+      - Diagnostics
+      summary: Execute Detector
+      description: Description for Execute Detector
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: siteName
+        in: path
+        description: Site Name
+        required: true
+        type: string
+      - name: slot
+        in: path
+        description: Slot Name
+        required: true
+        type: string
+      - name: diagnosticCategory
+        in: path
+        description: Diagnostic Category
+        required: true
+        type: string
+      - name: detectorName
+        in: path
+        description: Detector Name
+        required: true
+        type: string
+      - name: startTime
+        in: query
+        description: Start Time
+        required: false
+        type: string
+        format: date-time
+      - name: endTime
+        in: query
+        description: End Time
+        required: false
+        type: string
+        format: date-time
+      - name: timeGrain
+        in: query
+        description: Time Grain
+        required: false
+        type: string
+        pattern: PT[1-9][0-9]+[SMH]
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DiagnosticDetectorResponse'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Execute site detector:
+          $ref: ./examples/Diagnostics_ExecuteSiteDetector_Slot.json
+        Execute site slot detector:
+          $ref: ./examples/Diagnostics_ExecuteSiteDetectorSlot_Slot.json
+definitions:
+  DetectorResponseProperties:
+    type: object
+    description: DetectorResponse resource specific properties
+    properties:
+      metadata:
+        $ref: '#/definitions/DetectorInfo'
+        description: metadata for the detector
+      dataset:
+        type: array
+        description: Data Set
+        items:
+          $ref: '#/definitions/DiagnosticData'
+        x-ms-identifiers: []
+      status:
+        $ref: '#/definitions/Status'
+        description: Indicates status of the most severe insight.
+      dataProvidersMetadata:
+        type: array
+        description: Additional configuration for different data providers to be used by the UI
+        items:
+          $ref: '#/definitions/DataProviderMetadata'
+        x-ms-identifiers:
+        - providerName
+      suggestedUtterances:
+        $ref: '#/definitions/QueryUtterancesResults'
+        description: Suggested utterances where the detector can be applicable.
+  SupportTopic:
+    type: object
+    description: Defines a unique Support Topic
+    properties:
+      id:
+        type: string
+        description: Support Topic Id
+        readOnly: true
+      pesId:
+        type: string
+        description: Unique resource Id
+        readOnly: true
+  QueryUtterancesResults:
+    type: object
+    description: Suggested utterances where the detector can be applicable
+    properties:
+      query:
+        type: string
+        description: Search Query.
+      results:
+        type: array
+        description: Array of utterance results for search query.
+        items:
+          $ref: '#/definitions/QueryUtterancesResult'
+        x-ms-identifiers: []
+  DiagnosticAnalysis:
+    type: object
+    description: Class representing a diagnostic analysis done on an application
+    properties:
+      properties:
+        $ref: '#/definitions/DiagnosticAnalysisProperties'
+        description: DiagnosticAnalysis resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  KeyValuePairStringObject:
+    type: object
+    properties:
+      key:
+        type: string
+        readOnly: true
+      value:
+        description: Any object
+        readOnly: true
+  DetectorResponse:
+    type: object
+    description: Class representing Response from Detector
+    properties:
+      properties:
+        $ref: '#/definitions/DetectorResponseProperties'
+        description: DetectorResponse resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DetectorDefinitionResource:
+    type: object
+    description: ARM resource for a detector definition
+    properties:
+      properties:
+        $ref: '#/definitions/DetectorDefinition'
+        description: Core resource properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DiagnosticData:
+    type: object
+    description: Set of data with rendering instructions
+    properties:
+      table:
+        $ref: '#/definitions/DataTableResponseObject'
+        description: Data in table form
+      renderingProperties:
+        $ref: '#/definitions/Rendering'
+        description: Properties that describe how the table should be rendered
+  DataTableResponseObject:
+    type: object
+    description: Data Table which defines columns and raw row values
+    properties:
+      tableName:
+        type: string
+        description: Name of the table
+      columns:
+        type: array
+        description: List of columns with data types
+        items:
+          $ref: '#/definitions/DataTableResponseColumn'
+        x-ms-identifiers:
+        - columnName
+      rows:
+        type: array
+        description: Raw row values
+        items:
+          type: array
+          items:
+            type: string
+        x-ms-identifiers: []
+  AnalysisData:
+    type: object
+    description: Class Representing Detector Evidence used for analysis
+    properties:
+      source:
+        type: string
+        description: Name of the Detector
+      detectorDefinition:
+        $ref: '#/definitions/DetectorDefinition'
+        description: Detector Definition
+      metrics:
+        type: array
+        description: Source Metrics
+        items:
+          $ref: '#/definitions/DiagnosticMetricSet'
+        x-ms-identifiers:
+        - name
+      data:
+        type: array
+        description: Additional Source Data
+        items:
+          type: array
+          items:
+            $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+      detectorMetaData:
+        $ref: '#/definitions/ResponseMetaData'
+        description: Detector Meta Data
+  DiagnosticCategoryProperties:
+    type: object
+    description: DiagnosticCategory resource specific properties
+    properties:
+      description:
+        type: string
+        description: Description of the diagnostic category
+        readOnly: true
+  DiagnosticAnalysisProperties:
+    type: object
+    description: DiagnosticAnalysis resource specific properties
+    properties:
+      startTime:
+        type: string
+        format: date-time
+        description: Start time of the period
+      endTime:
+        type: string
+        format: date-time
+        description: End time of the period
+      abnormalTimePeriods:
+        type: array
+        description: List of time periods.
+        items:
+          $ref: '#/definitions/AbnormalTimePeriod'
+        x-ms-identifiers: []
+      payload:
+        type: array
+        description: Data by each detector
+        items:
+          $ref: '#/definitions/AnalysisData'
+        x-ms-identifiers:
+        - source
+      nonCorrelatedDetectors:
+        type: array
+        description: Data by each detector for detectors that did not corelate
+        items:
+          $ref: '#/definitions/DetectorDefinition'
+        x-ms-identifiers:
+        - displayName
+  ResponseMetaData:
+    type: object
+    properties:
+      dataSource:
+        $ref: '#/definitions/DataSource'
+        description: Source of the Data
+  DefaultErrorResponse:
+    type: object
+    description: App Service error response.
+    properties:
+      error:
+        $ref: '#/definitions/DefaultErrorResponseError'
+        description: Error model.
+        readOnly: true
+  SolutionType:
+    type: string
+    description: Type of Solution
+    enum:
+    - QuickSolution
+    - DeepInvestigation
+    - BestPractices
+    x-ms-enum:
+      name: SolutionType
+      modelAsString: false
+  DiagnosticDetectorResponseProperties:
+    type: object
+    description: DiagnosticDetectorResponse resource specific properties
+    properties:
+      startTime:
+        type: string
+        format: date-time
+        description: Start time of the period
+      endTime:
+        type: string
+        format: date-time
+        description: End time of the period
+      issueDetected:
+        type: boolean
+        description: Flag representing Issue was detected.
+      detectorDefinition:
+        $ref: '#/definitions/DetectorDefinition'
+        description: Detector's definition
+      metrics:
+        type: array
+        description: Metrics provided by the detector
+        items:
+          $ref: '#/definitions/DiagnosticMetricSet'
+        x-ms-identifiers:
+        - name
+      abnormalTimePeriods:
+        type: array
+        description: List of Correlated events found by the detector
+        items:
+          $ref: '#/definitions/DetectorAbnormalTimePeriod'
+        x-ms-identifiers: []
+      data:
+        type: array
+        description: Additional Data that detector wants to send.
+        items:
+          type: array
+          items:
+            $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+      responseMetaData:
+        $ref: '#/definitions/ResponseMetaData'
+        description: Meta Data
+  Status:
+    type: object
+    description: Identify the status of the most severe insight generated by the detector.
+    properties:
+      message:
+        type: string
+        description: Descriptive message.
+      statusId:
+        $ref: '#/definitions/InsightStatus'
+        description: Level of the most severe insight generated by the detector.
+  AnalysisDefinition:
+    type: object
+    description: Definition of Analysis
+    properties:
+      properties:
+        $ref: '#/definitions/AnalysisDefinitionProperties'
+        description: AnalysisDefinition resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  RenderingType:
+    type: string
+    description: Rendering Type
+    enum:
+    - NoGraph
+    - Table
+    - TimeSeries
+    - TimeSeriesPerInstance
+    - PieChart
+    - DataSummary
+    - Email
+    - Insights
+    - DynamicInsight
+    - Markdown
+    - Detector
+    - DropDown
+    - Card
+    - Solution
+    - Guage
+    - Form
+    - ChangeSets
+    - ChangeAnalysisOnboarding
+    - ChangesView
+    - AppInsight
+    - DependencyGraph
+    - DownTime
+    - SummaryCard
+    - SearchComponent
+    - AppInsightEnablement
+    x-ms-enum:
+      name: RenderingType
+      modelAsString: false
+  DefaultErrorResponseErrorDetailsItem:
+    type: object
+    description: Detailed errors.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+  InsightStatus:
+    type: string
+    description: Level of the most severe insight generated by the detector.
+    enum:
+    - Critical
+    - Warning
+    - Info
+    - Success
+    - None
+    x-ms-enum:
+      name: InsightStatus
+      modelAsString: false
+  NameValuePair:
+    type: object
+    description: Name value pair.
+    properties:
+      name:
+        type: string
+        description: Pair name.
+      value:
+        type: string
+        description: Pair value.
+  Solution:
+    type: object
+    description: Class Representing Solution for problems detected.
+    properties:
+      id:
+        type: number
+        format: double
+        description: Solution Id.
+      displayName:
+        type: string
+        description: Display Name of the solution
+      order:
+        type: number
+        format: double
+        description: Order of the solution.
+      description:
+        type: string
+        description: Description of the solution
+      type:
+        $ref: '#/definitions/SolutionType'
+        description: Type of Solution
+      data:
+        type: array
+        description: Solution Data.
+        items:
+          type: array
+          items:
+            $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+      metadata:
+        type: array
+        description: Solution Metadata.
+        items:
+          type: array
+          items:
+            $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+  DetectorInfo:
+    type: object
+    description: Definition of Detector
+    properties:
+      id:
+        type: string
+        description: Id of detector
+        readOnly: true
+      name:
+        type: string
+        description: Name of detector
+        readOnly: true
+      description:
+        type: string
+        description: Short description of the detector and its purpose.
+        readOnly: true
+      author:
+        type: string
+        description: Author of the detector.
+        readOnly: true
+      category:
+        type: string
+        description: Problem category. This serves for organizing group for detectors.
+        readOnly: true
+      supportTopicList:
+        type: array
+        description: List of Support Topics for which this detector is enabled.
+        items:
+          $ref: '#/definitions/SupportTopic'
+        readOnly: true
+      analysisType:
+        type: array
+        description: Analysis Types for which this detector should apply to.
+        items:
+          type: string
+        readOnly: true
+      type:
+        $ref: '#/definitions/DetectorType'
+        description: Whether this detector is an Analysis Detector or not.
+        readOnly: true
+      score:
+        type: number
+        format: float
+        description: Defines score of a detector to power ML based matching.
+        readOnly: true
+  DiagnosticMetricSet:
+    type: object
+    description: Class representing Diagnostic Metric information
+    properties:
+      name:
+        type: string
+        description: Name of the metric
+      unit:
+        type: string
+        description: Metric's unit
+      startTime:
+        type: string
+        format: date-time
+        description: Start time of the period
+      endTime:
+        type: string
+        format: date-time
+        description: End time of the period
+      timeGrain:
+        type: string
+        description: Presented time grain. Supported grains at the moment are PT1M, PT1H, P1D
+      values:
+        type: array
+        description: Collection of metric values for the selected period based on the {Microsoft.Web.Hosting.Administration.DiagnosticMetricSet.TimeGrain}
+        items:
+          $ref: '#/definitions/DiagnosticMetricSample'
+        x-ms-identifiers: []
+  DiagnosticMetricSample:
+    type: object
+    description: Class representing Diagnostic Metric
+    properties:
+      timestamp:
+        type: string
+        format: date-time
+        description: Time at which metric is measured
+      roleInstance:
+        type: string
+        description: 'Role Instance. Null if this counter is not per instance
+
+          This is returned and should be whichever instance name we desire to be returned
+
+          i.e. CPU and Memory return RDWORKERNAME (LargeDed..._IN_0)
+
+          where RDWORKERNAME is Machine name below and RoleInstance name in parenthesis'
+      total:
+        type: number
+        format: double
+        description: Total value of the metric. If multiple measurements are made this will have sum of all.
+      maximum:
+        type: number
+        format: double
+        description: Maximum of the metric sampled during the time period
+      minimum:
+        type: number
+        format: double
+        description: Minimum of the metric sampled during the time period
+      isAggregated:
+        type: boolean
+        description: Whether the values are aggregates across all workers or not
+  DiagnosticCategory:
+    type: object
+    description: Class representing detector definition
+    properties:
+      properties:
+        $ref: '#/definitions/DiagnosticCategoryProperties'
+        description: DiagnosticCategory resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DetectorType:
+    type: string
+    description: Whether this detector is an Analysis Detector or not.
+    enum:
+    - Detector
+    - Analysis
+    - CategoryOverview
+    x-ms-enum:
+      name: DetectorType
+      modelAsString: false
+  QueryUtterancesResult:
+    type: object
+    description: Result for utterances query.
+    properties:
+      sampleUtterance:
+        $ref: '#/definitions/SampleUtterance'
+        description: A sample utterance.
+      score:
+        type: number
+        format: float
+        description: Score of a sample utterance.
+  DiagnosticAnalysisCollection:
+    type: object
+    description: Collection of Diagnostic Analyses
+    properties:
+      value:
+        type: array
+        description: The AnalysisDefinition items on this page
+        items:
+          $ref: '#/definitions/AnalysisDefinition'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  DefaultErrorResponseError:
+    type: object
+    description: Error model.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/DefaultErrorResponseErrorDetailsItem'
+        x-ms-identifiers: []
+      innererror:
+        type: string
+        description: More information to debug error.
+        readOnly: true
+  DataTableResponseColumn:
+    type: object
+    description: Column definition
+    properties:
+      columnName:
+        type: string
+        description: Name of the column
+      dataType:
+        type: string
+        description: Data type which looks like 'String' or 'Int32'.
+      columnType:
+        type: string
+        description: Column Type
+  DiagnosticDetectorCollection:
+    type: object
+    description: Collection of Diagnostic Detectors
+    properties:
+      value:
+        type: array
+        description: The DetectorDefinitionResource items on this page
+        items:
+          $ref: '#/definitions/DetectorDefinitionResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  IssueType:
+    type: string
+    description: Represents the type of the Detector
+    enum:
+    - ServiceIncident
+    - AppDeployment
+    - AppCrash
+    - RuntimeIssueDetected
+    - AseDeployment
+    - UserIssue
+    - PlatformIssue
+    - Other
+    x-ms-enum:
+      name: IssueType
+      modelAsString: false
+  DataProviderMetadata:
+    type: object
+    description: Additional configuration for a data providers
+    properties:
+      providerName:
+        type: string
+      propertyBag:
+        type: array
+        description: Settings for the data provider
+        items:
+          $ref: '#/definitions/KeyValuePairStringObject'
+        readOnly: true
+        x-ms-identifiers:
+        - key
+  DetectorResponseCollection:
+    type: object
+    description: Collection of detector responses
+    properties:
+      value:
+        type: array
+        description: The DetectorResponse items on this page
+        items:
+          $ref: '#/definitions/DetectorResponse'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  DiagnosticCategoryCollection:
+    type: object
+    description: Collection of Diagnostic Categories
+    properties:
+      value:
+        type: array
+        description: The DiagnosticCategory items on this page
+        items:
+          $ref: '#/definitions/DiagnosticCategory'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  AbnormalTimePeriod:
+    type: object
+    description: Class representing Abnormal Time Period identified in diagnosis
+    properties:
+      startTime:
+        type: string
+        format: date-time
+        description: Start time of the downtime
+      endTime:
+        type: string
+        format: date-time
+        description: End time of the downtime
+      events:
+        type: array
+        description: List of Possible Cause of downtime
+        items:
+          $ref: '#/definitions/DetectorAbnormalTimePeriod'
+        x-ms-identifiers: []
+      solutions:
+        type: array
+        description: List of proposed solutions
+        items:
+          $ref: '#/definitions/Solution'
+  DataSource:
+    type: object
+    description: Class representing data source used by the detectors
+    properties:
+      instructions:
+        type: array
+        description: Instructions if any for the data source
+        items:
+          type: string
+      dataSourceUri:
+        type: array
+        description: Datasource Uri Links
+        items:
+          $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+  DiagnosticDetectorResponse:
+    type: object
+    description: Class representing Response from Diagnostic Detectors
+    properties:
+      properties:
+        $ref: '#/definitions/DiagnosticDetectorResponseProperties'
+        description: DiagnosticDetectorResponse resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  DetectorDefinition:
+    type: object
+    description: Class representing detector definition
+    properties:
+      displayName:
+        type: string
+        description: Display name of the detector
+        readOnly: true
+      description:
+        type: string
+        description: Description of the detector
+        readOnly: true
+      rank:
+        type: number
+        format: double
+        description: Detector Rank
+        readOnly: true
+      isEnabled:
+        type: boolean
+        description: Flag representing whether detector is enabled or not.
+        readOnly: true
+  AnalysisDefinitionProperties:
+    type: object
+    description: AnalysisDefinition resource specific properties
+    properties:
+      description:
+        type: string
+        description: Description of the Analysis
+        readOnly: true
+  SampleUtterance:
+    type: object
+    description: Sample utterance.
+    properties:
+      text:
+        type: string
+        description: Text attribute of sample utterance.
+      links:
+        type: array
+        description: Links attribute of sample utterance.
+        items:
+          type: string
+      qid:
+        type: string
+        description: Question id of sample utterance (for stackoverflow questions titles).
+  ProxyOnlyResource:
+    type: object
+    description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+    properties:
+      id:
+        type: string
+        description: Resource Id.
+        readOnly: true
+      name:
+        type: string
+        description: Resource Name.
+        readOnly: true
+      kind:
+        type: string
+        description: Kind of resource.
+      type:
+        type: string
+        description: Resource type.
+        readOnly: true
+  DetectorAbnormalTimePeriod:
+    type: object
+    description: Class representing Abnormal Time Period detected.
+    properties:
+      startTime:
+        type: string
+        format: date-time
+        description: Start time of the correlated event
+      endTime:
+        type: string
+        format: date-time
+        description: End time of the correlated event
+      message:
+        type: string
+        description: Message describing the event
+      source:
+        type: string
+        description: Represents the name of the Detector
+      priority:
+        type: number
+        format: double
+        description: Represents the rank of the Detector
+      metaData:
+        type: array
+        description: Downtime metadata
+        items:
+          type: array
+          items:
+            $ref: '#/definitions/NameValuePair'
+        x-ms-identifiers:
+        - name
+      type:
+        $ref: '#/definitions/IssueType'
+        description: Represents the type of the Detector
+      solutions:
+        type: array
+        description: List of proposed solutions
+        items:
+          $ref: '#/definitions/Solution'
+  Rendering:
+    type: object
+    description: Instructions for rendering the data
+    properties:
+      type:
+        $ref: '#/definitions/RenderingType'
+        description: Rendering Type
+      title:
+        type: string
+        description: Title of data
+      description:
+        type: string
+        description: Description of the data that will help it be interpreted
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

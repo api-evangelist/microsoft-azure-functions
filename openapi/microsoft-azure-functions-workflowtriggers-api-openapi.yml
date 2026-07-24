@@ -1,0 +1,652 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments WorkflowTriggers API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: WorkflowTriggers
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers
+  : get:
+      operationId: WorkflowTriggers_List
+      tags:
+      - WorkflowTriggers
+      description: Gets a list of workflow triggers.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: $top
+        in: query
+        description: The number of items to be included in the result.
+        required: false
+        type: integer
+        format: int32
+      - name: $filter
+        in: query
+        description: The filter to apply on the operation.
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowTriggerListResult'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        List workflow triggers:
+          $ref: ./examples/WorkflowTriggers_List.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}
+  : get:
+      operationId: WorkflowTriggers_Get
+      tags:
+      - WorkflowTriggers
+      description: Gets a workflow trigger.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowTrigger'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get a workflow trigger:
+          $ref: ./examples/WorkflowTriggers_Get.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/listCallbackUrl
+  : post:
+      operationId: WorkflowTriggers_ListCallbackUrl
+      tags:
+      - WorkflowTriggers
+      description: Get the callback URL for a workflow trigger.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowTriggerCallbackUrl'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get the callback URL for a trigger:
+          $ref: ./examples/WorkflowTriggers_ListCallbackUrl.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/run
+  : post:
+      operationId: WorkflowTriggers_Run
+      tags:
+      - WorkflowTriggers
+      description: Runs a workflow trigger.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Run a workflow trigger:
+          $ref: ./examples/WorkflowTriggers_Run.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/schemas/json
+  : get:
+      operationId: WorkflowTriggers_GetSchemaJson
+      tags:
+      - WorkflowTriggers
+      description: Get the trigger schema as JSON.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/JsonSchema'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get trigger schema:
+          $ref: ./examples/WorkflowTriggers_GetSchemaJson.json
+definitions:
+  DayOfWeek:
+    type: string
+    description: The day of the week.
+    enum:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    x-ms-enum:
+      name: DayOfWeek
+      modelAsString: false
+  DaysOfWeek:
+    type: string
+    enum:
+    - Sunday
+    - Monday
+    - Tuesday
+    - Wednesday
+    - Thursday
+    - Friday
+    - Saturday
+    x-ms-enum:
+      name: DaysOfWeek
+      modelAsString: false
+  WorkflowTriggerRecurrence:
+    type: object
+    description: The workflow trigger recurrence.
+    properties:
+      frequency:
+        $ref: '#/definitions/RecurrenceFrequency'
+        description: The frequency.
+      interval:
+        type: integer
+        format: int32
+        description: The interval.
+      startTime:
+        type: string
+        description: The start time.
+      endTime:
+        type: string
+        description: The end time.
+      timeZone:
+        type: string
+        description: The time zone.
+      schedule:
+        $ref: '#/definitions/RecurrenceSchedule'
+        description: The recurrence schedule.
+  WorkflowState:
+    type: string
+    description: The workflow state.
+    enum:
+    - NotSpecified
+    - Completed
+    - Enabled
+    - Disabled
+    - Deleted
+    - Suspended
+    x-ms-enum:
+      name: WorkflowState
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Completed
+        value: Completed
+      - name: Enabled
+        value: Enabled
+      - name: Disabled
+        value: Disabled
+      - name: Deleted
+        value: Deleted
+      - name: Suspended
+        value: Suspended
+  WorkflowTriggerListCallbackUrlQueries:
+    type: object
+    description: Gets the workflow trigger callback URL query parameters.
+    properties:
+      api-version:
+        type: string
+        description: The api version.
+        x-ms-client-name: apiVersion
+      sp:
+        type: string
+        description: The SAS permissions.
+      sv:
+        type: string
+        description: The SAS version.
+      sig:
+        type: string
+        description: The SAS signature.
+      se:
+        type: string
+        description: The SAS timestamp.
+  ErrorResponse:
+    type: object
+    description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+    properties:
+      error:
+        $ref: '#/definitions/ErrorProperties'
+        description: The error properties.
+  RecurrenceFrequency:
+    type: string
+    description: The recurrence frequency.
+    enum:
+    - NotSpecified
+    - Second
+    - Minute
+    - Hour
+    - Day
+    - Week
+    - Month
+    - Year
+    x-ms-enum:
+      name: RecurrenceFrequency
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Second
+        value: Second
+      - name: Minute
+        value: Minute
+      - name: Hour
+        value: Hour
+      - name: Day
+        value: Day
+      - name: Week
+        value: Week
+      - name: Month
+        value: Month
+      - name: Year
+        value: Year
+  RecurrenceSchedule:
+    type: object
+    description: The recurrence schedule.
+    properties:
+      minutes:
+        type: array
+        description: The minutes.
+        items:
+          type: integer
+          format: int32
+      hours:
+        type: array
+        description: The hours.
+        items:
+          type: integer
+          format: int32
+      weekDays:
+        type: array
+        description: The days of the week.
+        items:
+          $ref: '#/definitions/DaysOfWeek'
+      monthDays:
+        type: array
+        description: The month days.
+        items:
+          type: integer
+          format: int32
+      monthlyOccurrences:
+        type: array
+        description: The monthly occurrences.
+        items:
+          $ref: '#/definitions/RecurrenceScheduleOccurrence'
+        x-ms-identifiers: []
+  WorkflowTrigger:
+    type: object
+    description: The workflow trigger.
+    properties:
+      properties:
+        $ref: '#/definitions/WorkflowTriggerProperties'
+        description: The workflow trigger properties.
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  WorkflowTriggerProperties:
+    type: object
+    description: The workflow trigger properties.
+    properties:
+      provisioningState:
+        $ref: '#/definitions/WorkflowTriggerProvisioningState'
+        description: Gets the provisioning state.
+        readOnly: true
+      createdTime:
+        type: string
+        format: date-time
+        description: Gets the created time.
+        readOnly: true
+      changedTime:
+        type: string
+        format: date-time
+        description: Gets the changed time.
+        readOnly: true
+      state:
+        $ref: '#/definitions/WorkflowState'
+        description: Gets the state.
+        readOnly: true
+      status:
+        $ref: '#/definitions/WorkflowStatus'
+        description: Gets the status.
+        readOnly: true
+      lastExecutionTime:
+        type: string
+        format: date-time
+        description: Gets the last execution time.
+        readOnly: true
+      nextExecutionTime:
+        type: string
+        format: date-time
+        description: Gets the next execution time.
+        readOnly: true
+      recurrence:
+        $ref: '#/definitions/WorkflowTriggerRecurrence'
+        description: Gets the workflow trigger recurrence.
+        readOnly: true
+      workflow:
+        $ref: '#/definitions/ResourceReference'
+        description: Gets the reference to workflow.
+        readOnly: true
+  WorkflowStatus:
+    type: string
+    description: The workflow status.
+    enum:
+    - NotSpecified
+    - Paused
+    - Running
+    - Waiting
+    - Succeeded
+    - Skipped
+    - Suspended
+    - Cancelled
+    - Failed
+    - Faulted
+    - TimedOut
+    - Aborted
+    - Ignored
+    x-ms-enum:
+      name: WorkflowStatus
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Paused
+        value: Paused
+      - name: Running
+        value: Running
+      - name: Waiting
+        value: Waiting
+      - name: Succeeded
+        value: Succeeded
+      - name: Skipped
+        value: Skipped
+      - name: Suspended
+        value: Suspended
+      - name: Cancelled
+        value: Cancelled
+      - name: Failed
+        value: Failed
+      - name: Faulted
+        value: Faulted
+      - name: TimedOut
+        value: TimedOut
+      - name: Aborted
+        value: Aborted
+      - name: Ignored
+        value: Ignored
+  JsonSchema:
+    type: object
+    description: The JSON schema.
+    properties:
+      title:
+        type: string
+        description: The JSON title.
+      content:
+        type: string
+        description: The JSON content.
+  WorkflowTriggerCallbackUrl:
+    type: object
+    description: The workflow trigger callback URL.
+    properties:
+      value:
+        type: string
+        description: Gets the workflow trigger callback URL.
+        readOnly: true
+      method:
+        type: string
+        description: Gets the workflow trigger callback URL HTTP method.
+        readOnly: true
+      basePath:
+        type: string
+        description: Gets the workflow trigger callback URL base path.
+        readOnly: true
+      relativePath:
+        type: string
+        description: Gets the workflow trigger callback URL relative path.
+        readOnly: true
+      relativePathParameters:
+        type: array
+        description: Gets the workflow trigger callback URL relative path parameters.
+        items:
+          type: string
+      queries:
+        $ref: '#/definitions/WorkflowTriggerListCallbackUrlQueries'
+        description: Gets the workflow trigger callback URL query parameters.
+  RecurrenceScheduleOccurrence:
+    type: object
+    description: The recurrence schedule occurrence.
+    properties:
+      day:
+        $ref: '#/definitions/DayOfWeek'
+        description: The day of the week.
+      occurrence:
+        type: integer
+        format: int32
+        description: The occurrence.
+  WorkflowTriggerListResult:
+    type: object
+    description: The response of a WorkflowTrigger list operation.
+    properties:
+      value:
+        type: array
+        description: The WorkflowTrigger items on this page
+        items:
+          $ref: '#/definitions/WorkflowTrigger'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  ResourceReference:
+    type: object
+    description: The resource reference.
+    properties:
+      id:
+        type: string
+        description: The resource id.
+      name:
+        type: string
+        description: Gets the resource name.
+        readOnly: true
+      type:
+        type: string
+        description: Gets the resource type.
+        readOnly: true
+  ErrorProperties:
+    type: object
+    description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message indicating why the operation failed.
+  WorkflowTriggerProvisioningState:
+    type: string
+    description: The workflow trigger provisioning state.
+    enum:
+    - NotSpecified
+    - Accepted
+    - Running
+    - Ready
+    - Creating
+    - Created
+    - Deleting
+    - Deleted
+    - Canceled
+    - Failed
+    - Succeeded
+    - Moving
+    - Updating
+    - Registering
+    - Registered
+    - Unregistering
+    - Unregistered
+    - Completed
+    x-ms-enum:
+      name: WorkflowTriggerProvisioningState
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Accepted
+        value: Accepted
+      - name: Running
+        value: Running
+      - name: Ready
+        value: Ready
+      - name: Creating
+        value: Creating
+      - name: Created
+        value: Created
+      - name: Deleting
+        value: Deleting
+      - name: Deleted
+        value: Deleted
+      - name: Canceled
+        value: Canceled
+      - name: Failed
+        value: Failed
+      - name: Succeeded
+        value: Succeeded
+      - name: Moving
+        value: Moving
+      - name: Updating
+        value: Updating
+      - name: Registering
+        value: Registering
+      - name: Registered
+        value: Registered
+      - name: Unregistering
+        value: Unregistering
+      - name: Unregistered
+        value: Unregistered
+      - name: Completed
+        value: Completed
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

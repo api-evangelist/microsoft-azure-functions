@@ -1,0 +1,274 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments Providers API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Providers
+paths:
+  /providers/Microsoft.Web/publishingUsers/web:
+    get:
+      operationId: GetPublishingUser
+      summary: Gets publishing user
+      description: Description for Gets publishing user
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      tags:
+      - Providers
+    put:
+      operationId: UpdatePublishingUser
+      summary: Updates publishing user
+      description: Description for Updates publishing user
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - name: userDetails
+        in: body
+        description: Details of publishing user
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: Resource 'User' update operation succeeded
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      tags:
+      - Providers
+  /providers/Microsoft.Web/sourcecontrols:
+    get:
+      operationId: ListSourceControls
+      summary: Gets the source controls available for Azure websites.
+      description: Description for Gets the source controls available for Azure websites.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/SourceControlCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-pageable:
+        nextLinkName: nextLink
+      tags:
+      - Providers
+  /providers/Microsoft.Web/sourcecontrols/{sourceControlType}:
+    get:
+      operationId: GetSourceControl
+      summary: Gets source control token
+      description: Description for Gets source control token
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - name: sourceControlType
+        in: path
+        description: Type of source control
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/SourceControl'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      tags:
+      - Providers
+    put:
+      operationId: UpdateSourceControl
+      summary: Updates source control token
+      description: Description for Updates source control token
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - name: sourceControlType
+        in: path
+        description: Type of source control
+        required: true
+        type: string
+      - name: requestMessage
+        in: body
+        description: Source control token information
+        required: true
+        schema:
+          $ref: '#/definitions/SourceControl'
+      responses:
+        '200':
+          description: Resource 'SourceControl' update operation succeeded
+          schema:
+            $ref: '#/definitions/SourceControl'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      tags:
+      - Providers
+definitions:
+  User:
+    type: object
+    description: User credentials used for publishing activity.
+    properties:
+      properties:
+        $ref: '#/definitions/UserProperties'
+        description: User resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DefaultErrorResponse:
+    type: object
+    description: App Service error response.
+    properties:
+      error:
+        $ref: '#/definitions/DefaultErrorResponseError'
+        description: Error model.
+        readOnly: true
+  SourceControlProperties:
+    type: object
+    description: SourceControl resource specific properties
+    properties:
+      token:
+        type: string
+        description: OAuth access token.
+      tokenSecret:
+        type: string
+        description: OAuth access token secret.
+      refreshToken:
+        type: string
+        description: OAuth refresh token.
+      expirationTime:
+        type: string
+        format: date-time
+        description: OAuth token expiration.
+  DefaultErrorResponseError:
+    type: object
+    description: Error model.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/DefaultErrorResponseErrorDetailsItem'
+        x-ms-identifiers: []
+      innererror:
+        type: string
+        description: More information to debug error.
+        readOnly: true
+  SourceControl:
+    type: object
+    description: The source control OAuth token.
+    properties:
+      properties:
+        $ref: '#/definitions/SourceControlProperties'
+        description: SourceControl resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DefaultErrorResponseErrorDetailsItem:
+    type: object
+    description: Detailed errors.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+  SourceControlCollection:
+    type: object
+    description: Collection of source controls.
+    properties:
+      value:
+        type: array
+        description: The SourceControl items on this page
+        items:
+          $ref: '#/definitions/SourceControl'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  UserProperties:
+    type: object
+    description: User resource specific properties
+    properties:
+      publishingUserName:
+        type: string
+        description: Username used for publishing.
+      publishingPassword:
+        type: string
+        format: password
+        description: Password used for publishing.
+        x-ms-secret: true
+      publishingPasswordHash:
+        type: string
+        format: password
+        description: Password hash used for publishing.
+        x-ms-secret: true
+      publishingPasswordHashSalt:
+        type: string
+        format: password
+        description: Password hash salt used for publishing.
+        x-ms-secret: true
+      scmUri:
+        type: string
+        description: Url of SCM site.
+    required:
+    - publishingUserName
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

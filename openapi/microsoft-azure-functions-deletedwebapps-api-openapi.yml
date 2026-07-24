@@ -1,0 +1,216 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments DeletedWebApps API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: DeletedWebApps
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites:
+    get:
+      operationId: DeletedWebApps_List
+      tags:
+      - DeletedWebApps
+      summary: Get all deleted apps for a subscription.
+      description: Description for Get all deleted apps for a subscription.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DeletedWebAppCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-pageable:
+        nextLinkName: nextLink
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/deletedSites:
+    get:
+      operationId: DeletedWebApps_ListByLocation
+      tags:
+      - DeletedWebApps
+      summary: Get all deleted apps for a subscription at location
+      description: Description for Get all deleted apps for a subscription at location
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/LocationParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DeletedWebAppCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List Deleted Web App by Location:
+          $ref: ./examples/ListDeletedWebAppsByLocation.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/deletedSites/{deletedSiteId}:
+    get:
+      operationId: DeletedWebApps_GetDeletedWebAppByLocation
+      tags:
+      - DeletedWebApps
+      summary: Get deleted app for a subscription at location.
+      description: Description for Get deleted app for a subscription at location.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/LocationParameter
+      - name: deletedSiteId
+        in: path
+        description: The numeric ID of the deleted app, e.g. 12345
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DeletedSite'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get Deleted Web App by Location:
+          $ref: ./examples/GetDeletedWebAppByLocation.json
+definitions:
+  DefaultErrorResponse:
+    type: object
+    description: App Service error response.
+    properties:
+      error:
+        $ref: '#/definitions/DefaultErrorResponseError'
+        description: Error model.
+        readOnly: true
+  DeletedWebAppCollection:
+    type: object
+    description: Collection of deleted apps.
+    properties:
+      value:
+        type: array
+        description: The DeletedSite items on this page
+        items:
+          $ref: '#/definitions/DeletedSite'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  DeletedSite:
+    type: object
+    description: A deleted app.
+    properties:
+      properties:
+        $ref: '#/definitions/DeletedSiteProperties'
+        description: DeletedSite resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DefaultErrorResponseError:
+    type: object
+    description: Error model.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/DefaultErrorResponseErrorDetailsItem'
+        x-ms-identifiers: []
+      innererror:
+        type: string
+        description: More information to debug error.
+        readOnly: true
+  DefaultErrorResponseErrorDetailsItem:
+    type: object
+    description: Detailed errors.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+  DeletedSiteProperties:
+    type: object
+    description: DeletedSite resource specific properties
+    properties:
+      deletedSiteId:
+        type: integer
+        format: int32
+        description: Numeric id for the deleted site
+        readOnly: true
+      deletedTimestamp:
+        type: string
+        description: Time in UTC when the app was deleted.
+        readOnly: true
+      subscription:
+        type: string
+        description: Subscription containing the deleted site
+        readOnly: true
+      resourceGroup:
+        type: string
+        description: ResourceGroup that contained the deleted site
+        readOnly: true
+      deletedSiteName:
+        type: string
+        description: Name of the deleted site
+        readOnly: true
+      slot:
+        type: string
+        description: Slot of the deleted site
+        readOnly: true
+      kind:
+        type: string
+        description: Kind of site that was deleted
+        readOnly: true
+      geoRegionName:
+        type: string
+        description: Geo Region of the deleted site
+        readOnly: true
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

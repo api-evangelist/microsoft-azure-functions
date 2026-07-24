@@ -1,0 +1,246 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments Global API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: Global
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites/{deletedSiteId}:
+    get:
+      operationId: Global_GetDeletedWebApp
+      tags:
+      - Global
+      summary: Get deleted app for a subscription.
+      description: Description for Get deleted app for a subscription.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - name: deletedSiteId
+        in: path
+        description: The numeric ID of the deleted app, e.g. 12345
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DeletedSite'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get Deleted Web App:
+          $ref: ./examples/GetDeletedWebApp.json
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites/{deletedSiteId}/snapshots:
+    get:
+      operationId: Global_GetDeletedWebAppSnapshots
+      tags:
+      - Global
+      summary: Get all deleted apps for a subscription.
+      description: Description for Get all deleted apps for a subscription.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - name: deletedSiteId
+        in: path
+        description: The numeric ID of the deleted app, e.g. 12345
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Snapshot'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get Deleted Web App Snapshots:
+          $ref: ./examples/GetDeletedWebAppSnapshots.json
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/operations/{operationId}:
+    get:
+      operationId: Global_GetSubscriptionOperationWithAsyncResponse
+      tags:
+      - Global
+      summary: Gets an operation in a subscription and given region
+      description: Description for Gets an operation in a subscription and given region
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/LocationParameter
+      - name: operationId
+        in: path
+        description: Operation Id
+        required: true
+        type: string
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      responses:
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Gets an operation in a subscription and given region:
+          $ref: ./examples/GetSubscriptionOperationWithAsyncResponse.json
+definitions:
+  SnapshotProperties:
+    type: object
+    description: Snapshot resource specific properties
+    properties:
+      time:
+        type: string
+        description: The time the snapshot was taken.
+        readOnly: true
+  DefaultErrorResponse:
+    type: object
+    description: App Service error response.
+    properties:
+      error:
+        $ref: '#/definitions/DefaultErrorResponseError'
+        description: Error model.
+        readOnly: true
+  Snapshot:
+    type: object
+    description: A snapshot of an app.
+    properties:
+      properties:
+        $ref: '#/definitions/SnapshotProperties'
+        description: Snapshot resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  DeletedSite:
+    type: object
+    description: A deleted app.
+    properties:
+      properties:
+        $ref: '#/definitions/DeletedSiteProperties'
+        description: DeletedSite resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DefaultErrorResponseError:
+    type: object
+    description: Error model.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/DefaultErrorResponseErrorDetailsItem'
+        x-ms-identifiers: []
+      innererror:
+        type: string
+        description: More information to debug error.
+        readOnly: true
+  DefaultErrorResponseErrorDetailsItem:
+    type: object
+    description: Detailed errors.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+  ProxyOnlyResource:
+    type: object
+    description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+    properties:
+      id:
+        type: string
+        description: Resource Id.
+        readOnly: true
+      name:
+        type: string
+        description: Resource Name.
+        readOnly: true
+      kind:
+        type: string
+        description: Kind of resource.
+      type:
+        type: string
+        description: Resource type.
+        readOnly: true
+  DeletedSiteProperties:
+    type: object
+    description: DeletedSite resource specific properties
+    properties:
+      deletedSiteId:
+        type: integer
+        format: int32
+        description: Numeric id for the deleted site
+        readOnly: true
+      deletedTimestamp:
+        type: string
+        description: Time in UTC when the app was deleted.
+        readOnly: true
+      subscription:
+        type: string
+        description: Subscription containing the deleted site
+        readOnly: true
+      resourceGroup:
+        type: string
+        description: ResourceGroup that contained the deleted site
+        readOnly: true
+      deletedSiteName:
+        type: string
+        description: Name of the deleted site
+        readOnly: true
+      slot:
+        type: string
+        description: Slot of the deleted site
+        readOnly: true
+      kind:
+        type: string
+        description: Kind of site that was deleted
+        readOnly: true
+      geoRegionName:
+        type: string
+        description: Geo Region of the deleted site
+        readOnly: true
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

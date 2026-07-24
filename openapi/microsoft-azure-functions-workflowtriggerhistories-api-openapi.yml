@@ -1,0 +1,368 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments WorkflowTriggerHistories API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: WorkflowTriggerHistories
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories
+  : get:
+      operationId: WorkflowTriggerHistories_List
+      tags:
+      - WorkflowTriggerHistories
+      description: Gets a list of workflow trigger histories.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      - name: $top
+        in: query
+        description: The number of items to be included in the result.
+        required: false
+        type: integer
+        format: int32
+      - name: $filter
+        in: query
+        description: 'The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId.'
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowTriggerHistoryListResult'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        List a workflow trigger history:
+          $ref: ./examples/WorkflowTriggerHistories_List.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories/{historyName}
+  : get:
+      operationId: WorkflowTriggerHistories_Get
+      tags:
+      - WorkflowTriggerHistories
+      description: Gets a workflow trigger history.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      - name: historyName
+        in: path
+        description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowTriggerHistory'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get a workflow trigger history:
+          $ref: ./examples/WorkflowTriggerHistories_Get.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/triggers/{triggerName}/histories/{historyName}/resubmit
+  : post:
+      operationId: WorkflowTriggerHistories_Resubmit
+      tags:
+      - WorkflowTriggerHistories
+      description: Resubmits a workflow run based on the trigger history.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: triggerName
+        in: path
+        description: The workflow trigger name.
+        required: true
+        type: string
+      - name: historyName
+        in: path
+        description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
+        required: true
+        type: string
+      responses:
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Resubmit a workflow run based on the trigger history:
+          $ref: ./examples/WorkflowTriggerHistories_Resubmit.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+definitions:
+  ContentLink:
+    type: object
+    description: The content link.
+    properties:
+      uri:
+        type: string
+        description: The content link URI.
+      contentVersion:
+        type: string
+        description: The content version.
+        readOnly: true
+      contentSize:
+        type: integer
+        format: int64
+        description: The content size.
+        readOnly: true
+      contentHash:
+        $ref: '#/definitions/ContentHash'
+        description: The content hash.
+        readOnly: true
+      metadata:
+        description: The metadata.
+        readOnly: true
+  ErrorResponse:
+    type: object
+    description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+    properties:
+      error:
+        $ref: '#/definitions/ErrorProperties'
+        description: The error properties.
+  WorkflowTriggerHistoryListResult:
+    type: object
+    description: The response of a WorkflowTriggerHistory list operation.
+    properties:
+      value:
+        type: array
+        description: The WorkflowTriggerHistory items on this page
+        items:
+          $ref: '#/definitions/WorkflowTriggerHistory'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  WorkflowStatus:
+    type: string
+    description: The workflow status.
+    enum:
+    - NotSpecified
+    - Paused
+    - Running
+    - Waiting
+    - Succeeded
+    - Skipped
+    - Suspended
+    - Cancelled
+    - Failed
+    - Faulted
+    - TimedOut
+    - Aborted
+    - Ignored
+    x-ms-enum:
+      name: WorkflowStatus
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Paused
+        value: Paused
+      - name: Running
+        value: Running
+      - name: Waiting
+        value: Waiting
+      - name: Succeeded
+        value: Succeeded
+      - name: Skipped
+        value: Skipped
+      - name: Suspended
+        value: Suspended
+      - name: Cancelled
+        value: Cancelled
+      - name: Failed
+        value: Failed
+      - name: Faulted
+        value: Faulted
+      - name: TimedOut
+        value: TimedOut
+      - name: Aborted
+        value: Aborted
+      - name: Ignored
+        value: Ignored
+  WorkflowTriggerHistory:
+    type: object
+    description: The workflow trigger history.
+    properties:
+      properties:
+        $ref: '#/definitions/WorkflowTriggerHistoryProperties'
+        description: Gets the workflow trigger history properties.
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  ContentHash:
+    type: object
+    description: The content hash.
+    properties:
+      algorithm:
+        type: string
+        description: The algorithm of the content hash.
+      value:
+        type: string
+        description: The value of the content hash.
+  WorkflowTriggerHistoryProperties:
+    type: object
+    description: The workflow trigger history properties.
+    properties:
+      startTime:
+        type: string
+        format: date-time
+        description: Gets the start time.
+        readOnly: true
+      endTime:
+        type: string
+        format: date-time
+        description: Gets the end time.
+        readOnly: true
+      scheduledTime:
+        type: string
+        format: date-time
+        description: The scheduled time.
+        readOnly: true
+      status:
+        $ref: '#/definitions/WorkflowStatus'
+        description: Gets the status.
+        readOnly: true
+      code:
+        type: string
+        description: Gets the code.
+        readOnly: true
+      error:
+        description: Gets the error.
+        readOnly: true
+      trackingId:
+        type: string
+        description: Gets the tracking id.
+        readOnly: true
+      correlation:
+        $ref: '#/definitions/Correlation'
+        description: The run correlation.
+      inputsLink:
+        $ref: '#/definitions/ContentLink'
+        description: Gets the link to input parameters.
+        readOnly: true
+      outputsLink:
+        $ref: '#/definitions/ContentLink'
+        description: Gets the link to output parameters.
+        readOnly: true
+      fired:
+        type: boolean
+        description: The value indicating whether trigger was fired.
+        readOnly: true
+      run:
+        $ref: '#/definitions/ResourceReference'
+        description: Gets the reference to workflow run.
+        readOnly: true
+  ResourceReference:
+    type: object
+    description: The resource reference.
+    properties:
+      id:
+        type: string
+        description: The resource id.
+      name:
+        type: string
+        description: Gets the resource name.
+        readOnly: true
+      type:
+        type: string
+        description: Gets the resource type.
+        readOnly: true
+  ErrorProperties:
+    type: object
+    description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message indicating why the operation failed.
+  Correlation:
+    type: object
+    description: The correlation property.
+    properties:
+      clientTrackingId:
+        type: string
+        description: The client tracking id.
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

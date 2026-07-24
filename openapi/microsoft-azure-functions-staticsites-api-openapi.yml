@@ -1,0 +1,4247 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments StaticSites API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: StaticSites
+paths:
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/previewStaticSiteWorkflowFile:
+    post:
+      operationId: StaticSites_PreviewWorkflow
+      tags:
+      - StaticSites
+      summary: Generates a preview workflow file for the static site
+      description: Description for Generates a preview workflow file for the static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/LocationParameter
+      - name: staticSitesWorkflowPreviewRequest
+        in: body
+        description: The request body
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSitesWorkflowPreviewRequest'
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/StaticSitesWorkflowPreview'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Generates a preview workflow file for the static site:
+          $ref: ./examples/GenerateStaticSiteWorkflowPreview.json
+  /subscriptions/{subscriptionId}/providers/Microsoft.Web/staticSites:
+    get:
+      operationId: StaticSites_List
+      tags:
+      - StaticSites
+      summary: Get all Static Sites for a subscription.
+      description: Description for Get all Static Sites for a subscription.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get all static sites in a subscription:
+          $ref: ./examples/GetAllStaticSites.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites:
+    get:
+      operationId: StaticSites_GetStaticSitesByResourceGroup
+      tags:
+      - StaticSites
+      summary: Gets all static sites in the specified resource group.
+      description: Description for Gets all static sites in the specified resource group.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get static sites for a resource group:
+          $ref: ./examples/GetStaticSites.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}:
+    get:
+      operationId: StaticSites_GetStaticSite
+      tags:
+      - StaticSites
+      summary: Gets the details of a static site.
+      description: Description for Gets the details of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details for a static site:
+          $ref: ./examples/GetStaticSite.json
+    put:
+      operationId: StaticSites_CreateOrUpdateStaticSite
+      tags:
+      - StaticSites
+      summary: Creates a new static site in an existing resource group, or updates an existing static site.
+      description: Description for Creates a new static site in an existing resource group, or updates an existing static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: staticSiteEnvelope
+        in: body
+        description: A JSON representation of the staticsite properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteARMResource'
+      responses:
+        '200':
+          description: Resource 'StaticSiteARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/StaticSiteARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/StaticSiteARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create or update a static site:
+          $ref: ./examples/CreateOrUpdateStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteARMResource'
+      x-ms-long-running-operation: true
+    patch:
+      operationId: StaticSites_UpdateStaticSite
+      tags:
+      - StaticSites
+      summary: Creates a new static site in an existing resource group, or updates an existing static site.
+      description: Description for Creates a new static site in an existing resource group, or updates an existing static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: staticSiteEnvelope
+        in: body
+        description: A JSON representation of the staticsite properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSitePatchResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/StaticSiteARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Patch a static site:
+          $ref: ./examples/PatchStaticSite.json
+    delete:
+      operationId: StaticSites_DeleteStaticSite
+      tags:
+      - StaticSites
+      summary: Deletes a static site.
+      description: Description for Deletes a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '202':
+          description: Resource deletion accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a static site:
+          $ref: ./examples/DeleteStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/basicAuth:
+    get:
+      operationId: StaticSites_ListBasicAuth
+      tags:
+      - StaticSites
+      summary: Gets the basic auth properties for a static site as a collection.
+      description: Description for Gets the basic auth properties for a static site as a collection.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteBasicAuthPropertiesCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Lists the basic auth properties for a static site.:
+          $ref: ./examples/ListStaticSiteBasicAuth.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/basicAuth/{basicAuthName}
+  : get:
+      operationId: StaticSites_GetBasicAuth
+      tags:
+      - StaticSites
+      summary: Gets the basic auth properties for a static site.
+      description: Description for Gets the basic auth properties for a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: basicAuthName
+        in: path
+        description: name of the basic auth entry.
+        required: true
+        type: string
+        enum:
+        - default
+        x-ms-enum:
+          name: BasicAuthName
+          modelAsString: true
+          values:
+          - name: default
+            value: default
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteBasicAuthPropertiesARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Gets the basic auth properties for a static site.:
+          $ref: ./examples/GetStaticSiteBasicAuth.json
+    put:
+      operationId: StaticSites_CreateOrUpdateBasicAuth
+      tags:
+      - StaticSites
+      summary: Adds or updates basic auth for a static site.
+      description: Description for Adds or updates basic auth for a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: basicAuthName
+        in: path
+        description: name of the basic auth entry.
+        required: true
+        type: string
+        enum:
+        - default
+        x-ms-enum:
+          name: BasicAuthName
+          modelAsString: true
+          values:
+          - name: default
+            value: default
+      - name: basicAuthEnvelope
+        in: body
+        description: A JSON representation of the basic auth properties.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteBasicAuthPropertiesARMResource'
+      responses:
+        '200':
+          description: Resource 'StaticSiteBasicAuthPropertiesARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/StaticSiteBasicAuthPropertiesARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Creates or updates basic auth properties for a static site.:
+          $ref: ./examples/CreateOrUpdateStaticSiteBasicAuth.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds:
+    get:
+      operationId: StaticSites_GetStaticSiteBuilds
+      tags:
+      - StaticSites
+      summary: Gets all static site builds for a particular static site.
+      description: Description for Gets all static site builds for a particular static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteBuildCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get all builds for a static site:
+          $ref: ./examples/GetStaticSiteBuilds.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}
+  : get:
+      operationId: StaticSites_GetStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Gets the details of a static site build.
+      description: Description for Gets the details of a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteBuildARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get a static site build:
+          $ref: ./examples/GetStaticSiteBuild.json
+    delete:
+      operationId: StaticSites_DeleteStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Deletes a static site build.
+      description: Description for Deletes a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '202':
+          description: Resource deletion accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a static site build:
+          $ref: ./examples/DeleteStaticSiteBuild.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/config/appsettings
+  : put:
+      operationId: StaticSites_CreateOrUpdateStaticSiteBuildAppSettings
+      tags:
+      - StaticSites
+      summary: Creates or updates the app settings of a static site build.
+      description: Description for Creates or updates the app settings of a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: appSettings
+        in: body
+        description: The dictionary containing the static site app settings to update.
+        required: true
+        schema:
+          $ref: '#/definitions/StringDictionary'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Creates or updates the function app settings of a static site build.:
+          $ref: ./examples/CreateOrUpdateStaticSiteBuildAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/config/functionappsettings
+  : put:
+      operationId: StaticSites_CreateOrUpdateStaticSiteBuildFunctionAppSettings
+      tags:
+      - StaticSites
+      summary: Creates or updates the function app settings of a static site build.
+      description: Description for Creates or updates the function app settings of a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: appSettings
+        in: body
+        description: The dictionary containing the static site function app settings to update.
+        required: true
+        schema:
+          $ref: '#/definitions/StringDictionary'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Creates or updates the function app settings of a static site build.:
+          $ref: ./examples/CreateOrUpdateStaticSiteBuildFunctionAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/databaseConnections
+  : get:
+      operationId: StaticSites_GetBuildDatabaseConnections
+      tags:
+      - StaticSites
+      summary: Returns overviews of database connections for a static site build
+      description: Returns overviews of database connections for a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnectionCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List overviews of database connections for the static site build.:
+          $ref: ./examples/GetStaticSiteBuildDatabaseConnections.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/databaseConnections/{databaseConnectionName}
+  : get:
+      operationId: StaticSites_GetBuildDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Returns overview of a database connection for a static site build by name
+      description: Returns overview of a database connection for a static site build by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get overview of database connections for the static site build.:
+          $ref: ./examples/GetStaticSiteBuildDatabaseConnection.json
+    put:
+      operationId: StaticSites_CreateOrUpdateBuildDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Create or update a database connection for a static site build
+      description: Description for Create or update a database connection for a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionRequestEnvelope
+        in: body
+        description: A JSON representation of the database connection request properties
+        required: true
+        schema:
+          $ref: '#/definitions/DatabaseConnection'
+      responses:
+        '200':
+          description: Resource 'DatabaseConnection' update operation succeeded
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create or update a database connection for a static site build:
+          $ref: ./examples/CreateOrUpdateStaticSiteBuildDatabaseConnection.json
+    patch:
+      operationId: StaticSites_UpdateBuildDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Create or update a database connection for a static site build
+      description: Description for Create or update a database connection for a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionRequestEnvelope
+        in: body
+        description: A JSON representation of the database connection request properties
+        required: true
+        schema:
+          $ref: '#/definitions/DatabaseConnectionPatchRequest'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Patch a database connection for a static site build:
+          $ref: ./examples/PatchStaticSiteBuildDatabaseConnection.json
+    delete:
+      operationId: StaticSites_DeleteBuildDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Delete a database connection for a static site build
+      description: Delete a database connection for a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a database connection from a static site build.:
+          $ref: ./examples/DeleteStaticSiteBuildDatabaseConnection.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/databaseConnections/{databaseConnectionName}/show
+  : post:
+      operationId: StaticSites_GetBuildDatabaseConnectionWithDetails
+      tags:
+      - StaticSites
+      summary: Returns details of a database connection for a static site build by name
+      description: Returns details of a database connection for a static site build by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of database connections for the static site build.:
+          $ref: ./examples/GetStaticSiteBuildDatabaseConnectionWithDetails.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/functions
+  : get:
+      operationId: StaticSites_ListStaticSiteBuildFunctions
+      tags:
+      - StaticSites
+      summary: Gets the functions of a particular static site build.
+      description: Description for Gets the functions of a particular static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteFunctionOverviewCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Gets the functions of a particular static site build:
+          $ref: ./examples/ListStaticSiteBuildFunctions.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/linkedBackends
+  : get:
+      operationId: StaticSites_GetLinkedBackendsForBuild
+      tags:
+      - StaticSites
+      summary: Returns details of all backends linked to a static site build
+      description: Returns details of all backends linked to a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendsCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the linked backends registered with a static site build.:
+          $ref: ./examples/GetLinkedBackendsForStaticSiteBuild.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/linkedBackends/{linkedBackendName}
+  : get:
+      operationId: StaticSites_GetLinkedBackendForBuild
+      tags:
+      - StaticSites
+      summary: Returns the details of a linked backend linked to a static site build by name
+      description: Returns the details of a linked backend linked to a static site build by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the linked backend registered with a static site build by name.:
+          $ref: ./examples/GetLinkedBackendForStaticSiteBuild.json
+    put:
+      operationId: StaticSites_LinkBackendToBuild
+      tags:
+      - StaticSites
+      summary: Link backend to a static site build
+      description: Link backend to a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: staticSiteLinkedBackendEnvelope
+        in: body
+        description: A JSON representation of the linked backend request properties
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Link a backend to a static site build:
+          $ref: ./examples/LinkBackendToStaticSiteBuild.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteLinkedBackendARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_UnlinkBackendFromBuild
+      tags:
+      - StaticSites
+      summary: Unlink a backend from a static site build
+      description: Unlink a backend from a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: isCleaningAuthConfig
+        in: query
+        description: Decides if auth will be removed from backend configuration
+        required: false
+        type: boolean
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Unlink a backend from a static site build.:
+          $ref: ./examples/UnlinkBackendFromStaticSiteBuild.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/linkedBackends/{linkedBackendName}/validate
+  : post:
+      operationId: StaticSites_ValidateBackendForBuild
+      tags:
+      - StaticSites
+      summary: Validates that a backend can be linked to a static site build
+      description: Validates that a backend can be linked to a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: staticSiteLinkedBackendEnvelope
+        in: body
+        description: A JSON representation of the linked backend request properties
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+      responses:
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Validate if backend can be linked to static site build.:
+          $ref: ./examples/ValidateLinkedBackendForStaticSiteBuild.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/listAppSettings
+  : post:
+      operationId: StaticSites_ListStaticSiteBuildAppSettings
+      tags:
+      - StaticSites
+      summary: Gets the application settings of a static site build.
+      description: Description for Gets the application settings of a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get app settings of a static site build:
+          $ref: ./examples/ListStaticSiteBuildAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/listFunctionAppSettings
+  : post:
+      operationId: StaticSites_ListStaticSiteBuildFunctionAppSettings
+      tags:
+      - StaticSites
+      summary: Gets the application settings of a static site build.
+      description: Description for Gets the application settings of a static site build.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get function app settings of a static site build:
+          $ref: ./examples/ListStaticSiteBuildFunctionAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/showDatabaseConnections
+  : post:
+      operationId: StaticSites_GetBuildDatabaseConnectionsWithDetails
+      tags:
+      - StaticSites
+      summary: Returns details of database connections for a static site build
+      description: Returns details of database connections for a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnectionCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List full details of database connections for the static site build.:
+          $ref: ./examples/GetStaticSiteBuildDatabaseConnectionsWithDetails.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps
+  : get:
+      operationId: StaticSites_GetUserProvidedFunctionAppsForStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Gets the details of the user provided function apps registered with a static site build
+      description: Description for Gets the details of the user provided function apps registered with a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppsCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the user provided function apps registered with a static site build.:
+          $ref: ./examples/GetUserProvidedFunctionAppsForStaticSiteBuild.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/userProvidedFunctionApps/{functionAppName}
+  : get:
+      operationId: StaticSites_GetUserProvidedFunctionAppForStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Gets the details of the user provided function app registered with a static site build
+      description: Description for Gets the details of the user provided function app registered with a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site build.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the user provided function app registered with a static site build.:
+          $ref: ./examples/GetUserProvidedFunctionAppForStaticSiteBuild.json
+    put:
+      operationId: StaticSites_RegisterUserProvidedFunctionAppWithStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Register a user provided function app with a static site build
+      description: Description for Register a user provided function app with a static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site build.
+        required: true
+        type: string
+      - name: isForced
+        in: query
+        description: Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>.
+        required: false
+        type: boolean
+      - name: staticSiteUserProvidedFunctionEnvelope
+        in: body
+        description: A JSON representation of the user provided function app properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+      responses:
+        '200':
+          description: Resource 'StaticSiteUserProvidedFunctionAppARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Register a user provided function app with a static site build:
+          $ref: ./examples/RegisterUserProvidedFunctionAppWithStaticSiteBuild.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_DetachUserProvidedFunctionAppFromStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Detach the user provided function app from the static site build
+      description: Description for Detach the user provided function app from the static site build
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site build.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Detach the user provided function app from the static site build.:
+          $ref: ./examples/DetachUserProvidedFunctionAppFromStaticSiteBuild.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{environmentName}/zipdeploy
+  : post:
+      operationId: StaticSites_CreateZipDeploymentForStaticSiteBuild
+      tags:
+      - StaticSites
+      summary: Deploys zipped content to a specific environment of a static site.
+      description: Description for Deploys zipped content to a specific environment of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: environmentName
+        in: path
+        description: The stage site identifier.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: staticSiteZipDeploymentEnvelope
+        in: body
+        description: A JSON representation of the StaticSiteZipDeployment properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteZipDeploymentARMResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Deploy a site from a zipped package to a particular static site build:
+          $ref: ./examples/StaticSiteBuildZipDeploy.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/config/appsettings
+  : put:
+      operationId: StaticSites_CreateOrUpdateStaticSiteAppSettings
+      tags:
+      - StaticSites
+      summary: Creates or updates the app settings of a static site.
+      description: Description for Creates or updates the app settings of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: appSettings
+        in: body
+        description: The dictionary containing the static site app settings to update.
+        required: true
+        schema:
+          $ref: '#/definitions/StringDictionary'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Creates or updates the app settings of a static site.:
+          $ref: ./examples/CreateOrUpdateStaticSiteAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/config/functionappsettings
+  : put:
+      operationId: StaticSites_CreateOrUpdateStaticSiteFunctionAppSettings
+      tags:
+      - StaticSites
+      summary: Creates or updates the function app settings of a static site.
+      description: Description for Creates or updates the function app settings of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: appSettings
+        in: body
+        description: The dictionary containing the static site function app settings to update.
+        required: true
+        schema:
+          $ref: '#/definitions/StringDictionary'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Creates or updates the function app settings of a static site.:
+          $ref: ./examples/CreateOrUpdateStaticSiteFunctionAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/createUserInvitation
+  : post:
+      operationId: StaticSites_CreateUserRolesInvitationLink
+      tags:
+      - StaticSites
+      summary: Creates an invitation link for a user with the role
+      description: Description for Creates an invitation link for a user with the role
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: staticSiteUserRolesInvitationEnvelope
+        in: body
+        description: ''
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteUserInvitationRequestResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserInvitationResponseResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create an invitation link for a user for a static site:
+          $ref: ./examples/CreateUserRolesInvitationLink.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains
+  : get:
+      operationId: StaticSites_ListStaticSiteCustomDomains
+      tags:
+      - StaticSites
+      summary: Gets all static site custom domains for a particular static site.
+      description: Description for Gets all static site custom domains for a particular static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteCustomDomainOverviewCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List custom domains for a static site:
+          $ref: ./examples/GetStaticSiteCustomDomains.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}
+  : get:
+      operationId: StaticSites_GetStaticSiteCustomDomain
+      tags:
+      - StaticSites
+      summary: Gets an existing custom domain for a particular static site.
+      description: Description for Gets an existing custom domain for a particular static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: domainName
+        in: path
+        description: The custom domain name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteCustomDomainOverviewARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get custom domain for a static site:
+          $ref: ./examples/GetStaticSiteCustomDomain.json
+    put:
+      operationId: StaticSites_CreateOrUpdateStaticSiteCustomDomain
+      tags:
+      - StaticSites
+      summary: Creates a new static site custom domain in an existing resource group and static site.
+      description: Description for Creates a new static site custom domain in an existing resource group and static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: domainName
+        in: path
+        description: The custom domain name.
+        required: true
+        type: string
+      - name: staticSiteCustomDomainRequestPropertiesEnvelope
+        in: body
+        description: A JSON representation of the static site custom domain request properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteCustomDomainRequestPropertiesARMResource'
+      responses:
+        '200':
+          description: Resource 'StaticSiteCustomDomainOverviewARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/StaticSiteCustomDomainOverviewARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/StaticSiteCustomDomainOverviewARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create or update a custom domain for a static site:
+          $ref: ./examples/CreateOrUpdateStaticSiteCustomDomain.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteCustomDomainOverviewARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_DeleteStaticSiteCustomDomain
+      tags:
+      - StaticSites
+      summary: Deletes a custom domain.
+      description: Description for Deletes a custom domain.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: domainName
+        in: path
+        description: The custom domain name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '202':
+          description: Resource deletion accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a custom domain for a static site:
+          $ref: ./examples/DeleteStaticSiteCustomDomain.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}/validate
+  : post:
+      operationId: StaticSites_ValidateCustomDomainCanBeAddedToStaticSite
+      tags:
+      - StaticSites
+      summary: Validates a particular custom domain can be added to a static site.
+      description: Description for Validates a particular custom domain can be added to a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: domainName
+        in: path
+        description: The custom domain name.
+        required: true
+        type: string
+      - name: staticSiteCustomDomainRequestPropertiesEnvelope
+        in: body
+        description: A JSON representation of the static site custom domain request properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteCustomDomainRequestPropertiesARMResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Validate a custom domain for a static site:
+          $ref: ./examples/ValidateStaticSiteCustomDomain.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/databaseConnections
+  : get:
+      operationId: StaticSites_GetDatabaseConnections
+      tags:
+      - StaticSites
+      summary: Returns overviews of database connections for a static site
+      description: Returns overviews of database connections for a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnectionCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List overviews of database connections for the static site.:
+          $ref: ./examples/GetStaticSiteDatabaseConnections.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/databaseConnections/{databaseConnectionName}
+  : get:
+      operationId: StaticSites_GetDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Returns overview of a database connection for a static site by name
+      description: Returns overview of a database connection for a static site by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get overview of database connections for the static site.:
+          $ref: ./examples/GetStaticSiteDatabaseConnection.json
+    put:
+      operationId: StaticSites_CreateOrUpdateDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Create or update a database connection for a static site
+      description: Description for Create or update a database connection for a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionRequestEnvelope
+        in: body
+        description: A JSON representation of the database connection request properties
+        required: true
+        schema:
+          $ref: '#/definitions/DatabaseConnection'
+      responses:
+        '200':
+          description: Resource 'DatabaseConnection' update operation succeeded
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create or update a database connection for a static site:
+          $ref: ./examples/CreateOrUpdateStaticSiteDatabaseConnection.json
+    patch:
+      operationId: StaticSites_UpdateDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Create or update a database connection for a static site
+      description: Description for Create or update a database connection for a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      - name: databaseConnectionRequestEnvelope
+        in: body
+        description: A JSON representation of the database connection request properties
+        required: true
+        schema:
+          $ref: '#/definitions/DatabaseConnectionPatchRequest'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Patch a database connection for a static site:
+          $ref: ./examples/PatchStaticSiteDatabaseConnection.json
+    delete:
+      operationId: StaticSites_DeleteDatabaseConnection
+      tags:
+      - StaticSites
+      summary: Delete a database connection for a static site
+      description: Delete a database connection for a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a database connection from a static site.:
+          $ref: ./examples/DeleteStaticSiteDatabaseConnection.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/databaseConnections/{databaseConnectionName}/show
+  : post:
+      operationId: StaticSites_GetDatabaseConnectionWithDetails
+      tags:
+      - StaticSites
+      summary: Returns details of a database connection for a static site by name
+      description: Returns details of a database connection for a static site by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: databaseConnectionName
+        in: path
+        description: Name of the database connection.
+        required: true
+        type: string
+        pattern: ^[a-zA-Z0-9]+$
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of database connections for the static site.:
+          $ref: ./examples/GetStaticSiteDatabaseConnectionWithDetails.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/detach:
+    post:
+      operationId: StaticSites_DetachStaticSite
+      tags:
+      - StaticSites
+      summary: Detaches a static site.
+      description: Description for Detaches a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Detach a static site:
+          $ref: ./examples/DetachStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/functions:
+    get:
+      operationId: StaticSites_ListStaticSiteFunctions
+      tags:
+      - StaticSites
+      summary: Gets the functions of a static site.
+      description: Description for Gets the functions of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteFunctionOverviewCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Gets the functions of a static site:
+          $ref: ./examples/ListStaticSiteFunctions.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/linkedBackends
+  : get:
+      operationId: StaticSites_GetLinkedBackends
+      tags:
+      - StaticSites
+      summary: Returns details of all backends linked to a static site
+      description: Returns details of all backends linked to a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendsCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the linked backends registered with a static site.:
+          $ref: ./examples/GetLinkedBackendsForStaticSite.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/linkedBackends/{linkedBackendName}
+  : get:
+      operationId: StaticSites_GetLinkedBackend
+      tags:
+      - StaticSites
+      summary: Returns the details of a linked backend linked to a static site by name
+      description: Returns the details of a linked backend linked to a static site by name
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the linked backend registered with a static site by name.:
+          $ref: ./examples/GetLinkedBackendForStaticSite.json
+    put:
+      operationId: StaticSites_LinkBackend
+      tags:
+      - StaticSites
+      summary: Link backend to a static site
+      description: Link backend to a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: staticSiteLinkedBackendEnvelope
+        in: body
+        description: A JSON representation of the linked backend request properties
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+      responses:
+        '200':
+          description: The request has succeeded.
+          schema:
+            $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Link a backend to a static site:
+          $ref: ./examples/LinkBackendToStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteLinkedBackendARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_UnlinkBackend
+      tags:
+      - StaticSites
+      summary: Unlink a backend from a static site
+      description: Unlink a backend from a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: isCleaningAuthConfig
+        in: query
+        description: Decides if Easy Auth configuration will be removed from backend configuration
+        required: false
+        type: boolean
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Unlink a backend from a static site.:
+          $ref: ./examples/UnlinkBackendFromStaticSite.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/linkedBackends/{linkedBackendName}/validate
+  : post:
+      operationId: StaticSites_ValidateBackend
+      tags:
+      - StaticSites
+      summary: Validates that a backend can be linked to a static site
+      description: Validates that a backend can be linked to a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site
+        required: true
+        type: string
+      - name: linkedBackendName
+        in: path
+        description: Name of the linked backend that should be retrieved
+        required: true
+        type: string
+      - name: staticSiteLinkedBackendEnvelope
+        in: body
+        description: A JSON representation of the linked backend request properties
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+      responses:
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        '204':
+          description: There is no content to send for this request, but the headers may be useful.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Validate if backend can be linked to static site.:
+          $ref: ./examples/ValidateLinkedBackendForStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listAppSettings
+  : post:
+      operationId: StaticSites_ListStaticSiteAppSettings
+      tags:
+      - StaticSites
+      summary: Gets the application settings of a static site.
+      description: Description for Gets the application settings of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get app settings of a static site:
+          $ref: ./examples/ListStaticSiteAppSettings.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listConfiguredRoles
+  : post:
+      operationId: StaticSites_ListStaticSiteConfiguredRoles
+      tags:
+      - StaticSites
+      summary: Lists the roles configured for the static site.
+      description: Description for Lists the roles configured for the static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringList'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Lists the configured roles for a static site:
+          $ref: ./examples/ListStaticSiteConfiguredRoles.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listFunctionAppSettings
+  : post:
+      operationId: StaticSites_ListStaticSiteFunctionAppSettings
+      tags:
+      - StaticSites
+      summary: Gets the application settings of a static site.
+      description: Description for Gets the application settings of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get function app settings of a static site:
+          $ref: ./examples/ListStaticSiteFunctionAppSettings.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listSecrets:
+    post:
+      operationId: StaticSites_ListStaticSiteSecrets
+      tags:
+      - StaticSites
+      summary: Lists the secrets for an existing static site.
+      description: Description for Lists the secrets for an existing static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StringDictionary'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List secrets for a static site:
+          $ref: ./examples/ListStaticSiteSecrets.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections
+  : get:
+      operationId: StaticSites_GetPrivateEndpointConnectionList
+      tags:
+      - StaticSites
+      summary: Gets the list of private endpoint connections associated with a static site
+      description: Description for Gets the list of private endpoint connections associated with a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/PrivateEndpointConnectionCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get a list of private endpoint connections associated with a site.:
+          $ref: ./examples/GetSitePrivateEndpointConnectionList.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateEndpointConnections/{privateEndpointConnectionName}
+  : get:
+      operationId: StaticSites_GetPrivateEndpointConnection
+      tags:
+      - StaticSites
+      summary: Gets a private endpoint connection
+      description: Description for Gets a private endpoint connection
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: Name of the private endpoint connection.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get a private endpoint connection for a site.:
+          $ref: ./examples/GetSitePrivateEndpointConnection_StaticSites.json
+    put:
+      operationId: StaticSites_ApproveOrRejectPrivateEndpointConnection
+      tags:
+      - StaticSites
+      summary: Approves or rejects a private endpoint connection
+      description: Description for Approves or rejects a private endpoint connection
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: Name of the private endpoint connection.
+        required: true
+        type: string
+      - name: privateEndpointWrapper
+        in: body
+        description: Request body.
+        required: true
+        schema:
+          $ref: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+      responses:
+        '200':
+          description: Resource 'RemotePrivateEndpointConnectionARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Approves or rejects a private endpoint connection for a site.:
+          $ref: ./examples/ApproveRejectSitePrivateEndpointConnection_StaticSites.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_DeletePrivateEndpointConnection
+      tags:
+      - StaticSites
+      summary: Deletes a private endpoint connection
+      description: Description for Deletes a private endpoint connection
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: privateEndpointConnectionName
+        in: path
+        description: Name of the private endpoint connection.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema: {}
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema: {}
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        '204':
+          description: 'There is no content to send for this request, but the headers may be useful. '
+          schema: {}
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a private endpoint connection for a site.:
+          $ref: ./examples/DeleteSitePrivateEndpointConnection_StaticSites.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/privateLinkResources
+  : get:
+      operationId: StaticSites_GetPrivateLinkResources
+      tags:
+      - StaticSites
+      summary: Gets the private link resources
+      description: Description for Gets the private link resources
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/PrivateLinkResourcesWrapper'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get private link resources of a site:
+          $ref: ./examples/GetSitePrivateLinkResources.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/resetapikey:
+    post:
+      operationId: StaticSites_ResetStaticSiteApiKey
+      tags:
+      - StaticSites
+      summary: Resets the api key for an existing static site.
+      description: Description for Resets the api key for an existing static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: resetPropertiesEnvelope
+        in: body
+        description: ''
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteResetPropertiesARMResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Reset the api key for a static site:
+          $ref: ./examples/ResetStaticSiteApiKey.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/showDatabaseConnections
+  : post:
+      operationId: StaticSites_GetDatabaseConnectionsWithDetails
+      tags:
+      - StaticSites
+      summary: Returns details of database connections for a static site
+      description: Returns details of database connections for a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/DatabaseConnectionCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List full details of database connections for the static site.:
+          $ref: ./examples/GetStaticSiteDatabaseConnectionsWithDetails.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps
+  : get:
+      operationId: StaticSites_GetUserProvidedFunctionAppsForStaticSite
+      tags:
+      - StaticSites
+      summary: Gets the details of the user provided function apps registered with a static site
+      description: Description for Gets the details of the user provided function apps registered with a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppsCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the user provided function apps registered with a static site.:
+          $ref: ./examples/GetUserProvidedFunctionAppsForStaticSite.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/userProvidedFunctionApps/{functionAppName}
+  : get:
+      operationId: StaticSites_GetUserProvidedFunctionAppForStaticSite
+      tags:
+      - StaticSites
+      summary: Gets the details of the user provided function app registered with a static site
+      description: Description for Gets the details of the user provided function app registered with a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Get details of the user provided function app registered with a static site.:
+          $ref: ./examples/GetUserProvidedFunctionAppForStaticSite.json
+    put:
+      operationId: StaticSites_RegisterUserProvidedFunctionAppWithStaticSite
+      tags:
+      - StaticSites
+      summary: Register a user provided function app with a static site
+      description: Description for Register a user provided function app with a static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site.
+        required: true
+        type: string
+      - name: isForced
+        in: query
+        description: Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>.
+        required: false
+        type: boolean
+      - name: staticSiteUserProvidedFunctionEnvelope
+        in: body
+        description: A JSON representation of the user provided function app properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+      responses:
+        '200':
+          description: Resource 'StaticSiteUserProvidedFunctionAppARMResource' update operation succeeded
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+        '202':
+          description: The request has been accepted for processing, but processing has not yet completed.
+          schema:
+            $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Register a user provided function app with a static site:
+          $ref: ./examples/RegisterUserProvidedFunctionAppWithStaticSite.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+        final-state-schema: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+      x-ms-long-running-operation: true
+    delete:
+      operationId: StaticSites_DetachUserProvidedFunctionAppFromStaticSite
+      tags:
+      - StaticSites
+      summary: Detach the user provided function app from the static site
+      description: Description for Detach the user provided function app from the static site
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: functionAppName
+        in: path
+        description: Name of the function app registered with the static site.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Resource deleted successfully.
+        '204':
+          description: Resource does not exist.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Detach the user provided function app from the static site.:
+          $ref: ./examples/DetachUserProvidedFunctionAppFromStaticSite.json
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/zipdeploy:
+    post:
+      operationId: StaticSites_CreateZipDeploymentForStaticSite
+      tags:
+      - StaticSites
+      summary: Deploys zipped content to a static site.
+      description: Description for Deploys zipped content to a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Name of the static site.
+        required: true
+        type: string
+      - name: staticSiteZipDeploymentEnvelope
+        in: body
+        description: A JSON representation of the StaticSiteZipDeployment properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteZipDeploymentARMResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        '202':
+          description: Resource operation accepted.
+          headers:
+            Location:
+              type: string
+              description: The Location header contains the URL where the status of the long running operation can be checked.
+            Retry-After:
+              type: integer
+              format: int32
+              description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Deploy a site from a zipped package:
+          $ref: ./examples/StaticSiteZipDeploy.json
+      x-ms-long-running-operation-options:
+        final-state-via: location
+      x-ms-long-running-operation: true
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Web/staticSites/{name}/authproviders/{authprovider}/listUsers
+  : post:
+      operationId: StaticSites_ListStaticSiteUsers
+      tags:
+      - StaticSites
+      summary: Gets the list of users of a static site.
+      description: Description for Gets the list of users of a static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        required: true
+        type: string
+      - name: authprovider
+        in: path
+        description: The auth provider for the users.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserCollection'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        List users for a static site:
+          $ref: ./examples/ListStaticSiteUsers.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.Web/staticSites/{name}/authproviders/{authprovider}/users/{userid}
+  : patch:
+      operationId: StaticSites_UpdateStaticSiteUser
+      tags:
+      - StaticSites
+      summary: Updates a user entry with the listed roles
+      description: Description for Updates a user entry with the listed roles
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        required: true
+        type: string
+      - name: authprovider
+        in: path
+        required: true
+        type: string
+      - name: userid
+        in: path
+        required: true
+        type: string
+      - name: staticSiteUserEnvelope
+        in: body
+        description: A JSON representation of the StaticSiteUser properties. See example.
+        required: true
+        schema:
+          $ref: '#/definitions/StaticSiteUserARMResource'
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/StaticSiteUserARMResource'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Create or update a user for a static site:
+          $ref: ./examples/UpdateStaticSiteUser.json
+    delete:
+      operationId: StaticSites_DeleteStaticSiteUser
+      tags:
+      - StaticSites
+      summary: Deletes the user entry from the static site.
+      description: Description for Deletes the user entry from the static site.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        required: true
+        type: string
+      - name: authprovider
+        in: path
+        required: true
+        type: string
+      - name: userid
+        in: path
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/DefaultErrorResponse'
+      x-ms-examples:
+        Delete a user for a static site:
+          $ref: ./examples/DeleteStaticSiteUser.json
+definitions:
+  ErrorEntity:
+    type: object
+    description: Body of the error response returned from the API.
+    properties:
+      extendedCode:
+        type: string
+        description: Type of error.
+      messageTemplate:
+        type: string
+        description: Message template.
+      parameters:
+        type: array
+        description: Parameters for the template.
+        items:
+          type: string
+      innerErrors:
+        type: array
+        description: Inner errors.
+        items:
+          $ref: '#/definitions/ErrorEntity'
+        x-ms-identifiers: []
+      details:
+        type: array
+        description: Error Details.
+        items:
+          $ref: '#/definitions/ErrorEntity'
+        x-ms-identifiers: []
+      target:
+        type: string
+        description: The error target.
+      code:
+        type: string
+        description: Basic error code.
+      message:
+        type: string
+        description: Any details of the error.
+  ArmIdWrapper:
+    type: object
+    description: A wrapper for an ARM resource id
+    properties:
+      id:
+        type: string
+        readOnly: true
+  StaticSitesWorkflowPreviewProperties:
+    type: object
+    description: StaticSitesWorkflowPreview resource specific properties
+    properties:
+      path:
+        type: string
+        description: The path for the workflow file to be generated
+        readOnly: true
+      contents:
+        type: string
+        description: The contents for the workflow file to be generated
+        readOnly: true
+  StaticSitesWorkflowPreviewRequest:
+    type: object
+    description: Request entity for previewing the Static Site workflow
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSitesWorkflowPreviewRequestProperties'
+        description: StaticSitesWorkflowPreviewRequest resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  CustomDomainStatus:
+    type: string
+    description: The status of the custom domain
+    enum:
+    - RetrievingValidationToken
+    - Validating
+    - Adding
+    - Ready
+    - Failed
+    - Deleting
+    - Unhealthy
+    x-ms-enum:
+      name: CustomDomainStatus
+      modelAsString: true
+      values:
+      - name: RetrievingValidationToken
+        value: RetrievingValidationToken
+      - name: Validating
+        value: Validating
+      - name: Adding
+        value: Adding
+      - name: Ready
+        value: Ready
+      - name: Failed
+        value: Failed
+      - name: Deleting
+        value: Deleting
+      - name: Unhealthy
+        value: Unhealthy
+  StaticSiteCustomDomainOverviewCollection:
+    type: object
+    description: Collection of static site custom domains.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteCustomDomainOverviewARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteCustomDomainOverviewARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  StaticSiteUserInvitationRequestResource:
+    type: object
+    description: Static sites user roles invitation resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteUserInvitationRequestResourceProperties'
+        description: StaticSiteUserInvitationRequestResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  SkuCapacity:
+    type: object
+    description: Description of the App Service plan scale options.
+    properties:
+      minimum:
+        type: integer
+        format: int32
+        description: Minimum number of workers for this App Service plan SKU.
+      maximum:
+        type: integer
+        format: int32
+        description: Maximum number of workers for this App Service plan SKU.
+      elasticMaximum:
+        type: integer
+        format: int32
+        description: Maximum number of Elastic workers for this App Service plan SKU.
+      default:
+        type: integer
+        format: int32
+        description: Default number of workers for this App Service plan SKU.
+      scaleType:
+        type: string
+        description: Available scale configurations for an App Service plan.
+  StaticSiteZipDeploymentARMResource:
+    type: object
+    description: Static site zip deployment ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteZipDeployment'
+        description: Core resource properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSiteUserProvidedFunctionApp:
+    type: object
+    description: A static site user provided function.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteUserProvidedFunctionAppProperties'
+        description: StaticSiteUserProvidedFunctionApp resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSiteTemplateOptions:
+    type: object
+    description: Template Options for the static site.
+    properties:
+      templateRepositoryUrl:
+        type: string
+        description: URL of the template repository. The newly generated repository will be based on this one.
+      owner:
+        type: string
+        description: Owner of the newly generated repository.
+      repositoryName:
+        type: string
+        description: Name of the newly generated repository.
+      description:
+        type: string
+        description: Description of the newly generated repository.
+      isPrivate:
+        type: boolean
+        description: Whether or not the newly generated repository is a private repository. Defaults to false (i.e. public).
+  StaticSitesWorkflowPreview:
+    type: object
+    description: Preview for the Static Site Workflow to be generated
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSitesWorkflowPreviewProperties'
+        description: StaticSitesWorkflowPreview resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSiteBuildARMResource:
+    type: object
+    description: Static Site Build ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteBuildARMResourceProperties'
+        description: StaticSiteBuildARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  StaticSiteBuildARMResourceProperties:
+    type: object
+    description: StaticSiteBuildARMResource resource specific properties
+    properties:
+      buildId:
+        type: string
+        description: An identifier for the static site build.
+        readOnly: true
+      sourceBranch:
+        type: string
+        description: The source branch.
+        readOnly: true
+      pullRequestTitle:
+        type: string
+        description: The title of a pull request that a static site build is related to.
+        readOnly: true
+      hostname:
+        type: string
+        description: The hostname for a static site build.
+        readOnly: true
+      createdTimeUtc:
+        type: string
+        format: date-time
+        description: When this build was created.
+        readOnly: true
+      lastUpdatedOn:
+        type: string
+        format: date-time
+        description: When this build was updated.
+        readOnly: true
+      status:
+        $ref: '#/definitions/BuildStatus'
+        description: The status of the static site build.
+        readOnly: true
+      userProvidedFunctionApps:
+        type: array
+        description: User provided function apps registered with the static site build
+        items:
+          $ref: '#/definitions/StaticSiteUserProvidedFunctionApp'
+        readOnly: true
+      linkedBackends:
+        type: array
+        description: Backends linked to the static side build
+        items:
+          $ref: '#/definitions/StaticSiteLinkedBackend'
+        readOnly: true
+        x-ms-identifiers: []
+      databaseConnections:
+        type: array
+        description: Database connections for the static site build
+        items:
+          $ref: '#/definitions/DatabaseConnectionOverview'
+        readOnly: true
+        x-ms-identifiers:
+        - name
+  PrivateLinkResourceProperties:
+    type: object
+    description: Properties of a private link resource
+    properties:
+      groupId:
+        type: string
+        description: GroupId of a private link resource
+        readOnly: true
+      requiredMembers:
+        type: array
+        description: RequiredMembers of a private link resource
+        items:
+          type: string
+        readOnly: true
+      requiredZoneNames:
+        type: array
+        description: RequiredZoneNames of a private link resource
+        items:
+          type: string
+        readOnly: true
+  PrivateLinkResource:
+    type: object
+    description: A private link resource
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+        description: Name of a private link resource
+      type:
+        type: string
+      properties:
+        $ref: '#/definitions/PrivateLinkResourceProperties'
+        description: Properties of a private link resource
+    required:
+    - id
+    - name
+    - type
+    - properties
+  StaticSiteUserARMResourceProperties:
+    type: object
+    description: StaticSiteUserARMResource resource specific properties
+    properties:
+      provider:
+        type: string
+        description: The identity provider for the static site user.
+        readOnly: true
+      userId:
+        type: string
+        description: The user id for the static site user.
+        readOnly: true
+      displayName:
+        type: string
+        description: The display name for the static site user.
+        readOnly: true
+      roles:
+        type: string
+        description: The roles for the static site user, in free-form string format
+  StaticSiteBuildProperties:
+    type: object
+    description: Build properties for the static site.
+    properties:
+      appLocation:
+        type: string
+        description: The path to the app code within the repository.
+      apiLocation:
+        type: string
+        description: The path to the api code within the repository.
+      appArtifactLocation:
+        type: string
+        description: 'Deprecated: The path of the app artifacts after building (deprecated in favor of OutputLocation)'
+      outputLocation:
+        type: string
+        description: The output path of the app after building.
+      appBuildCommand:
+        type: string
+        description: A custom command to run during deployment of the static content application.
+      apiBuildCommand:
+        type: string
+        description: A custom command to run during deployment of the Azure Functions API application.
+      skipGithubActionWorkflowGeneration:
+        type: boolean
+        description: Skip Github Action workflow generation.
+      githubActionSecretNameOverride:
+        type: string
+        description: Github Action secret name override.
+  ManagedServiceIdentityType:
+    type: string
+    description: Type of managed service identity.
+    enum:
+    - SystemAssigned
+    - UserAssigned
+    - SystemAssigned, UserAssigned
+    - None
+    x-ms-enum:
+      name: ManagedServiceIdentityType
+      modelAsString: false
+  RemotePrivateEndpointConnectionARMResource:
+    type: object
+    description: Remote Private Endpoint Connection ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/RemotePrivateEndpointConnectionARMResourceProperties'
+        description: RemotePrivateEndpointConnectionARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  StaticSiteUserProvidedFunctionAppsCollection:
+    type: object
+    description: Collection of static site user provided function apps.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteUserProvidedFunctionAppARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  StaticSiteFunctionOverviewCollection:
+    type: object
+    description: Collection of static site functions.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteFunctionOverviewARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteFunctionOverviewARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  PrivateLinkConnectionState:
+    type: object
+    description: The state of a private link connection
+    properties:
+      status:
+        type: string
+        description: Status of a private link connection
+      description:
+        type: string
+        description: Description of a private link connection
+      actionsRequired:
+        type: string
+        description: ActionsRequired for a private link connection
+  StaticSiteBuildCollection:
+    type: object
+    description: Collection of static site builds.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteBuildARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteBuildARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  PrivateEndpointConnectionCollection:
+    type: object
+    description: Paged collection of RemotePrivateEndpointConnectionARMResource items
+    properties:
+      value:
+        type: array
+        description: The RemotePrivateEndpointConnectionARMResource items on this page
+        items:
+          $ref: '#/definitions/RemotePrivateEndpointConnectionARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  DatabaseConnectionCollection:
+    type: object
+    description: Collection of static site database connections.
+    properties:
+      value:
+        type: array
+        description: The DatabaseConnection items on this page
+        items:
+          $ref: '#/definitions/DatabaseConnection'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  RemotePrivateEndpointConnectionARMResourceProperties:
+    type: object
+    description: RemotePrivateEndpointConnectionARMResource resource specific properties
+    properties:
+      provisioningState:
+        type: string
+        readOnly: true
+      privateEndpoint:
+        $ref: '#/definitions/ArmIdWrapper'
+        description: PrivateEndpoint of a remote private endpoint connection
+      privateLinkServiceConnectionState:
+        $ref: '#/definitions/PrivateLinkConnectionState'
+        description: The state of a private link connection
+      ipAddresses:
+        type: array
+        description: Private IPAddresses mapped to the remote private endpoint
+        items:
+          type: string
+  StaticSiteLinkedBackendARMResourceProperties:
+    type: object
+    description: StaticSiteLinkedBackendARMResource resource specific properties
+    properties:
+      backendResourceId:
+        type: string
+        description: The resource id of the backend linked to the static site
+      region:
+        type: string
+        description: The region of the backend linked to the static site
+      createdOn:
+        type: string
+        format: date-time
+        description: The date and time on which the backend was linked to the static site.
+        readOnly: true
+      provisioningState:
+        type: string
+        description: The provisioning state of the linking process.
+        readOnly: true
+  StaticSiteCustomDomainRequestPropertiesARMResource:
+    type: object
+    description: Static Site Custom Domain Request Properties ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteCustomDomainRequestPropertiesARMResourceProperties'
+        description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSiteCustomDomainOverviewARMResource:
+    type: object
+    description: Static Site Custom Domain Overview ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteCustomDomainOverviewARMResourceProperties'
+        description: StaticSiteCustomDomainOverviewARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  StaticSiteCustomDomainOverviewARMResourceProperties:
+    type: object
+    description: StaticSiteCustomDomainOverviewARMResource resource specific properties
+    properties:
+      domainName:
+        type: string
+        description: The domain name for the static site custom domain.
+        readOnly: true
+      createdOn:
+        type: string
+        format: date-time
+        description: The date and time on which the custom domain was created for the static site.
+        readOnly: true
+      status:
+        $ref: '#/definitions/CustomDomainStatus'
+        description: The status of the custom domain
+        readOnly: true
+      validationToken:
+        type: string
+        description: The TXT record validation token
+        readOnly: true
+      errorMessage:
+        type: string
+        readOnly: true
+  StaticSiteBasicAuthPropertiesARMResource:
+    type: object
+    description: Static site basic auth properties ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteBasicAuthPropertiesARMResourceProperties'
+        description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  DefaultErrorResponseError:
+    type: object
+    description: Error model.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      details:
+        type: array
+        items:
+          $ref: '#/definitions/DefaultErrorResponseErrorDetailsItem'
+        x-ms-identifiers: []
+      innererror:
+        type: string
+        description: More information to debug error.
+        readOnly: true
+  StringList:
+    type: object
+    description: String list resource.
+    properties:
+      properties:
+        type: array
+        description: List of string resources.
+        items:
+          type: string
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSiteUserProvidedFunctionAppARMResource:
+    type: object
+    description: Static Site User Provided Function App ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteUserProvidedFunctionAppARMResourceProperties'
+        description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  StaticSiteLinkedBackendsCollection:
+    type: object
+    description: Collection of static site linked backends.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteLinkedBackendARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteLinkedBackendARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  RemotePrivateEndpointConnection:
+    type: object
+    description: A remote private endpoint connection
+    properties:
+      properties:
+        $ref: '#/definitions/RemotePrivateEndpointConnectionProperties'
+        description: RemotePrivateEndpointConnection resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StagingEnvironmentPolicy:
+    type: string
+    description: State indicating whether staging environments are allowed or not allowed for a static web app.
+    enum:
+    - Enabled
+    - Disabled
+    x-ms-enum:
+      name: StagingEnvironmentPolicy
+      modelAsString: false
+  RemotePrivateEndpointConnectionProperties:
+    type: object
+    description: RemotePrivateEndpointConnection resource specific properties
+    properties:
+      provisioningState:
+        type: string
+        readOnly: true
+      privateEndpoint:
+        $ref: '#/definitions/ArmIdWrapper'
+        description: PrivateEndpoint of a remote private endpoint connection
+      privateLinkServiceConnectionState:
+        $ref: '#/definitions/PrivateLinkConnectionState'
+        description: The state of a private link connection
+      ipAddresses:
+        type: array
+        description: Private IPAddresses mapped to the remote private endpoint
+        items:
+          type: string
+  StaticSiteZipDeployment:
+    type: object
+    description: A static site zip deployment.
+    properties:
+      appZipUrl:
+        type: string
+        description: URL for the zipped app content
+      apiZipUrl:
+        type: string
+        description: URL for the zipped api content
+      deploymentTitle:
+        type: string
+        description: A title to label the deployment
+      provider:
+        type: string
+        description: The provider submitting this deployment
+      functionLanguage:
+        type: string
+        description: The language of the api content, if it exists
+  StaticSitesWorkflowPreviewRequestProperties:
+    type: object
+    description: StaticSitesWorkflowPreviewRequest resource specific properties
+    properties:
+      repositoryUrl:
+        type: string
+        description: URL for the repository of the static site.
+      branch:
+        type: string
+        description: The target branch in the repository.
+      buildProperties:
+        $ref: '#/definitions/StaticSiteBuildProperties'
+        description: Build properties to configure on the repository.
+  StaticSiteBasicAuthPropertiesARMResourceProperties:
+    type: object
+    description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
+    properties:
+      password:
+        type: string
+        description: The password for basic auth.
+      secretUrl:
+        type: string
+        description: Url to the secret in Key Vault.
+      applicableEnvironmentsMode:
+        type: string
+        description: State indicating if basic auth is enabled and for what environments it is active.
+      environments:
+        type: array
+        description: The list of enabled environments for Basic Auth if ApplicableEnvironmentsMode is set to SpecifiedEnvironments.
+        items:
+          type: string
+      secretState:
+        type: string
+        description: State indicating if basic auth has a secret and what type it is.
+        readOnly: true
+    required:
+    - applicableEnvironmentsMode
+  ArmPlan:
+    type: object
+    description: The plan object in Azure Resource Manager, represents a marketplace plan.
+    properties:
+      name:
+        type: string
+        description: The name.
+      publisher:
+        type: string
+        description: The publisher.
+      product:
+        type: string
+        description: The product.
+      promotionCode:
+        type: string
+        description: The promotion code.
+      version:
+        type: string
+        description: Version of product.
+  StaticSiteResetPropertiesARMResourceProperties:
+    type: object
+    description: StaticSiteResetPropertiesARMResource resource specific properties
+    properties:
+      repositoryToken:
+        type: string
+        description: The token which proves admin privileges to the repository.
+      shouldUpdateRepository:
+        type: boolean
+        description: Determines whether the repository should be updated with the new properties.
+  StaticSite:
+    type: object
+    description: A static site.
+    properties:
+      defaultHostname:
+        type: string
+        description: The default autogenerated hostname for the static site.
+        readOnly: true
+      repositoryUrl:
+        type: string
+        description: URL for the repository of the static site.
+      branch:
+        type: string
+        description: The target branch in the repository.
+      customDomains:
+        type: array
+        description: The custom domains associated with this static site.
+        items:
+          type: string
+        readOnly: true
+      repositoryToken:
+        type: string
+        description: A user's github repository token. This is used to setup the Github Actions workflow file and API secrets.
+      buildProperties:
+        $ref: '#/definitions/StaticSiteBuildProperties'
+        description: Build properties to configure on the repository.
+      privateEndpointConnections:
+        type: array
+        description: Private endpoint connections
+        items:
+          $ref: '#/definitions/ResponseMessageEnvelopeRemotePrivateEndpointConnection'
+        readOnly: true
+      stagingEnvironmentPolicy:
+        $ref: '#/definitions/StagingEnvironmentPolicy'
+        description: State indicating whether staging environments are allowed or not allowed for a static web app.
+      allowConfigFileUpdates:
+        type: boolean
+        description: <code>false</code> if config file is locked for this static web app; otherwise, <code>true</code>.
+      templateProperties:
+        $ref: '#/definitions/StaticSiteTemplateOptions'
+        description: Template options for generating a new repository.
+      contentDistributionEndpoint:
+        type: string
+        description: The content distribution endpoint for the static site.
+        readOnly: true
+      keyVaultReferenceIdentity:
+        type: string
+        description: Identity to use for Key Vault Reference authentication.
+        readOnly: true
+      userProvidedFunctionApps:
+        type: array
+        description: User provided function apps registered with the static site
+        items:
+          $ref: '#/definitions/StaticSiteUserProvidedFunctionApp'
+        readOnly: true
+      linkedBackends:
+        type: array
+        description: Backends linked to the static side
+        items:
+          $ref: '#/definitions/StaticSiteLinkedBackend'
+        readOnly: true
+        x-ms-identifiers: []
+      provider:
+        type: string
+        description: The provider that submitted the last deployment to the primary environment of the static site.
+      enterpriseGradeCdnStatus:
+        $ref: '#/definitions/EnterpriseGradeCdnStatus'
+        description: State indicating the status of the enterprise grade CDN serving traffic to the static web app.
+      publicNetworkAccess:
+        type: string
+        description: 'State indicating whether public traffic are allowed or not for a static web app. Allowed Values: ''Enabled'', ''Disabled'' or an empty string.'
+      databaseConnections:
+        type: array
+        description: Database connections for the static site
+        items:
+          $ref: '#/definitions/DatabaseConnectionOverview'
+        readOnly: true
+        x-ms-identifiers:
+        - name
+  StaticSiteARMResource:
+    type: object
+    description: Concrete tracked resource types can be created by aliasing this type using a specific property type.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSite'
+        description: Core resource properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+      sku:
+        $ref: '#/definitions/SkuDescription'
+        description: Description of a SKU for a scalable resource.
+      identity:
+        $ref: '#/definitions/ManagedServiceIdentity'
+        description: Managed service identity.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+  DefaultErrorResponse:
+    type: object
+    description: App Service error response.
+    properties:
+      error:
+        $ref: '#/definitions/DefaultErrorResponseError'
+        description: Error model.
+        readOnly: true
+  DefaultErrorResponseErrorDetailsItem:
+    type: object
+    description: Detailed errors.
+    properties:
+      code:
+        type: string
+        description: Standardized string to programmatically identify the error.
+        readOnly: true
+      message:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+      target:
+        type: string
+        description: Detailed error description and debugging information.
+        readOnly: true
+  StaticSiteCollection:
+    type: object
+    description: Collection of static sites.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  StaticSiteLinkedBackendARMResource:
+    type: object
+    description: Static Site Linked Backend ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteLinkedBackendARMResourceProperties'
+        description: StaticSiteLinkedBackendARMResource resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  ResponseMessageEnvelopeRemotePrivateEndpointConnection:
+    type: object
+    description: Message envelope that contains the common Azure resource manager properties and the resource provider specific content.
+    properties:
+      id:
+        type: string
+        description: 'Resource Id. Typically ID is populated only for responses to GET requests. Caller is responsible for passing in this
+
+          value for GET requests only.
+
+          For example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupId}/providers/Microsoft.Web/sites/{sitename}'
+      name:
+        type: string
+        description: Name of resource.
+      type:
+        type: string
+        description: Type of resource e.g "Microsoft.Web/sites".
+      location:
+        type: string
+        description: Geographical region resource belongs to e.g. SouthCentralUS, SouthEastAsia.
+      tags:
+        type: object
+        description: Tags associated with resource.
+        additionalProperties:
+          type: string
+      plan:
+        $ref: '#/definitions/ArmPlan'
+        description: Azure resource manager plan.
+      properties:
+        $ref: '#/definitions/RemotePrivateEndpointConnection'
+        description: Resource specific properties.
+      sku:
+        $ref: '#/definitions/SkuDescription'
+        description: SKU description of the resource.
+      status:
+        type: string
+        description: Azure-AsyncOperation Status info.
+      error:
+        $ref: '#/definitions/ErrorEntity'
+        description: Azure-AsyncOperation Error info.
+      identity:
+        $ref: '#/definitions/ManagedServiceIdentity'
+        description: MSI resource
+      zones:
+        type: array
+        description: Logical Availability Zones the service is hosted in
+        items:
+          type: string
+  StaticSiteCustomDomainRequestPropertiesARMResourceProperties:
+    type: object
+    description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
+    properties:
+      validationMethod:
+        type: string
+        description: Validation method for adding a custom domain
+        default: cname-delegation
+  StaticSiteUserInvitationResponseResourceProperties:
+    type: object
+    description: StaticSiteUserInvitationResponseResource resource specific properties
+    properties:
+      expiresOn:
+        type: string
+        format: date-time
+        description: The expiration time of the invitation
+        readOnly: true
+      invitationUrl:
+        type: string
+        description: The url for the invitation link
+        readOnly: true
+  StaticSiteFunctionOverviewARMResourceProperties:
+    type: object
+    description: StaticSiteFunctionOverviewARMResource resource specific properties
+    properties:
+      functionName:
+        type: string
+        description: The name for the function
+        readOnly: true
+      triggerType:
+        $ref: '#/definitions/TriggerTypes'
+        description: The trigger type of the function
+        readOnly: true
+  StaticSiteLinkedBackend:
+    type: object
+    description: Static Site Linked Backend ARM resource.
+    properties:
+      backendResourceId:
+        type: string
+        description: The resource id of the backend linked to the static site
+      region:
+        type: string
+        description: The region of the backend linked to the static site
+      createdOn:
+        type: string
+        format: date-time
+        description: The date and time on which the backend was linked to the static site.
+        readOnly: true
+      provisioningState:
+        type: string
+        description: The provisioning state of the linking process.
+        readOnly: true
+  StaticSiteUserInvitationRequestResourceProperties:
+    type: object
+    description: StaticSiteUserInvitationRequestResource resource specific properties
+    properties:
+      domain:
+        type: string
+        description: The domain name for the static site custom domain.
+      provider:
+        type: string
+        description: The identity provider for the static site user.
+      userDetails:
+        type: string
+        description: The user id for the static site user.
+      roles:
+        type: string
+        description: The roles for the static site user, in free-form string format
+      numHoursToExpiration:
+        type: integer
+        format: int32
+        description: The number of hours the sas token stays valid
+  StaticSiteFunctionOverviewARMResource:
+    type: object
+    description: Static Site Function Overview ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteFunctionOverviewARMResourceProperties'
+        description: StaticSiteFunctionOverviewARMResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  StaticSitePatchResource:
+    type: object
+    description: ARM resource for a static site when patching
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSite'
+        description: Core resource properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  DatabaseConnection:
+    type: object
+    description: Static Site Database Connection resource.
+    properties:
+      properties:
+        $ref: '#/definitions/DatabaseConnectionProperties'
+        description: DatabaseConnection resource specific properties
+        x-ms-client-flatten: true
+      kind:
+        type: string
+        description: Kind of resource.
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  ManagedServiceIdentity:
+    type: object
+    description: Managed service identity.
+    properties:
+      type:
+        $ref: '#/definitions/ManagedServiceIdentityType'
+        description: Type of managed service identity.
+      tenantId:
+        type: string
+        description: Tenant of managed service identity.
+        readOnly: true
+      principalId:
+        type: string
+        description: Principal Id of managed service identity.
+        readOnly: true
+      userAssignedIdentities:
+        type: object
+        description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
+        additionalProperties:
+          $ref: '#/definitions/UserAssignedIdentity'
+  ProxyOnlyResource:
+    type: object
+    description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+    properties:
+      id:
+        type: string
+        description: Resource Id.
+        readOnly: true
+      name:
+        type: string
+        description: Resource Name.
+        readOnly: true
+      kind:
+        type: string
+        description: Kind of resource.
+      type:
+        type: string
+        description: Resource type.
+        readOnly: true
+  Capability:
+    type: object
+    description: Describes the capabilities/features allowed for a specific SKU.
+    properties:
+      name:
+        type: string
+        description: Name of the SKU capability.
+      value:
+        type: string
+        description: Value of the SKU capability.
+      reason:
+        type: string
+        description: Reason of the SKU capability.
+  StaticSiteUserProvidedFunctionAppProperties:
+    type: object
+    description: StaticSiteUserProvidedFunctionApp resource specific properties
+    properties:
+      functionAppResourceId:
+        type: string
+        description: The resource id of the function app registered with the static site
+      functionAppRegion:
+        type: string
+        description: The region of the function app registered with the static site
+      createdOn:
+        type: string
+        format: date-time
+        description: The date and time on which the function app was registered with the static site.
+        readOnly: true
+  StaticSiteUserARMResource:
+    type: object
+    description: Static Site User ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteUserARMResourceProperties'
+        description: StaticSiteUserARMResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  DatabaseConnectionPatchRequestProperties:
+    type: object
+    description: DatabaseConnectionPatchRequest resource specific properties
+    properties:
+      resourceId:
+        type: string
+        description: The resource id of the database.
+      connectionIdentity:
+        type: string
+        description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+      connectionString:
+        type: string
+        description: The connection string to use to connect to the database.
+      region:
+        type: string
+        description: The region of the database resource.
+  StringDictionary:
+    type: object
+    description: String dictionary resource.
+    properties:
+      properties:
+        type: object
+        description: Settings.
+        additionalProperties:
+          type: string
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  SkuDescription:
+    type: object
+    description: Description of a SKU for a scalable resource.
+    properties:
+      name:
+        type: string
+        description: Name of the resource SKU.
+      tier:
+        type: string
+        description: Service tier of the resource SKU.
+      size:
+        type: string
+        description: Size specifier of the resource SKU.
+      family:
+        type: string
+        description: Family code of the resource SKU.
+      capacity:
+        type: integer
+        format: int32
+        description: Current number of instances assigned to the resource.
+      skuCapacity:
+        $ref: '#/definitions/SkuCapacity'
+        description: Min, max, and default scale values of the SKU.
+      locations:
+        type: array
+        description: Locations of the SKU.
+        items:
+          type: string
+      capabilities:
+        type: array
+        description: Capabilities of the SKU, e.g., is traffic manager enabled?
+        items:
+          $ref: '#/definitions/Capability'
+        x-ms-identifiers:
+        - name
+  StaticSiteDatabaseConnectionConfigurationFileOverview:
+    type: object
+    description: A database connection configuration file
+    properties:
+      fileName:
+        type: string
+        description: The name of the configuration file.
+        readOnly: true
+      contents:
+        type: string
+        description: The Base64 encoding of the file contents.
+        readOnly: true
+      type:
+        type: string
+        description: The type of configuration file.
+        readOnly: true
+  EnterpriseGradeCdnStatus:
+    type: string
+    description: State indicating the status of the enterprise grade CDN serving traffic to the static web app.
+    enum:
+    - Enabled
+    - Enabling
+    - Disabled
+    - Disabling
+    x-ms-enum:
+      name: EnterpriseGradeCdnStatus
+      modelAsString: true
+      values:
+      - name: Enabled
+        value: Enabled
+      - name: Enabling
+        value: Enabling
+      - name: Disabled
+        value: Disabled
+      - name: Disabling
+        value: Disabling
+  DatabaseConnectionProperties:
+    type: object
+    description: DatabaseConnection resource specific properties
+    properties:
+      resourceId:
+        type: string
+        description: The resource id of the database.
+      connectionIdentity:
+        type: string
+        description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+      connectionString:
+        type: string
+        description: The connection string to use to connect to the database.
+      region:
+        type: string
+        description: The region of the database resource.
+      configurationFiles:
+        type: array
+        description: A list of configuration files associated with this database connection.
+        items:
+          $ref: '#/definitions/StaticSiteDatabaseConnectionConfigurationFileOverview'
+        readOnly: true
+        x-ms-identifiers:
+        - fileName
+    required:
+    - resourceId
+    - region
+  StaticSiteUserInvitationResponseResource:
+    type: object
+    description: Static sites user roles invitation link resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteUserInvitationResponseResourceProperties'
+        description: StaticSiteUserInvitationResponseResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  PrivateLinkResourcesWrapper:
+    type: object
+    description: Wrapper for a collection of private link resources
+    properties:
+      value:
+        type: array
+        items:
+          $ref: '#/definitions/PrivateLinkResource'
+    required:
+    - value
+  UserAssignedIdentity:
+    type: object
+    description: User Assigned identity.
+    properties:
+      principalId:
+        type: string
+        description: Principal Id of user assigned identity
+        readOnly: true
+      clientId:
+        type: string
+        description: Client Id of user assigned identity
+        readOnly: true
+  StaticSiteBasicAuthPropertiesCollection:
+    type: object
+    description: Collection of static site basic auth.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteBasicAuthPropertiesARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteBasicAuthPropertiesARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  StaticSiteResetPropertiesARMResource:
+    type: object
+    description: Static Site Reset Properties ARM resource.
+    properties:
+      properties:
+        $ref: '#/definitions/StaticSiteResetPropertiesARMResourceProperties'
+        description: StaticSiteResetPropertiesARMResource resource specific properties
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: '#/definitions/ProxyOnlyResource'
+  DatabaseConnectionOverview:
+    type: object
+    description: Static Site Database Connection overview.
+    properties:
+      resourceId:
+        type: string
+        description: The resource id of the database.
+        readOnly: true
+      connectionIdentity:
+        type: string
+        description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+        readOnly: true
+      region:
+        type: string
+        description: The region of the database resource.
+        readOnly: true
+      configurationFiles:
+        type: array
+        description: A list of configuration files associated with this database connection.
+        items:
+          $ref: '#/definitions/StaticSiteDatabaseConnectionConfigurationFileOverview'
+        readOnly: true
+        x-ms-identifiers:
+        - fileName
+      name:
+        type: string
+        description: If present, the name of this database connection resource.
+        readOnly: true
+  BuildStatus:
+    type: string
+    description: The status of the static site build.
+    enum:
+    - WaitingForDeployment
+    - Uploading
+    - Deploying
+    - Ready
+    - Failed
+    - Deleting
+    - Detached
+    x-ms-enum:
+      name: BuildStatus
+      modelAsString: true
+      values:
+      - name: WaitingForDeployment
+        value: WaitingForDeployment
+      - name: Uploading
+        value: Uploading
+      - name: Deploying
+        value: Deploying
+      - name: Ready
+        value: Ready
+      - name: Failed
+        value: Failed
+      - name: Deleting
+        value: Deleting
+      - name: Detached
+        value: Detached
+  TriggerTypes:
+    type: string
+    description: The trigger type of the function
+    enum:
+    - HttpTrigger
+    - Unknown
+    x-ms-enum:
+      name: TriggerTypes
+      modelAsString: true
+      values:
+      - name: HttpTrigger
+        value: HttpTrigger
+      - name: Unknown
+        value: Unknown
+  DatabaseConnectionPatchRequest:
+    type: object
+    description: Static Site Database Connection Request Properties resource when patching
+    properties:
+      properties:
+        $ref: '#/definitions/DatabaseConnectionPatchRequestProperties'
+        description: DatabaseConnectionPatchRequest resource specific properties
+        x-ms-client-flatten: true
+  StaticSiteUserCollection:
+    type: object
+    description: Collection of static site custom users.
+    properties:
+      value:
+        type: array
+        description: The StaticSiteUserARMResource items on this page
+        items:
+          $ref: '#/definitions/StaticSiteUserARMResource'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  StaticSiteUserProvidedFunctionAppARMResourceProperties:
+    type: object
+    description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
+    properties:
+      functionAppResourceId:
+        type: string
+        description: The resource id of the function app registered with the static site
+      functionAppRegion:
+        type: string
+        description: The region of the function app registered with the static site
+      createdOn:
+        type: string
+        format: date-time
+        description: The date and time on which the function app was registered with the static site.
+        readOnly: true
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account

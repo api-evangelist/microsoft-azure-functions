@@ -1,0 +1,460 @@
+swagger: '2.0'
+info:
+  title: WebApps API Client AppServiceEnvironments WorkflowRuns API
+  version: '2025-05-01'
+  x-typespec-generated:
+  - emitter: '@azure-tools/typespec-autorest'
+host: management.azure.com
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+security:
+- azure_auth:
+  - user_impersonation
+tags:
+- name: WorkflowRuns
+paths:
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/runs
+  : get:
+      operationId: WorkflowRuns_List
+      tags:
+      - WorkflowRuns
+      description: Gets a list of workflow runs.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: $top
+        in: query
+        description: The number of items to be included in the result.
+        required: false
+        type: integer
+        format: int32
+      - name: $filter
+        in: query
+        description: 'The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId.'
+        required: false
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowRunListResult'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        List workflow runs:
+          $ref: ./examples/WorkflowRuns_List.json
+      x-ms-pageable:
+        nextLinkName: nextLink
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/runs/{runName}
+  : get:
+      operationId: WorkflowRuns_Get
+      tags:
+      - WorkflowRuns
+      description: Gets a workflow run.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: runName
+        in: path
+        description: The workflow run name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+          schema:
+            $ref: '#/definitions/WorkflowRun'
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Get a run for a workflow:
+          $ref: ./examples/WorkflowRuns_Get.json
+  ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/runs/{runName}/cancel
+  : post:
+      operationId: WorkflowRuns_Cancel
+      tags:
+      - WorkflowRuns
+      description: Cancels a workflow run.
+      parameters:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/SubscriptionIdParameter
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ResourceGroupNameParameter
+      - name: name
+        in: path
+        description: Site name.
+        required: true
+        type: string
+      - name: workflowName
+        in: path
+        description: The workflow name.
+        required: true
+        type: string
+      - name: runName
+        in: path
+        description: The workflow run name.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: Azure operation completed successfully.
+        default:
+          description: An unexpected error response.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      x-ms-examples:
+        Cancel a workflow run:
+          $ref: ./examples/WorkflowRuns_Cancel.json
+definitions:
+  WorkflowParameter:
+    type: object
+    description: The workflow parameters.
+    properties:
+      type:
+        $ref: '#/definitions/ParameterType'
+        description: The type.
+      value:
+        description: The value.
+      metadata:
+        description: The metadata.
+      description:
+        type: string
+        description: The description.
+  ContentLink:
+    type: object
+    description: The content link.
+    properties:
+      uri:
+        type: string
+        description: The content link URI.
+      contentVersion:
+        type: string
+        description: The content version.
+        readOnly: true
+      contentSize:
+        type: integer
+        format: int64
+        description: The content size.
+        readOnly: true
+      contentHash:
+        $ref: '#/definitions/ContentHash'
+        description: The content hash.
+        readOnly: true
+      metadata:
+        description: The metadata.
+        readOnly: true
+  ParameterType:
+    type: string
+    description: The parameter type.
+    enum:
+    - NotSpecified
+    - String
+    - SecureString
+    - Int
+    - Float
+    - Bool
+    - Array
+    - Object
+    - SecureObject
+    x-ms-enum:
+      name: ParameterType
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: String
+        value: String
+      - name: SecureString
+        value: SecureString
+      - name: Int
+        value: Int
+      - name: Float
+        value: Float
+      - name: Bool
+        value: Bool
+      - name: Array
+        value: Array
+      - name: Object
+        value: Object
+      - name: SecureObject
+        value: SecureObject
+  WorkflowRunProperties:
+    type: object
+    description: The workflow run properties.
+    properties:
+      waitEndTime:
+        type: string
+        format: date-time
+        description: Gets the wait end time.
+        readOnly: true
+      startTime:
+        type: string
+        format: date-time
+        description: Gets the start time.
+        readOnly: true
+      endTime:
+        type: string
+        format: date-time
+        description: Gets the end time.
+        readOnly: true
+      status:
+        $ref: '#/definitions/WorkflowStatus'
+        description: Gets the status.
+        readOnly: true
+      code:
+        type: string
+        description: Gets the code.
+        readOnly: true
+      error:
+        description: Gets the error.
+        readOnly: true
+      correlationId:
+        type: string
+        description: Gets the correlation id.
+        readOnly: true
+      correlation:
+        $ref: '#/definitions/Correlation'
+        description: The run correlation.
+      workflow:
+        $ref: '#/definitions/ResourceReference'
+        description: Gets the reference to workflow version.
+        readOnly: true
+      trigger:
+        $ref: '#/definitions/WorkflowRunTrigger'
+        description: Gets the fired trigger.
+        readOnly: true
+      outputs:
+        type: object
+        description: Gets the outputs.
+        additionalProperties:
+          $ref: '#/definitions/WorkflowOutputParameter'
+        readOnly: true
+      response:
+        $ref: '#/definitions/WorkflowRunTrigger'
+        description: Gets the response of the flow run.
+        readOnly: true
+  ErrorResponse:
+    type: object
+    description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+    properties:
+      error:
+        $ref: '#/definitions/ErrorProperties'
+        description: The error properties.
+  WorkflowRunTrigger:
+    type: object
+    description: The workflow run trigger.
+    properties:
+      name:
+        type: string
+        description: Gets the name.
+        readOnly: true
+      inputs:
+        description: Gets the inputs.
+        readOnly: true
+      inputsLink:
+        $ref: '#/definitions/ContentLink'
+        description: Gets the link to inputs.
+        readOnly: true
+      outputs:
+        description: Gets the outputs.
+        readOnly: true
+      outputsLink:
+        $ref: '#/definitions/ContentLink'
+        description: Gets the link to outputs.
+        readOnly: true
+      scheduledTime:
+        type: string
+        format: date-time
+        description: Gets the scheduled time.
+        readOnly: true
+      startTime:
+        type: string
+        format: date-time
+        description: Gets the start time.
+        readOnly: true
+      endTime:
+        type: string
+        format: date-time
+        description: Gets the end time.
+        readOnly: true
+      trackingId:
+        type: string
+        description: Gets the tracking id.
+        readOnly: true
+      correlation:
+        $ref: '#/definitions/Correlation'
+        description: The run correlation.
+      code:
+        type: string
+        description: Gets the code.
+        readOnly: true
+      status:
+        $ref: '#/definitions/WorkflowStatus'
+        description: Gets the status.
+        readOnly: true
+      error:
+        description: Gets the error.
+        readOnly: true
+      trackedProperties:
+        description: Gets the tracked properties.
+        readOnly: true
+  WorkflowRun:
+    type: object
+    description: The workflow run.
+    properties:
+      properties:
+        $ref: '#/definitions/WorkflowRunProperties'
+        description: The workflow run properties.
+        x-ms-client-flatten: true
+    allOf:
+    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+  WorkflowStatus:
+    type: string
+    description: The workflow status.
+    enum:
+    - NotSpecified
+    - Paused
+    - Running
+    - Waiting
+    - Succeeded
+    - Skipped
+    - Suspended
+    - Cancelled
+    - Failed
+    - Faulted
+    - TimedOut
+    - Aborted
+    - Ignored
+    x-ms-enum:
+      name: WorkflowStatus
+      modelAsString: true
+      values:
+      - name: NotSpecified
+        value: NotSpecified
+      - name: Paused
+        value: Paused
+      - name: Running
+        value: Running
+      - name: Waiting
+        value: Waiting
+      - name: Succeeded
+        value: Succeeded
+      - name: Skipped
+        value: Skipped
+      - name: Suspended
+        value: Suspended
+      - name: Cancelled
+        value: Cancelled
+      - name: Failed
+        value: Failed
+      - name: Faulted
+        value: Faulted
+      - name: TimedOut
+        value: TimedOut
+      - name: Aborted
+        value: Aborted
+      - name: Ignored
+        value: Ignored
+  WorkflowOutputParameter:
+    type: object
+    description: The workflow output parameter.
+    properties:
+      error:
+        description: Gets the error.
+        readOnly: true
+    allOf:
+    - $ref: '#/definitions/WorkflowParameter'
+  ContentHash:
+    type: object
+    description: The content hash.
+    properties:
+      algorithm:
+        type: string
+        description: The algorithm of the content hash.
+      value:
+        type: string
+        description: The value of the content hash.
+  WorkflowRunListResult:
+    type: object
+    description: The response of a WorkflowRun list operation.
+    properties:
+      value:
+        type: array
+        description: The WorkflowRun items on this page
+        items:
+          $ref: '#/definitions/WorkflowRun'
+      nextLink:
+        type: string
+        format: uri
+        description: The link to the next page of items
+    required:
+    - value
+  Correlation:
+    type: object
+    description: The correlation property.
+    properties:
+      clientTrackingId:
+        type: string
+        description: The client tracking id.
+  ResourceReference:
+    type: object
+    description: The resource reference.
+    properties:
+      id:
+        type: string
+        description: The resource id.
+      name:
+        type: string
+        description: Gets the resource name.
+        readOnly: true
+      type:
+        type: string
+        description: Gets the resource type.
+        readOnly: true
+  ErrorProperties:
+    type: object
+    description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+    properties:
+      code:
+        type: string
+        description: Error code.
+      message:
+        type: string
+        description: Error message indicating why the operation failed.
+securityDefinitions:
+  azure_auth:
+    type: oauth2
+    description: Azure Active Directory OAuth2 Flow.
+    flow: implicit
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+    scopes:
+      user_impersonation: impersonate your user account
