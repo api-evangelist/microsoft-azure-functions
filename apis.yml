@@ -6,7 +6,20 @@ description: >-
   programmatic access to function app lifecycle management, deployment, configuration, scaling, and monitoring through
   Azure Resource Manager.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/microsoft-azure-functions.png
 url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-05-19'
@@ -19,53 +32,457 @@ tags:
   - Microsoft
   - Serverless
 apis:
-  - aid: microsoft-azure-functions:azure-functions-management-api
-    name: Azure Functions Management API
-    description: >-
-      The Azure App Service / Web Apps REST API provides management operations for Azure Functions apps including
-      creating and configuring function apps, managing deployment slots, application settings, host keys, function keys,
-      scaling configuration, and monitoring. Part of the Azure Resource Manager API surface.
-    humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-    baseURL: https://management.azure.com
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-      - type: GettingStarted
-        url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-      - type: APIReference
-        url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
-      - type: Authentication
-        url: https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-      - type: OpenAPI
-        url: openapi/azure-functions-management-api.json
-    tags:
-      - App Service
-      - Deployment
-      - Functions
-      - Management
-      - Resource Manager
-      - Serverless
-  - aid: microsoft-azure-functions:azure-functions-runtime-api
-    name: Azure Functions Runtime API
-    description: >-
-      The Azure Functions host runtime provides HTTP endpoints for function invocation, admin operations, host status,
-      function management, and key management. Includes endpoints for listing functions, getting function status,
-      managing host and function keys, and triggering function execution.
-    humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
-    baseURL: https://{functionapp}.azurewebsites.net
-    properties:
-      - type: Documentation
-        url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
-      - type: GettingStarted
-        url: https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp
-      - type: Authentication
-        url: https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts
-    tags:
-      - Event-Driven
-      - Functions
-      - HTTP Trigger
-      - Runtime
-      - Serverless
+- aid: microsoft-azure-functions:azure-functions-runtime-api
+  name: Azure Functions Runtime API
+  description: >-
+    The Azure Functions host runtime provides HTTP endpoints for function invocation, admin operations,
+    host status, function management, and key management. Includes endpoints for listing functions, getting
+    function status, managing host and function keys, and triggering function execution.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
+  properties:
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts
+  tags:
+  - Event-Driven
+  - Functions
+  - HTTP Trigger
+  - Runtime
+  - Serverless
+- aid: microsoft-azure-functions:microsoft-azure-functions-appserviceenvironments-api
+  name: Microsoft Azure Functions AppServiceEnvironments API
+  description: >-
+    The AppServiceEnvironments API from Microsoft Azure Functions — 36 operation(s) for appserviceenvironments.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - AppServiceEnvironments
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-appserviceenvironments-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-appserviceplans-api
+  name: Microsoft Azure Functions AppServicePlans API
+  description: >-
+    The AppServicePlans API from Microsoft Azure Functions — 22 operation(s) for appserviceplans.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - AppServicePlans
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-appserviceplans-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-certificates-api
+  name: Microsoft Azure Functions Certificates API
+  description: The Certificates API from Microsoft Azure Functions — 3 operation(s) for certificates.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Certificates
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-certificates-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-deletedwebapps-api
+  name: Microsoft Azure Functions DeletedWebApps API
+  description: >-
+    The DeletedWebApps API from Microsoft Azure Functions — 3 operation(s) for deletedwebapps.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - DeletedWebApps
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-deletedwebapps-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-diagnostics-api
+  name: Microsoft Azure Functions Diagnostics API
+  description: The Diagnostics API from Microsoft Azure Functions — 22 operation(s) for diagnostics.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Diagnostics
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-diagnostics-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-global-api
+  name: Microsoft Azure Functions Global API
+  description: The Global API from Microsoft Azure Functions — 3 operation(s) for global.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Global
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-global-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-kubeenvironments-api
+  name: Microsoft Azure Functions KubeEnvironments API
+  description: >-
+    The KubeEnvironments API from Microsoft Azure Functions — 3 operation(s) for kubeenvironments.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - KubeEnvironments
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-kubeenvironments-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-operations-api
+  name: Microsoft Azure Functions Operations API
+  description: The Operations API from Microsoft Azure Functions — 1 operation(s) for operations.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-operations-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-provider-api
+  name: Microsoft Azure Functions Provider API
+  description: The Provider API from Microsoft Azure Functions — 7 operation(s) for provider.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Provider
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-provider-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-providers-api
+  name: Microsoft Azure Functions Providers API
+  description: The Providers API from Microsoft Azure Functions — 3 operation(s) for providers.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Providers
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-providers-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-recommendations-api
+  name: Microsoft Azure Functions Recommendations API
+  description: >-
+    The Recommendations API from Microsoft Azure Functions — 15 operation(s) for recommendations.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Recommendations
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-recommendations-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-resourcehealthmetadata-api
+  name: Microsoft Azure Functions ResourceHealthMetadata API
+  description: >-
+    The ResourceHealthMetadata API from Microsoft Azure Functions — 6 operation(s) for resourcehealthmetadata.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - ResourceHealthMetadata
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-resourcehealthmetadata-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-sitecertificates-api
+  name: Microsoft Azure Functions SiteCertificates API
+  description: >-
+    The SiteCertificates API from Microsoft Azure Functions — 4 operation(s) for sitecertificates.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - SiteCertificates
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-sitecertificates-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-staticsites-api
+  name: Microsoft Azure Functions StaticSites API
+  description: The StaticSites API from Microsoft Azure Functions — 51 operation(s) for staticsites.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - StaticSites
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-staticsites-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-subscriptions-api
+  name: Microsoft Azure Functions Subscriptions API
+  description: >-
+    The Subscriptions API from Microsoft Azure Functions — 15 operation(s) for subscriptions.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-webapps-api
+  name: Microsoft Azure Functions WebApps API
+  description: The WebApps API from Microsoft Azure Functions — 300 operation(s) for webapps.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WebApps
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-webapps-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflowrunactions-api
+  name: Microsoft Azure Functions WorkflowRunActions API
+  description: >-
+    The WorkflowRunActions API from Microsoft Azure Functions — 10 operation(s) for workflowrunactions.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowRunActions
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflowrunactions-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflowruns-api
+  name: Microsoft Azure Functions WorkflowRuns API
+  description: The WorkflowRuns API from Microsoft Azure Functions — 3 operation(s) for workflowruns.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowRuns
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflowruns-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflows-api
+  name: Microsoft Azure Functions Workflows API
+  description: The Workflows API from Microsoft Azure Functions — 2 operation(s) for workflows.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflowtriggerhistories-api
+  name: Microsoft Azure Functions WorkflowTriggerHistories API
+  description: >-
+    The WorkflowTriggerHistories API from Microsoft Azure Functions — 3 operation(s) for workflowtriggerhistories.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowTriggerHistories
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflowtriggerhistories-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflowtriggers-api
+  name: Microsoft Azure Functions WorkflowTriggers API
+  description: >-
+    The WorkflowTriggers API from Microsoft Azure Functions — 5 operation(s) for workflowtriggers.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowTriggers
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflowtriggers-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflowversions-api
+  name: Microsoft Azure Functions WorkflowVersions API
+  description: >-
+    The WorkflowVersions API from Microsoft Azure Functions — 2 operation(s) for workflowversions.
+  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  baseURL: https://management.azure.com
+  tags:
+  - WorkflowVersions
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflowversions-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 common:
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-functions-agentic-access.yml
