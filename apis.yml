@@ -484,6 +484,19 @@ apis:
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 common:
+  - type: IssueTracker
+    url: https://github.com/Azure/azure-functions-host/issues
+  - type: Releases
+    url: https://github.com/Azure/azure-functions-host/releases
+  - type: SecurityPolicy
+    url: https://github.com/Azure/azure-functions-host/blob/dev/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/Azure/.github/blob/main/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/Azure/azure-functions-host/blob/dev/CONTRIBUTING.md
+  - type: License
+    name: MIT
+    url: https://github.com/Azure/azure-functions-host/blob/dev/LICENSE
   - type: AgenticAccess
     url: agentic-access/microsoft-azure-functions-agentic-access.yml
   - type: DomainSecurity
