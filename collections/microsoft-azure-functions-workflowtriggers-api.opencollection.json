@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments WorkflowTriggers API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WorkflowTriggers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WorkflowTriggers_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/triggers",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to be included in the result."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply on the operation."
+              }
+            ]
+          },
+          "docs": "Gets a list of workflow triggers."
+        },
+        {
+          "info": {
+            "name": "WorkflowTriggers_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/triggers/:triggerName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow trigger name."
+              }
+            ]
+          },
+          "docs": "Gets a workflow trigger."
+        },
+        {
+          "info": {
+            "name": "WorkflowTriggers_ListCallbackUrl",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/triggers/:triggerName/listCallbackUrl",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow trigger name."
+              }
+            ]
+          },
+          "docs": "Get the callback URL for a workflow trigger."
+        },
+        {
+          "info": {
+            "name": "WorkflowTriggers_Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/triggers/:triggerName/run",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow trigger name."
+              }
+            ]
+          },
+          "docs": "Runs a workflow trigger."
+        },
+        {
+          "info": {
+            "name": "WorkflowTriggers_GetSchemaJson",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/triggers/:triggerName/schemas/json",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "triggerName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow trigger name."
+              }
+            ]
+          },
+          "docs": "Get the trigger schema as JSON."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

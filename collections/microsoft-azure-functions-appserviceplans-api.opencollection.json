@@ -1,0 +1,754 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments AppServicePlans API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AppServicePlans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all App Service plans for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/serverfarms",
+            "params": [
+              {
+                "name": "detailed",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to return all App Service plan properties. The default is <code>false</code>, which returns a subset of the properties.\nRetrieval of all properties may increase the API latency."
+              }
+            ]
+          },
+          "docs": "Description for Get all App Service plans for a subscription."
+        },
+        {
+          "info": {
+            "name": "Get all App Service plans in a resource group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms"
+          },
+          "docs": "Description for Get all App Service plans in a resource group."
+        },
+        {
+          "info": {
+            "name": "Get an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Get an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Creates or updates an App Service Plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates an App Service Plan."
+        },
+        {
+          "info": {
+            "name": "Creates or updates an App Service Plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates an App Service Plan."
+        },
+        {
+          "info": {
+            "name": "Delete an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Delete an App Service plan."
+        },
+        {
+          "info": {
+            "name": "List all capabilities of an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/capabilities",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for List all capabilities of an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get the RDP password for an IsCustomMode ServerFarm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/getrdppassword",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Get the RDP password for an IsCustomMode ServerFarm."
+        },
+        {
+          "info": {
+            "name": "Retrieve a Hybrid Connection in use in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionNamespaces/:namespaceName/relays/:relayName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus namespace."
+              },
+              {
+                "name": "relayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus relay."
+              }
+            ]
+          },
+          "docs": "Description for Retrieve a Hybrid Connection in use in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Delete a Hybrid Connection in use in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionNamespaces/:namespaceName/relays/:relayName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus namespace."
+              },
+              {
+                "name": "relayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus relay."
+              }
+            ]
+          },
+          "docs": "Description for Delete a Hybrid Connection in use in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get the send key name and value of a Hybrid Connection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionNamespaces/:namespaceName/relays/:relayName/listKeys",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus namespace."
+              },
+              {
+                "name": "relayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus relay."
+              }
+            ]
+          },
+          "docs": "Description for Get the send key name and value of a Hybrid Connection."
+        },
+        {
+          "info": {
+            "name": "Get all apps that use a Hybrid Connection in an App Service Plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionNamespaces/:namespaceName/relays/:relayName/sites",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "namespaceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus namespace."
+              },
+              {
+                "name": "relayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Service Bus relay."
+              }
+            ]
+          },
+          "docs": "Description for Get all apps that use a Hybrid Connection in an App Service Plan."
+        },
+        {
+          "info": {
+            "name": "Get the maximum number of Hybrid Connections allowed in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionPlanLimits/limit",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Get the maximum number of Hybrid Connections allowed in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Retrieve all Hybrid Connections in use in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/hybridConnectionRelays",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Retrieve all Hybrid Connections in use in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get the instance details for an app service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/listinstances",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Get the instance details for an app service plan."
+        },
+        {
+          "info": {
+            "name": "Restart all apps in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/restartSites",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "softRestart",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to perform a soft restart, applies the configuration settings and restarts the apps if necessary. The default is <code>false</code>, which always restarts and reprovisions the apps"
+              }
+            ]
+          },
+          "docs": "Description for Restart all apps in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get all apps associated with an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/sites",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "$skipToken",
+                "value": "",
+                "type": "query",
+                "description": "Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Supported filter: $filter=state eq running. Returns only web apps that are currently running"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "List page size. If specified, results are paged."
+              }
+            ]
+          },
+          "docs": "Description for Get all apps associated with an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Gets all selectable SKUs for a given App Service Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/skus",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Gets all selectable SKUs for a given App Service Plan"
+        },
+        {
+          "info": {
+            "name": "Gets server farm usage information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/usages",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2')."
+              }
+            ]
+          },
+          "docs": "Description for Gets server farm usage information"
+        },
+        {
+          "info": {
+            "name": "Get all Virtual Networks associated with an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              }
+            ]
+          },
+          "docs": "Description for Get all Virtual Networks associated with an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get a Virtual Network associated with an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              }
+            ]
+          },
+          "docs": "Description for Get a Virtual Network associated with an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get a Virtual Network gateway.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/gateways/:gatewayName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the gateway. Only the 'primary' gateway is supported."
+              }
+            ]
+          },
+          "docs": "Description for Get a Virtual Network gateway."
+        },
+        {
+          "info": {
+            "name": "Update a Virtual Network gateway.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/gateways/:gatewayName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "gatewayName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the gateway. Only the 'primary' gateway is supported."
+              }
+            ]
+          },
+          "docs": "Description for Update a Virtual Network gateway."
+        },
+        {
+          "info": {
+            "name": "Get all routes that are associated with a Virtual Network in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/routes",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              }
+            ]
+          },
+          "docs": "Description for Get all routes that are associated with a Virtual Network in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Get a Virtual Network route in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/routes/:routeName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "routeName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network route."
+              }
+            ]
+          },
+          "docs": "Description for Get a Virtual Network route in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Create or update a Virtual Network route in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/routes/:routeName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "routeName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network route."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a Virtual Network route in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Create or update a Virtual Network route in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/routes/:routeName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "routeName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network route."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a Virtual Network route in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Delete a Virtual Network route in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/serverfarms/:name/virtualNetworkConnections/:vnetName/routes/:routeName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service plan."
+              },
+              {
+                "name": "vnetName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network."
+              },
+              {
+                "name": "routeName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Virtual Network route."
+              }
+            ]
+          },
+          "docs": "Description for Delete a Virtual Network route in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Reboot a worker machine in an App Service plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/microsoft.Web/serverfarms/:name/workers/:workerName/reboot",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "App Service plan."
+              },
+              {
+                "name": "workerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of worker machine, which typically starts with RD."
+              }
+            ]
+          },
+          "docs": "Description for Reboot a worker machine in an App Service plan."
+        },
+        {
+          "info": {
+            "name": "Recycles a managed instance worker machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/microsoft.Web/serverfarms/:name/workers/:workerName/recycleinstance",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "App Service plan."
+              },
+              {
+                "name": "workerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of worker machine, which typically starts with RD."
+              }
+            ]
+          },
+          "docs": "Description for Recycles a managed instance worker machine."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

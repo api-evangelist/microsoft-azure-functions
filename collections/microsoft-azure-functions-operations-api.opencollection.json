@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Operations API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/operations"
+          },
+          "docs": "Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

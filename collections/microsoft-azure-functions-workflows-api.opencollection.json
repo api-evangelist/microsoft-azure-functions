@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Workflows API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Workflows_RegenerateAccessKey",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/regenerateAccessKey",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              }
+            ]
+          },
+          "docs": "Regenerates the callback URL access key for request triggers."
+        },
+        {
+          "info": {
+            "name": "Workflows_Validate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/validate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              }
+            ]
+          },
+          "docs": "Validates the workflow definition."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2883 @@
+{
+  "item": [
+    {
+      "id": "1df4653b-36bf-4a1d-92f3-352628d77025",
+      "name": "WorkflowRunActions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6124b0b-2c07-498b-b107-c4fa5939a2ec",
+          "name": "Workflow Run Actions List",
+          "request": {
+            "name": "Workflow Run Actions List",
+            "description": {
+              "content": "Gets a list of workflow run actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "The number of items to be included in the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "The filter to apply on the operation. Options for filters include: Status."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f61dc9cb-11dd-4d9f-a843-578d5e9e86a1",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"startTime\": \"1982-03-11T13:54:11.877Z\",\n        \"endTime\": \"1983-09-27T12:44:24.613Z\",\n        \"status\": \"Suspended\",\n        \"code\": \"string\",\n        \"error\": {},\n        \"trackingId\": \"string\",\n        \"correlation\": {\n          \"actionTrackingId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"inputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 3083,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"outputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 6477,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"trackedProperties\": {},\n        \"retryHistory\": [\n          {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"clientRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"serviceRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"error\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"clientRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"serviceRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"error\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"properties\": {\n        \"startTime\": \"1963-11-05T17:23:15.937Z\",\n        \"endTime\": \"1975-09-04T00:40:01.435Z\",\n        \"status\": \"NotSpecified\",\n        \"code\": \"string\",\n        \"error\": {},\n        \"trackingId\": \"string\",\n        \"correlation\": {\n          \"actionTrackingId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"inputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 8789,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"outputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 5481,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"trackedProperties\": {},\n        \"retryHistory\": [\n          {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"clientRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"serviceRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"error\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"clientRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"serviceRequestId\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"error\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"nextLink\": \"https://bubuMVZXAfumBPN.cunbeY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe3606d-9ca2-4d9e-934d-598043198de2",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5be0371a-3c3a-45d4-80ff-b3bd1240bed9",
+          "name": "Workflow Run Actions Get",
+          "request": {
+            "name": "Workflow Run Actions Get",
+            "description": {
+              "content": "Gets a workflow run action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd9b5cf2-0f7b-4a4d-8124-fe4d2d03bd28",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"startTime\": \"2015-07-15T15:56:53.380Z\",\n    \"endTime\": \"1963-11-08T19:03:41.488Z\",\n    \"status\": \"Cancelled\",\n    \"code\": \"string\",\n    \"error\": {},\n    \"trackingId\": \"string\",\n    \"correlation\": {\n      \"actionTrackingId\": \"string\",\n      \"clientTrackingId\": \"string\",\n      \"clientKeywords\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"inputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 2958,\n      \"contentHash\": {\n        \"algorithm\": \"string\",\n        \"value\": \"string\"\n      },\n      \"metadata\": {}\n    },\n    \"outputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 5990,\n      \"contentHash\": {\n        \"algorithm\": \"string\",\n        \"value\": \"string\"\n      },\n      \"metadata\": {}\n    },\n    \"trackedProperties\": {},\n    \"retryHistory\": [\n      {\n        \"startTime\": \"2013-10-17T11:40:34.228Z\",\n        \"endTime\": \"1995-04-01T22:40:51.552Z\",\n        \"code\": \"string\",\n        \"clientRequestId\": \"string\",\n        \"serviceRequestId\": \"string\",\n        \"error\": {\n          \"error\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"startTime\": \"2009-12-01T08:57:08.215Z\",\n        \"endTime\": \"1950-11-03T22:34:17.104Z\",\n        \"code\": \"string\",\n        \"clientRequestId\": \"string\",\n        \"serviceRequestId\": \"string\",\n        \"error\": {\n          \"error\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cc8e751-fcd9-4bba-8124-4bf160c213b5",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8eaf1c7-8236-40b0-9b48-9c8adf6066bc",
+          "name": "Workflow Run Actions List Expression Traces",
+          "request": {
+            "name": "Workflow Run Actions List Expression Traces",
+            "description": {
+              "content": "Lists a workflow run expression trace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "listExpressionTraces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "050fcf9a-48ae-4264-a16a-073df56dfbef",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "listExpressionTraces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"\",\n  \"inputs\": [\n    {\n      \"path\": \"string\",\n      \"text\": \"string\",\n      \"value\": {},\n      \"subexpressions\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        }\n      ],\n      \"error\": {\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"message\": \"string\",\n        \"details\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"path\": \"string\",\n      \"text\": \"string\",\n      \"value\": {},\n      \"subexpressions\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        }\n      ],\n      \"error\": {\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"message\": \"string\",\n        \"details\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eac66f4f-e76a-4fe6-b0dc-b63aee9fd9dc",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "listExpressionTraces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29924b29-77ac-4aa8-8406-ae7c3aebf5f0",
+          "name": "Workflow Run Action Repetitions List",
+          "request": {
+            "name": "Workflow Run Action Repetitions List",
+            "description": {
+              "content": "Get all of a workflow run action repetitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "repetitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0644bed7-3205-4de1-8174-d7455bcab9d0",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"repetitionIndexes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trackingId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackedProperties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"retryHistory\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"iterationCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"properties\": {\n        \"repetitionIndexes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trackingId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackedProperties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"retryHistory\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"iterationCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"http://eLUQQrZUddKtSKHRfoYIpfOttmJ.waKKfXjZThLxnFEyaoVp5JPou7VjrF3Wd0mk2M2hVMY+u+GmX-uypfM\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "817a39d7-9be7-4f2a-80ad-34c91032d595",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a490f25-5577-4f4c-a654-43e34a6c8ef3",
+          "name": "Workflow Run Action Repetitions Get",
+          "request": {
+            "name": "Workflow Run Action Repetitions Get",
+            "description": {
+              "content": "Get a workflow run action repetition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "repetitions",
+                ":repetitionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repetitionName",
+                  "description": "(Required) The workflow repetition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "058d5009-3696-4036-9ff5-e2c1612f083e",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"repetitionIndexes\": [\n      {\n        \"itemIndex\": 5609,\n        \"scopeName\": \"string\"\n      },\n      {\n        \"itemIndex\": 7681,\n        \"scopeName\": \"string\"\n      }\n    ],\n    \"trackingId\": \"string\",\n    \"inputs\": {},\n    \"inputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 284,\n      \"contentHash\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"metadata\": {}\n    },\n    \"outputs\": {},\n    \"outputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 8167,\n      \"contentHash\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"metadata\": {}\n    },\n    \"trackedProperties\": {},\n    \"retryHistory\": [\n      {\n        \"startTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"endTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clientRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"serviceRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"error\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"startTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"endTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clientRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"serviceRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"error\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"iterationCount\": 9741,\n    \"startTime\": \"2019-10-21T17:09:41.675Z\",\n    \"endTime\": \"1994-01-29T08:11:47.135Z\",\n    \"correlation\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"status\": \"Running\",\n    \"code\": \"string\",\n    \"error\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c386330-98a5-4987-a7e0-5a03b0b396f4",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8030185e-f4de-483a-aff7-fae99f794287",
+          "name": "Workflow Run Action Repetitions List Expression Traces",
+          "request": {
+            "name": "Workflow Run Action Repetitions List Expression Traces",
+            "description": {
+              "content": "Lists a workflow run expression trace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "repetitions",
+                ":repetitionName",
+                "listExpressionTraces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repetitionName",
+                  "description": "(Required) The workflow repetition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d175e408-0f88-4ef4-8f75-2280e8d8e50c",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "listExpressionTraces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"\",\n  \"inputs\": [\n    {\n      \"path\": \"string\",\n      \"text\": \"string\",\n      \"value\": {},\n      \"subexpressions\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        }\n      ],\n      \"error\": {\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"message\": \"string\",\n        \"details\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    {\n      \"path\": \"string\",\n      \"text\": \"string\",\n      \"value\": {},\n      \"subexpressions\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/Expression detected>\"\n        }\n      ],\n      \"error\": {\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"message\": \"string\",\n        \"details\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"nextLink\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a758a206-2785-4d67-b83e-aa570f466a58",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "listExpressionTraces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9dec2ef-6a6c-4eb4-933e-43bd1d05a10e",
+          "name": "Workflow Run Action Repetitions Request Histories List",
+          "request": {
+            "name": "Workflow Run Action Repetitions Request Histories List",
+            "description": {
+              "content": "List a workflow run repetition request history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "repetitions",
+                ":repetitionName",
+                "requestHistories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repetitionName",
+                  "description": "(Required) The workflow repetition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3aa2446c-aa04-487f-b407-113905cd6b6d",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "requestHistories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"startTime\": \"1970-11-12T09:18:32.467Z\",\n        \"endTime\": \"1961-07-23T16:59:36.210Z\",\n        \"request\": {\n          \"headers\": {},\n          \"uri\": \"string\",\n          \"method\": \"string\"\n        },\n        \"response\": {\n          \"headers\": {},\n          \"statusCode\": 4484,\n          \"bodyLink\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    {\n      \"properties\": {\n        \"startTime\": \"1964-08-01T06:41:54.182Z\",\n        \"endTime\": \"2005-04-08T15:00:46.611Z\",\n        \"request\": {\n          \"headers\": {},\n          \"uri\": \"string\",\n          \"method\": \"string\"\n        },\n        \"response\": {\n          \"headers\": {},\n          \"statusCode\": 4543,\n          \"bodyLink\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"http://ZdImINu.stnRFqYG0,1mWy61cpuTcwS9Sv3BvxQo5Rizxv4gOiFL61QS,7,qk5C6eTkPkGfil+\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17c93f1e-9a21-4e39-be04-650dbf8ab02d",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "requestHistories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0147f1e9-1625-48a0-a10c-5dc6feeb88df",
+          "name": "Workflow Run Action Repetitions Request Histories Get",
+          "request": {
+            "name": "Workflow Run Action Repetitions Request Histories Get",
+            "description": {
+              "content": "Gets a workflow run repetition request history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "repetitions",
+                ":repetitionName",
+                "requestHistories",
+                ":requestHistoryName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repetitionName",
+                  "description": "(Required) The workflow repetition."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestHistoryName",
+                  "description": "(Required) The workflow repetition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73dde921-3233-4103-a3fc-47ac8619fb57",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "requestHistories",
+                    ":requestHistoryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestHistoryName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"startTime\": \"1988-11-13T02:06:59.771Z\",\n    \"endTime\": \"2008-09-25T18:32:52.076Z\",\n    \"request\": {\n      \"headers\": {},\n      \"uri\": \"string\",\n      \"method\": \"string\"\n    },\n    \"response\": {\n      \"headers\": {},\n      \"statusCode\": 1039,\n      \"bodyLink\": {\n        \"uri\": \"string\",\n        \"contentVersion\": \"string\",\n        \"contentSize\": 4108,\n        \"contentHash\": {\n          \"algorithm\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"metadata\": {}\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b361fe6-1a64-4e7a-a7bf-3f4cdd8bdf48",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "repetitions",
+                    ":repetitionName",
+                    "requestHistories",
+                    ":requestHistoryName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestHistoryName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f59008a8-6390-4fd8-bfb8-5943cb2a9739",
+          "name": "Workflow Run Action Scope Repetitions List",
+          "request": {
+            "name": "Workflow Run Action Scope Repetitions List",
+            "description": {
+              "content": "List the workflow run action scoped repetitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "scopeRepetitions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b92f2452-9a74-48c2-8ec4-e805cc9b2c9a",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "scopeRepetitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"repetitionIndexes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trackingId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackedProperties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"retryHistory\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"iterationCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"properties\": {\n        \"repetitionIndexes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trackingId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"inputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"outputsLink\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackedProperties\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"retryHistory\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"iterationCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"http://GOELmCyBLtYJnDnPNFwQjaLVtcE.vyzsRw0Qrx0VY,VfFzmP0gBof8KOsxpEY-qfki2zkO11\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1cdbc81-0b61-44dd-a795-6f3a96635a1d",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "scopeRepetitions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a20c2d91-955e-4f40-844e-9416f0039773",
+          "name": "Workflow Run Action Scope Repetitions Get",
+          "request": {
+            "name": "Workflow Run Action Scope Repetitions Get",
+            "description": {
+              "content": "Get a workflow run action scoped repetition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "runs",
+                ":runName",
+                "actions",
+                ":actionName",
+                "scopeRepetitions",
+                ":repetitionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "runName",
+                  "description": "(Required) The workflow run name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "actionName",
+                  "description": "(Required) The workflow action name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repetitionName",
+                  "description": "(Required) The workflow repetition."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54ad7fca-4edf-4bbb-ad75-6948437bdc21",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "scopeRepetitions",
+                    ":repetitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"repetitionIndexes\": [\n      {\n        \"itemIndex\": 7517,\n        \"scopeName\": \"string\"\n      },\n      {\n        \"itemIndex\": 3686,\n        \"scopeName\": \"string\"\n      }\n    ],\n    \"trackingId\": \"string\",\n    \"inputs\": {},\n    \"inputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 8378,\n      \"contentHash\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"metadata\": {}\n    },\n    \"outputs\": {},\n    \"outputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 2633,\n      \"contentHash\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"metadata\": {}\n    },\n    \"trackedProperties\": {},\n    \"retryHistory\": [\n      {\n        \"startTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"endTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clientRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"serviceRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"error\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"startTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"endTime\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"clientRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"serviceRequestId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"error\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"iterationCount\": 7394,\n    \"startTime\": \"1963-04-15T23:13:50.772Z\",\n    \"endTime\": \"2015-11-16T11:59:45.743Z\",\n    \"correlation\": {\n      \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n    },\n    \"status\": \"Failed\",\n    \"code\": \"string\",\n    \"error\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7afb6ca6-fb80-4a69-803c-93241c450613",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "runs",
+                    ":runName",
+                    "actions",
+                    ":actionName",
+                    "scopeRepetitions",
+                    ":repetitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "runName",
+                      "description": "(Required) The workflow run name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "actionName",
+                      "description": "(Required) The workflow action name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repetitionName",
+                      "description": "(Required) The workflow repetition."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e5f2cd9-a905-4039-8ef4-bcc96eccb7a6",
+    "name": "WebApps API Client AppServiceEnvironments WorkflowRunActions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

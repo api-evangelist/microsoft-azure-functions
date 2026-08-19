@@ -1,0 +1,1808 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments StaticSites API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "StaticSites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generates a preview workflow file for the static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/previewStaticSiteWorkflowFile"
+          },
+          "docs": "Description for Generates a preview workflow file for the static site"
+        },
+        {
+          "info": {
+            "name": "Get all Static Sites for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/staticSites"
+          },
+          "docs": "Description for Get all Static Sites for a subscription."
+        },
+        {
+          "info": {
+            "name": "Gets all static sites in the specified resource group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites"
+          },
+          "docs": "Description for Gets all static sites in the specified resource group."
+        },
+        {
+          "info": {
+            "name": "Gets the details of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of a static site."
+        },
+        {
+          "info": {
+            "name": "Creates a new static site in an existing resource group, or updates an existing static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Creates a new static site in an existing resource group, or updates an existing static site."
+        },
+        {
+          "info": {
+            "name": "Creates a new static site in an existing resource group, or updates an existing static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Creates a new static site in an existing resource group, or updates an existing static site."
+        },
+        {
+          "info": {
+            "name": "Deletes a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a static site."
+        },
+        {
+          "info": {
+            "name": "Gets the basic auth properties for a static site as a collection.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/basicAuth",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the basic auth properties for a static site as a collection."
+        },
+        {
+          "info": {
+            "name": "Gets the basic auth properties for a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/basicAuth/:basicAuthName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "basicAuthName",
+                "value": "",
+                "type": "path",
+                "description": "name of the basic auth entry."
+              }
+            ]
+          },
+          "docs": "Description for Gets the basic auth properties for a static site."
+        },
+        {
+          "info": {
+            "name": "Adds or updates basic auth for a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/basicAuth/:basicAuthName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "basicAuthName",
+                "value": "",
+                "type": "path",
+                "description": "name of the basic auth entry."
+              }
+            ]
+          },
+          "docs": "Description for Adds or updates basic auth for a static site."
+        },
+        {
+          "info": {
+            "name": "Gets all static site builds for a particular static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets all static site builds for a particular static site."
+        },
+        {
+          "info": {
+            "name": "Gets the details of a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of a static site build."
+        },
+        {
+          "info": {
+            "name": "Deletes a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a static site build."
+        },
+        {
+          "info": {
+            "name": "Creates or updates the app settings of a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/config/appsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates the app settings of a static site build."
+        },
+        {
+          "info": {
+            "name": "Creates or updates the function app settings of a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/config/functionappsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates the function app settings of a static site build."
+        },
+        {
+          "info": {
+            "name": "Returns overviews of database connections for a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Returns overviews of database connections for a static site build"
+        },
+        {
+          "info": {
+            "name": "Returns overview of a database connection for a static site build by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Returns overview of a database connection for a static site build by name"
+        },
+        {
+          "info": {
+            "name": "Create or update a database connection for a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a database connection for a static site build"
+        },
+        {
+          "info": {
+            "name": "Create or update a database connection for a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a database connection for a static site build"
+        },
+        {
+          "info": {
+            "name": "Delete a database connection for a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Delete a database connection for a static site build"
+        },
+        {
+          "info": {
+            "name": "Returns details of a database connection for a static site build by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/databaseConnections/:databaseConnectionName/show",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Returns details of a database connection for a static site build by name"
+        },
+        {
+          "info": {
+            "name": "Gets the functions of a particular static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/functions",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Gets the functions of a particular static site build."
+        },
+        {
+          "info": {
+            "name": "Returns details of all backends linked to a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/linkedBackends",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier"
+              }
+            ]
+          },
+          "docs": "Returns details of all backends linked to a static site build"
+        },
+        {
+          "info": {
+            "name": "Returns the details of a linked backend linked to a static site build by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Returns the details of a linked backend linked to a static site build by name"
+        },
+        {
+          "info": {
+            "name": "Link backend to a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Link backend to a static site build"
+        },
+        {
+          "info": {
+            "name": "Unlink a backend from a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              },
+              {
+                "name": "isCleaningAuthConfig",
+                "value": "",
+                "type": "query",
+                "description": "Decides if auth will be removed from backend configuration"
+              }
+            ]
+          },
+          "docs": "Unlink a backend from a static site build"
+        },
+        {
+          "info": {
+            "name": "Validates that a backend can be linked to a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/linkedBackends/:linkedBackendName/validate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Validates that a backend can be linked to a static site build"
+        },
+        {
+          "info": {
+            "name": "Gets the application settings of a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/listAppSettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Gets the application settings of a static site build."
+        },
+        {
+          "info": {
+            "name": "Gets the application settings of a static site build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/listFunctionAppSettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Gets the application settings of a static site build."
+        },
+        {
+          "info": {
+            "name": "Returns details of database connections for a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/showDatabaseConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Returns details of database connections for a static site build"
+        },
+        {
+          "info": {
+            "name": "Gets the details of the user provided function apps registered with a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/userProvidedFunctionApps",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of the user provided function apps registered with a static site build"
+        },
+        {
+          "info": {
+            "name": "Gets the details of the user provided function app registered with a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site build."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of the user provided function app registered with a static site build"
+        },
+        {
+          "info": {
+            "name": "Register a user provided function app with a static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site build."
+              },
+              {
+                "name": "isForced",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>."
+              }
+            ]
+          },
+          "docs": "Description for Register a user provided function app with a static site build"
+        },
+        {
+          "info": {
+            "name": "Detach the user provided function app from the static site build",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site build."
+              }
+            ]
+          },
+          "docs": "Description for Detach the user provided function app from the static site build"
+        },
+        {
+          "info": {
+            "name": "Deploys zipped content to a specific environment of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/builds/:environmentName/zipdeploy",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "path",
+                "description": "The stage site identifier."
+              }
+            ]
+          },
+          "docs": "Description for Deploys zipped content to a specific environment of a static site."
+        },
+        {
+          "info": {
+            "name": "Creates or updates the app settings of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/config/appsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates the app settings of a static site."
+        },
+        {
+          "info": {
+            "name": "Creates or updates the function app settings of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/config/functionappsettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates the function app settings of a static site."
+        },
+        {
+          "info": {
+            "name": "Creates an invitation link for a user with the role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/createUserInvitation",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Creates an invitation link for a user with the role"
+        },
+        {
+          "info": {
+            "name": "Gets all static site custom domains for a particular static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/customDomains",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets all static site custom domains for a particular static site."
+        },
+        {
+          "info": {
+            "name": "Gets an existing custom domain for a particular static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/customDomains/:domainName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "The custom domain name."
+              }
+            ]
+          },
+          "docs": "Description for Gets an existing custom domain for a particular static site."
+        },
+        {
+          "info": {
+            "name": "Creates a new static site custom domain in an existing resource group and static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/customDomains/:domainName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "The custom domain name."
+              }
+            ]
+          },
+          "docs": "Description for Creates a new static site custom domain in an existing resource group and static site."
+        },
+        {
+          "info": {
+            "name": "Deletes a custom domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/customDomains/:domainName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "The custom domain name."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a custom domain."
+        },
+        {
+          "info": {
+            "name": "Validates a particular custom domain can be added to a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/customDomains/:domainName/validate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "domainName",
+                "value": "",
+                "type": "path",
+                "description": "The custom domain name."
+              }
+            ]
+          },
+          "docs": "Description for Validates a particular custom domain can be added to a static site."
+        },
+        {
+          "info": {
+            "name": "Returns overviews of database connections for a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              }
+            ]
+          },
+          "docs": "Returns overviews of database connections for a static site"
+        },
+        {
+          "info": {
+            "name": "Returns overview of a database connection for a static site by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Returns overview of a database connection for a static site by name"
+        },
+        {
+          "info": {
+            "name": "Create or update a database connection for a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a database connection for a static site"
+        },
+        {
+          "info": {
+            "name": "Create or update a database connection for a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Description for Create or update a database connection for a static site"
+        },
+        {
+          "info": {
+            "name": "Delete a database connection for a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections/:databaseConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Delete a database connection for a static site"
+        },
+        {
+          "info": {
+            "name": "Returns details of a database connection for a static site by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/databaseConnections/:databaseConnectionName/show",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "databaseConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the database connection."
+              }
+            ]
+          },
+          "docs": "Returns details of a database connection for a static site by name"
+        },
+        {
+          "info": {
+            "name": "Detaches a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/detach",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Detaches a static site."
+        },
+        {
+          "info": {
+            "name": "Gets the functions of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/functions",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the functions of a static site."
+        },
+        {
+          "info": {
+            "name": "Returns details of all backends linked to a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/linkedBackends",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              }
+            ]
+          },
+          "docs": "Returns details of all backends linked to a static site"
+        },
+        {
+          "info": {
+            "name": "Returns the details of a linked backend linked to a static site by name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Returns the details of a linked backend linked to a static site by name"
+        },
+        {
+          "info": {
+            "name": "Link backend to a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Link backend to a static site"
+        },
+        {
+          "info": {
+            "name": "Unlink a backend from a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/linkedBackends/:linkedBackendName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              },
+              {
+                "name": "isCleaningAuthConfig",
+                "value": "",
+                "type": "query",
+                "description": "Decides if Easy Auth configuration will be removed from backend configuration"
+              }
+            ]
+          },
+          "docs": "Unlink a backend from a static site"
+        },
+        {
+          "info": {
+            "name": "Validates that a backend can be linked to a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/linkedBackends/:linkedBackendName/validate",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site"
+              },
+              {
+                "name": "linkedBackendName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the linked backend that should be retrieved"
+              }
+            ]
+          },
+          "docs": "Validates that a backend can be linked to a static site"
+        },
+        {
+          "info": {
+            "name": "Gets the application settings of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/listAppSettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the application settings of a static site."
+        },
+        {
+          "info": {
+            "name": "Lists the roles configured for the static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/listConfiguredRoles",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Lists the roles configured for the static site."
+        },
+        {
+          "info": {
+            "name": "Gets the application settings of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/listFunctionAppSettings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the application settings of a static site."
+        },
+        {
+          "info": {
+            "name": "Lists the secrets for an existing static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/listSecrets",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Lists the secrets for an existing static site."
+        },
+        {
+          "info": {
+            "name": "Gets the list of private endpoint connections associated with a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/privateEndpointConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the list of private endpoint connections associated with a static site"
+        },
+        {
+          "info": {
+            "name": "Gets a private endpoint connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/privateEndpointConnections/:privateEndpointConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "privateEndpointConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the private endpoint connection."
+              }
+            ]
+          },
+          "docs": "Description for Gets a private endpoint connection"
+        },
+        {
+          "info": {
+            "name": "Approves or rejects a private endpoint connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/privateEndpointConnections/:privateEndpointConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "privateEndpointConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the private endpoint connection."
+              }
+            ]
+          },
+          "docs": "Description for Approves or rejects a private endpoint connection"
+        },
+        {
+          "info": {
+            "name": "Deletes a private endpoint connection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/privateEndpointConnections/:privateEndpointConnectionName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "privateEndpointConnectionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the private endpoint connection."
+              }
+            ]
+          },
+          "docs": "Description for Deletes a private endpoint connection"
+        },
+        {
+          "info": {
+            "name": "Gets the private link resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/privateLinkResources",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the private link resources"
+        },
+        {
+          "info": {
+            "name": "Resets the api key for an existing static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/resetapikey",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Resets the api key for an existing static site."
+        },
+        {
+          "info": {
+            "name": "Returns details of database connections for a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/showDatabaseConnections",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Returns details of database connections for a static site"
+        },
+        {
+          "info": {
+            "name": "Gets the details of the user provided function apps registered with a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/userProvidedFunctionApps",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of the user provided function apps registered with a static site"
+        },
+        {
+          "info": {
+            "name": "Gets the details of the user provided function app registered with a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site."
+              }
+            ]
+          },
+          "docs": "Description for Gets the details of the user provided function app registered with a static site"
+        },
+        {
+          "info": {
+            "name": "Register a user provided function app with a static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site."
+              },
+              {
+                "name": "isForced",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to force the update of the auth configuration on the function app even if an AzureStaticWebApps provider is already configured on the function app. The default is <code>false</code>."
+              }
+            ]
+          },
+          "docs": "Description for Register a user provided function app with a static site"
+        },
+        {
+          "info": {
+            "name": "Detach the user provided function app from the static site",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/userProvidedFunctionApps/:functionAppName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              },
+              {
+                "name": "functionAppName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the function app registered with the static site."
+              }
+            ]
+          },
+          "docs": "Description for Detach the user provided function app from the static site"
+        },
+        {
+          "info": {
+            "name": "Deploys zipped content to a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/staticSites/:name/zipdeploy",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the static site."
+              }
+            ]
+          },
+          "docs": "Description for Deploys zipped content to a static site."
+        },
+        {
+          "info": {
+            "name": "Gets the list of users of a static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/microsoft.Web/staticSites/:name/authproviders/:authprovider/listUsers",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "authprovider",
+                "value": "",
+                "type": "path",
+                "description": "The auth provider for the users."
+              }
+            ]
+          },
+          "docs": "Description for Gets the list of users of a static site."
+        },
+        {
+          "info": {
+            "name": "Updates a user entry with the listed roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/microsoft.Web/staticSites/:name/authproviders/:authprovider/users/:userid",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "authprovider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Description for Updates a user entry with the listed roles"
+        },
+        {
+          "info": {
+            "name": "Deletes the user entry from the static site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/microsoft.Web/staticSites/:name/authproviders/:authprovider/users/:userid",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "authprovider",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "userid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Description for Deletes the user entry from the static site."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

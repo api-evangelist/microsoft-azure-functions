@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments WorkflowVersions API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WorkflowVersions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "WorkflowVersions_List",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/versions",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to be included in the result."
+              }
+            ]
+          },
+          "docs": "Gets a list of workflow versions."
+        },
+        {
+          "info": {
+            "name": "WorkflowVersions_Get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/hostruntime/runtime/webhooks/workflow/api/management/workflows/:workflowName/versions/:versionId",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Site name."
+              },
+              {
+                "name": "workflowName",
+                "value": "",
+                "type": "path",
+                "description": "The workflow name."
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "The workflow versionId."
+              }
+            ]
+          },
+          "docs": "Gets a workflow version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

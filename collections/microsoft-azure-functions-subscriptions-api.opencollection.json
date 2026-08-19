@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Subscriptions API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of available ASE regions and its supported Skus.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/aseRegions"
+          },
+          "docs": "Description for get a list of available ASE regions and its supported Skus."
+        },
+        {
+          "info": {
+            "name": "Gets a list of meters for a given location.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/billingMeters",
+            "params": [
+              {
+                "name": "billingLocation",
+                "value": "",
+                "type": "query",
+                "description": "Azure Location of billable resource"
+              },
+              {
+                "name": "osType",
+                "value": "",
+                "type": "query",
+                "description": "App Service OS type meters used for"
+              }
+            ]
+          },
+          "docs": "Description for Gets a list of meters for a given location."
+        },
+        {
+          "info": {
+            "name": "Check if a resource name is available.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/checknameavailability"
+          },
+          "docs": "Description for Check if a resource name is available."
+        },
+        {
+          "info": {
+            "name": "Get custom hostnames under this subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/customhostnameSites",
+            "params": [
+              {
+                "name": "hostname",
+                "value": "",
+                "type": "query",
+                "description": "Specific hostname"
+              }
+            ]
+          },
+          "docs": "Get custom hostnames under this subscription"
+        },
+        {
+          "info": {
+            "name": "Gets list of available geo regions plus ministamps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/deploymentLocations"
+          },
+          "docs": "Description for Gets list of available geo regions plus ministamps"
+        },
+        {
+          "info": {
+            "name": "Get a list of available geographical regions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/geoRegions",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "query",
+                "description": "Name of SKU used to filter the regions."
+              },
+              {
+                "name": "linuxWorkersEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> if you want to filter to only regions that support Linux workers."
+              },
+              {
+                "name": "xenonWorkersEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> if you want to filter to only regions that support Xenon workers."
+              },
+              {
+                "name": "linuxDynamicWorkersEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers."
+              },
+              {
+                "name": "customModeWorkersEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> if you want to filter to only regions that support App Service Plans with <code>IsCustomMode</code> set to <code>true</code>."
+              }
+            ]
+          },
+          "docs": "Description for Get a list of available geographical regions."
+        },
+        {
+          "info": {
+            "name": "List all apps that are assigned to a hostname.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/listSitesAssignedToHostName"
+          },
+          "docs": "Description for List all apps that are assigned to a hostname."
+        },
+        {
+          "info": {
+            "name": "Check if a resource name is available for DNL sites.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/checknameavailability"
+          },
+          "docs": "Check if a resource name is available for DNL sites."
+        },
+        {
+          "info": {
+            "name": "Lists subscription core usages for all skus used in a location, for a given type of quota.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/usages"
+          },
+          "docs": "List usages in cores for all skus used by a subscription in a given location, for a specific quota type."
+        },
+        {
+          "info": {
+            "name": "List all premier add-on offers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/premieraddonoffers"
+          },
+          "docs": "Description for List all premier add-on offers."
+        },
+        {
+          "info": {
+            "name": "List all SKUs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/skus"
+          },
+          "docs": "Description for List all SKUs."
+        },
+        {
+          "info": {
+            "name": "Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/verifyHostingEnvironmentVnet"
+          },
+          "docs": "Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules."
+        },
+        {
+          "info": {
+            "name": "Move resources between resource groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/moveResources"
+          },
+          "docs": "Description for Move resources between resource groups."
+        },
+        {
+          "info": {
+            "name": "Validate if a resource can be created.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/validate"
+          },
+          "docs": "Description for Validate if a resource can be created."
+        },
+        {
+          "info": {
+            "name": "Validate whether a resource can be moved.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/validateMoveResources"
+          },
+          "docs": "Description for Validate whether a resource can be moved."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

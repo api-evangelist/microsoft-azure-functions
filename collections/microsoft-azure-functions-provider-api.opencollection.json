@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Provider API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provider",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get available application frameworks and their versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/availableStacks",
+            "params": [
+              {
+                "name": "osTypeSelected",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Description for Get available application frameworks and their versions"
+        },
+        {
+          "info": {
+            "name": "Get available Function app frameworks and their versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/functionAppStacks",
+            "params": [
+              {
+                "name": "stackOsType",
+                "value": "",
+                "type": "query",
+                "description": "Stack OS Type"
+              }
+            ]
+          },
+          "docs": "Description for Get available Function app frameworks and their versions"
+        },
+        {
+          "info": {
+            "name": "Get available Function app frameworks and their versions for location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/locations/:location/functionAppStacks",
+            "params": [
+              {
+                "name": "stackOsType",
+                "value": "",
+                "type": "query",
+                "description": "Stack OS Type"
+              }
+            ]
+          },
+          "docs": "Description for Get available Function app frameworks and their versions for location"
+        },
+        {
+          "info": {
+            "name": "Get available Web app frameworks and their versions for location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/locations/:location/webAppStacks",
+            "params": [
+              {
+                "name": "stackOsType",
+                "value": "",
+                "type": "query",
+                "description": "Stack OS Type"
+              }
+            ]
+          },
+          "docs": "Description for Get available Web app frameworks and their versions for location"
+        },
+        {
+          "info": {
+            "name": "Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/operations"
+          },
+          "docs": "Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions"
+        },
+        {
+          "info": {
+            "name": "Get available Web app frameworks and their versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/webAppStacks",
+            "params": [
+              {
+                "name": "stackOsType",
+                "value": "",
+                "type": "query",
+                "description": "Stack OS Type"
+              }
+            ]
+          },
+          "docs": "Description for Get available Web app frameworks and their versions"
+        },
+        {
+          "info": {
+            "name": "Get available application frameworks and their versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/availableStacks",
+            "params": [
+              {
+                "name": "osTypeSelected",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Description for Get available application frameworks and their versions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

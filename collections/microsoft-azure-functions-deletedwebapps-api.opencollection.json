@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments DeletedWebApps API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DeletedWebApps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all deleted apps for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/deletedSites"
+          },
+          "docs": "Description for Get all deleted apps for a subscription."
+        },
+        {
+          "info": {
+            "name": "Get all deleted apps for a subscription at location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/deletedSites"
+          },
+          "docs": "Description for Get all deleted apps for a subscription at location"
+        },
+        {
+          "info": {
+            "name": "Get deleted app for a subscription at location.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/deletedSites/:deletedSiteId",
+            "params": [
+              {
+                "name": "deletedSiteId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the deleted app, e.g. 12345"
+              }
+            ]
+          },
+          "docs": "Description for Get deleted app for a subscription at location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

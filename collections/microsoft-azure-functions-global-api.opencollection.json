@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Global API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Global",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get deleted app for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/deletedSites/:deletedSiteId",
+            "params": [
+              {
+                "name": "deletedSiteId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the deleted app, e.g. 12345"
+              }
+            ]
+          },
+          "docs": "Description for Get deleted app for a subscription."
+        },
+        {
+          "info": {
+            "name": "Get all deleted apps for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/deletedSites/:deletedSiteId/snapshots",
+            "params": [
+              {
+                "name": "deletedSiteId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the deleted app, e.g. 12345"
+              }
+            ]
+          },
+          "docs": "Description for Get all deleted apps for a subscription."
+        },
+        {
+          "info": {
+            "name": "Gets an operation in a subscription and given region",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/locations/:location/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "Operation Id"
+              }
+            ]
+          },
+          "docs": "Description for Gets an operation in a subscription and given region"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

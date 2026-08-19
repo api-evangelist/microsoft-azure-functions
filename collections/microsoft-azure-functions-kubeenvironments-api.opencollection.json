@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments KubeEnvironments API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KubeEnvironments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Kubernetes Environments for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/kubeEnvironments"
+          },
+          "docs": "Description for Get all Kubernetes Environments for a subscription."
+        },
+        {
+          "info": {
+            "name": "Get all the Kubernetes Environments in a resource group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/kubeEnvironments"
+          },
+          "docs": "Description for Get all the Kubernetes Environments in a resource group."
+        },
+        {
+          "info": {
+            "name": "Get the properties of a Kubernetes Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/kubeEnvironments/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Kubernetes Environment."
+              }
+            ]
+          },
+          "docs": "Description for Get the properties of a Kubernetes Environment."
+        },
+        {
+          "info": {
+            "name": "Creates or updates a Kubernetes Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/kubeEnvironments/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Kubernetes Environment."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates a Kubernetes Environment."
+        },
+        {
+          "info": {
+            "name": "Creates or updates a Kubernetes Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/kubeEnvironments/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Kubernetes Environment."
+              }
+            ]
+          },
+          "docs": "Description for Creates or updates a Kubernetes Environment."
+        },
+        {
+          "info": {
+            "name": "Delete a Kubernetes Environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/kubeEnvironments/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the Kubernetes Environment."
+              }
+            ]
+          },
+          "docs": "Description for Delete a Kubernetes Environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

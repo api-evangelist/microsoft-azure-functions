@@ -1,0 +1,1303 @@
+{
+  "item": [
+    {
+      "id": "bb7492c7-bae9-435f-8cd9-cb0e93e7a0a8",
+      "name": "KubeEnvironments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "34444dd3-7487-4f3e-bad4-f002a3b81406",
+          "name": "Get all Kubernetes Environments for a subscription.",
+          "request": {
+            "name": "Get all Kubernetes Environments for a subscription.",
+            "description": {
+              "content": "Description for Get all Kubernetes Environments for a subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4c97bc9-1daf-4713-9970-3237c2090259",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"provisioningState\": \"InfrastructureSetupInProgress\",\n        \"deploymentErrors\": \"string\",\n        \"internalLoadBalancerEnabled\": true,\n        \"defaultDomain\": \"string\",\n        \"staticIp\": \"string\",\n        \"environmentType\": \"string\",\n        \"arcConfiguration\": {\n          \"artifactsStorageType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"artifactStorageClassName\": \"string\",\n          \"artifactStorageMountPath\": \"string\",\n          \"artifactStorageNodeName\": \"string\",\n          \"artifactStorageAccessMode\": \"string\",\n          \"frontEndServiceConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"kubeConfig\": \"string\"\n        },\n        \"appLogsConfiguration\": {\n          \"destination\": \"string\",\n          \"logAnalyticsConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"containerAppsConfiguration\": {\n          \"daprAIInstrumentationKey\": \"string\",\n          \"platformReservedCidr\": \"string\",\n          \"platformReservedDnsIP\": \"string\",\n          \"controlPlaneSubnetResourceId\": \"string\",\n          \"appSubnetResourceId\": \"string\",\n          \"dockerBridgeCidr\": \"string\"\n        },\n        \"aksResourceID\": \"string\"\n      },\n      \"extendedLocation\": {\n        \"name\": \"string\",\n        \"type\": \"string\"\n      },\n      \"kind\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"provisioningState\": \"InfrastructureSetupInProgress\",\n        \"deploymentErrors\": \"string\",\n        \"internalLoadBalancerEnabled\": true,\n        \"defaultDomain\": \"string\",\n        \"staticIp\": \"string\",\n        \"environmentType\": \"string\",\n        \"arcConfiguration\": {\n          \"artifactsStorageType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"artifactStorageClassName\": \"string\",\n          \"artifactStorageMountPath\": \"string\",\n          \"artifactStorageNodeName\": \"string\",\n          \"artifactStorageAccessMode\": \"string\",\n          \"frontEndServiceConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"kubeConfig\": \"string\"\n        },\n        \"appLogsConfiguration\": {\n          \"destination\": \"string\",\n          \"logAnalyticsConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"containerAppsConfiguration\": {\n          \"daprAIInstrumentationKey\": \"string\",\n          \"platformReservedCidr\": \"string\",\n          \"platformReservedDnsIP\": \"string\",\n          \"controlPlaneSubnetResourceId\": \"string\",\n          \"appSubnetResourceId\": \"string\",\n          \"dockerBridgeCidr\": \"string\"\n        },\n        \"aksResourceID\": \"string\"\n      },\n      \"extendedLocation\": {\n        \"name\": \"string\",\n        \"type\": \"string\"\n      },\n      \"kind\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://SurTmwvBoxDnGebLgXoDO.bdvFB,Unw0fazH\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28586a6c-cb5d-4b61-b2b8-a718f6dd6ac2",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c973ba94-d10a-44e5-a8af-c37ea8b78d9e",
+          "name": "Get all the Kubernetes Environments in a resource group.",
+          "request": {
+            "name": "Get all the Kubernetes Environments in a resource group.",
+            "description": {
+              "content": "Description for Get all the Kubernetes Environments in a resource group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ae22493-fc7f-4289-846a-7d3f4f513bcc",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"provisioningState\": \"Succeeded\",\n        \"deploymentErrors\": \"string\",\n        \"internalLoadBalancerEnabled\": false,\n        \"defaultDomain\": \"string\",\n        \"staticIp\": \"string\",\n        \"environmentType\": \"string\",\n        \"arcConfiguration\": {\n          \"artifactsStorageType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"artifactStorageClassName\": \"string\",\n          \"artifactStorageMountPath\": \"string\",\n          \"artifactStorageNodeName\": \"string\",\n          \"artifactStorageAccessMode\": \"string\",\n          \"frontEndServiceConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"kubeConfig\": \"string\"\n        },\n        \"appLogsConfiguration\": {\n          \"destination\": \"string\",\n          \"logAnalyticsConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"containerAppsConfiguration\": {\n          \"daprAIInstrumentationKey\": \"string\",\n          \"platformReservedCidr\": \"string\",\n          \"platformReservedDnsIP\": \"string\",\n          \"controlPlaneSubnetResourceId\": \"string\",\n          \"appSubnetResourceId\": \"string\",\n          \"dockerBridgeCidr\": \"string\"\n        },\n        \"aksResourceID\": \"string\"\n      },\n      \"extendedLocation\": {\n        \"name\": \"string\",\n        \"type\": \"string\"\n      },\n      \"kind\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"provisioningState\": \"InfrastructureSetupInProgress\",\n        \"deploymentErrors\": \"string\",\n        \"internalLoadBalancerEnabled\": true,\n        \"defaultDomain\": \"string\",\n        \"staticIp\": \"string\",\n        \"environmentType\": \"string\",\n        \"arcConfiguration\": {\n          \"artifactsStorageType\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"artifactStorageClassName\": \"string\",\n          \"artifactStorageMountPath\": \"string\",\n          \"artifactStorageNodeName\": \"string\",\n          \"artifactStorageAccessMode\": \"string\",\n          \"frontEndServiceConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"kubeConfig\": \"string\"\n        },\n        \"appLogsConfiguration\": {\n          \"destination\": \"string\",\n          \"logAnalyticsConfiguration\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"containerAppsConfiguration\": {\n          \"daprAIInstrumentationKey\": \"string\",\n          \"platformReservedCidr\": \"string\",\n          \"platformReservedDnsIP\": \"string\",\n          \"controlPlaneSubnetResourceId\": \"string\",\n          \"appSubnetResourceId\": \"string\",\n          \"dockerBridgeCidr\": \"string\"\n        },\n        \"aksResourceID\": \"string\"\n      },\n      \"extendedLocation\": {\n        \"name\": \"string\",\n        \"type\": \"string\"\n      },\n      \"kind\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://PjyzXNShrGOFcCxnpCQATLoQzSNr.weshxQehGsrcFS7V9IyBkD44wKR-aHQBE4Em0N\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a957d9b-ab25-49c1-b4aa-f28c380d5777",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5481639-aa66-41a9-b17d-b1ba3daa9f1c",
+          "name": "Get the properties of a Kubernetes Environment.",
+          "request": {
+            "name": "Get the properties of a Kubernetes Environment.",
+            "description": {
+              "content": "Description for Get the properties of a Kubernetes Environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the Kubernetes Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28ef1b90-1d9c-40f5-a6dc-2a56e394302e",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"provisioningState\": \"Waiting\",\n    \"deploymentErrors\": \"string\",\n    \"internalLoadBalancerEnabled\": false,\n    \"defaultDomain\": \"string\",\n    \"staticIp\": \"string\",\n    \"environmentType\": \"string\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"LocalNode\",\n      \"artifactStorageClassName\": \"string\",\n      \"artifactStorageMountPath\": \"string\",\n      \"artifactStorageNodeName\": \"string\",\n      \"artifactStorageAccessMode\": \"string\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"NodePort\"\n      },\n      \"kubeConfig\": \"string\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"string\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"string\",\n        \"sharedKey\": \"string\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"string\",\n      \"platformReservedCidr\": \"string\",\n      \"platformReservedDnsIP\": \"string\",\n      \"controlPlaneSubnetResourceId\": \"string\",\n      \"appSubnetResourceId\": \"string\",\n      \"dockerBridgeCidr\": \"string\"\n    },\n    \"aksResourceID\": \"string\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"string\",\n    \"type\": \"string\"\n  },\n  \"kind\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7146e345-3042-49dd-8566-7ffc3c5dd45a",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eec367d0-7e23-4174-b8f3-6d978a88b132",
+          "name": "Creates or updates a Kubernetes Environment.",
+          "request": {
+            "name": "Creates or updates a Kubernetes Environment.",
+            "description": {
+              "content": "Description for Creates or updates a Kubernetes Environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the Kubernetes Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed66777b-2b65-48c0-8445-671e899deb8a",
+              "name": "Resource 'KubeEnvironment' update operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"deploymentErrors\": \"string\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"defaultDomain\": \"string\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\",\n    \"type\": \"string\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4247375c-92b4-496f-85ad-cfa86dea5304",
+              "name": "Resource 'KubeEnvironment' create operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The Location header contains the URL where the status of the long running operation can be checked.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                  "key": "Retry-After",
+                  "value": "7914"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"deploymentErrors\": \"string\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"defaultDomain\": \"string\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\",\n    \"type\": \"string\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a661cfe-8a09-4417-9aac-1c05e97f8739",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cf76ea0-f86a-48cf-af55-92c72238fbe5",
+          "name": "Creates or updates a Kubernetes Environment.",
+          "request": {
+            "name": "Creates or updates a Kubernetes Environment.",
+            "description": {
+              "content": "Description for Creates or updates a Kubernetes Environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the Kubernetes Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b77dddcb-c5cf-4cf4-92fd-4b42e3e835e0",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"deploymentErrors\": \"string\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"defaultDomain\": \"string\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\",\n    \"type\": \"string\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "027122df-2b1d-491a-9a0f-84ee1cede4fc",
+              "name": "Resource 'KubeEnvironment' create operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"deploymentErrors\": \"string\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"defaultDomain\": \"string\",\n    \"staticIp\": \"<string>\",\n    \"environmentType\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"extendedLocation\": {\n    \"name\": \"<string>\",\n    \"type\": \"string\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4d58564-4f71-4051-a854-28d4ba68a3a7",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"provisioningState\": \"<string>\",\n    \"internalLoadBalancerEnabled\": \"<boolean>\",\n    \"staticIp\": \"<string>\",\n    \"arcConfiguration\": {\n      \"artifactsStorageType\": \"<string>\",\n      \"artifactStorageClassName\": \"<string>\",\n      \"artifactStorageMountPath\": \"<string>\",\n      \"artifactStorageNodeName\": \"<string>\",\n      \"artifactStorageAccessMode\": \"<string>\",\n      \"frontEndServiceConfiguration\": {\n        \"kind\": \"<string>\"\n      },\n      \"kubeConfig\": \"<password>\"\n    },\n    \"appLogsConfiguration\": {\n      \"destination\": \"<string>\",\n      \"logAnalyticsConfiguration\": {\n        \"customerId\": \"<string>\",\n        \"sharedKey\": \"<password>\"\n      }\n    },\n    \"containerAppsConfiguration\": {\n      \"daprAIInstrumentationKey\": \"<string>\",\n      \"platformReservedCidr\": \"<string>\",\n      \"platformReservedDnsIP\": \"<string>\",\n      \"controlPlaneSubnetResourceId\": \"<string>\",\n      \"appSubnetResourceId\": \"<string>\",\n      \"dockerBridgeCidr\": \"<string>\"\n    },\n    \"aksResourceID\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3cd1552-d0c2-49b3-a2af-578a78200d80",
+          "name": "Delete a Kubernetes Environment.",
+          "request": {
+            "name": "Delete a Kubernetes Environment.",
+            "description": {
+              "content": "Description for Delete a Kubernetes Environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "kubeEnvironments",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the Kubernetes Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "668fb6d5-1398-4daa-9dfc-6746fd667df5",
+              "name": "Resource deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5fa67cc-55c6-41bf-823c-1de113ed2528",
+              "name": "Resource deletion accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The Location header contains the URL where the status of the long running operation can be checked.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                  "key": "Retry-After",
+                  "value": "7914"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ea69f69-b261-4594-8c40-10ac6cc944f9",
+              "name": "Resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23149bcf-5401-4b27-9844-9755aa9f73f8",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "kubeEnvironments",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the Kubernetes Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7c36683-386f-42b0-9685-f323c78430d2",
+    "name": "WebApps API Client AppServiceEnvironments KubeEnvironments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

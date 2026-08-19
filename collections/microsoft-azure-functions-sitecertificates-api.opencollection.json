@@ -1,0 +1,286 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments SiteCertificates API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SiteCertificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all certificates in a resource group under a site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/certificates",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              }
+            ]
+          },
+          "docs": "Get all certificates in a resource group under a site."
+        },
+        {
+          "info": {
+            "name": "Get a certificate belonging to a given site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Get a certificate belonging to a given site."
+        },
+        {
+          "info": {
+            "name": "Create or update a certificate under a given site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Create or update a certificate under a given site."
+        },
+        {
+          "info": {
+            "name": "Create or update a certificate under a given site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Create or update a certificate under a given site."
+        },
+        {
+          "info": {
+            "name": "Delete a certificate from the site.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Delete a certificate from the site."
+        },
+        {
+          "info": {
+            "name": "Get all certificates in a resource group for a given site and a deployment slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/certificates",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+              }
+            ]
+          },
+          "docs": "Get all certificates in a resource group for a given site and a deployment slot."
+        },
+        {
+          "info": {
+            "name": "Get a certificate for a given site and deployment slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Get a certificate for a given site and deployment slot."
+        },
+        {
+          "info": {
+            "name": "Create or update a certificate in a given site and deployment slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Create or update a certificate in a given site and deployment slot."
+        },
+        {
+          "info": {
+            "name": "Create or update a certificate for a site and deployment slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Create or update a certificate for a site and deployment slot."
+        },
+        {
+          "info": {
+            "name": "Delete a certificate for a given site and deployment slot.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/certificates/:certificateName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the site."
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+              },
+              {
+                "name": "certificateName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the certificate."
+              }
+            ]
+          },
+          "docs": "Delete a certificate for a given site and deployment slot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

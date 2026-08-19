@@ -1,0 +1,862 @@
+{
+  "item": [
+    {
+      "id": "2e82928a-475a-4862-a809-12807b95c77e",
+      "name": "WorkflowTriggerHistories",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00b44961-13e4-4ddc-babd-c12486fe686b",
+          "name": "Workflow Trigger Histories List",
+          "request": {
+            "name": "Workflow Trigger Histories List",
+            "description": {
+              "content": "Gets a list of workflow trigger histories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "triggers",
+                ":triggerName",
+                "histories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>",
+                  "description": "The number of items to be included in the result."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerName",
+                  "description": "(Required) The workflow trigger name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6da8cf0-0020-4afe-b3e8-77ba43f8a9e5",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"startTime\": \"1985-08-27T03:08:52.316Z\",\n        \"endTime\": \"1960-01-21T16:27:42.311Z\",\n        \"scheduledTime\": \"1957-02-24T16:28:52.859Z\",\n        \"status\": \"Skipped\",\n        \"code\": \"string\",\n        \"error\": {},\n        \"trackingId\": \"string\",\n        \"correlation\": {\n          \"clientTrackingId\": \"string\"\n        },\n        \"inputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 6161,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"outputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 9430,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"fired\": false,\n        \"run\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    },\n    {\n      \"properties\": {\n        \"startTime\": \"1995-01-02T21:23:47.350Z\",\n        \"endTime\": \"1947-08-11T14:52:27.324Z\",\n        \"scheduledTime\": \"2024-01-13T11:30:46.504Z\",\n        \"status\": \"Suspended\",\n        \"code\": \"string\",\n        \"error\": {},\n        \"trackingId\": \"string\",\n        \"correlation\": {\n          \"clientTrackingId\": \"string\"\n        },\n        \"inputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 9502,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"outputsLink\": {\n          \"uri\": \"string\",\n          \"contentVersion\": \"string\",\n          \"contentSize\": 6697,\n          \"contentHash\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"metadata\": {}\n        },\n        \"fired\": false,\n        \"run\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        }\n      }\n    }\n  ],\n  \"nextLink\": \"https://bMsHARLeciTmp.kdyh+LtG7GesgJRlugtDwZSaMb5mh+NoRt8+KF1SvTuB5s\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92209114-46c8-4bcc-b765-1b0f58ffe61d",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95b2a8a4-494c-4d99-a087-e363a8ffd1ad",
+          "name": "Workflow Trigger Histories Get",
+          "request": {
+            "name": "Workflow Trigger Histories Get",
+            "description": {
+              "content": "Gets a workflow trigger history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "triggers",
+                ":triggerName",
+                "histories",
+                ":historyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerName",
+                  "description": "(Required) The workflow trigger name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "historyName",
+                  "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f262f4a-65e0-48ca-a422-eb0d86f144fc",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories",
+                    ":historyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "historyName",
+                      "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"startTime\": \"2003-01-24T23:22:00.255Z\",\n    \"endTime\": \"2023-12-14T06:15:27.764Z\",\n    \"scheduledTime\": \"1953-11-02T10:31:48.362Z\",\n    \"status\": \"Suspended\",\n    \"code\": \"string\",\n    \"error\": {},\n    \"trackingId\": \"string\",\n    \"correlation\": {\n      \"clientTrackingId\": \"string\"\n    },\n    \"inputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 4537,\n      \"contentHash\": {\n        \"algorithm\": \"string\",\n        \"value\": \"string\"\n      },\n      \"metadata\": {}\n    },\n    \"outputsLink\": {\n      \"uri\": \"string\",\n      \"contentVersion\": \"string\",\n      \"contentSize\": 5798,\n      \"contentHash\": {\n        \"algorithm\": \"string\",\n        \"value\": \"string\"\n      },\n      \"metadata\": {}\n    },\n    \"fired\": true,\n    \"run\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0aef9615-268c-4305-ad11-50e4c6423193",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories",
+                    ":historyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "historyName",
+                      "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa09cef3-5f3f-4735-a7ae-8a165885036d",
+          "name": "Workflow Trigger Histories Resubmit",
+          "request": {
+            "name": "Workflow Trigger Histories Resubmit",
+            "description": {
+              "content": "Resubmits a workflow run based on the trigger history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "hostruntime",
+                "runtime",
+                "webhooks",
+                "workflow",
+                "api",
+                "management",
+                "workflows",
+                ":workflowName",
+                "triggers",
+                ":triggerName",
+                "histories",
+                ":historyName",
+                "resubmit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Site name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowName",
+                  "description": "(Required) The workflow name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerName",
+                  "description": "(Required) The workflow trigger name."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "historyName",
+                  "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ad50e689-fad8-401c-b76c-b1df24c63274",
+              "name": "Resource operation accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories",
+                    ":historyName",
+                    "resubmit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "historyName",
+                      "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The Location header contains the URL where the status of the long running operation can be checked.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The Retry-After header can indicate how long the client should wait before polling the operation status.",
+                  "key": "Retry-After",
+                  "value": "829"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ca70a94-aa6c-4ece-ae68-19b81f823918",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "hostruntime",
+                    "runtime",
+                    "webhooks",
+                    "workflow",
+                    "api",
+                    "management",
+                    "workflows",
+                    ":workflowName",
+                    "triggers",
+                    ":triggerName",
+                    "histories",
+                    ":historyName",
+                    "resubmit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Site name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowName",
+                      "description": "(Required) The workflow name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerName",
+                      "description": "(Required) The workflow trigger name."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "historyName",
+                      "description": "(Required) The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "052116b0-7c90-4ded-8558-c4c135c19ec8",
+    "name": "WebApps API Client AppServiceEnvironments WorkflowTriggerHistories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

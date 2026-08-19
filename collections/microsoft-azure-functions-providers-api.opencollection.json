@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Providers API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Providers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets publishing user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/publishingUsers/web"
+          },
+          "docs": "Description for Gets publishing user"
+        },
+        {
+          "info": {
+            "name": "Updates publishing user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/publishingUsers/web"
+          },
+          "docs": "Description for Updates publishing user"
+        },
+        {
+          "info": {
+            "name": "Gets the source controls available for Azure websites.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/sourcecontrols"
+          },
+          "docs": "Description for Gets the source controls available for Azure websites."
+        },
+        {
+          "info": {
+            "name": "Gets source control token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/sourcecontrols/:sourceControlType",
+            "params": [
+              {
+                "name": "sourceControlType",
+                "value": "",
+                "type": "path",
+                "description": "Type of source control"
+              }
+            ]
+          },
+          "docs": "Description for Gets source control token"
+        },
+        {
+          "info": {
+            "name": "Updates source control token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/providers/Microsoft.Web/sourcecontrols/:sourceControlType",
+            "params": [
+              {
+                "name": "sourceControlType",
+                "value": "",
+                "type": "path",
+                "description": "Type of source control"
+              }
+            ]
+          },
+          "docs": "Description for Updates source control token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

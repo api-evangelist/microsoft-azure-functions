@@ -1,0 +1,2859 @@
+{
+  "item": [
+    {
+      "id": "a00572fd-7aac-42f9-a532-cd30b6093ffc",
+      "name": "Recommendations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9496af5c-734e-42f9-9e35-c02617b5de2e",
+          "name": "List all recommendations for a subscription.",
+          "request": {
+            "name": "List all recommendations for a subscription.",
+            "description": {
+              "content": "Description for List all recommendations for a subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "featured",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43100497-6fe6-4e3e-8e76-02529ed0971e",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"creationTime\": \"1951-12-10T15:29:13.893Z\",\n        \"recommendationId\": \"2e64397e-4a1d-8ba9-5959-a9f91ec4d138\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"WebSite\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"Email\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 3191,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"2005-01-11T09:12:08.159Z\",\n        \"endTime\": \"1971-01-23T03:58:54.053Z\",\n        \"nextNotificationTime\": \"1960-04-20T05:58:51.873Z\",\n        \"notificationExpirationTime\": \"1948-04-08T06:29:56.535Z\",\n        \"notifiedTime\": \"2025-03-18T18:27:50.172Z\",\n        \"score\": 7881.107611618213,\n        \"isDynamic\": true,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"creationTime\": \"1982-07-06T22:45:48.820Z\",\n        \"recommendationId\": \"01e4caa6-8d2e-aa25-6dc0-e754575f10b7\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"Subscription\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"Warning\",\n        \"channels\": \"Webhook\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 887,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"1953-01-26T06:11:46.260Z\",\n        \"endTime\": \"1990-04-17T22:15:44.767Z\",\n        \"nextNotificationTime\": \"1957-01-12T22:31:50.178Z\",\n        \"notificationExpirationTime\": \"2013-08-28T08:10:18.443Z\",\n        \"notifiedTime\": \"2016-01-30T16:43:49.506Z\",\n        \"score\": 9426.657155171935,\n        \"isDynamic\": true,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://LSro.izrycj8DtfFKlsm\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "906ebba9-3a85-4e84-9983-c9d23637db08",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f861621a-6854-40bb-96e9-a4f2d61831c9",
+          "name": "Disables the specified rule so it will not apply to a subscription in the future.",
+          "request": {
+            "name": "Disables the specified rule so it will not apply to a subscription in the future.",
+            "description": {
+              "content": "Description for Disables the specified rule so it will not apply to a subscription in the future.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "recommendations",
+                ":name",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Rule name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "229d48bc-4b41-4800-9b1f-a36dd534821b",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Rule name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d2cf8c5-2f9b-42ab-8b06-7eb9ededa451",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Rule name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df0bb167-bad2-48c9-a5ec-9127378e4cfb",
+          "name": "Reset all recommendation opt-out settings for a subscription.",
+          "request": {
+            "name": "Reset all recommendation opt-out settings for a subscription.",
+            "description": {
+              "content": "Description for Reset all recommendation opt-out settings for a subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "recommendations",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31c48e61-4d67-4130-bcd0-a7104ee9c229",
+              "name": "There is no content to send for this request, but the headers may be useful. ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "859e9e36-f4ec-407f-a145-c75b550037da",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a110d7e5-f49c-4307-9452-8b2e319ce024",
+          "name": "Get past recommendations for an app, optionally specified by the time range.",
+          "request": {
+            "name": "Get past recommendations for an app, optionally specified by the time range.",
+            "description": {
+              "content": "Description for Get past recommendations for an app, optionally specified by the time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendationHistory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expiredOnly",
+                  "value": "<boolean>",
+                  "description": "Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the App Service Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c884cde-d88a-4b40-8a96-9423079507f1",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendationHistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiredOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"creationTime\": \"1949-05-15T20:14:07.057Z\",\n        \"recommendationId\": \"6dbeeba0-85a5-5840-110e-93a7d7a38478\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"Subscription\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"All\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 7734,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"1958-11-18T23:36:29.506Z\",\n        \"endTime\": \"1979-01-17T11:32:45.055Z\",\n        \"nextNotificationTime\": \"2016-12-25T05:59:11.701Z\",\n        \"notificationExpirationTime\": \"1971-09-17T00:40:06.544Z\",\n        \"notifiedTime\": \"1996-04-12T11:12:27.769Z\",\n        \"score\": 7100.6404824069805,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"creationTime\": \"1975-10-07T13:48:06.476Z\",\n        \"recommendationId\": \"191e2a9e-d7ac-47cc-2b57-38831587fd2b\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"ServerFarm\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"Api\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 6991,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"2010-07-10T12:09:06.381Z\",\n        \"endTime\": \"1954-06-12T23:45:44.633Z\",\n        \"nextNotificationTime\": \"1979-06-24T13:09:45.016Z\",\n        \"notificationExpirationTime\": \"1978-10-17T16:00:48.953Z\",\n        \"notifiedTime\": \"2002-04-01T02:54:55.763Z\",\n        \"score\": 123.09166777734303,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://yzExmOCvclVaIXhqCqdpACqTn.pxkwQocmdxsvYLMmoeAMx+FJLFQbPMPpnbPfh\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d5b47b6-679f-4261-9779-2c9b117e3ce4",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendationHistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiredOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f75e9bef-f996-40d0-9bac-037ce63c6fc1",
+          "name": "Get all recommendations for a hosting environment.",
+          "request": {
+            "name": "Get all recommendations for a hosting environment.",
+            "description": {
+              "content": "Description for Get all recommendations for a hosting environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "featured",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the App Service Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89a28c5c-c3ac-4cff-8840-0a4523b9d093",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"creationTime\": \"1949-05-15T20:14:07.057Z\",\n        \"recommendationId\": \"6dbeeba0-85a5-5840-110e-93a7d7a38478\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"Subscription\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"All\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 7734,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"1958-11-18T23:36:29.506Z\",\n        \"endTime\": \"1979-01-17T11:32:45.055Z\",\n        \"nextNotificationTime\": \"2016-12-25T05:59:11.701Z\",\n        \"notificationExpirationTime\": \"1971-09-17T00:40:06.544Z\",\n        \"notifiedTime\": \"1996-04-12T11:12:27.769Z\",\n        \"score\": 7100.6404824069805,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"creationTime\": \"1975-10-07T13:48:06.476Z\",\n        \"recommendationId\": \"191e2a9e-d7ac-47cc-2b57-38831587fd2b\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"ServerFarm\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"Api\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 6991,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"2010-07-10T12:09:06.381Z\",\n        \"endTime\": \"1954-06-12T23:45:44.633Z\",\n        \"nextNotificationTime\": \"1979-06-24T13:09:45.016Z\",\n        \"notificationExpirationTime\": \"1978-10-17T16:00:48.953Z\",\n        \"notifiedTime\": \"2002-04-01T02:54:55.763Z\",\n        \"score\": 123.09166777734303,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://yzExmOCvclVaIXhqCqdpACqTn.pxkwQocmdxsvYLMmoeAMx+FJLFQbPMPpnbPfh\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44a55358-f2e8-4b5b-979e-d87289e4f8bf",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d42ae28f-b7ed-4605-a9c9-290ba645dc02",
+          "name": "Get a recommendation rule for an app.",
+          "request": {
+            "name": "Get a recommendation rule for an app.",
+            "description": {
+              "content": "Description for Get a recommendation rule for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendations",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updateSeen",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> to update the last-seen timestamp of the recommendation object."
+                },
+                {
+                  "disabled": false,
+                  "key": "recommendationId",
+                  "value": "<string>",
+                  "description": "The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the hosting environment."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the recommendation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d21ef9b2-6b14-430c-830c-b658e91fc44a",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateSeen",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "recommendationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the hosting environment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"recommendationName\": \"string\",\n    \"displayName\": \"string\",\n    \"message\": \"string\",\n    \"recommendationId\": \"e311c13b-2c3b-8815-e120-27ec8b078aef\",\n    \"description\": \"string\",\n    \"actionName\": \"string\",\n    \"level\": \"Information\",\n    \"channels\": \"Webhook\",\n    \"categoryTags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isDynamic\": true,\n    \"extensionName\": \"string\",\n    \"bladeName\": \"string\",\n    \"forwardLink\": \"string\"\n  },\n  \"kind\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7e8abe9-5ed3-4167-a01b-2135d6209ebd",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateSeen",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "recommendationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the hosting environment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13142da7-89e8-436a-a1e4-86aa49a799d2",
+          "name": "Disables the specific rule for a web site permanently.",
+          "request": {
+            "name": "Disables the specific rule for a web site permanently.",
+            "description": {
+              "content": "Description for Disables the specific rule for a web site permanently.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendations",
+                ":name",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "environmentName",
+                  "value": "<string>",
+                  "description": "(Required) Site name"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the hosting environment."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the recommendation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1f01e70-a50e-4a1d-bf22-05f424e89ad5",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the hosting environment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "41b0b8d3-befa-4d94-9291-b7e509500b5f",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the hosting environment."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bac40eb3-c999-46e0-8ed9-c8edc7f54e23",
+          "name": "Disable all recommendations for an app.",
+          "request": {
+            "name": "Disable all recommendations for an app.",
+            "description": {
+              "content": "Description for Disable all recommendations for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendations",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "environmentName",
+                  "value": "<string>",
+                  "description": "(Required) Name of the app."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the App Service Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "825b4107-53bb-40bd-b996-43982f2f37a3",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "25fe61c1-8f8e-4bf3-8d0b-2a2857330652",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66f0a6f5-1536-48be-94f2-9774e80d0293",
+          "name": "Reset all recommendation opt-out settings for an app.",
+          "request": {
+            "name": "Reset all recommendation opt-out settings for an app.",
+            "description": {
+              "content": "Description for Reset all recommendation opt-out settings for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "hostingEnvironments",
+                ":hostingEnvironmentName",
+                "recommendations",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "environmentName",
+                  "value": "<string>",
+                  "description": "(Required) Name of the app."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hostingEnvironmentName",
+                  "description": "(Required) Name of the App Service Environment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f190b85a-f13b-4cf9-86cc-499861565744",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f1e908a0-5e5c-466a-821c-a32eb9b60ccc",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "hostingEnvironments",
+                    ":hostingEnvironmentName",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "environmentName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hostingEnvironmentName",
+                      "description": "(Required) Name of the App Service Environment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce292dfc-ad3a-4e23-b340-7fcb0ee9a465",
+          "name": "Get past recommendations for an app, optionally specified by the time range.",
+          "request": {
+            "name": "Get past recommendations for an app, optionally specified by the time range.",
+            "description": {
+              "content": "Description for Get past recommendations for an app, optionally specified by the time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendationHistory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expiredOnly",
+                  "value": "<boolean>",
+                  "description": "Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3daec43-dd80-4243-b55c-01ea2441c25d",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendationHistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiredOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"creationTime\": \"1949-05-15T20:14:07.057Z\",\n        \"recommendationId\": \"6dbeeba0-85a5-5840-110e-93a7d7a38478\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"Subscription\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"All\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 7734,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"1958-11-18T23:36:29.506Z\",\n        \"endTime\": \"1979-01-17T11:32:45.055Z\",\n        \"nextNotificationTime\": \"2016-12-25T05:59:11.701Z\",\n        \"notificationExpirationTime\": \"1971-09-17T00:40:06.544Z\",\n        \"notifiedTime\": \"1996-04-12T11:12:27.769Z\",\n        \"score\": 7100.6404824069805,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"creationTime\": \"1975-10-07T13:48:06.476Z\",\n        \"recommendationId\": \"191e2a9e-d7ac-47cc-2b57-38831587fd2b\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"ServerFarm\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"Api\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 6991,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"2010-07-10T12:09:06.381Z\",\n        \"endTime\": \"1954-06-12T23:45:44.633Z\",\n        \"nextNotificationTime\": \"1979-06-24T13:09:45.016Z\",\n        \"notificationExpirationTime\": \"1978-10-17T16:00:48.953Z\",\n        \"notifiedTime\": \"2002-04-01T02:54:55.763Z\",\n        \"score\": 123.09166777734303,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://yzExmOCvclVaIXhqCqdpACqTn.pxkwQocmdxsvYLMmoeAMx+FJLFQbPMPpnbPfh\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c090d53-9ded-4599-ba66-5ba46a782786",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendationHistory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiredOnly",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bac00247-57a5-4348-af87-d3a7535de283",
+          "name": "Get all recommendations for an app.",
+          "request": {
+            "name": "Get all recommendations for an app.",
+            "description": {
+              "content": "Description for Get all recommendations for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "featured",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "865070d0-e45a-45fb-9ded-bb0dffbb88d6",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"creationTime\": \"1949-05-15T20:14:07.057Z\",\n        \"recommendationId\": \"6dbeeba0-85a5-5840-110e-93a7d7a38478\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"Subscription\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"All\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 7734,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"1958-11-18T23:36:29.506Z\",\n        \"endTime\": \"1979-01-17T11:32:45.055Z\",\n        \"nextNotificationTime\": \"2016-12-25T05:59:11.701Z\",\n        \"notificationExpirationTime\": \"1971-09-17T00:40:06.544Z\",\n        \"notifiedTime\": \"1996-04-12T11:12:27.769Z\",\n        \"score\": 7100.6404824069805,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"creationTime\": \"1975-10-07T13:48:06.476Z\",\n        \"recommendationId\": \"191e2a9e-d7ac-47cc-2b57-38831587fd2b\",\n        \"resourceId\": \"string\",\n        \"resourceScope\": \"ServerFarm\",\n        \"ruleName\": \"string\",\n        \"displayName\": \"string\",\n        \"message\": \"string\",\n        \"level\": \"NonUrgentSuggestion\",\n        \"channels\": \"Api\",\n        \"categoryTags\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actionName\": \"string\",\n        \"enabled\": 6991,\n        \"states\": [\n          \"string\",\n          \"string\"\n        ],\n        \"startTime\": \"2010-07-10T12:09:06.381Z\",\n        \"endTime\": \"1954-06-12T23:45:44.633Z\",\n        \"nextNotificationTime\": \"1979-06-24T13:09:45.016Z\",\n        \"notificationExpirationTime\": \"1978-10-17T16:00:48.953Z\",\n        \"notifiedTime\": \"2002-04-01T02:54:55.763Z\",\n        \"score\": 123.09166777734303,\n        \"isDynamic\": false,\n        \"extensionName\": \"string\",\n        \"bladeName\": \"string\",\n        \"forwardLink\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://yzExmOCvclVaIXhqCqdpACqTn.pxkwQocmdxsvYLMmoeAMx+FJLFQbPMPpnbPfh\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eb72838-453a-43fc-ac2d-2a2dd5639c9b",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10c1a04d-a562-400c-b6ae-b38a8adb072f",
+          "name": "Get a recommendation rule for an app.",
+          "request": {
+            "name": "Get a recommendation rule for an app.",
+            "description": {
+              "content": "Description for Get a recommendation rule for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendations",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "updateSeen",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> to update the last-seen timestamp of the recommendation object."
+                },
+                {
+                  "disabled": false,
+                  "key": "recommendationId",
+                  "value": "<string>",
+                  "description": "The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the recommendation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2750ce07-91eb-4244-b50a-45300584f53b",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateSeen",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "recommendationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"recommendationName\": \"string\",\n    \"displayName\": \"string\",\n    \"message\": \"string\",\n    \"recommendationId\": \"242db7dd-1975-932e-da33-d84a1128a9e1\",\n    \"description\": \"string\",\n    \"actionName\": \"string\",\n    \"level\": \"Warning\",\n    \"channels\": \"Notification\",\n    \"categoryTags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"isDynamic\": true,\n    \"extensionName\": \"string\",\n    \"bladeName\": \"string\",\n    \"forwardLink\": \"string\"\n  },\n  \"kind\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1900c6bd-d882-4b01-8aed-85fa2970e6f2",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "updateSeen",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "recommendationId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2a17302-3629-49a0-a865-c4a57b1c7805",
+          "name": "Disables the specific rule for a web site permanently.",
+          "request": {
+            "name": "Disables the specific rule for a web site permanently.",
+            "description": {
+              "content": "Description for Disables the specific rule for a web site permanently.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendations",
+                ":name",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the recommendation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa75db9c-0f2d-455c-b444-deae16754f9d",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e80ca13f-6387-4bda-bf8a-46be4fdf92ca",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    ":name",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the recommendation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b46c0a1-1950-427d-bd8b-7d52af25c45c",
+          "name": "Disable all recommendations for an app.",
+          "request": {
+            "name": "Disable all recommendations for an app.",
+            "description": {
+              "content": "Description for Disable all recommendations for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendations",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33a929b3-8947-4f95-acd8-c072c38ec5e4",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "995f3825-a504-41f6-a291-e01075e1b1f7",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3676d96-3a03-42ca-8d7e-7474eda17dae",
+          "name": "Reset all recommendation opt-out settings for an app.",
+          "request": {
+            "name": "Reset all recommendation opt-out settings for an app.",
+            "description": {
+              "content": "Description for Reset all recommendation opt-out settings for an app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":siteName",
+                "recommendations",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "siteName",
+                  "description": "(Required) Name of the app."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6814d505-9862-4cf5-9cda-820b6fb149dd",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52baa386-a656-4a22-8347-3970f178b8c4",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":siteName",
+                    "recommendations",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "siteName",
+                      "description": "(Required) Name of the app."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "06f8d6b9-4623-47f5-aacd-0b251c703732",
+    "name": "WebApps API Client AppServiceEnvironments Recommendations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

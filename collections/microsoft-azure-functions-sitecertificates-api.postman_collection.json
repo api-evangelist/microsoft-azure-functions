@@ -1,0 +1,2388 @@
+{
+  "item": [
+    {
+      "id": "52a543cf-aace-445a-bc15-673bf4fdf382",
+      "name": "SiteCertificates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "91cf0418-35ae-4e87-ae4b-00fb88deef7b",
+          "name": "Get all certificates in a resource group under a site.",
+          "request": {
+            "name": "Get all certificates in a resource group under a site.",
+            "description": {
+              "content": "Get all certificates in a resource group under a site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "certificates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4e52770-7e94-4da1-88bb-16ebfecc6ecc",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"password\": \"string\",\n        \"friendlyName\": \"string\",\n        \"subjectName\": \"string\",\n        \"hostNames\": [\n          \"string\",\n          \"string\"\n        ],\n        \"pfxBlob\": \"string\",\n        \"siteName\": \"string\",\n        \"selfLink\": \"string\",\n        \"issuer\": \"string\",\n        \"issueDate\": \"1967-03-30T11:08:35.798Z\",\n        \"expirationDate\": \"1975-03-17T06:27:06.131Z\",\n        \"thumbprint\": \"string\",\n        \"valid\": true,\n        \"cerBlob\": \"string\",\n        \"publicKeyHash\": \"string\",\n        \"hostingEnvironmentProfile\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        \"keyVaultId\": \"string\",\n        \"keyVaultSecretName\": \"string\",\n        \"keyVaultSecretStatus\": \"CertificateOrderFailed\",\n        \"serverFarmId\": \"string\",\n        \"canonicalName\": \"string\",\n        \"domainValidationMethod\": \"string\"\n      },\n      \"kind\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"password\": \"string\",\n        \"friendlyName\": \"string\",\n        \"subjectName\": \"string\",\n        \"hostNames\": [\n          \"string\",\n          \"string\"\n        ],\n        \"pfxBlob\": \"string\",\n        \"siteName\": \"string\",\n        \"selfLink\": \"string\",\n        \"issuer\": \"string\",\n        \"issueDate\": \"1958-07-11T10:08:27.197Z\",\n        \"expirationDate\": \"1984-05-23T11:42:58.632Z\",\n        \"thumbprint\": \"string\",\n        \"valid\": true,\n        \"cerBlob\": \"string\",\n        \"publicKeyHash\": \"string\",\n        \"hostingEnvironmentProfile\": {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        \"keyVaultId\": \"string\",\n        \"keyVaultSecretName\": \"string\",\n        \"keyVaultSecretStatus\": \"Unknown\",\n        \"serverFarmId\": \"string\",\n        \"canonicalName\": \"string\",\n        \"domainValidationMethod\": \"string\"\n      },\n      \"kind\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://cUnIjcUAWq.kxzdHGj4JJtLZ.x\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8b232b4-7092-4271-97be-07acdc38f37e",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3f393af-6762-4caa-974a-221c4c6e44b4",
+          "name": "Get a certificate belonging to a given site.",
+          "request": {
+            "name": "Get a certificate belonging to a given site.",
+            "description": {
+              "content": "Get a certificate belonging to a given site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8f18414-0e23-4b68-8ad0-4fddfdb4f21a",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"string\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"string\",\n      \"string\"\n    ],\n    \"pfxBlob\": \"string\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1961-08-06T01:07:59.111Z\",\n    \"expirationDate\": \"1995-01-31T06:29:21.273Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"string\",\n    \"keyVaultSecretName\": \"string\",\n    \"keyVaultSecretStatus\": \"AzureServiceUnauthorizedToAccessKeyVault\",\n    \"serverFarmId\": \"string\",\n    \"canonicalName\": \"string\",\n    \"domainValidationMethod\": \"string\"\n  },\n  \"kind\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d698f041-751b-4cd1-a0bf-13d5df349592",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3e369a2-633e-4219-9a32-091ff0f49651",
+          "name": "Create or update a certificate under a given site.",
+          "request": {
+            "name": "Create or update a certificate under a given site.",
+            "description": {
+              "content": "Create or update a certificate under a given site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2eafe5d-2fc5-4c17-b967-ae150ba16132",
+              "name": "Resource 'Certificate' update operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0cd48bd-af09-4428-9c54-a6ed46de669b",
+              "name": "Resource 'Certificate' create operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc9e6b0a-c375-42b4-9db2-46c925664ca3",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9af55d0-6b99-4367-be6a-313ebe72cbfa",
+          "name": "Create or update a certificate under a given site.",
+          "request": {
+            "name": "Create or update a certificate under a given site.",
+            "description": {
+              "content": "Create or update a certificate under a given site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\"\n    },\n    \"keyVaultId\": \"<string>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<string>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b202477-90d6-4368-b5cd-905780154f13",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7b9a1dc-027e-4128-9ed6-6b672eac37d3",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a3e6d47-2566-412e-84c5-09a93935396d",
+          "name": "Delete a certificate from the site.",
+          "request": {
+            "name": "Delete a certificate from the site.",
+            "description": {
+              "content": "Delete a certificate from the site.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cf50f42-759b-49d3-b50c-61d6c4201e91",
+              "name": "Resource deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23e040ce-db0c-4ed8-928d-3107ead03eda",
+              "name": "Resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1894f666-49bd-4fe5-af5d-b7dda2586904",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66ec56e7-e146-4196-b812-14bfdfbeb85a",
+          "name": "Get all certificates in a resource group for a given site and a deployment slot.",
+          "request": {
+            "name": "Get all certificates in a resource group for a given site and a deployment slot.",
+            "description": {
+              "content": "Get all certificates in a resource group for a given site and a deployment slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "slots",
+                ":slot",
+                "certificates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slot",
+                  "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "551d865d-4c72-468c-a9b8-f17edfec810a",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"password\": \"<string>\",\n        \"friendlyName\": \"string\",\n        \"subjectName\": \"string\",\n        \"hostNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"pfxBlob\": \"<byte>\",\n        \"siteName\": \"string\",\n        \"selfLink\": \"string\",\n        \"issuer\": \"string\",\n        \"issueDate\": \"2017-01-20T14:52:17.326Z\",\n        \"expirationDate\": \"2017-04-18T11:27:24.013Z\",\n        \"thumbprint\": \"string\",\n        \"valid\": true,\n        \"cerBlob\": \"string\",\n        \"publicKeyHash\": \"string\",\n        \"hostingEnvironmentProfile\": {\n          \"id\": \"<string>\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        \"keyVaultId\": \"<arm-id>\",\n        \"keyVaultSecretName\": \"<string>\",\n        \"keyVaultSecretStatus\": \"<string>\",\n        \"serverFarmId\": \"<arm-id>\",\n        \"canonicalName\": \"<string>\",\n        \"domainValidationMethod\": \"<string>\"\n      },\n      \"kind\": \"<string>\"\n    },\n    {\n      \"properties\": {\n        \"password\": \"<string>\",\n        \"friendlyName\": \"string\",\n        \"subjectName\": \"string\",\n        \"hostNames\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"pfxBlob\": \"<byte>\",\n        \"siteName\": \"string\",\n        \"selfLink\": \"string\",\n        \"issuer\": \"string\",\n        \"issueDate\": \"1975-11-22T02:38:36.296Z\",\n        \"expirationDate\": \"1993-03-02T02:22:39.319Z\",\n        \"thumbprint\": \"string\",\n        \"valid\": false,\n        \"cerBlob\": \"string\",\n        \"publicKeyHash\": \"string\",\n        \"hostingEnvironmentProfile\": {\n          \"id\": \"<string>\",\n          \"name\": \"string\",\n          \"type\": \"string\"\n        },\n        \"keyVaultId\": \"<arm-id>\",\n        \"keyVaultSecretName\": \"<string>\",\n        \"keyVaultSecretStatus\": \"<string>\",\n        \"serverFarmId\": \"<arm-id>\",\n        \"canonicalName\": \"<string>\",\n        \"domainValidationMethod\": \"<string>\"\n      },\n      \"kind\": \"<string>\"\n    }\n  ],\n  \"nextLink\": \"http://eYQuHwpxIPgJCxZnv.nyzGNFrq9y-Bo3zAWZ+A\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15c8a895-af11-4e15-a638-38ae1fc1e267",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0860537a-74bd-4b55-8135-d5d7f84bab04",
+          "name": "Get a certificate for a given site and deployment slot.",
+          "request": {
+            "name": "Get a certificate for a given site and deployment slot.",
+            "description": {
+              "content": "Get a certificate for a given site and deployment slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "slots",
+                ":slot",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slot",
+                  "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "636abe6c-8582-4cd0-a1d2-863a60ce2a2b",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43e94799-bfc7-4c83-b621-078eeb2bc09d",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3caf556c-73a1-4b49-a9d3-7bf4dfac77c4",
+          "name": "Create or update a certificate in a given site and deployment slot.",
+          "request": {
+            "name": "Create or update a certificate in a given site and deployment slot.",
+            "description": {
+              "content": "Create or update a certificate in a given site and deployment slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "slots",
+                ":slot",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slot",
+                  "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5700286c-6694-42af-8de6-2dbe8b62a608",
+              "name": "Resource 'Certificate' update operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "944d5010-b868-42d3-9973-b0cbf2245e78",
+              "name": "Resource 'Certificate' create operation succeeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9290e132-c81a-45bb-b1a1-4f121010a50c",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6adf6568-1078-4551-b5ed-c654ce0b2ef2",
+          "name": "Create or update a certificate for a site and deployment slot.",
+          "request": {
+            "name": "Create or update a certificate for a site and deployment slot.",
+            "description": {
+              "content": "Create or update a certificate for a site and deployment slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "slots",
+                ":slot",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slot",
+                  "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\"\n    },\n    \"keyVaultId\": \"<string>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<string>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cd4bce01-1c9c-482c-bd72-73937e64543f",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"password\": \"<string>\",\n    \"friendlyName\": \"string\",\n    \"subjectName\": \"string\",\n    \"hostNames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"pfxBlob\": \"<byte>\",\n    \"siteName\": \"string\",\n    \"selfLink\": \"string\",\n    \"issuer\": \"string\",\n    \"issueDate\": \"1968-10-19T12:27:43.547Z\",\n    \"expirationDate\": \"1974-08-29T13:14:54.882Z\",\n    \"thumbprint\": \"string\",\n    \"valid\": false,\n    \"cerBlob\": \"string\",\n    \"publicKeyHash\": \"string\",\n    \"hostingEnvironmentProfile\": {\n      \"id\": \"<string>\",\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    \"keyVaultId\": \"<arm-id>\",\n    \"keyVaultSecretName\": \"<string>\",\n    \"keyVaultSecretStatus\": \"<string>\",\n    \"serverFarmId\": \"<arm-id>\",\n    \"canonicalName\": \"<string>\",\n    \"domainValidationMethod\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4db228c-e1e8-48ac-a323-8cc55514d0bb",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abc0f143-672b-424f-8514-7cd28d858884",
+          "name": "Delete a certificate for a given site and deployment slot.",
+          "request": {
+            "name": "Delete a certificate for a given site and deployment slot.",
+            "description": {
+              "content": "Delete a certificate for a given site and deployment slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "sites",
+                ":name",
+                "slots",
+                ":slot",
+                "certificates",
+                ":certificateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Name of the site."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "slot",
+                  "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateName",
+                  "description": "(Required) Name of the certificate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b005cb2b-d1f1-48bd-b434-b3e27315a387",
+              "name": "Resource deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "571f01d0-a34a-4471-947c-890f51ca3fc5",
+              "name": "Resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e6136d7-4d85-4ab6-a378-e548345b94f5",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "sites",
+                    ":name",
+                    "slots",
+                    ":slot",
+                    "certificates",
+                    ":certificateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Name of the site."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "slot",
+                      "description": "(Required) Name of the deployment slot. If a slot is not specified, the API will create a binding for the production slot."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateName",
+                      "description": "(Required) Name of the certificate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3dcb9f5d-c19f-4972-b258-8ff7c14e44ae",
+    "name": "WebApps API Client AppServiceEnvironments SiteCertificates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

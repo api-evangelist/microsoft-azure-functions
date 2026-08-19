@@ -1,0 +1,2346 @@
+{
+  "item": [
+    {
+      "id": "10506956-81c7-496c-a1dd-37ce5a931f74",
+      "name": "Subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b059a79-e63f-4942-978f-586a873e3bb2",
+          "name": "Get a list of available ASE regions and its supported Skus.",
+          "request": {
+            "name": "Get a list of available ASE regions and its supported Skus.",
+            "description": {
+              "content": "Description for get a list of available ASE regions and its supported Skus.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "aseRegions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c2a9e08-2c18-4815-896f-0118eba6c0e2",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "aseRegions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"displayName\": \"string\",\n        \"standard\": true,\n        \"dedicatedHost\": true,\n        \"zoneRedundant\": false,\n        \"availableSku\": [\n          \"string\",\n          \"string\"\n        ],\n        \"availableOS\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"displayName\": \"string\",\n        \"standard\": true,\n        \"dedicatedHost\": false,\n        \"zoneRedundant\": true,\n        \"availableSku\": [\n          \"string\",\n          \"string\"\n        ],\n        \"availableOS\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"http://ZzWvFOlc.log.cwp5odAoQ4Nv6X8hr5WP9kg7nF..UpxsJXAT.c5LF4TCgjCXi\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2f89cec-557c-42ba-abd1-0ffc4e1a14b9",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "aseRegions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ad2bc39-1995-4a4d-a9d1-8ad4aa3f71af",
+          "name": "Gets a list of meters for a given location.",
+          "request": {
+            "name": "Gets a list of meters for a given location.",
+            "description": {
+              "content": "Description for Gets a list of meters for a given location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "billingMeters"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "billingLocation",
+                  "value": "<string>",
+                  "description": "Azure Location of billable resource"
+                },
+                {
+                  "disabled": false,
+                  "key": "osType",
+                  "value": "<string>",
+                  "description": "App Service OS type meters used for"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04a19cfd-452a-45d0-8667-bd10b6d53054",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "billingMeters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"meterId\": \"string\",\n        \"billingLocation\": \"string\",\n        \"shortName\": \"string\",\n        \"friendlyName\": \"string\",\n        \"resourceType\": \"string\",\n        \"osType\": \"string\",\n        \"multiplier\": 8933.402125319211\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"meterId\": \"string\",\n        \"billingLocation\": \"string\",\n        \"shortName\": \"string\",\n        \"friendlyName\": \"string\",\n        \"resourceType\": \"string\",\n        \"osType\": \"string\",\n        \"multiplier\": 1122.1326449525982\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://HXuieVjQUQkMIWUEgBjigzGTLSb.hpTKLQxBBh1zzzexsKfCf-zR98am7lwIhep2\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f404d83c-2cbd-4322-a473-7eec3795e8e7",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "billingMeters"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "billingLocation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "osType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "387eac97-28d8-4812-a4bf-94063f81d22d",
+          "name": "Check if a resource name is available.",
+          "request": {
+            "name": "Check if a resource name is available.",
+            "description": {
+              "content": "Description for Check if a resource name is available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "checknameavailability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"isFqdn\": \"<boolean>\",\n  \"environmentId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3dc69d59-e2bc-4ef4-8d31-9b8be2683d04",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "checknameavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"isFqdn\": \"<boolean>\",\n  \"environmentId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nameAvailable\": false,\n  \"reason\": \"AlreadyExists\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9abfebd3-36d0-4c60-9bc1-3004a7a3ecd5",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "checknameavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"isFqdn\": \"<boolean>\",\n  \"environmentId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bfe577f-75e4-4cd9-950d-f5db5d0f257b",
+          "name": "Get custom hostnames under this subscription",
+          "request": {
+            "name": "Get custom hostnames under this subscription",
+            "description": {
+              "content": "Get custom hostnames under this subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "customhostnameSites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "hostname",
+                  "value": "<string>",
+                  "description": "Specific hostname"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ec6c767-2b21-482b-b615-649ec9f2a4a7",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "customhostnameSites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hostname",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"customHostname\": \"string\",\n        \"region\": \"string\",\n        \"siteResourceIds\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"customHostname\": \"string\",\n        \"region\": \"string\",\n        \"siteResourceIds\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://GCbpDsZi.cmcudVir3FGQhyGvUuSmriqLuZnflhA,c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73c5fc20-bbd6-46af-9314-5721b82ebfd8",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "customhostnameSites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "hostname",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a086efd-6d30-4a44-94bf-5c4260711c4d",
+          "name": "Gets list of available geo regions plus ministamps",
+          "request": {
+            "name": "Gets list of available geo regions plus ministamps",
+            "description": {
+              "content": "Description for Gets list of available geo regions plus ministamps",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "deploymentLocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bff099b8-f81a-40d8-bbc7-1b05d93097d2",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "deploymentLocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"locations\": [\n    {\n      \"properties\": {\n        \"description\": \"string\",\n        \"displayName\": \"string\",\n        \"orgDomain\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"description\": \"string\",\n        \"displayName\": \"string\",\n        \"orgDomain\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"hostingEnvironments\": [\n    {\n      \"virtualNetwork\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"subnet\": \"string\"\n      },\n      \"provisioningState\": \"Deleting\",\n      \"status\": \"Preparing\",\n      \"internalLoadBalancingMode\": \"None\",\n      \"multiSize\": \"string\",\n      \"multiRoleCount\": 512,\n      \"ipsslAddressCount\": 487,\n      \"dnsSuffix\": \"string\",\n      \"maximumNumberOfMachines\": 8270,\n      \"frontEndScaleFactor\": 6543,\n      \"suspended\": false,\n      \"clusterSettings\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"userWhitelistedIpRanges\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasLinuxWorkers\": false,\n      \"upgradePreference\": \"None\",\n      \"dedicatedHostCount\": 6195,\n      \"zoneRedundant\": true,\n      \"customDnsSuffixConfiguration\": {\n        \"properties\": {\n          \"provisioningState\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"provisioningDetails\": \"string\",\n          \"dnsSuffix\": \"string\",\n          \"certificateUrl\": \"string\",\n          \"keyVaultReferenceIdentity\": \"string\"\n        },\n        \"kind\": \"string\"\n      },\n      \"networkingConfiguration\": {\n        \"properties\": {\n          \"windowsOutboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"linuxOutboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"externalInboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"internalInboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"allowNewPrivateEndpointConnections\": true,\n          \"ftpEnabled\": false,\n          \"remoteDebugEnabled\": true,\n          \"inboundIpAddressOverride\": \"string\"\n        },\n        \"kind\": \"string\"\n      },\n      \"upgradeAvailability\": \"Ready\"\n    },\n    {\n      \"virtualNetwork\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"type\": \"string\",\n        \"subnet\": \"string\"\n      },\n      \"provisioningState\": \"Canceled\",\n      \"status\": \"Ready\",\n      \"internalLoadBalancingMode\": \"Web, Publishing\",\n      \"multiSize\": \"string\",\n      \"multiRoleCount\": 2147,\n      \"ipsslAddressCount\": 8426,\n      \"dnsSuffix\": \"string\",\n      \"maximumNumberOfMachines\": 6366,\n      \"frontEndScaleFactor\": 6092,\n      \"suspended\": true,\n      \"clusterSettings\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"userWhitelistedIpRanges\": [\n        \"string\",\n        \"string\"\n      ],\n      \"hasLinuxWorkers\": true,\n      \"upgradePreference\": \"None\",\n      \"dedicatedHostCount\": 6108,\n      \"zoneRedundant\": true,\n      \"customDnsSuffixConfiguration\": {\n        \"properties\": {\n          \"provisioningState\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"provisioningDetails\": \"string\",\n          \"dnsSuffix\": \"string\",\n          \"certificateUrl\": \"string\",\n          \"keyVaultReferenceIdentity\": \"string\"\n        },\n        \"kind\": \"string\"\n      },\n      \"networkingConfiguration\": {\n        \"properties\": {\n          \"windowsOutboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"linuxOutboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"externalInboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"internalInboundIpAddresses\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"allowNewPrivateEndpointConnections\": true,\n          \"ftpEnabled\": true,\n          \"remoteDebugEnabled\": true,\n          \"inboundIpAddressOverride\": \"string\"\n        },\n        \"kind\": \"string\"\n      },\n      \"upgradeAvailability\": \"Ready\"\n    }\n  ],\n  \"hostingEnvironmentDeploymentInfos\": [\n    {\n      \"name\": \"string\",\n      \"location\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"location\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "820c4607-d0ee-4bcd-912c-5d9948b03c32",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "deploymentLocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "31182af9-4638-4210-ab1a-4b8bd0e441d2",
+          "name": "Get a list of available geographical regions.",
+          "request": {
+            "name": "Get a list of available geographical regions.",
+            "description": {
+              "content": "Description for Get a list of available geographical regions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "geoRegions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sku",
+                  "value": "<string>",
+                  "description": "Name of SKU used to filter the regions."
+                },
+                {
+                  "disabled": false,
+                  "key": "linuxWorkersEnabled",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> if you want to filter to only regions that support Linux workers."
+                },
+                {
+                  "disabled": false,
+                  "key": "xenonWorkersEnabled",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> if you want to filter to only regions that support Xenon workers."
+                },
+                {
+                  "disabled": false,
+                  "key": "linuxDynamicWorkersEnabled",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers."
+                },
+                {
+                  "disabled": false,
+                  "key": "customModeWorkersEnabled",
+                  "value": "<boolean>",
+                  "description": "Specify <code>true</code> if you want to filter to only regions that support App Service Plans with <code>IsCustomMode</code> set to <code>true</code>."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2e0a01d-92b9-45a3-b608-6dfc6d9d381f",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "geoRegions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linuxWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "xenonWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "linuxDynamicWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "customModeWorkersEnabled",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"description\": \"string\",\n        \"displayName\": \"string\",\n        \"orgDomain\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"description\": \"string\",\n        \"displayName\": \"string\",\n        \"orgDomain\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://DkYywTohVjnOJOTMD.tqUxJ+d0cyktcmyC7qeu70J\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "162d93fa-877d-43be-847a-81a5eb928cc9",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "geoRegions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "linuxWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "xenonWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "linuxDynamicWorkersEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "customModeWorkersEnabled",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbedf566-61c5-4186-ab26-dfa66b1135fa",
+          "name": "List all apps that are assigned to a hostname.",
+          "request": {
+            "name": "List all apps that are assigned to a hostname.",
+            "description": {
+              "content": "Description for List all apps that are assigned to a hostname.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "listSitesAssignedToHostName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0bc50682-c3c7-4800-870b-3bcae16e2c8b",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "listSitesAssignedToHostName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"id\": \"string\"\n      },\n      \"kind\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"id\": \"string\"\n      },\n      \"kind\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://kYSNnoD.yxUH23cprsuN4Nc\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cfec1b9-97ff-468d-870f-22450c5ccbe7",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "listSitesAssignedToHostName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba2d2b02-02c3-4fab-a7f1-747438c4ef82",
+          "name": "Check if a resource name is available for DNL sites.",
+          "request": {
+            "name": "Check if a resource name is available for DNL sites.",
+            "description": {
+              "content": "Check if a resource name is available for DNL sites.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "locations",
+                ":location",
+                "checknameavailability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"resourceGroupName\": \"<string>\",\n  \"autoGeneratedDomainNameLabelScope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41ef8ef8-8047-492a-983c-ba9fef99c08e",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "locations",
+                    ":location",
+                    "checknameavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"resourceGroupName\": \"<string>\",\n  \"autoGeneratedDomainNameLabelScope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostName\": \"string\",\n  \"nameAvailable\": true,\n  \"reason\": \"Invalid\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9cf21df-6710-4bdc-b911-9e4da13cb902",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "locations",
+                    ":location",
+                    "checknameavailability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"resourceGroupName\": \"<string>\",\n  \"autoGeneratedDomainNameLabelScope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db17baec-0e9d-4fff-bc7a-2b2ca3c4397a",
+          "name": "Lists subscription core usages for all skus used in a location, for a given type of quota.",
+          "request": {
+            "name": "Lists subscription core usages for all skus used in a location, for a given type of quota.",
+            "description": {
+              "content": "List usages in cores for all skus used by a subscription in a given location, for a specific quota type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "locations",
+                ":location",
+                "usages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "862fbddd-f70a-43eb-b536-993c6eef7734",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "locations",
+                    ":location",
+                    "usages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"unit\": \"string\",\n      \"nextResetTime\": \"2006-03-29T15:46:58.581Z\",\n      \"currentValue\": 3836,\n      \"limit\": 2710,\n      \"name\": {\n        \"value\": \"string\",\n        \"localizedValue\": \"string\"\n      }\n    },\n    {\n      \"unit\": \"string\",\n      \"nextResetTime\": \"2021-09-22T19:53:48.930Z\",\n      \"currentValue\": 9468,\n      \"limit\": 6144,\n      \"name\": {\n        \"value\": \"string\",\n        \"localizedValue\": \"string\"\n      }\n    }\n  ],\n  \"nextLink\": \"http://rPLGmMPLIOrgxFIpMexclSiQwcZM.jxriMnP9o.mHcET4Wsvxum+zt7tvtmZL1AqR8KGetb3HouqgWlSEKDO6GW.o03ktjFwLr8u,YVdQq\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b298467-d7aa-4bcf-bce6-9a083c28ac99",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "locations",
+                    ":location",
+                    "usages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "657aa7f8-9ca5-422b-92ca-72379470e0bc",
+          "name": "List all premier add-on offers.",
+          "request": {
+            "name": "List all premier add-on offers.",
+            "description": {
+              "content": "Description for List all premier add-on offers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "premieraddonoffers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7ddb1af-de8f-4c95-a34d-bf069125b3fd",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "premieraddonoffers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"properties\": {\n        \"sku\": \"string\",\n        \"product\": \"string\",\n        \"vendor\": \"string\",\n        \"promoCodeRequired\": true,\n        \"quota\": 5129,\n        \"webHostingPlanRestrictions\": \"Free\",\n        \"privacyPolicyUrl\": \"string\",\n        \"legalTermsUrl\": \"string\",\n        \"marketplacePublisher\": \"string\",\n        \"marketplaceOffer\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"properties\": {\n        \"sku\": \"string\",\n        \"product\": \"string\",\n        \"vendor\": \"string\",\n        \"promoCodeRequired\": true,\n        \"quota\": 6711,\n        \"webHostingPlanRestrictions\": \"Free\",\n        \"privacyPolicyUrl\": \"string\",\n        \"legalTermsUrl\": \"string\",\n        \"marketplacePublisher\": \"string\",\n        \"marketplaceOffer\": \"string\"\n      },\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"type\": \"string\"\n    }\n  ],\n  \"nextLink\": \"https://NQLISddAtTDNGmYlbyQMQdLNHbtIjJO.tozmUaDxFz.h1ctt4gcDvTFJiXzNfQIB.jk0nWWdeZLuO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7266c7b6-a928-4659-beec-4d424d23847e",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "premieraddonoffers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64f49da4-bc96-416c-a523-7cf0786918ea",
+          "name": "List all SKUs.",
+          "request": {
+            "name": "List all SKUs.",
+            "description": {
+              "content": "Description for List all SKUs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "skus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dce2f25-a01a-4809-9c85-3f1c770f11e2",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "skus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resourceType\": \"string\",\n  \"skus\": [\n    {\n      \"name\": \"string\",\n      \"tier\": \"string\",\n      \"size\": \"string\",\n      \"family\": \"string\",\n      \"capacity\": {\n        \"minimum\": 618,\n        \"maximum\": 812,\n        \"elasticMaximum\": 6835,\n        \"default\": 3169,\n        \"scaleType\": \"string\"\n      },\n      \"locations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"capabilities\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"reason\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"reason\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"tier\": \"string\",\n      \"size\": \"string\",\n      \"family\": \"string\",\n      \"capacity\": {\n        \"minimum\": 8363,\n        \"maximum\": 7419,\n        \"elasticMaximum\": 6993,\n        \"default\": 3626,\n        \"scaleType\": \"string\"\n      },\n      \"locations\": [\n        \"string\",\n        \"string\"\n      ],\n      \"capabilities\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"reason\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\",\n          \"reason\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa6298c7-02c2-4c93-9e63-342a7ebe7f2b",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "skus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab4858f9-b384-431c-a0bb-2637ab68cdd6",
+          "name": "Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.",
+          "request": {
+            "name": "Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.",
+            "description": {
+              "content": "Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the Network Security Group rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "providers",
+                "Microsoft.Web",
+                "verifyHostingEnvironmentVnet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"properties\": {\n    \"vnetResourceGroup\": \"<string>\",\n    \"vnetName\": \"<string>\",\n    \"vnetSubnetName\": \"<string>\",\n    \"subnetResourceId\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18379f49-5e92-4b11-b89f-47341d9cc49f",
+              "name": "The request has succeeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "verifyHostingEnvironmentVnet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"vnetResourceGroup\": \"<string>\",\n    \"vnetName\": \"<string>\",\n    \"vnetSubnetName\": \"<string>\",\n    \"subnetResourceId\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"properties\": {\n    \"message\": \"string\",\n    \"failed\": false,\n    \"failedTests\": [\n      {\n        \"properties\": {\n          \"testName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"kind\": \"<string>\",\n        \"type\": \"string\"\n      },\n      {\n        \"properties\": {\n          \"testName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"kind\": \"<string>\",\n        \"type\": \"string\"\n      }\n    ],\n    \"warnings\": [\n      {\n        \"properties\": {\n          \"testName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"kind\": \"<string>\",\n        \"type\": \"string\"\n      },\n      {\n        \"properties\": {\n          \"testName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"kind\": \"<string>\",\n        \"type\": \"string\"\n      }\n    ]\n  },\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"kind\": \"<string>\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "721d6071-c875-4eb8-b345-8eaa82f9e0d1",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "providers",
+                    "Microsoft.Web",
+                    "verifyHostingEnvironmentVnet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"properties\": {\n    \"vnetResourceGroup\": \"<string>\",\n    \"vnetName\": \"<string>\",\n    \"vnetSubnetName\": \"<string>\",\n    \"subnetResourceId\": \"<string>\"\n  },\n  \"kind\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e91fb28c-4365-43d3-9112-8e060467bb20",
+          "name": "Move resources between resource groups.",
+          "request": {
+            "name": "Move resources between resource groups.",
+            "description": {
+              "content": "Description for Move resources between resource groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "moveResources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetResourceGroup\": \"<string>\",\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b11daa5b-3831-4ce9-bfff-cd88db9180b1",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "moveResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "229b8e5a-2d25-4ec7-b776-221a716539e1",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "moveResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23f3e8c6-79a1-4126-845b-039ecb9e7f0c",
+          "name": "Validate if a resource can be created.",
+          "request": {
+            "name": "Validate if a resource can be created.",
+            "description": {
+              "content": "Description for Validate if a resource can be created.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "providers",
+                "Microsoft.Web",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"properties\": {\n    \"serverFarmId\": \"<string>\",\n    \"skuName\": \"<string>\",\n    \"needLinuxWorkers\": \"<boolean>\",\n    \"isSpot\": \"<boolean>\",\n    \"capacity\": \"<integer>\",\n    \"hostingEnvironment\": \"<string>\",\n    \"isXenon\": \"<boolean>\",\n    \"containerRegistryBaseUrl\": \"<string>\",\n    \"containerRegistryUsername\": \"<string>\",\n    \"containerRegistryPassword\": \"<string>\",\n    \"containerImageRepository\": \"<string>\",\n    \"containerImageTag\": \"<string>\",\n    \"containerImagePlatform\": \"<string>\",\n    \"appServiceEnvironment\": {\n      \"virtualNetwork\": {\n        \"id\": \"<string>\",\n        \"subnet\": \"<string>\"\n      },\n      \"provisioningState\": \"<string>\",\n      \"status\": \"<string>\",\n      \"internalLoadBalancingMode\": \"<string>\",\n      \"multiSize\": \"<string>\",\n      \"ipsslAddressCount\": \"<integer>\",\n      \"dnsSuffix\": \"<string>\",\n      \"frontEndScaleFactor\": \"<integer>\",\n      \"clusterSettings\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"userWhitelistedIpRanges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upgradePreference\": \"None\",\n      \"dedicatedHostCount\": \"<integer>\",\n      \"zoneRedundant\": \"<boolean>\",\n      \"customDnsSuffixConfiguration\": {\n        \"properties\": {\n          \"provisioningState\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"dnsSuffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"certificateUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"keyVaultReferenceIdentity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"networkingConfiguration\": {\n        \"properties\": {\n          \"allowNewPrivateEndpointConnections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ftpEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"remoteDebugEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inboundIpAddressOverride\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"upgradeAvailability\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d207f6cc-e86c-44e5-a1b4-6d54a518eeff",
+              "name": "Azure operation completed successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"properties\": {\n    \"serverFarmId\": \"<string>\",\n    \"skuName\": \"<string>\",\n    \"needLinuxWorkers\": \"<boolean>\",\n    \"isSpot\": \"<boolean>\",\n    \"capacity\": \"<integer>\",\n    \"hostingEnvironment\": \"<string>\",\n    \"isXenon\": \"<boolean>\",\n    \"containerRegistryBaseUrl\": \"<string>\",\n    \"containerRegistryUsername\": \"<string>\",\n    \"containerRegistryPassword\": \"<string>\",\n    \"containerImageRepository\": \"<string>\",\n    \"containerImageTag\": \"<string>\",\n    \"containerImagePlatform\": \"<string>\",\n    \"appServiceEnvironment\": {\n      \"virtualNetwork\": {\n        \"id\": \"<string>\",\n        \"subnet\": \"<string>\"\n      },\n      \"provisioningState\": \"<string>\",\n      \"status\": \"<string>\",\n      \"internalLoadBalancingMode\": \"<string>\",\n      \"multiSize\": \"<string>\",\n      \"ipsslAddressCount\": \"<integer>\",\n      \"dnsSuffix\": \"<string>\",\n      \"frontEndScaleFactor\": \"<integer>\",\n      \"clusterSettings\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"userWhitelistedIpRanges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upgradePreference\": \"None\",\n      \"dedicatedHostCount\": \"<integer>\",\n      \"zoneRedundant\": \"<boolean>\",\n      \"customDnsSuffixConfiguration\": {\n        \"properties\": {\n          \"provisioningState\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"dnsSuffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"certificateUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"keyVaultReferenceIdentity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"networkingConfiguration\": {\n        \"properties\": {\n          \"allowNewPrivateEndpointConnections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ftpEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"remoteDebugEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inboundIpAddressOverride\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"upgradeAvailability\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09294b71-7b47-4470-8886-bc7894bf71db",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "providers",
+                    "Microsoft.Web",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"location\": \"<string>\",\n  \"properties\": {\n    \"serverFarmId\": \"<string>\",\n    \"skuName\": \"<string>\",\n    \"needLinuxWorkers\": \"<boolean>\",\n    \"isSpot\": \"<boolean>\",\n    \"capacity\": \"<integer>\",\n    \"hostingEnvironment\": \"<string>\",\n    \"isXenon\": \"<boolean>\",\n    \"containerRegistryBaseUrl\": \"<string>\",\n    \"containerRegistryUsername\": \"<string>\",\n    \"containerRegistryPassword\": \"<string>\",\n    \"containerImageRepository\": \"<string>\",\n    \"containerImageTag\": \"<string>\",\n    \"containerImagePlatform\": \"<string>\",\n    \"appServiceEnvironment\": {\n      \"virtualNetwork\": {\n        \"id\": \"<string>\",\n        \"subnet\": \"<string>\"\n      },\n      \"provisioningState\": \"<string>\",\n      \"status\": \"<string>\",\n      \"internalLoadBalancingMode\": \"<string>\",\n      \"multiSize\": \"<string>\",\n      \"ipsslAddressCount\": \"<integer>\",\n      \"dnsSuffix\": \"<string>\",\n      \"frontEndScaleFactor\": \"<integer>\",\n      \"clusterSettings\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"userWhitelistedIpRanges\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upgradePreference\": \"None\",\n      \"dedicatedHostCount\": \"<integer>\",\n      \"zoneRedundant\": \"<boolean>\",\n      \"customDnsSuffixConfiguration\": {\n        \"properties\": {\n          \"provisioningState\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"dnsSuffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"certificateUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"keyVaultReferenceIdentity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"networkingConfiguration\": {\n        \"properties\": {\n          \"allowNewPrivateEndpointConnections\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"ftpEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"remoteDebugEnabled\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"inboundIpAddressOverride\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"kind\": \"<string>\"\n      },\n      \"upgradeAvailability\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "505bf603-8ea1-4c56-9e7b-75d0988dc66c",
+          "name": "Validate whether a resource can be moved.",
+          "request": {
+            "name": "Validate whether a resource can be moved.",
+            "description": {
+              "content": "Description for Validate whether a resource can be moved.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscriptionId",
+                "resourceGroups",
+                ":resourceGroupName",
+                "validateMoveResources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetResourceGroup\": \"<string>\",\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b5b01ed2-c105-49fd-a0b7-dfb2d1ba983e",
+              "name": "There is no content to send for this request, but the headers may be useful.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "validateMoveResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80dbd74f-c1e9-4abc-a4a1-decdabf53baa",
+              "name": "An unexpected error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscriptionId",
+                    "resourceGroups",
+                    ":resourceGroupName",
+                    "validateMoveResources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://management.azure.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "user_impersonation"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.microsoftonline.com/common/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "implicit"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bd8f8135-4046-45b2-8ab7-53136c3e1133",
+    "name": "WebApps API Client AppServiceEnvironments Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,772 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Diagnostics API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Diagnostics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Hosting Environment Detector Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:name/detectors",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "App Service Environment Name"
+              }
+            ]
+          },
+          "docs": "Description for List Hosting Environment Detector Responses"
+        },
+        {
+          "info": {
+            "name": "Get Hosting Environment Detector Response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:name/detectors/:detectorName",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "App Service Environment Name"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Resource Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Get Hosting Environment Detector Response"
+        },
+        {
+          "info": {
+            "name": "List Site Detector Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/detectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              }
+            ]
+          },
+          "docs": "Description for List Site Detector Responses"
+        },
+        {
+          "info": {
+            "name": "Get site detector response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/detectors/:detectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Resource Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Get site detector response"
+        },
+        {
+          "info": {
+            "name": "Get Diagnostics Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Diagnostics Categories"
+        },
+        {
+          "info": {
+            "name": "Get Diagnostics Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Diagnostics Category"
+        },
+        {
+          "info": {
+            "name": "Get Site Analyses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/analyses",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Site Analyses"
+        },
+        {
+          "info": {
+            "name": "Get Site Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/analyses/:analysisName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "analysisName",
+                "value": "",
+                "type": "path",
+                "description": "Analysis Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Site Analysis"
+        },
+        {
+          "info": {
+            "name": "Execute Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/analyses/:analysisName/execute",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "analysisName",
+                "value": "",
+                "type": "path",
+                "description": "Analysis Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Execute Analysis"
+        },
+        {
+          "info": {
+            "name": "Get Detectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/detectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Detectors"
+        },
+        {
+          "info": {
+            "name": "Get Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/detectors/:detectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Detector"
+        },
+        {
+          "info": {
+            "name": "Execute Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/diagnostics/:diagnosticCategory/detectors/:detectorName/execute",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Execute Detector"
+        },
+        {
+          "info": {
+            "name": "List Site Detector Responses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/detectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              }
+            ]
+          },
+          "docs": "Description for List Site Detector Responses"
+        },
+        {
+          "info": {
+            "name": "Get site detector response",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/detectors/:detectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Resource Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Get site detector response"
+        },
+        {
+          "info": {
+            "name": "Get Diagnostics Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Diagnostics Categories"
+        },
+        {
+          "info": {
+            "name": "Get Diagnostics Category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Diagnostics Category"
+        },
+        {
+          "info": {
+            "name": "Get Site Analyses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/analyses",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot - optional"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Site Analyses"
+        },
+        {
+          "info": {
+            "name": "Get Site Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/analyses/:analysisName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot - optional"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "analysisName",
+                "value": "",
+                "type": "path",
+                "description": "Analysis Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Site Analysis"
+        },
+        {
+          "info": {
+            "name": "Execute Analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/analyses/:analysisName/execute",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot - optional"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "analysisName",
+                "value": "",
+                "type": "path",
+                "description": "Analysis Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Execute Analysis"
+        },
+        {
+          "info": {
+            "name": "Get Detectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/detectors",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              }
+            ]
+          },
+          "docs": "Description for Get Detectors"
+        },
+        {
+          "info": {
+            "name": "Get Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/detectors/:detectorName",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Name"
+              }
+            ]
+          },
+          "docs": "Description for Get Detector"
+        },
+        {
+          "info": {
+            "name": "Execute Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/slots/:slot/diagnostics/:diagnosticCategory/detectors/:detectorName/execute",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Site Name"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Slot Name"
+              },
+              {
+                "name": "diagnosticCategory",
+                "value": "",
+                "type": "path",
+                "description": "Diagnostic Category"
+              },
+              {
+                "name": "detectorName",
+                "value": "",
+                "type": "path",
+                "description": "Detector Name"
+              },
+              {
+                "name": "startTime",
+                "value": "",
+                "type": "query",
+                "description": "Start Time"
+              },
+              {
+                "name": "endTime",
+                "value": "",
+                "type": "query",
+                "description": "End Time"
+              },
+              {
+                "name": "timeGrain",
+                "value": "",
+                "type": "query",
+                "description": "Time Grain"
+              }
+            ]
+          },
+          "docs": "Description for Execute Detector"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

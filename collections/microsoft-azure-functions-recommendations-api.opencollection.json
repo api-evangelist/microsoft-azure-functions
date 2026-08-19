@@ -1,0 +1,415 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments Recommendations API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all recommendations for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/recommendations",
+            "params": [
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+              }
+            ]
+          },
+          "docs": "Description for List all recommendations for a subscription."
+        },
+        {
+          "info": {
+            "name": "Disables the specified rule so it will not apply to a subscription in the future.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/recommendations/:name/disable",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Rule name"
+              }
+            ]
+          },
+          "docs": "Description for Disables the specified rule so it will not apply to a subscription in the future."
+        },
+        {
+          "info": {
+            "name": "Reset all recommendation opt-out settings for a subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/recommendations/reset"
+          },
+          "docs": "Description for Reset all recommendation opt-out settings for a subscription."
+        },
+        {
+          "info": {
+            "name": "Get past recommendations for an app, optionally specified by the time range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendationHistory",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service Environment."
+              },
+              {
+                "name": "expiredOnly",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+              }
+            ]
+          },
+          "docs": "Description for Get past recommendations for an app, optionally specified by the time range."
+        },
+        {
+          "info": {
+            "name": "Get all recommendations for a hosting environment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendations",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service Environment."
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'"
+              }
+            ]
+          },
+          "docs": "Description for Get all recommendations for a hosting environment."
+        },
+        {
+          "info": {
+            "name": "Get a recommendation rule for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendations/:name",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the hosting environment."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the recommendation."
+              },
+              {
+                "name": "updateSeen",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to update the last-seen timestamp of the recommendation object."
+              },
+              {
+                "name": "recommendationId",
+                "value": "",
+                "type": "query",
+                "description": "The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry."
+              }
+            ]
+          },
+          "docs": "Description for Get a recommendation rule for an app."
+        },
+        {
+          "info": {
+            "name": "Disables the specific rule for a web site permanently.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendations/:name/disable",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the hosting environment."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the recommendation."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "query",
+                "description": "Site name"
+              }
+            ]
+          },
+          "docs": "Description for Disables the specific rule for a web site permanently."
+        },
+        {
+          "info": {
+            "name": "Disable all recommendations for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendations/disable",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service Environment."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Disable all recommendations for an app."
+        },
+        {
+          "info": {
+            "name": "Reset all recommendation opt-out settings for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/hostingEnvironments/:hostingEnvironmentName/recommendations/reset",
+            "params": [
+              {
+                "name": "hostingEnvironmentName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the App Service Environment."
+              },
+              {
+                "name": "environmentName",
+                "value": "",
+                "type": "query",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Reset all recommendation opt-out settings for an app."
+        },
+        {
+          "info": {
+            "name": "Get past recommendations for an app, optionally specified by the time range.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendationHistory",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "expiredOnly",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D]"
+              }
+            ]
+          },
+          "docs": "Description for Get past recommendations for an app, optionally specified by the time range."
+        },
+        {
+          "info": {
+            "name": "Get all recommendations for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendations",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification'"
+              }
+            ]
+          },
+          "docs": "Description for Get all recommendations for an app."
+        },
+        {
+          "info": {
+            "name": "Get a recommendation rule for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendations/:name",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the recommendation."
+              },
+              {
+                "name": "updateSeen",
+                "value": "",
+                "type": "query",
+                "description": "Specify <code>true</code> to update the last-seen timestamp of the recommendation object."
+              },
+              {
+                "name": "recommendationId",
+                "value": "",
+                "type": "query",
+                "description": "The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry."
+              }
+            ]
+          },
+          "docs": "Description for Get a recommendation rule for an app."
+        },
+        {
+          "info": {
+            "name": "Disables the specific rule for a web site permanently.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendations/:name/disable",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of the recommendation."
+              }
+            ]
+          },
+          "docs": "Description for Disables the specific rule for a web site permanently."
+        },
+        {
+          "info": {
+            "name": "Disable all recommendations for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendations/disable",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Disable all recommendations for an app."
+        },
+        {
+          "info": {
+            "name": "Reset all recommendation opt-out settings for an app.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:siteName/recommendations/reset",
+            "params": [
+              {
+                "name": "siteName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the app."
+              }
+            ]
+          },
+          "docs": "Description for Reset all recommendation opt-out settings for an app."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

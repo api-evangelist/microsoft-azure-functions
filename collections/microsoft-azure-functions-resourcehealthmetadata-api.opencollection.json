@@ -1,0 +1,128 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WebApps API Client AppServiceEnvironments ResourceHealthMetadata API",
+    "version": "2025-05-01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ResourceHealthMetadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all ResourceHealthMetadata for all sites in the subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/providers/Microsoft.Web/resourceHealthMetadata"
+          },
+          "docs": "Description for List all ResourceHealthMetadata for all sites in the subscription."
+        },
+        {
+          "info": {
+            "name": "List all ResourceHealthMetadata for all sites in the resource group in the subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/resourceHealthMetadata"
+          },
+          "docs": "Description for List all ResourceHealthMetadata for all sites in the resource group in the subscription."
+        },
+        {
+          "info": {
+            "name": "Gets the category of ResourceHealthMetadata to use for the given site as a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/resourceHealthMetadata",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app"
+              }
+            ]
+          },
+          "docs": "Description for Gets the category of ResourceHealthMetadata to use for the given site as a collection"
+        },
+        {
+          "info": {
+            "name": "Gets the category of ResourceHealthMetadata to use for the given site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/resourceHealthMetadata/default",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app"
+              }
+            ]
+          },
+          "docs": "Description for Gets the category of ResourceHealthMetadata to use for the given site"
+        },
+        {
+          "info": {
+            "name": "Gets the category of ResourceHealthMetadata to use for the given site as a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/resourceHealthMetadata",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app slot. If not specified then will default to production slot."
+              }
+            ]
+          },
+          "docs": "Description for Gets the category of ResourceHealthMetadata to use for the given site as a collection"
+        },
+        {
+          "info": {
+            "name": "Gets the category of ResourceHealthMetadata to use for the given site",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/subscriptions/:subscriptionId/resourceGroups/:resourceGroupName/providers/Microsoft.Web/sites/:name/slots/:slot/resourceHealthMetadata/default",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app"
+              },
+              {
+                "name": "slot",
+                "value": "",
+                "type": "path",
+                "description": "Name of web app slot. If not specified then will default to production slot."
+              }
+            ]
+          },
+          "docs": "Description for Gets the category of ResourceHealthMetadata to use for the given site"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
