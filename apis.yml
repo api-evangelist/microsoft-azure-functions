@@ -195,7 +195,8 @@ apis:
   description: The Operations API from Microsoft Azure Functions — 1 operation(s) for operations.
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
@@ -313,6 +314,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
+  - Static Sites
+  tags_raw:
   - StaticSites
   properties:
   - type: OpenAPI
@@ -333,6 +336,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -352,6 +357,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
+  - Web App
+  tags_raw:
   - WebApps
   properties:
   - type: OpenAPI
@@ -391,6 +398,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
+  - Workflow Runs
+  tags_raw:
   - WorkflowRuns
   properties:
   - type: OpenAPI
