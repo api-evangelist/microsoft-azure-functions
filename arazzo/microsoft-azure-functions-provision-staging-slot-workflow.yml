@@ -15,8 +15,8 @@ info:
     endpoint.
   version: 1.0.0
 sourceDescriptions:
-- name: azureFunctionsApi
-  url: ../openapi/azure-functions-management-api.json
+- name: webappsApi
+  url: ../openapi/microsoft-azure-functions-webapps-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-staging-slot
