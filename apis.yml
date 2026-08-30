@@ -328,7 +328,7 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
-  - Static Sites
+  - StaticSites
   tags_raw:
   - StaticSites
   properties:
@@ -371,7 +371,7 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   baseURL: https://management.azure.com
   tags:
-  - Web App
+  - WebApps
   tags_raw:
   - WebApps
   properties:
