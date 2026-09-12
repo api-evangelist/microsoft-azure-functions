@@ -1,16 +1,11 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments WorkflowTriggerHistories API
+  title: WebApps API Client AppServiceEnvironments Workflow Trigger Histories API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
-host: management.azure.com
-schemes:
-- https
-consumes:
-- application/json
-produces:
-- application/json
+servers:
+- url: https://management.azure.com
 security:
 - azure_auth:
   - user_impersonation
@@ -31,37 +26,46 @@ paths:
         in: path
         description: Site name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: workflowName
         in: path
         description: The workflow name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: triggerName
         in: path
         description: The workflow trigger name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: $top
         in: query
         description: The number of items to be included in the result.
         required: false
-        type: integer
-        format: int32
+        schema:
+          type: integer
+          format: int32
       - name: $filter
         in: query
         description: 'The filter to apply on the operation. Options for filters include: Status, StartTime, and ClientTrackingId.'
         required: false
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Azure operation completed successfully.
-          schema:
-            $ref: '#/definitions/WorkflowTriggerHistoryListResult'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowTriggerHistoryListResult'
         default:
           description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       x-ms-examples:
         List a workflow trigger history:
           $ref: ./examples/WorkflowTriggerHistories_List.json
@@ -81,31 +85,39 @@ paths:
         in: path
         description: Site name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: workflowName
         in: path
         description: The workflow name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: triggerName
         in: path
         description: The workflow trigger name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: historyName
         in: path
         description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '200':
           description: Azure operation completed successfully.
-          schema:
-            $ref: '#/definitions/WorkflowTriggerHistory'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowTriggerHistory'
         default:
           description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       x-ms-examples:
         Get a workflow trigger history:
           $ref: ./examples/WorkflowTriggerHistories_Get.json
@@ -123,246 +135,256 @@ paths:
         in: path
         description: Site name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: workflowName
         in: path
         description: The workflow name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: triggerName
         in: path
         description: The workflow trigger name.
         required: true
-        type: string
+        schema:
+          type: string
       - name: historyName
         in: path
         description: The workflow trigger history name. Corresponds to the run name for triggers that resulted in a run.
         required: true
-        type: string
+        schema:
+          type: string
       responses:
         '202':
           description: Resource operation accepted.
           headers:
             Location:
-              type: string
               description: The Location header contains the URL where the status of the long running operation can be checked.
+              schema:
+                type: string
             Retry-After:
-              type: integer
-              format: int32
               description: The Retry-After header can indicate how long the client should wait before polling the operation status.
+              schema:
+                type: integer
+                format: int32
         default:
           description: An unexpected error response.
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       x-ms-examples:
         Resubmit a workflow run based on the trigger history:
           $ref: ./examples/WorkflowTriggerHistories_Resubmit.json
       x-ms-long-running-operation-options:
         final-state-via: location
       x-ms-long-running-operation: true
-definitions:
-  ContentLink:
-    type: object
-    description: The content link.
-    properties:
-      uri:
-        type: string
-        description: The content link URI.
-      contentVersion:
-        type: string
-        description: The content version.
-        readOnly: true
-      contentSize:
-        type: integer
-        format: int64
-        description: The content size.
-        readOnly: true
-      contentHash:
-        $ref: '#/definitions/ContentHash'
-        description: The content hash.
-        readOnly: true
-      metadata:
-        description: The metadata.
-        readOnly: true
-  ErrorResponse:
-    type: object
-    description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
-    properties:
-      error:
-        $ref: '#/definitions/ErrorProperties'
-        description: The error properties.
-  WorkflowTriggerHistoryListResult:
-    type: object
-    description: The response of a WorkflowTriggerHistory list operation.
-    properties:
-      value:
-        type: array
-        description: The WorkflowTriggerHistory items on this page
-        items:
-          $ref: '#/definitions/WorkflowTriggerHistory'
-      nextLink:
-        type: string
-        format: uri
-        description: The link to the next page of items
-    required:
-    - value
-  WorkflowStatus:
-    type: string
-    description: The workflow status.
-    enum:
-    - NotSpecified
-    - Paused
-    - Running
-    - Waiting
-    - Succeeded
-    - Skipped
-    - Suspended
-    - Cancelled
-    - Failed
-    - Faulted
-    - TimedOut
-    - Aborted
-    - Ignored
-    x-ms-enum:
-      name: WorkflowStatus
-      modelAsString: true
-      values:
-      - name: NotSpecified
-        value: NotSpecified
-      - name: Paused
-        value: Paused
-      - name: Running
-        value: Running
-      - name: Waiting
-        value: Waiting
-      - name: Succeeded
-        value: Succeeded
-      - name: Skipped
-        value: Skipped
-      - name: Suspended
-        value: Suspended
-      - name: Cancelled
-        value: Cancelled
-      - name: Failed
-        value: Failed
-      - name: Faulted
-        value: Faulted
-      - name: TimedOut
-        value: TimedOut
-      - name: Aborted
-        value: Aborted
-      - name: Ignored
-        value: Ignored
-  WorkflowTriggerHistory:
-    type: object
-    description: The workflow trigger history.
-    properties:
+components:
+  schemas:
+    ContentLink:
+      type: object
+      description: The content link.
       properties:
-        $ref: '#/definitions/WorkflowTriggerHistoryProperties'
-        description: Gets the workflow trigger history properties.
-        x-ms-client-flatten: true
-    allOf:
-    - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-  ContentHash:
-    type: object
-    description: The content hash.
-    properties:
-      algorithm:
-        type: string
-        description: The algorithm of the content hash.
-      value:
-        type: string
-        description: The value of the content hash.
-  WorkflowTriggerHistoryProperties:
-    type: object
-    description: The workflow trigger history properties.
-    properties:
-      startTime:
-        type: string
-        format: date-time
-        description: Gets the start time.
-        readOnly: true
-      endTime:
-        type: string
-        format: date-time
-        description: Gets the end time.
-        readOnly: true
-      scheduledTime:
-        type: string
-        format: date-time
-        description: The scheduled time.
-        readOnly: true
-      status:
-        $ref: '#/definitions/WorkflowStatus'
-        description: Gets the status.
-        readOnly: true
-      code:
-        type: string
-        description: Gets the code.
-        readOnly: true
-      error:
-        description: Gets the error.
-        readOnly: true
-      trackingId:
-        type: string
-        description: Gets the tracking id.
-        readOnly: true
-      correlation:
-        $ref: '#/definitions/Correlation'
-        description: The run correlation.
-      inputsLink:
-        $ref: '#/definitions/ContentLink'
-        description: Gets the link to input parameters.
-        readOnly: true
-      outputsLink:
-        $ref: '#/definitions/ContentLink'
-        description: Gets the link to output parameters.
-        readOnly: true
-      fired:
-        type: boolean
-        description: The value indicating whether trigger was fired.
-        readOnly: true
-      run:
-        $ref: '#/definitions/ResourceReference'
-        description: Gets the reference to workflow run.
-        readOnly: true
-  ResourceReference:
-    type: object
-    description: The resource reference.
-    properties:
-      id:
-        type: string
-        description: The resource id.
-      name:
-        type: string
-        description: Gets the resource name.
-        readOnly: true
-      type:
-        type: string
-        description: Gets the resource type.
-        readOnly: true
-  ErrorProperties:
-    type: object
-    description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
-    properties:
-      code:
-        type: string
-        description: Error code.
-      message:
-        type: string
-        description: Error message indicating why the operation failed.
-  Correlation:
-    type: object
-    description: The correlation property.
-    properties:
-      clientTrackingId:
-        type: string
-        description: The client tracking id.
-securityDefinitions:
-  azure_auth:
-    type: oauth2
-    description: Azure Active Directory OAuth2 Flow.
-    flow: implicit
-    authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
-    scopes:
-      user_impersonation: impersonate your user account
+        uri:
+          type: string
+          description: The content link URI.
+        contentVersion:
+          type: string
+          description: The content version.
+          readOnly: true
+        contentSize:
+          type: integer
+          format: int64
+          description: The content size.
+          readOnly: true
+        contentHash:
+          $ref: '#/components/schemas/ContentHash'
+          description: The content hash.
+          readOnly: true
+        metadata:
+          description: The metadata.
+          readOnly: true
+    ErrorProperties:
+      type: object
+      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Error message indicating why the operation failed.
+    WorkflowStatus:
+      type: string
+      description: The workflow status.
+      enum:
+      - NotSpecified
+      - Paused
+      - Running
+      - Waiting
+      - Succeeded
+      - Skipped
+      - Suspended
+      - Cancelled
+      - Failed
+      - Faulted
+      - TimedOut
+      - Aborted
+      - Ignored
+      x-ms-enum:
+        name: WorkflowStatus
+        modelAsString: true
+        values:
+        - name: NotSpecified
+          value: NotSpecified
+        - name: Paused
+          value: Paused
+        - name: Running
+          value: Running
+        - name: Waiting
+          value: Waiting
+        - name: Succeeded
+          value: Succeeded
+        - name: Skipped
+          value: Skipped
+        - name: Suspended
+          value: Suspended
+        - name: Cancelled
+          value: Cancelled
+        - name: Failed
+          value: Failed
+        - name: Faulted
+          value: Faulted
+        - name: TimedOut
+          value: TimedOut
+        - name: Aborted
+          value: Aborted
+        - name: Ignored
+          value: Ignored
+    Correlation:
+      type: object
+      description: The correlation property.
+      properties:
+        clientTrackingId:
+          type: string
+          description: The client tracking id.
+    ResourceReference:
+      type: object
+      description: The resource reference.
+      properties:
+        id:
+          type: string
+          description: The resource id.
+        name:
+          type: string
+          description: Gets the resource name.
+          readOnly: true
+        type:
+          type: string
+          description: Gets the resource type.
+          readOnly: true
+    WorkflowTriggerHistoryProperties:
+      type: object
+      description: The workflow trigger history properties.
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Gets the start time.
+          readOnly: true
+        endTime:
+          type: string
+          format: date-time
+          description: Gets the end time.
+          readOnly: true
+        scheduledTime:
+          type: string
+          format: date-time
+          description: The scheduled time.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/WorkflowStatus'
+          description: Gets the status.
+          readOnly: true
+        code:
+          type: string
+          description: Gets the code.
+          readOnly: true
+        error:
+          description: Gets the error.
+          readOnly: true
+        trackingId:
+          type: string
+          description: Gets the tracking id.
+          readOnly: true
+        correlation:
+          $ref: '#/components/schemas/Correlation'
+          description: The run correlation.
+        inputsLink:
+          $ref: '#/components/schemas/ContentLink'
+          description: Gets the link to input parameters.
+          readOnly: true
+        outputsLink:
+          $ref: '#/components/schemas/ContentLink'
+          description: Gets the link to output parameters.
+          readOnly: true
+        fired:
+          type: boolean
+          description: The value indicating whether trigger was fired.
+          readOnly: true
+        run:
+          $ref: '#/components/schemas/ResourceReference'
+          description: Gets the reference to workflow run.
+          readOnly: true
+    ErrorResponse:
+      type: object
+      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorProperties'
+          description: The error properties.
+    WorkflowTriggerHistory:
+      type: object
+      description: The workflow trigger history.
+      properties:
+        properties:
+          $ref: '#/components/schemas/WorkflowTriggerHistoryProperties'
+          description: Gets the workflow trigger history properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    ContentHash:
+      type: object
+      description: The content hash.
+      properties:
+        algorithm:
+          type: string
+          description: The algorithm of the content hash.
+        value:
+          type: string
+          description: The value of the content hash.
+    WorkflowTriggerHistoryListResult:
+      type: object
+      description: The response of a WorkflowTriggerHistory list operation.
+      properties:
+        value:
+          type: array
+          description: The WorkflowTriggerHistory items on this page
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerHistory'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+  securitySchemes:
+    azure_auth:
+      type: oauth2
+      flows:
+        implicit:
+          scopes:
+            user_impersonation: impersonate your user account
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/authorize
+      description: Azure Active Directory OAuth2 Flow.
