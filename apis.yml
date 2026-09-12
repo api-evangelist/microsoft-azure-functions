@@ -34,7 +34,7 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/microsoft-azure-functions.png
-url: https://raw.githubusercontent.com/api-evangelist/microsoft-azure-functions/refs/heads/main/apis.yml
+url: https://learn.microsoft.com/en-us/azure/azure-functions/
 created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.23'
@@ -507,6 +507,12 @@ apis:
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 common:
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/rules/azure-functions-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/vocabulary/azure-functions-vocabulary.yaml
+  - type: JSONLD
+    url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/json-ld/azure-functions-context.jsonld
   - type: Website
     url: https://www.microsoft.com/
   - type: IssueTracker
