@@ -322,27 +322,6 @@ apis:
   - type: Authentication
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-- aid: microsoft-azure-functions:microsoft-azure-functions-staticsites-api
-  name: Microsoft Azure Functions StaticSites API
-  description: The StaticSites API from Microsoft Azure Functions — 51 operation(s) for staticsites.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
-  tags:
-  - Static Sites
-  tags_raw:
-  - StaticSites
-  properties:
-  - type: OpenAPI
-    url: openapi/microsoft-azure-functions-staticsites-api-openapi.yml
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-  - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
-  - type: Authentication
-    url: >-
-      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 - aid: microsoft-azure-functions:microsoft-azure-functions-subscriptions-api
   name: Microsoft Azure Functions Subscriptions API
   description: >-
@@ -365,27 +344,6 @@ apis:
   - type: Authentication
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-- aid: microsoft-azure-functions:microsoft-azure-functions-webapps-api
-  name: Microsoft Azure Functions WebApps API
-  description: The WebApps API from Microsoft Azure Functions — 300 operation(s) for webapps.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
-  tags:
-  - Web App
-  tags_raw:
-  - WebApps
-  properties:
-  - type: OpenAPI
-    url: openapi/microsoft-azure-functions-webapps-api-openapi.yml
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-  - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
-  - type: Authentication
-    url: >-
-      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 - aid: microsoft-azure-functions:microsoft-azure-functions-workflowrunactions-api
   name: Microsoft Azure Functions WorkflowRunActions API
   description: >-
@@ -397,27 +355,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/microsoft-azure-functions-workflowrunactions-api-openapi.yml
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
-  - type: APIReference
-    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
-  - type: Authentication
-    url: >-
-      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-- aid: microsoft-azure-functions:microsoft-azure-functions-workflowruns-api
-  name: Microsoft Azure Functions WorkflowRuns API
-  description: The WorkflowRuns API from Microsoft Azure Functions — 3 operation(s) for workflowruns.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
-  tags:
-  - Workflow Runs
-  tags_raw:
-  - WorkflowRuns
-  properties:
-  - type: OpenAPI
-    url: openapi/microsoft-azure-functions-workflowruns-api-openapi.yml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   - type: GettingStarted
@@ -466,17 +403,16 @@ apis:
   - type: Authentication
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-- aid: microsoft-azure-functions:microsoft-azure-functions-workflowtriggers-api
-  name: Microsoft Azure Functions WorkflowTriggers API
-  description: >-
-    The WorkflowTriggers API from Microsoft Azure Functions — 5 operation(s) for workflowtriggers.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
+- aid: microsoft-azure-functions:microsoft-azure-functions-static-sites-api
+  name: Microsoft Azure Functions Static Sites API
+  description: The Static Sites API from Microsoft Azure Functions — 51 operation(s) for static sites.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
   tags:
-  - WorkflowTriggers
+  - Static Sites
   properties:
   - type: OpenAPI
-    url: openapi/microsoft-azure-functions-workflowtriggers-api-openapi.yml
+    url: openapi/microsoft-azure-functions-static-sites-api-openapi.yml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   - type: GettingStarted
@@ -486,17 +422,75 @@ apis:
   - type: Authentication
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
-- aid: microsoft-azure-functions:microsoft-azure-functions-workflowversions-api
-  name: Microsoft Azure Functions WorkflowVersions API
-  description: >-
-    The WorkflowVersions API from Microsoft Azure Functions — 2 operation(s) for workflowversions.
-  humanURL: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
-  baseURL: https://management.azure.com
+- aid: microsoft-azure-functions:microsoft-azure-functions-web-apps-api
+  name: Microsoft Azure Functions Web Apps API
+  description: The Web Apps API from Microsoft Azure Functions — 300 operation(s) for web apps.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
   tags:
-  - WorkflowVersions
+  - Web Apps
   properties:
   - type: OpenAPI
-    url: openapi/microsoft-azure-functions-workflowversions-api-openapi.yml
+    url: openapi/microsoft-azure-functions-web-apps-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflow-runs-api
+  name: Microsoft Azure Functions Workflow Runs API
+  description: The Workflow Runs API from Microsoft Azure Functions — 3 operation(s) for workflow runs.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
+  tags:
+  - Workflow Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflow-runs-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflow-triggers-api
+  name: Microsoft Azure Functions Workflow Triggers API
+  description: >-
+    The Workflow Triggers API from Microsoft Azure Functions — 5 operation(s) for workflow triggers.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
+  tags:
+  - Workflow Triggers
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflow-triggers-api-openapi.yml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started
+  - type: APIReference
+    url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps/get
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
+- aid: microsoft-azure-functions:microsoft-azure-functions-workflow-versions-api
+  name: Microsoft Azure Functions Workflow Versions API
+  description: >-
+    The Workflow Versions API from Microsoft Azure Functions — 2 operation(s) for workflow versions.
+  humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
+  baseURL: https://{functionapp}.azurewebsites.net
+  tags:
+  - Workflow Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-azure-functions-workflow-versions-api-openapi.yml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/rest/api/appservice/web-apps
   - type: GettingStarted
