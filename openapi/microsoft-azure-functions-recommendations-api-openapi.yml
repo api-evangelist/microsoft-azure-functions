@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Recommendations API
+  title: WebApps API Client Recommendations API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -17,7 +17,7 @@ paths:
       operationId: Recommendations_List
       tags:
       - Recommendations
-      summary: List all recommendations for a subscription.
+      summary: List all recommendations for a subscription
       description: Description for List all recommendations for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -54,7 +54,7 @@ paths:
       operationId: Recommendations_DisableRecommendationForSubscription
       tags:
       - Recommendations
-      summary: Disables the specified rule so it will not apply to a subscription in the future.
+      summary: Disables the specified rule so it will not apply to a subscription in the future
       description: Description for Disables the specified rule so it will not apply to a subscription in the future.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -79,7 +79,7 @@ paths:
       operationId: Recommendations_ResetAllFilters
       tags:
       - Recommendations
-      summary: Reset all recommendation opt-out settings for a subscription.
+      summary: Reset all recommendation opt-out settings for a subscription
       description: Description for Reset all recommendation opt-out settings for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -98,7 +98,7 @@ paths:
       operationId: Recommendations_ListHistoryForHostingEnvironment
       tags:
       - Recommendations
-      summary: Get past recommendations for an app, optionally specified by the time range.
+      summary: Get past recommendations for an app, optionally specified by the time range
       description: Description for Get past recommendations for an app, optionally specified by the time range.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -142,7 +142,7 @@ paths:
       operationId: Recommendations_ListRecommendedRulesForHostingEnvironment
       tags:
       - Recommendations
-      summary: Get all recommendations for a hosting environment.
+      summary: Get all recommendations for a hosting environment
       description: Description for Get all recommendations for a hosting environment.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -186,7 +186,7 @@ paths:
       operationId: Recommendations_GetRuleDetailsByHostingEnvironment
       tags:
       - Recommendations
-      summary: Get a recommendation rule for an app.
+      summary: Get a recommendation rule for an app
       description: Description for Get a recommendation rule for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -234,7 +234,7 @@ paths:
       operationId: Recommendations_DisableRecommendationForHostingEnvironment
       tags:
       - Recommendations
-      summary: Disables the specific rule for a web site permanently.
+      summary: Disables the specific rule for a web site permanently
       description: Description for Disables the specific rule for a web site permanently.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -272,7 +272,7 @@ paths:
       operationId: Recommendations_DisableAllForHostingEnvironment
       tags:
       - Recommendations
-      summary: Disable all recommendations for an app.
+      summary: Disable all recommendations for an app
       description: Description for Disable all recommendations for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -304,7 +304,7 @@ paths:
       operationId: Recommendations_ResetAllFiltersForHostingEnvironment
       tags:
       - Recommendations
-      summary: Reset all recommendation opt-out settings for an app.
+      summary: Reset all recommendation opt-out settings for an app
       description: Description for Reset all recommendation opt-out settings for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -336,7 +336,7 @@ paths:
       operationId: Recommendations_ListHistoryForWebApp
       tags:
       - Recommendations
-      summary: Get past recommendations for an app, optionally specified by the time range.
+      summary: Get past recommendations for an app, optionally specified by the time range
       description: Description for Get past recommendations for an app, optionally specified by the time range.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -380,7 +380,7 @@ paths:
       operationId: Recommendations_ListRecommendedRulesForWebApp
       tags:
       - Recommendations
-      summary: Get all recommendations for an app.
+      summary: Get all recommendations for an app
       description: Description for Get all recommendations for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -424,7 +424,7 @@ paths:
       operationId: Recommendations_GetRuleDetailsByWebApp
       tags:
       - Recommendations
-      summary: Get a recommendation rule for an app.
+      summary: Get a recommendation rule for an app
       description: Description for Get a recommendation rule for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -472,7 +472,7 @@ paths:
       operationId: Recommendations_DisableRecommendationForSite
       tags:
       - Recommendations
-      summary: Disables the specific rule for a web site permanently.
+      summary: Disables the specific rule for a web site permanently
       description: Description for Disables the specific rule for a web site permanently.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -504,7 +504,7 @@ paths:
       operationId: Recommendations_DisableAllForWebApp
       tags:
       - Recommendations
-      summary: Disable all recommendations for an app.
+      summary: Disable all recommendations for an app
       description: Description for Disable all recommendations for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -530,7 +530,7 @@ paths:
       operationId: Recommendations_ResetAllFiltersForWebApp
       tags:
       - Recommendations
-      summary: Reset all recommendation opt-out settings for an app.
+      summary: Reset all recommendation opt-out settings for an app
       description: Description for Reset all recommendation opt-out settings for an app.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -553,140 +553,6 @@ paths:
                 $ref: '#/components/schemas/DefaultErrorResponse'
 components:
   schemas:
-    Recommendation:
-      type: object
-      description: Represents a recommendation result generated by the recommendation engine.
-      properties:
-        properties:
-          $ref: '#/components/schemas/RecommendationProperties'
-          description: Recommendation resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    Channels:
-      type: string
-      description: List of channels that this recommendation can apply.
-      enum:
-      - Notification
-      - Api
-      - Email
-      - Webhook
-      - All
-      x-ms-enum:
-        name: Channels
-        modelAsString: false
-    NotificationLevel:
-      type: string
-      description: Level indicating how critical this recommendation can impact.
-      enum:
-      - Critical
-      - Warning
-      - Information
-      - NonUrgentSuggestion
-      x-ms-enum:
-        name: NotificationLevel
-        modelAsString: false
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
-    RecommendationRuleProperties:
-      type: object
-      description: RecommendationRule resource specific properties
-      properties:
-        recommendationName:
-          type: string
-          description: Unique name of the rule.
-        displayName:
-          type: string
-          description: UI friendly name of the rule.
-        message:
-          type: string
-          description: Localized name of the rule (Good for UI).
-        recommendationId:
-          type: string
-          format: uuid
-          description: 'Recommendation ID of an associated recommendation object tied to the rule, if exists.
-
-            If such an object doesn''t exist, it is set to null.'
-        description:
-          type: string
-          description: Localized detailed description of the rule.
-        actionName:
-          type: string
-          description: Name of action that is recommended by this rule in string.
-        level:
-          $ref: '#/components/schemas/NotificationLevel'
-          description: Level of impact indicating how critical this rule is.
-        channels:
-          $ref: '#/components/schemas/Channels'
-          description: List of available channels that this rule applies.
-        categoryTags:
-          type: array
-          description: The list of category tags that this recommendation rule belongs to.
-          items:
-            type: string
-          readOnly: true
-        isDynamic:
-          type: boolean
-          description: True if this is associated with a dynamically added rule
-        extensionName:
-          type: string
-          description: Extension name of the portal if exists. Applicable to dynamic rule only.
-        bladeName:
-          type: string
-          description: Deep link to a blade on the portal. Applicable to dynamic rule only.
-        forwardLink:
-          type: string
-          description: Forward link to an external document associated with the rule. Applicable to dynamic rule only.
     RecommendationProperties:
       type: object
       description: Recommendation resource specific properties
@@ -774,21 +640,41 @@ components:
         forwardLink:
           type: string
           description: Forward link to an external document associated with the rule.
-    RecommendationCollection:
+    Channels:
+      type: string
+      description: List of channels that this recommendation can apply.
+      enum:
+      - Notification
+      - Api
+      - Email
+      - Webhook
+      - All
+      x-ms-enum:
+        name: Channels
+        modelAsString: false
+    RecommendationRule:
       type: object
-      description: Collection of recommendations.
+      description: Represents a recommendation rule that the recommendation engine can perform.
       properties:
-        value:
-          type: array
-          description: The Recommendation items on this page
-          items:
-            $ref: '#/components/schemas/Recommendation'
-        nextLink:
+        properties:
+          $ref: '#/components/schemas/RecommendationRuleProperties'
+          description: RecommendationRule resource specific properties
+          x-ms-client-flatten: true
+        kind:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    Recommendation:
+      type: object
+      description: Represents a recommendation result generated by the recommendation engine.
+      properties:
+        properties:
+          $ref: '#/components/schemas/RecommendationProperties'
+          description: Recommendation resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
     ResourceScopeType:
       type: string
       description: Name of a resource type this recommendation applies, e.g. Subscription, ServerFarm, Site.
@@ -806,19 +692,55 @@ components:
           value: Subscription
         - name: WebSite
           value: WebSite
-    RecommendationRule:
+    RecommendationRuleProperties:
       type: object
-      description: Represents a recommendation rule that the recommendation engine can perform.
+      description: RecommendationRule resource specific properties
       properties:
-        properties:
-          $ref: '#/components/schemas/RecommendationRuleProperties'
-          description: RecommendationRule resource specific properties
-          x-ms-client-flatten: true
-        kind:
+        recommendationName:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+          description: Unique name of the rule.
+        displayName:
+          type: string
+          description: UI friendly name of the rule.
+        message:
+          type: string
+          description: Localized name of the rule (Good for UI).
+        recommendationId:
+          type: string
+          format: uuid
+          description: 'Recommendation ID of an associated recommendation object tied to the rule, if exists.
+
+            If such an object doesn''t exist, it is set to null.'
+        description:
+          type: string
+          description: Localized detailed description of the rule.
+        actionName:
+          type: string
+          description: Name of action that is recommended by this rule in string.
+        level:
+          $ref: '#/components/schemas/NotificationLevel'
+          description: Level of impact indicating how critical this rule is.
+        channels:
+          $ref: '#/components/schemas/Channels'
+          description: List of available channels that this rule applies.
+        categoryTags:
+          type: array
+          description: The list of category tags that this recommendation rule belongs to.
+          items:
+            type: string
+          readOnly: true
+        isDynamic:
+          type: boolean
+          description: True if this is associated with a dynamically added rule
+        extensionName:
+          type: string
+          description: Extension name of the portal if exists. Applicable to dynamic rule only.
+        bladeName:
+          type: string
+          description: Deep link to a blade on the portal. Applicable to dynamic rule only.
+        forwardLink:
+          type: string
+          description: Forward link to an external document associated with the rule. Applicable to dynamic rule only.
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -834,6 +756,84 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
+          readOnly: true
+    RecommendationCollection:
+      type: object
+      description: Collection of recommendations.
+      properties:
+        value:
+          type: array
+          description: The Recommendation items on this page
+          items:
+            $ref: '#/components/schemas/Recommendation'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    NotificationLevel:
+      type: string
+      description: Level indicating how critical this recommendation can impact.
+      enum:
+      - Critical
+      - Warning
+      - Information
+      - NonUrgentSuggestion
+      x-ms-enum:
+        name: NotificationLevel
+        modelAsString: false
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
           readOnly: true
   securitySchemes:
     azure_auth:

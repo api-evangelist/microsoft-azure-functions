@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Site Certificates API
+  title: WebApps API Client Site Certificates API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -17,7 +17,7 @@ paths:
       operationId: SiteCertificates_List
       tags:
       - SiteCertificates
-      summary: Get all certificates in a resource group under a site.
+      summary: Get all certificates in a resource group under a site
       description: Get all certificates in a resource group under a site.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -53,7 +53,7 @@ paths:
       operationId: SiteCertificates_Get
       tags:
       - SiteCertificates
-      summary: Get a certificate belonging to a given site.
+      summary: Get a certificate belonging to a given site
       description: Get a certificate belonging to a given site.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -93,7 +93,7 @@ paths:
       operationId: SiteCertificates_CreateOrUpdate
       tags:
       - SiteCertificates
-      summary: Create or update a certificate under a given site.
+      summary: Create or update a certificate under a given site
       description: Create or update a certificate under a given site.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -146,7 +146,7 @@ paths:
       operationId: SiteCertificates_Update
       tags:
       - SiteCertificates
-      summary: Create or update a certificate under a given site.
+      summary: Create or update a certificate under a given site
       description: Create or update a certificate under a given site.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -193,7 +193,7 @@ paths:
       operationId: SiteCertificates_Delete
       tags:
       - SiteCertificates
-      summary: Delete a certificate from the site.
+      summary: Delete a certificate from the site
       description: Delete a certificate from the site.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -232,7 +232,7 @@ paths:
       operationId: SiteCertificates_ListSlot
       tags:
       - SiteCertificates
-      summary: Get all certificates in a resource group for a given site and a deployment slot.
+      summary: Get all certificates in a resource group for a given site and a deployment slot
       description: Get all certificates in a resource group for a given site and a deployment slot.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -274,7 +274,7 @@ paths:
       operationId: SiteCertificates_GetSlot
       tags:
       - SiteCertificates
-      summary: Get a certificate for a given site and deployment slot.
+      summary: Get a certificate for a given site and deployment slot
       description: Get a certificate for a given site and deployment slot.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -320,7 +320,7 @@ paths:
       operationId: SiteCertificates_CreateOrUpdateSlot
       tags:
       - SiteCertificates
-      summary: Create or update a certificate in a given site and deployment slot.
+      summary: Create or update a certificate in a given site and deployment slot
       description: Create or update a certificate in a given site and deployment slot.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -379,7 +379,7 @@ paths:
       operationId: SiteCertificates_UpdateSlot
       tags:
       - SiteCertificates
-      summary: Create or update a certificate for a site and deployment slot.
+      summary: Create or update a certificate for a site and deployment slot
       description: Create or update a certificate for a site and deployment slot.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -432,7 +432,7 @@ paths:
       operationId: SiteCertificates_DeleteSlot
       tags:
       - SiteCertificates
-      summary: Delete a certificate for a given site and deployment slot.
+      summary: Delete a certificate for a given site and deployment slot
       description: Delete a certificate for a given site and deployment slot.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -474,89 +474,6 @@ paths:
           $ref: ./examples/DeleteSiteCertificateSlot.json
 components:
   schemas:
-    CertificateCollection:
-      type: object
-      description: Collection of certificates.
-      properties:
-        value:
-          type: array
-          description: The Certificate items on this page
-          items:
-            $ref: '#/components/schemas/Certificate'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    CertificatePatchResource:
-      type: object
-      description: ARM resource for a certificate.
-      properties:
-        properties:
-          $ref: '#/components/schemas/CertificatePatchResourceProperties'
-          description: CertificatePatchResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    Certificate:
-      type: object
-      description: SSL certificate for an app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/CertificateProperties'
-          description: Certificate resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    KeyVaultSecretStatus:
-      type: string
-      description: Status of the Key Vault secret.
-      enum:
-      - Initialized
-      - WaitingOnCertificateOrder
-      - Succeeded
-      - CertificateOrderFailed
-      - OperationNotPermittedOnKeyVault
-      - AzureServiceUnauthorizedToAccessKeyVault
-      - KeyVaultDoesNotExist
-      - KeyVaultSecretDoesNotExist
-      - UnknownError
-      - ExternalPrivateKey
-      - Unknown
-      x-ms-enum:
-        name: KeyVaultSecretStatus
-        modelAsString: false
     HostingEnvironmentProfile:
       type: object
       description: Specification for an App Service Environment to use for this resource.
@@ -571,31 +488,6 @@ components:
         type:
           type: string
           description: Resource type of the App Service Environment.
-          readOnly: true
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
           readOnly: true
     CertificatePatchResourceProperties:
       type: object
@@ -684,6 +576,117 @@ components:
         domainValidationMethod:
           type: string
           description: Method of domain validation for free cert
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    KeyVaultSecretStatus:
+      type: string
+      description: Status of the Key Vault secret.
+      enum:
+      - Initialized
+      - WaitingOnCertificateOrder
+      - Succeeded
+      - CertificateOrderFailed
+      - OperationNotPermittedOnKeyVault
+      - AzureServiceUnauthorizedToAccessKeyVault
+      - KeyVaultDoesNotExist
+      - KeyVaultSecretDoesNotExist
+      - UnknownError
+      - ExternalPrivateKey
+      - Unknown
+      x-ms-enum:
+        name: KeyVaultSecretStatus
+        modelAsString: false
+    CertificatePatchResource:
+      type: object
+      description: ARM resource for a certificate.
+      properties:
+        properties:
+          $ref: '#/components/schemas/CertificatePatchResourceProperties'
+          description: CertificatePatchResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    CertificateCollection:
+      type: object
+      description: Collection of certificates.
+      properties:
+        value:
+          type: array
+          description: The Certificate items on this page
+          items:
+            $ref: '#/components/schemas/Certificate'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     CertificateProperties:
       type: object
       description: Certificate resource specific properties
@@ -778,22 +781,19 @@ components:
         domainValidationMethod:
           type: string
           description: Method of domain validation for free cert
-    DefaultErrorResponseErrorDetailsItem:
+    Certificate:
       type: object
-      description: Detailed errors.
+      description: SSL certificate for an app.
       properties:
-        code:
+        properties:
+          $ref: '#/components/schemas/CertificateProperties'
+          description: Certificate resource specific properties
+          x-ms-client-flatten: true
+        kind:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
+          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
   securitySchemes:
     azure_auth:
       type: oauth2

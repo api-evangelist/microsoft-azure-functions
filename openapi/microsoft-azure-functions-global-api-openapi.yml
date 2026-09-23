@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Global API
+  title: WebApps API Client Global API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -17,7 +17,7 @@ paths:
       operationId: Global_GetDeletedWebApp
       tags:
       - Global
-      summary: Get deleted app for a subscription.
+      summary: Get deleted app for a subscription
       description: Description for Get deleted app for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -49,7 +49,7 @@ paths:
       operationId: Global_GetDeletedWebAppSnapshots
       tags:
       - Global
-      summary: Get all deleted apps for a subscription.
+      summary: Get all deleted apps for a subscription
       description: Description for Get all deleted apps for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -109,33 +109,43 @@ paths:
           $ref: ./examples/GetSubscriptionOperationWithAsyncResponse.json
 components:
   schemas:
-    ProxyOnlyResource:
+    SnapshotProperties:
       type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      description: Snapshot resource specific properties
       properties:
-        id:
+        time:
           type: string
-          description: Resource Id.
+          description: The time the snapshot was taken.
           readOnly: true
-        name:
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
           type: string
-          description: Resource Name.
+          description: Standardized string to programmatically identify the error.
           readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    DeletedSite:
+      type: object
+      description: A deleted app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DeletedSiteProperties'
+          description: DeletedSite resource specific properties
+          x-ms-client-flatten: true
         kind:
           type: string
           description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
     Snapshot:
       type: object
       description: A snapshot of an app.
@@ -183,6 +193,25 @@ components:
           type: string
           description: Geo Region of the deleted site
           readOnly: true
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -208,42 +237,13 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    SnapshotProperties:
+    DefaultErrorResponse:
       type: object
-      description: Snapshot resource specific properties
+      description: App Service error response.
       properties:
-        time:
-          type: string
-          description: The time the snapshot was taken.
-          readOnly: true
-    DeletedSite:
-      type: object
-      description: A deleted app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/DeletedSiteProperties'
-          description: DeletedSite resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
           readOnly: true
   securitySchemes:
     azure_auth:

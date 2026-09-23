@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Providers API
+  title: WebApps API Client Providers API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -53,8 +53,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultErrorResponse'
-      tags:
-      - Providers
       requestBody:
         content:
           application/json:
@@ -62,10 +60,12 @@ paths:
               $ref: '#/components/schemas/User'
         description: Details of publishing user
         required: true
+      tags:
+      - Providers
   /providers/Microsoft.Web/sourcecontrols:
     get:
       operationId: ListSourceControls
-      summary: Gets the source controls available for Azure websites.
+      summary: Gets the source controls available for Azure websites
       description: Description for Gets the source controls available for Azure websites.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -139,8 +139,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultErrorResponse'
-      tags:
-      - Providers
       requestBody:
         content:
           application/json:
@@ -148,16 +146,25 @@ paths:
               $ref: '#/components/schemas/SourceControl'
         description: Source control token information
         required: true
+      tags:
+      - Providers
 components:
   schemas:
-    DefaultErrorResponse:
+    SourceControlCollection:
       type: object
-      description: App Service error response.
+      description: Collection of source controls.
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
+        value:
+          type: array
+          description: The SourceControl items on this page
+          items:
+            $ref: '#/components/schemas/SourceControl'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     SourceControl:
       type: object
       description: The source control OAuth token.
@@ -171,6 +178,49 @@ components:
           description: Kind of resource.
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    UserProperties:
+      type: object
+      description: User resource specific properties
+      properties:
+        publishingUserName:
+          type: string
+          description: Username used for publishing.
+        publishingPassword:
+          type: string
+          format: password
+          description: Password used for publishing.
+          x-ms-secret: true
+        publishingPasswordHash:
+          type: string
+          format: password
+          description: Password hash used for publishing.
+          x-ms-secret: true
+        publishingPasswordHashSalt:
+          type: string
+          format: password
+          description: Password hash salt used for publishing.
+          x-ms-secret: true
+        scmUri:
+          type: string
+          description: Url of SCM site.
+      required:
+      - publishingUserName
     User:
       type: object
       description: User credentials used for publishing activity.
@@ -209,21 +259,14 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    SourceControlCollection:
+    DefaultErrorResponse:
       type: object
-      description: Collection of source controls.
+      description: App Service error response.
       properties:
-        value:
-          type: array
-          description: The SourceControl items on this page
-          items:
-            $ref: '#/components/schemas/SourceControl'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     SourceControlProperties:
       type: object
       description: SourceControl resource specific properties
@@ -241,49 +284,6 @@ components:
           type: string
           format: date-time
           description: OAuth token expiration.
-    UserProperties:
-      type: object
-      description: User resource specific properties
-      properties:
-        publishingUserName:
-          type: string
-          description: Username used for publishing.
-        publishingPassword:
-          type: string
-          format: password
-          description: Password used for publishing.
-          x-ms-secret: true
-        publishingPasswordHash:
-          type: string
-          format: password
-          description: Password hash used for publishing.
-          x-ms-secret: true
-        publishingPasswordHashSalt:
-          type: string
-          format: password
-          description: Password hash salt used for publishing.
-          x-ms-secret: true
-        scmUri:
-          type: string
-          description: Url of SCM site.
-      required:
-      - publishingUserName
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Workflows API
+  title: WebApps API Client Workflows API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -53,6 +53,8 @@ paths:
               $ref: '#/components/schemas/RegenerateActionParameter'
         description: The access key type.
         required: true
+      summary: Workflows regenerate access key
+      x-summary-source: derived
   ? /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostruntime/runtime/webhooks/workflow/api/management/workflows/{workflowName}/validate
   : post:
       operationId: Workflows_Validate
@@ -94,102 +96,65 @@ paths:
               $ref: '#/components/schemas/Workflow'
         description: The workflow.
         required: true
+      summary: Workflows validate
+      x-summary-source: derived
 components:
   schemas:
-    FlowAccessControlConfigurationPolicy:
+    ErrorProperties:
       type: object
-      description: The access control configuration policy.
+      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
       properties:
-        allowedCallerIpAddresses:
-          type: array
-          description: The allowed caller IP address ranges.
-          items:
-            $ref: '#/components/schemas/IpAddressRange'
-          x-ms-identifiers: []
-        openAuthenticationPolicies:
-          $ref: '#/components/schemas/OpenAuthenticationAccessPolicies'
-          description: The authentication policies for workflow.
-    WorkflowProperties:
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Error message indicating why the operation failed.
+    OpenAuthenticationPolicyClaim:
       type: object
-      description: The workflow properties.
+      description: Open authentication policy claim.
       properties:
-        provisioningState:
-          $ref: '#/components/schemas/WorkflowProvisioningState'
-          description: Gets the provisioning state.
-          readOnly: true
-        createdTime:
+        name:
           type: string
-          format: date-time
-          description: Gets the created time.
-          readOnly: true
-        changedTime:
+          description: The name of the claim.
+        value:
           type: string
-          format: date-time
-          description: Gets the changed time.
-          readOnly: true
-        state:
-          $ref: '#/components/schemas/WorkflowState'
-          description: The state.
-        version:
+          description: The value of the claim.
+    IpAddressRange:
+      type: object
+      description: The ip address range.
+      properties:
+        addressRange:
           type: string
-          description: Gets the version.
-          readOnly: true
-        accessEndpoint:
-          type: string
-          description: Gets the access endpoint.
-          readOnly: true
-        endpointsConfiguration:
-          $ref: '#/components/schemas/FlowEndpointsConfiguration'
-          description: The endpoints configuration.
-        accessControl:
-          $ref: '#/components/schemas/FlowAccessControlConfiguration'
-          description: The access control configuration.
-        sku:
-          $ref: '#/components/schemas/WorkflowSku'
-          description: The sku.
-          readOnly: true
-        integrationAccount:
-          $ref: '#/components/schemas/ResourceReference'
-          description: The integration account.
-        integrationServiceEnvironment:
-          $ref: '#/components/schemas/ResourceReference'
-          description: The integration service environment.
-        definition:
-          description: The definition.
-        parameters:
-          type: object
-          description: The parameters.
-          additionalProperties:
-            $ref: '#/components/schemas/WorkflowParameter'
-        kind:
-          $ref: '#/components/schemas/Kind'
-          description: The workflow kind.
-    WorkflowSkuName:
+          description: The IP address range.
+    Kind:
       type: string
-      description: The sku name.
+      description: The workflow kind.
       enum:
-      - NotSpecified
-      - Free
-      - Shared
-      - Basic
-      - Standard
-      - Premium
+      - Stateful
+      - Stateless
       x-ms-enum:
-        name: WorkflowSkuName
+        name: Kind
         modelAsString: true
         values:
-        - name: NotSpecified
-          value: NotSpecified
-        - name: Free
-          value: Free
-        - name: Shared
-          value: Shared
-        - name: Basic
-          value: Basic
-        - name: Standard
-          value: Standard
-        - name: Premium
-          value: Premium
+        - name: Stateful
+          value: Stateful
+        - name: Stateless
+          value: Stateless
+    OpenAuthenticationAccessPolicy:
+      type: object
+      description: Open authentication access policy defined by user.
+      properties:
+        type:
+          $ref: '#/components/schemas/OpenAuthenticationProviderType'
+          description: Type of provider for OAuth.
+        claims:
+          type: array
+          description: The access policy claims.
+          items:
+            $ref: '#/components/schemas/OpenAuthenticationPolicyClaim'
+          x-ms-identifiers:
+          - name
     ManagedServiceIdentityType:
       type: string
       description: Type of managed service identity.
@@ -201,16 +166,35 @@ components:
       x-ms-enum:
         name: ManagedServiceIdentityType
         modelAsString: false
-    ErrorProperties:
+    OpenAuthenticationAccessPolicies:
       type: object
-      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+      description: AuthenticationPolicy of type Open.
       properties:
-        code:
+        policies:
+          type: object
+          description: Open authentication policies.
+          additionalProperties:
+            $ref: '#/components/schemas/OpenAuthenticationAccessPolicy'
+    ManagedServiceIdentity:
+      type: object
+      description: Managed service identity.
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedServiceIdentityType'
+          description: Type of managed service identity.
+        tenantId:
           type: string
-          description: Error code.
-        message:
+          description: Tenant of managed service identity.
+          readOnly: true
+        principalId:
           type: string
-          description: Error message indicating why the operation failed.
+          description: Principal Id of managed service identity.
+          readOnly: true
+        userAssignedIdentities:
+          type: object
+          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
+          additionalProperties:
+            $ref: '#/components/schemas/UserAssignedIdentity'
     FlowAccessControlConfiguration:
       type: object
       description: The access control configuration.
@@ -227,28 +211,16 @@ components:
         workflowManagement:
           $ref: '#/components/schemas/FlowAccessControlConfigurationPolicy'
           description: The access control configuration for workflow management.
-    IpAddress:
+    FlowEndpointsConfiguration:
       type: object
-      description: The ip address.
+      description: The endpoints configuration.
       properties:
-        address:
-          type: string
-          description: The address.
-    ResourceReference:
-      type: object
-      description: The resource reference.
-      properties:
-        id:
-          type: string
-          description: The resource id.
-        name:
-          type: string
-          description: Gets the resource name.
-          readOnly: true
-        type:
-          type: string
-          description: Gets the resource type.
-          readOnly: true
+        workflow:
+          $ref: '#/components/schemas/FlowEndpoints'
+          description: The workflow endpoints.
+        connector:
+          $ref: '#/components/schemas/FlowEndpoints'
+          description: The connector endpoints.
     KeyType:
       type: string
       description: The key type.
@@ -266,79 +238,50 @@ components:
           value: Primary
         - name: Secondary
           value: Secondary
-    OpenAuthenticationProviderType:
-      type: string
-      description: Open authentication policy provider type.
-      enum:
-      - AAD
-      x-ms-enum:
-        name: OpenAuthenticationProviderType
-        modelAsString: true
-        values:
-        - name: AAD
-          value: AAD
-    ErrorResponse:
+    UserAssignedIdentity:
       type: object
-      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      description: User Assigned identity.
       properties:
-        error:
-          $ref: '#/components/schemas/ErrorProperties'
-          description: The error properties.
-    OpenAuthenticationAccessPolicies:
+        principalId:
+          type: string
+          description: Principal Id of user assigned identity
+          readOnly: true
+        clientId:
+          type: string
+          description: Client Id of user assigned identity
+          readOnly: true
+    FlowEndpoints:
       type: object
-      description: AuthenticationPolicy of type Open.
+      description: The flow endpoints configuration.
       properties:
-        policies:
-          type: object
-          description: Open authentication policies.
-          additionalProperties:
-            $ref: '#/components/schemas/OpenAuthenticationAccessPolicy'
-    OpenAuthenticationAccessPolicy:
+        outgoingIpAddresses:
+          type: array
+          description: The outgoing ip address.
+          items:
+            $ref: '#/components/schemas/IpAddress'
+          x-ms-identifiers:
+          - address
+        accessEndpointIpAddresses:
+          type: array
+          description: The access endpoint ip address.
+          items:
+            $ref: '#/components/schemas/IpAddress'
+          x-ms-identifiers:
+          - address
+    WorkflowParameter:
       type: object
-      description: Open authentication access policy defined by user.
+      description: The workflow parameters.
       properties:
         type:
-          $ref: '#/components/schemas/OpenAuthenticationProviderType'
-          description: Type of provider for OAuth.
-        claims:
-          type: array
-          description: The access policy claims.
-          items:
-            $ref: '#/components/schemas/OpenAuthenticationPolicyClaim'
-          x-ms-identifiers:
-          - name
-    OpenAuthenticationPolicyClaim:
-      type: object
-      description: Open authentication policy claim.
-      properties:
-        name:
-          type: string
-          description: The name of the claim.
+          $ref: '#/components/schemas/ParameterType'
+          description: The type.
         value:
+          description: The value.
+        metadata:
+          description: The metadata.
+        description:
           type: string
-          description: The value of the claim.
-    FlowEndpointsConfiguration:
-      type: object
-      description: The endpoints configuration.
-      properties:
-        workflow:
-          $ref: '#/components/schemas/FlowEndpoints'
-          description: The workflow endpoints.
-        connector:
-          $ref: '#/components/schemas/FlowEndpoints'
-          description: The connector endpoints.
-    WorkflowSku:
-      type: object
-      description: The sku type.
-      properties:
-        name:
-          $ref: '#/components/schemas/WorkflowSkuName'
-          description: The name.
-        plan:
-          $ref: '#/components/schemas/ResourceReference'
-          description: The reference to plan.
-      required:
-      - name
+          description: The description.
     WorkflowProvisioningState:
       type: string
       description: The workflow provisioning state.
@@ -413,45 +356,96 @@ components:
           value: Waiting
         - name: InProgress
           value: InProgress
-    FlowEndpoints:
+    FlowAccessControlConfigurationPolicy:
       type: object
-      description: The flow endpoints configuration.
+      description: The access control configuration policy.
       properties:
-        outgoingIpAddresses:
+        allowedCallerIpAddresses:
           type: array
-          description: The outgoing ip address.
+          description: The allowed caller IP address ranges.
           items:
-            $ref: '#/components/schemas/IpAddress'
-          x-ms-identifiers:
-          - address
-        accessEndpointIpAddresses:
-          type: array
-          description: The access endpoint ip address.
-          items:
-            $ref: '#/components/schemas/IpAddress'
-          x-ms-identifiers:
-          - address
-    Kind:
-      type: string
-      description: The workflow kind.
-      enum:
-      - Stateful
-      - Stateless
-      x-ms-enum:
-        name: Kind
-        modelAsString: true
-        values:
-        - name: Stateful
-          value: Stateful
-        - name: Stateless
-          value: Stateless
-    RegenerateActionParameter:
+            $ref: '#/components/schemas/IpAddressRange'
+          x-ms-identifiers: []
+        openAuthenticationPolicies:
+          $ref: '#/components/schemas/OpenAuthenticationAccessPolicies'
+          description: The authentication policies for workflow.
+    ResourceReference:
       type: object
-      description: The access key regenerate action content.
+      description: The resource reference.
       properties:
-        keyType:
-          $ref: '#/components/schemas/KeyType'
-          description: The key type.
+        id:
+          type: string
+          description: The resource id.
+        name:
+          type: string
+          description: Gets the resource name.
+          readOnly: true
+        type:
+          type: string
+          description: Gets the resource type.
+          readOnly: true
+    ErrorResponse:
+      type: object
+      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorProperties'
+          description: The error properties.
+    WorkflowProperties:
+      type: object
+      description: The workflow properties.
+      properties:
+        provisioningState:
+          $ref: '#/components/schemas/WorkflowProvisioningState'
+          description: Gets the provisioning state.
+          readOnly: true
+        createdTime:
+          type: string
+          format: date-time
+          description: Gets the created time.
+          readOnly: true
+        changedTime:
+          type: string
+          format: date-time
+          description: Gets the changed time.
+          readOnly: true
+        state:
+          $ref: '#/components/schemas/WorkflowState'
+          description: The state.
+        version:
+          type: string
+          description: Gets the version.
+          readOnly: true
+        accessEndpoint:
+          type: string
+          description: Gets the access endpoint.
+          readOnly: true
+        endpointsConfiguration:
+          $ref: '#/components/schemas/FlowEndpointsConfiguration'
+          description: The endpoints configuration.
+        accessControl:
+          $ref: '#/components/schemas/FlowAccessControlConfiguration'
+          description: The access control configuration.
+        sku:
+          $ref: '#/components/schemas/WorkflowSku'
+          description: The sku.
+          readOnly: true
+        integrationAccount:
+          $ref: '#/components/schemas/ResourceReference'
+          description: The integration account.
+        integrationServiceEnvironment:
+          $ref: '#/components/schemas/ResourceReference'
+          description: The integration service environment.
+        definition:
+          description: The definition.
+        parameters:
+          type: object
+          description: The parameters.
+          additionalProperties:
+            $ref: '#/components/schemas/WorkflowParameter'
+        kind:
+          $ref: '#/components/schemas/Kind'
+          description: The workflow kind.
     WorkflowState:
       type: string
       description: The workflow state.
@@ -478,96 +472,51 @@ components:
           value: Deleted
         - name: Suspended
           value: Suspended
-    WorkflowParameter:
+    WorkflowSku:
       type: object
-      description: The workflow parameters.
+      description: The sku type.
       properties:
-        type:
-          $ref: '#/components/schemas/ParameterType'
-          description: The type.
-        value:
-          description: The value.
-        metadata:
-          description: The metadata.
-        description:
-          type: string
-          description: The description.
-    IpAddressRange:
-      type: object
-      description: The ip address range.
-      properties:
-        addressRange:
-          type: string
-          description: The IP address range.
-    Workflow:
-      type: object
-      description: The workflow type.
-      properties:
-        properties:
-          $ref: '#/components/schemas/WorkflowProperties'
-          description: The workflow properties.
-          x-ms-client-flatten: true
-        identity:
-          $ref: '#/components/schemas/ManagedServiceIdentity'
-          description: Managed service identity.
-      allOf:
-      - $ref: '#/components/schemas/WorkflowResource'
-    UserAssignedIdentity:
-      type: object
-      description: User Assigned identity.
-      properties:
-        principalId:
-          type: string
-          description: Principal Id of user assigned identity
-          readOnly: true
-        clientId:
-          type: string
-          description: Client Id of user assigned identity
-          readOnly: true
-    WorkflowResource:
-      type: object
-      description: The base resource type.
-      properties:
-        id:
-          type: string
-          description: The resource id.
-          readOnly: true
         name:
-          type: string
-          description: Gets the resource name.
-          readOnly: true
-        type:
-          type: string
-          description: Gets the resource type.
-          readOnly: true
-        location:
-          type: string
-          description: The resource location.
-        tags:
-          type: object
-          description: The resource tags.
-          additionalProperties:
-            type: string
-    ManagedServiceIdentity:
+          $ref: '#/components/schemas/WorkflowSkuName'
+          description: The name.
+        plan:
+          $ref: '#/components/schemas/ResourceReference'
+          description: The reference to plan.
+      required:
+      - name
+    IpAddress:
       type: object
-      description: Managed service identity.
+      description: The ip address.
       properties:
-        type:
-          $ref: '#/components/schemas/ManagedServiceIdentityType'
-          description: Type of managed service identity.
-        tenantId:
+        address:
           type: string
-          description: Tenant of managed service identity.
-          readOnly: true
-        principalId:
-          type: string
-          description: Principal Id of managed service identity.
-          readOnly: true
-        userAssignedIdentities:
-          type: object
-          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
-          additionalProperties:
-            $ref: '#/components/schemas/UserAssignedIdentity'
+          description: The address.
+    WorkflowSkuName:
+      type: string
+      description: The sku name.
+      enum:
+      - NotSpecified
+      - Free
+      - Shared
+      - Basic
+      - Standard
+      - Premium
+      x-ms-enum:
+        name: WorkflowSkuName
+        modelAsString: true
+        values:
+        - name: NotSpecified
+          value: NotSpecified
+        - name: Free
+          value: Free
+        - name: Shared
+          value: Shared
+        - name: Basic
+          value: Basic
+        - name: Standard
+          value: Standard
+        - name: Premium
+          value: Premium
     ParameterType:
       type: string
       description: The parameter type.
@@ -603,6 +552,61 @@ components:
           value: Object
         - name: SecureObject
           value: SecureObject
+    RegenerateActionParameter:
+      type: object
+      description: The access key regenerate action content.
+      properties:
+        keyType:
+          $ref: '#/components/schemas/KeyType'
+          description: The key type.
+    OpenAuthenticationProviderType:
+      type: string
+      description: Open authentication policy provider type.
+      enum:
+      - AAD
+      x-ms-enum:
+        name: OpenAuthenticationProviderType
+        modelAsString: true
+        values:
+        - name: AAD
+          value: AAD
+    WorkflowResource:
+      type: object
+      description: The base resource type.
+      properties:
+        id:
+          type: string
+          description: The resource id.
+          readOnly: true
+        name:
+          type: string
+          description: Gets the resource name.
+          readOnly: true
+        type:
+          type: string
+          description: Gets the resource type.
+          readOnly: true
+        location:
+          type: string
+          description: The resource location.
+        tags:
+          type: object
+          description: The resource tags.
+          additionalProperties:
+            type: string
+    Workflow:
+      type: object
+      description: The workflow type.
+      properties:
+        properties:
+          $ref: '#/components/schemas/WorkflowProperties'
+          description: The workflow properties.
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/ManagedServiceIdentity'
+          description: Managed service identity.
+      allOf:
+      - $ref: '#/components/schemas/WorkflowResource'
   securitySchemes:
     azure_auth:
       type: oauth2

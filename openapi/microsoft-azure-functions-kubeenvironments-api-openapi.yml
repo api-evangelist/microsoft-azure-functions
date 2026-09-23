@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Kube Environments API
+  title: WebApps API Client Kube Environments API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -17,7 +17,7 @@ paths:
       operationId: KubeEnvironments_ListBySubscription
       tags:
       - KubeEnvironments
-      summary: Get all Kubernetes Environments for a subscription.
+      summary: Get all Kubernetes Environments for a subscription
       description: Description for Get all Kubernetes Environments for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -45,7 +45,7 @@ paths:
       operationId: KubeEnvironments_ListByResourceGroup
       tags:
       - KubeEnvironments
-      summary: Get all the Kubernetes Environments in a resource group.
+      summary: Get all the Kubernetes Environments in a resource group
       description: Description for Get all the Kubernetes Environments in a resource group.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -74,7 +74,7 @@ paths:
       operationId: KubeEnvironments_Get
       tags:
       - KubeEnvironments
-      summary: Get the properties of a Kubernetes Environment.
+      summary: Get the properties of a Kubernetes Environment
       description: Description for Get the properties of a Kubernetes Environment.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -106,7 +106,7 @@ paths:
       operationId: KubeEnvironments_CreateOrUpdate
       tags:
       - KubeEnvironments
-      summary: Creates or updates a Kubernetes Environment.
+      summary: Creates or updates a Kubernetes Environment
       description: Description for Creates or updates a Kubernetes Environment.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -165,7 +165,7 @@ paths:
       operationId: KubeEnvironments_Update
       tags:
       - KubeEnvironments
-      summary: Creates or updates a Kubernetes Environment.
+      summary: Creates or updates a Kubernetes Environment
       description: Description for Creates or updates a Kubernetes Environment.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -210,7 +210,7 @@ paths:
       operationId: KubeEnvironments_Delete
       tags:
       - KubeEnvironments
-      summary: Delete a Kubernetes Environment.
+      summary: Delete a Kubernetes Environment
       description: Description for Delete a Kubernetes Environment.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -253,6 +253,205 @@ paths:
       x-ms-long-running-operation: true
 components:
   schemas:
+    FrontEndConfiguration:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/FrontEndServiceType'
+    LogAnalyticsConfiguration:
+      type: object
+      properties:
+        customerId:
+          type: string
+        sharedKey:
+          type: string
+          format: password
+          x-ms-mutability:
+          - update
+          - create
+          x-ms-secret: true
+    StorageType:
+      type: string
+      enum:
+      - LocalNode
+      - NetworkFileSystem
+      x-ms-enum:
+        name: StorageType
+        modelAsString: false
+    FrontEndServiceType:
+      type: string
+      enum:
+      - NodePort
+      - LoadBalancer
+      x-ms-enum:
+        name: FrontEndServiceType
+        modelAsString: false
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    AppLogsConfiguration:
+      type: object
+      properties:
+        destination:
+          type: string
+        logAnalyticsConfiguration:
+          $ref: '#/components/schemas/LogAnalyticsConfiguration'
+    ExtendedLocation:
+      type: object
+      description: Extended Location.
+      properties:
+        name:
+          type: string
+          description: Name of extended location.
+        type:
+          type: string
+          description: Type of extended location.
+          readOnly: true
+    KubeEnvironment:
+      type: object
+      description: A Kubernetes cluster specialized for web workloads by Azure App Service
+      properties:
+        properties:
+          $ref: '#/components/schemas/KubeEnvironmentProperties'
+          description: KubeEnvironment resource specific properties
+          x-ms-client-flatten: true
+        extendedLocation:
+          $ref: '#/components/schemas/ExtendedLocation'
+          description: Extended Location.
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+    ContainerAppsConfiguration:
+      type: object
+      properties:
+        daprAIInstrumentationKey:
+          type: string
+          description: Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry
+          x-ms-mutability:
+          - read
+          - create
+        platformReservedCidr:
+          type: string
+          description: IP range in CIDR notation that can be reserved for environment infrastructure IP addresses. It must not overlap with any other Subnet IP ranges.
+          x-ms-mutability:
+          - read
+          - create
+        platformReservedDnsIP:
+          type: string
+          description: An IP address from the IP range defined by platformReservedCidr that will be reserved for the internal DNS server
+          x-ms-mutability:
+          - read
+          - create
+        controlPlaneSubnetResourceId:
+          type: string
+          description: Resource ID of a subnet for control plane infrastructure components. This subnet must be in the same VNET as the subnet defined in appSubnetResourceId. Must not overlap with the IP range defined in platformReservedCidr, if defined.
+          x-ms-mutability:
+          - read
+          - create
+        appSubnetResourceId:
+          type: string
+          description: Resource ID of a subnet for control plane infrastructure components. This subnet must be in the same VNET as the subnet defined in appSubnetResourceId. Must not overlap with the IP range defined in platformReservedCidr, if defined.
+          x-ms-mutability:
+          - read
+          - create
+        dockerBridgeCidr:
+          type: string
+          description: CIDR notation IP range assigned to the Docker bridge network. It must not overlap with any Subnet IP ranges or the IP range defined in platformReservedCidr, if defined.
+          x-ms-mutability:
+          - read
+          - create
+    KubeEnvironmentProvisioningState:
+      type: string
+      description: Provisioning state of the Kubernetes Environment.
+      enum:
+      - Succeeded
+      - Failed
+      - Canceled
+      - Waiting
+      - InitializationInProgress
+      - InfrastructureSetupInProgress
+      - InfrastructureSetupComplete
+      - ScheduledForDelete
+      - UpgradeRequested
+      - UpgradeFailed
+      x-ms-enum:
+        name: KubeEnvironmentProvisioningState
+        modelAsString: false
+    KubeEnvironmentPatchResource:
+      type: object
+      description: ARM resource for a KubeEnvironment when patching
+      properties:
+        properties:
+          $ref: '#/components/schemas/KubeEnvironmentPatchResourceProperties'
+          description: KubeEnvironmentPatchResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    KubeEnvironmentPatchResourceProperties:
+      type: object
+      description: KubeEnvironmentPatchResource resource specific properties
+      properties:
+        provisioningState:
+          $ref: '#/components/schemas/KubeEnvironmentProvisioningState'
+          description: Provisioning state of the Kubernetes Environment.
+          readOnly: true
+        deploymentErrors:
+          type: string
+          description: Any errors that occurred during deployment or deployment validation
+          readOnly: true
+        internalLoadBalancerEnabled:
+          type: boolean
+          description: Only visible within Vnet/Subnet
+          x-ms-mutability:
+          - read
+          - create
+        defaultDomain:
+          type: string
+          description: Default Domain Name for the cluster
+          readOnly: true
+        staticIp:
+          type: string
+          description: Static IP of the KubeEnvironment
+          x-ms-mutability:
+          - read
+          - create
+        arcConfiguration:
+          $ref: '#/components/schemas/ArcConfiguration'
+          description: 'Cluster configuration which determines the ARC cluster
+
+            components types. Eg: Choosing between BuildService kind,
+
+            FrontEnd Service ArtifactsStorageType etc.'
+        appLogsConfiguration:
+          $ref: '#/components/schemas/AppLogsConfiguration'
+          description: 'Cluster configuration which enables the log daemon to export
+
+            app logs to a destination. Currently only "log-analytics" is
+
+            supported'
+        containerAppsConfiguration:
+          $ref: '#/components/schemas/ContainerAppsConfiguration'
+          description: Cluster configuration for Container Apps Environments to configure Dapr Instrumentation Key and VNET Configuration
+        aksResourceID:
+          type: string
+          x-ms-mutability:
+          - read
+          - create
     ProxyOnlyResource:
       type: object
       description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
@@ -328,174 +527,6 @@ components:
           x-ms-mutability:
           - read
           - create
-    FrontEndConfiguration:
-      type: object
-      properties:
-        kind:
-          $ref: '#/components/schemas/FrontEndServiceType'
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    KubeEnvironmentProvisioningState:
-      type: string
-      description: Provisioning state of the Kubernetes Environment.
-      enum:
-      - Succeeded
-      - Failed
-      - Canceled
-      - Waiting
-      - InitializationInProgress
-      - InfrastructureSetupInProgress
-      - InfrastructureSetupComplete
-      - ScheduledForDelete
-      - UpgradeRequested
-      - UpgradeFailed
-      x-ms-enum:
-        name: KubeEnvironmentProvisioningState
-        modelAsString: false
-    ExtendedLocation:
-      type: object
-      description: Extended Location.
-      properties:
-        name:
-          type: string
-          description: Name of extended location.
-        type:
-          type: string
-          description: Type of extended location.
-          readOnly: true
-    KubeEnvironmentPatchResourceProperties:
-      type: object
-      description: KubeEnvironmentPatchResource resource specific properties
-      properties:
-        provisioningState:
-          $ref: '#/components/schemas/KubeEnvironmentProvisioningState'
-          description: Provisioning state of the Kubernetes Environment.
-          readOnly: true
-        deploymentErrors:
-          type: string
-          description: Any errors that occurred during deployment or deployment validation
-          readOnly: true
-        internalLoadBalancerEnabled:
-          type: boolean
-          description: Only visible within Vnet/Subnet
-          x-ms-mutability:
-          - read
-          - create
-        defaultDomain:
-          type: string
-          description: Default Domain Name for the cluster
-          readOnly: true
-        staticIp:
-          type: string
-          description: Static IP of the KubeEnvironment
-          x-ms-mutability:
-          - read
-          - create
-        arcConfiguration:
-          $ref: '#/components/schemas/ArcConfiguration'
-          description: 'Cluster configuration which determines the ARC cluster
-
-            components types. Eg: Choosing between BuildService kind,
-
-            FrontEnd Service ArtifactsStorageType etc.'
-        appLogsConfiguration:
-          $ref: '#/components/schemas/AppLogsConfiguration'
-          description: 'Cluster configuration which enables the log daemon to export
-
-            app logs to a destination. Currently only "log-analytics" is
-
-            supported'
-        containerAppsConfiguration:
-          $ref: '#/components/schemas/ContainerAppsConfiguration'
-          description: Cluster configuration for Container Apps Environments to configure Dapr Instrumentation Key and VNET Configuration
-        aksResourceID:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-    StorageType:
-      type: string
-      enum:
-      - LocalNode
-      - NetworkFileSystem
-      x-ms-enum:
-        name: StorageType
-        modelAsString: false
-    FrontEndServiceType:
-      type: string
-      enum:
-      - NodePort
-      - LoadBalancer
-      x-ms-enum:
-        name: FrontEndServiceType
-        modelAsString: false
-    KubeEnvironmentCollection:
-      type: object
-      description: Collection of Kubernetes Environments
-      properties:
-        value:
-          type: array
-          description: The KubeEnvironment items on this page
-          items:
-            $ref: '#/components/schemas/KubeEnvironment'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    ContainerAppsConfiguration:
-      type: object
-      properties:
-        daprAIInstrumentationKey:
-          type: string
-          description: Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry
-          x-ms-mutability:
-          - read
-          - create
-        platformReservedCidr:
-          type: string
-          description: IP range in CIDR notation that can be reserved for environment infrastructure IP addresses. It must not overlap with any other Subnet IP ranges.
-          x-ms-mutability:
-          - read
-          - create
-        platformReservedDnsIP:
-          type: string
-          description: An IP address from the IP range defined by platformReservedCidr that will be reserved for the internal DNS server
-          x-ms-mutability:
-          - read
-          - create
-        controlPlaneSubnetResourceId:
-          type: string
-          description: Resource ID of a subnet for control plane infrastructure components. This subnet must be in the same VNET as the subnet defined in appSubnetResourceId. Must not overlap with the IP range defined in platformReservedCidr, if defined.
-          x-ms-mutability:
-          - read
-          - create
-        appSubnetResourceId:
-          type: string
-          description: Resource ID of a subnet for control plane infrastructure components. This subnet must be in the same VNET as the subnet defined in appSubnetResourceId. Must not overlap with the IP range defined in platformReservedCidr, if defined.
-          x-ms-mutability:
-          - read
-          - create
-        dockerBridgeCidr:
-          type: string
-          description: CIDR notation IP range assigned to the Docker bridge network. It must not overlap with any Subnet IP ranges or the IP range defined in platformReservedCidr, if defined.
-          x-ms-mutability:
-          - read
-          - create
-    AppLogsConfiguration:
-      type: object
-      properties:
-        destination:
-          type: string
-        logAnalyticsConfiguration:
-          $ref: '#/components/schemas/LogAnalyticsConfiguration'
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -521,34 +552,14 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    LogAnalyticsConfiguration:
+    DefaultErrorResponse:
       type: object
+      description: App Service error response.
       properties:
-        customerId:
-          type: string
-        sharedKey:
-          type: string
-          format: password
-          x-ms-mutability:
-          - update
-          - create
-          x-ms-secret: true
-    KubeEnvironment:
-      type: object
-      description: A Kubernetes cluster specialized for web workloads by Azure App Service
-      properties:
-        properties:
-          $ref: '#/components/schemas/KubeEnvironmentProperties'
-          description: KubeEnvironment resource specific properties
-          x-ms-client-flatten: true
-        extendedLocation:
-          $ref: '#/components/schemas/ExtendedLocation'
-          description: Extended Location.
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     ArcConfiguration:
       type: object
       properties:
@@ -586,32 +597,21 @@ components:
           - update
           - create
           x-ms-secret: true
-    KubeEnvironmentPatchResource:
+    KubeEnvironmentCollection:
       type: object
-      description: ARM resource for a KubeEnvironment when patching
+      description: Collection of Kubernetes Environments
       properties:
-        properties:
-          $ref: '#/components/schemas/KubeEnvironmentPatchResourceProperties'
-          description: KubeEnvironmentPatchResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
+        value:
+          type: array
+          description: The KubeEnvironment items on this page
+          items:
+            $ref: '#/components/schemas/KubeEnvironment'
+        nextLink:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
   securitySchemes:
     azure_auth:
       type: oauth2

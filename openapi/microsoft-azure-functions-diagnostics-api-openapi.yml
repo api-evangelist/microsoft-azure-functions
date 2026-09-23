@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Diagnostics API
+  title: WebApps API Client Diagnostics API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -1170,52 +1170,28 @@ components:
           description: The link to the next page of items
       required:
       - value
-    Solution:
+    QueryUtterancesResult:
       type: object
-      description: Class Representing Solution for problems detected.
+      description: Result for utterances query.
+      properties:
+        sampleUtterance:
+          $ref: '#/components/schemas/SampleUtterance'
+          description: A sample utterance.
+        score:
+          type: number
+          format: float
+          description: Score of a sample utterance.
+    SupportTopic:
+      type: object
+      description: Defines a unique Support Topic
       properties:
         id:
-          type: number
-          format: double
-          description: Solution Id.
-        displayName:
           type: string
-          description: Display Name of the solution
-        order:
-          type: number
-          format: double
-          description: Order of the solution.
-        description:
+          description: Support Topic Id
+          readOnly: true
+        pesId:
           type: string
-          description: Description of the solution
-        type:
-          $ref: '#/components/schemas/SolutionType'
-          description: Type of Solution
-        data:
-          type: array
-          description: Solution Data.
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/NameValuePair'
-          x-ms-identifiers:
-          - name
-        metadata:
-          type: array
-          description: Solution Metadata.
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/NameValuePair'
-          x-ms-identifiers:
-          - name
-    DiagnosticCategoryProperties:
-      type: object
-      description: DiagnosticCategory resource specific properties
-      properties:
-        description:
-          type: string
-          description: Description of the diagnostic category
+          description: Unique resource Id
           readOnly: true
     AbnormalTimePeriod:
       type: object
@@ -1240,356 +1216,30 @@ components:
           description: List of proposed solutions
           items:
             $ref: '#/components/schemas/Solution'
-    DiagnosticAnalysis:
-      type: object
-      description: Class representing a diagnostic analysis done on an application
-      properties:
-        properties:
-          $ref: '#/components/schemas/DiagnosticAnalysisProperties'
-          description: DiagnosticAnalysis resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    AnalysisDefinition:
-      type: object
-      description: Definition of Analysis
-      properties:
-        properties:
-          $ref: '#/components/schemas/AnalysisDefinitionProperties'
-          description: AnalysisDefinition resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    IssueType:
-      type: string
-      description: Represents the type of the Detector
-      enum:
-      - ServiceIncident
-      - AppDeployment
-      - AppCrash
-      - RuntimeIssueDetected
-      - AseDeployment
-      - UserIssue
-      - PlatformIssue
-      - Other
-      x-ms-enum:
-        name: IssueType
-        modelAsString: false
-    DetectorType:
-      type: string
-      description: Whether this detector is an Analysis Detector or not.
-      enum:
-      - Detector
-      - Analysis
-      - CategoryOverview
-      x-ms-enum:
-        name: DetectorType
-        modelAsString: false
-    DiagnosticAnalysisProperties:
-      type: object
-      description: DiagnosticAnalysis resource specific properties
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Start time of the period
-        endTime:
-          type: string
-          format: date-time
-          description: End time of the period
-        abnormalTimePeriods:
-          type: array
-          description: List of time periods.
-          items:
-            $ref: '#/components/schemas/AbnormalTimePeriod'
-          x-ms-identifiers: []
-        payload:
-          type: array
-          description: Data by each detector
-          items:
-            $ref: '#/components/schemas/AnalysisData'
-          x-ms-identifiers:
-          - source
-        nonCorrelatedDetectors:
-          type: array
-          description: Data by each detector for detectors that did not corelate
-          items:
-            $ref: '#/components/schemas/DetectorDefinition'
-          x-ms-identifiers:
-          - displayName
-    AnalysisData:
-      type: object
-      description: Class Representing Detector Evidence used for analysis
-      properties:
-        source:
-          type: string
-          description: Name of the Detector
-        detectorDefinition:
-          $ref: '#/components/schemas/DetectorDefinition'
-          description: Detector Definition
-        metrics:
-          type: array
-          description: Source Metrics
-          items:
-            $ref: '#/components/schemas/DiagnosticMetricSet'
-          x-ms-identifiers:
-          - name
-        data:
-          type: array
-          description: Additional Source Data
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/NameValuePair'
-          x-ms-identifiers:
-          - name
-        detectorMetaData:
-          $ref: '#/components/schemas/ResponseMetaData'
-          description: Detector Meta Data
-    InsightStatus:
-      type: string
-      description: Level of the most severe insight generated by the detector.
-      enum:
-      - Critical
-      - Warning
-      - Info
-      - Success
-      - None
-      x-ms-enum:
-        name: InsightStatus
-        modelAsString: false
-    QueryUtterancesResult:
-      type: object
-      description: Result for utterances query.
-      properties:
-        sampleUtterance:
-          $ref: '#/components/schemas/SampleUtterance'
-          description: A sample utterance.
-        score:
-          type: number
-          format: float
-          description: Score of a sample utterance.
-    RenderingType:
-      type: string
-      description: Rendering Type
-      enum:
-      - NoGraph
-      - Table
-      - TimeSeries
-      - TimeSeriesPerInstance
-      - PieChart
-      - DataSummary
-      - Email
-      - Insights
-      - DynamicInsight
-      - Markdown
-      - Detector
-      - DropDown
-      - Card
-      - Solution
-      - Guage
-      - Form
-      - ChangeSets
-      - ChangeAnalysisOnboarding
-      - ChangesView
-      - AppInsight
-      - DependencyGraph
-      - DownTime
-      - SummaryCard
-      - SearchComponent
-      - AppInsightEnablement
-      x-ms-enum:
-        name: RenderingType
-        modelAsString: false
-    DiagnosticDetectorResponseProperties:
-      type: object
-      description: DiagnosticDetectorResponse resource specific properties
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Start time of the period
-        endTime:
-          type: string
-          format: date-time
-          description: End time of the period
-        issueDetected:
-          type: boolean
-          description: Flag representing Issue was detected.
-        detectorDefinition:
-          $ref: '#/components/schemas/DetectorDefinition'
-          description: Detector's definition
-        metrics:
-          type: array
-          description: Metrics provided by the detector
-          items:
-            $ref: '#/components/schemas/DiagnosticMetricSet'
-          x-ms-identifiers:
-          - name
-        abnormalTimePeriods:
-          type: array
-          description: List of Correlated events found by the detector
-          items:
-            $ref: '#/components/schemas/DetectorAbnormalTimePeriod'
-          x-ms-identifiers: []
-        data:
-          type: array
-          description: Additional Data that detector wants to send.
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/NameValuePair'
-          x-ms-identifiers:
-          - name
-        responseMetaData:
-          $ref: '#/components/schemas/ResponseMetaData'
-          description: Meta Data
-    DataTableResponseColumn:
-      type: object
-      description: Column definition
-      properties:
-        columnName:
-          type: string
-          description: Name of the column
-        dataType:
-          type: string
-          description: Data type which looks like 'String' or 'Int32'.
-        columnType:
-          type: string
-          description: Column Type
-    QueryUtterancesResults:
-      type: object
-      description: Suggested utterances where the detector can be applicable
-      properties:
-        query:
-          type: string
-          description: Search Query.
-        results:
-          type: array
-          description: Array of utterance results for search query.
-          items:
-            $ref: '#/components/schemas/QueryUtterancesResult'
-          x-ms-identifiers: []
-    DetectorResponseProperties:
-      type: object
-      description: DetectorResponse resource specific properties
-      properties:
-        metadata:
-          $ref: '#/components/schemas/DetectorInfo'
-          description: metadata for the detector
-        dataset:
-          type: array
-          description: Data Set
-          items:
-            $ref: '#/components/schemas/DiagnosticData'
-          x-ms-identifiers: []
-        status:
-          $ref: '#/components/schemas/Status'
-          description: Indicates status of the most severe insight.
-        dataProvidersMetadata:
-          type: array
-          description: Additional configuration for different data providers to be used by the UI
-          items:
-            $ref: '#/components/schemas/DataProviderMetadata'
-          x-ms-identifiers:
-          - providerName
-        suggestedUtterances:
-          $ref: '#/components/schemas/QueryUtterancesResults'
-          description: Suggested utterances where the detector can be applicable.
-    DiagnosticCategory:
+    DetectorDefinition:
       type: object
       description: Class representing detector definition
       properties:
-        properties:
-          $ref: '#/components/schemas/DiagnosticCategoryProperties'
-          description: DiagnosticCategory resource specific properties
-          x-ms-client-flatten: true
-        kind:
+        displayName:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
+          description: Display name of the detector
           readOnly: true
-    DetectorResponse:
-      type: object
-      description: Class representing Response from Detector
-      properties:
-        properties:
-          $ref: '#/components/schemas/DetectorResponseProperties'
-          description: DetectorResponse resource specific properties
-          x-ms-client-flatten: true
-        kind:
+        description:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DetectorAbnormalTimePeriod:
-      type: object
-      description: Class representing Abnormal Time Period detected.
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Start time of the correlated event
-        endTime:
-          type: string
-          format: date-time
-          description: End time of the correlated event
-        message:
-          type: string
-          description: Message describing the event
-        source:
-          type: string
-          description: Represents the name of the Detector
-        priority:
+          description: Description of the detector
+          readOnly: true
+        rank:
           type: number
           format: double
-          description: Represents the rank of the Detector
-        metaData:
-          type: array
-          description: Downtime metadata
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/NameValuePair'
-          x-ms-identifiers:
-          - name
-        type:
-          $ref: '#/components/schemas/IssueType'
-          description: Represents the type of the Detector
-        solutions:
-          type: array
-          description: List of proposed solutions
-          items:
-            $ref: '#/components/schemas/Solution'
-    DiagnosticCategoryCollection:
+          description: Detector Rank
+          readOnly: true
+        isEnabled:
+          type: boolean
+          description: Flag representing whether detector is enabled or not.
+          readOnly: true
+    DefaultErrorResponseErrorDetailsItem:
       type: object
-      description: Collection of Diagnostic Categories
-      properties:
-        value:
-          type: array
-          description: The DiagnosticCategory items on this page
-          items:
-            $ref: '#/components/schemas/DiagnosticCategory'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
+      description: Detailed errors.
       properties:
         code:
           type: string
@@ -1603,25 +1253,6 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
-    DiagnosticData:
-      type: object
-      description: Set of data with rendering instructions
-      properties:
-        table:
-          $ref: '#/components/schemas/DataTableResponseObject'
-          description: Data in table form
-        renderingProperties:
-          $ref: '#/components/schemas/Rendering'
-          description: Properties that describe how the table should be rendered
     DiagnosticMetricSet:
       type: object
       description: Class representing Diagnostic Metric information
@@ -1649,165 +1280,6 @@ components:
           items:
             $ref: '#/components/schemas/DiagnosticMetricSample'
           x-ms-identifiers: []
-    DetectorDefinition:
-      type: object
-      description: Class representing detector definition
-      properties:
-        displayName:
-          type: string
-          description: Display name of the detector
-          readOnly: true
-        description:
-          type: string
-          description: Description of the detector
-          readOnly: true
-        rank:
-          type: number
-          format: double
-          description: Detector Rank
-          readOnly: true
-        isEnabled:
-          type: boolean
-          description: Flag representing whether detector is enabled or not.
-          readOnly: true
-    ResponseMetaData:
-      type: object
-      properties:
-        dataSource:
-          $ref: '#/components/schemas/DataSource'
-          description: Source of the Data
-    SupportTopic:
-      type: object
-      description: Defines a unique Support Topic
-      properties:
-        id:
-          type: string
-          description: Support Topic Id
-          readOnly: true
-        pesId:
-          type: string
-          description: Unique resource Id
-          readOnly: true
-    KeyValuePairStringObject:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          description: Any object
-          readOnly: true
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    Status:
-      type: object
-      description: Identify the status of the most severe insight generated by the detector.
-      properties:
-        message:
-          type: string
-          description: Descriptive message.
-        statusId:
-          $ref: '#/components/schemas/InsightStatus'
-          description: Level of the most severe insight generated by the detector.
-    AnalysisDefinitionProperties:
-      type: object
-      description: AnalysisDefinition resource specific properties
-      properties:
-        description:
-          type: string
-          description: Description of the Analysis
-          readOnly: true
-    DetectorDefinitionResource:
-      type: object
-      description: ARM resource for a detector definition
-      properties:
-        properties:
-          $ref: '#/components/schemas/DetectorDefinition'
-          description: Core resource properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DataTableResponseObject:
-      type: object
-      description: Data Table which defines columns and raw row values
-      properties:
-        tableName:
-          type: string
-          description: Name of the table
-        columns:
-          type: array
-          description: List of columns with data types
-          items:
-            $ref: '#/components/schemas/DataTableResponseColumn'
-          x-ms-identifiers:
-          - columnName
-        rows:
-          type: array
-          description: Raw row values
-          items:
-            type: array
-            items:
-              type: string
-          x-ms-identifiers: []
-    NameValuePair:
-      type: object
-      description: Name value pair.
-      properties:
-        name:
-          type: string
-          description: Pair name.
-        value:
-          type: string
-          description: Pair value.
-    DiagnosticMetricSample:
-      type: object
-      description: Class representing Diagnostic Metric
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Time at which metric is measured
-        roleInstance:
-          type: string
-          description: 'Role Instance. Null if this counter is not per instance
-
-            This is returned and should be whichever instance name we desire to be returned
-
-            i.e. CPU and Memory return RDWORKERNAME (LargeDed..._IN_0)
-
-            where RDWORKERNAME is Machine name below and RoleInstance name in parenthesis'
-        total:
-          type: number
-          format: double
-          description: Total value of the metric. If multiple measurements are made this will have sum of all.
-        maximum:
-          type: number
-          format: double
-          description: Maximum of the metric sampled during the time period
-        minimum:
-          type: number
-          format: double
-          description: Minimum of the metric sampled during the time period
-        isAggregated:
-          type: boolean
-          description: Whether the values are aggregates across all workers or not
     SampleUtterance:
       type: object
       description: Sample utterance.
@@ -1823,6 +1295,19 @@ components:
         qid:
           type: string
           description: Question id of sample utterance (for stackoverflow questions titles).
+    Rendering:
+      type: object
+      description: Instructions for rendering the data
+      properties:
+        type:
+          $ref: '#/components/schemas/RenderingType'
+          description: Rendering Type
+        title:
+          type: string
+          description: Title of data
+        description:
+          type: string
+          description: Description of the data that will help it be interpreted
     DetectorResponseCollection:
       type: object
       description: Collection of detector responses
@@ -1838,6 +1323,15 @@ components:
           description: The link to the next page of items
       required:
       - value
+    KeyValuePairStringObject:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          description: Any object
+          readOnly: true
     SolutionType:
       type: string
       description: Type of Solution
@@ -1848,63 +1342,45 @@ components:
       x-ms-enum:
         name: SolutionType
         modelAsString: false
-    ProxyOnlyResource:
+    DetectorDefinitionResource:
       type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      description: ARM resource for a detector definition
       properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
+        properties:
+          $ref: '#/components/schemas/DetectorDefinition'
+          description: Core resource properties
+          x-ms-client-flatten: true
         kind:
           type: string
           description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    DiagnosticDetectorCollection:
-      type: object
-      description: Collection of Diagnostic Detectors
-      properties:
-        value:
-          type: array
-          description: The DetectorDefinitionResource items on this page
-          items:
-            $ref: '#/components/schemas/DetectorDefinitionResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    Rendering:
-      type: object
-      description: Instructions for rendering the data
-      properties:
-        type:
-          $ref: '#/components/schemas/RenderingType'
-          description: Rendering Type
-        title:
-          type: string
-          description: Title of data
-        description:
-          type: string
-          description: Description of the data that will help it be interpreted
-    DiagnosticDetectorResponse:
-      type: object
-      description: Class representing Response from Diagnostic Detectors
-      properties:
-        properties:
-          $ref: '#/components/schemas/DiagnosticDetectorResponseProperties'
-          description: DiagnosticDetectorResponse resource specific properties
-          x-ms-client-flatten: true
       allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    DetectorResponseProperties:
+      type: object
+      description: DetectorResponse resource specific properties
+      properties:
+        metadata:
+          $ref: '#/components/schemas/DetectorInfo'
+          description: metadata for the detector
+        dataset:
+          type: array
+          description: Data Set
+          items:
+            $ref: '#/components/schemas/DiagnosticData'
+          x-ms-identifiers: []
+        status:
+          $ref: '#/components/schemas/Status'
+          description: Indicates status of the most severe insight.
+        dataProvidersMetadata:
+          type: array
+          description: Additional configuration for different data providers to be used by the UI
+          items:
+            $ref: '#/components/schemas/DataProviderMetadata'
+          x-ms-identifiers:
+          - providerName
+        suggestedUtterances:
+          $ref: '#/components/schemas/QueryUtterancesResults'
+          description: Suggested utterances where the detector can be applicable.
     DetectorInfo:
       type: object
       description: Definition of Detector
@@ -1950,20 +1426,442 @@ components:
           format: float
           description: Defines score of a detector to power ML based matching.
           readOnly: true
-    DataProviderMetadata:
+    ProxyOnlyResource:
       type: object
-      description: Additional configuration for a data providers
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
       properties:
-        providerName:
+        id:
           type: string
-        propertyBag:
-          type: array
-          description: Settings for the data provider
-          items:
-            $ref: '#/components/schemas/KeyValuePairStringObject'
+          description: Resource Id.
           readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    DiagnosticCategory:
+      type: object
+      description: Class representing detector definition
+      properties:
+        properties:
+          $ref: '#/components/schemas/DiagnosticCategoryProperties'
+          description: DiagnosticCategory resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    AnalysisData:
+      type: object
+      description: Class Representing Detector Evidence used for analysis
+      properties:
+        source:
+          type: string
+          description: Name of the Detector
+        detectorDefinition:
+          $ref: '#/components/schemas/DetectorDefinition'
+          description: Detector Definition
+        metrics:
+          type: array
+          description: Source Metrics
+          items:
+            $ref: '#/components/schemas/DiagnosticMetricSet'
           x-ms-identifiers:
-          - key
+          - name
+        data:
+          type: array
+          description: Additional Source Data
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/NameValuePair'
+          x-ms-identifiers:
+          - name
+        detectorMetaData:
+          $ref: '#/components/schemas/ResponseMetaData'
+          description: Detector Meta Data
+    DetectorType:
+      type: string
+      description: Whether this detector is an Analysis Detector or not.
+      enum:
+      - Detector
+      - Analysis
+      - CategoryOverview
+      x-ms-enum:
+        name: DetectorType
+        modelAsString: false
+    DiagnosticDetectorCollection:
+      type: object
+      description: Collection of Diagnostic Detectors
+      properties:
+        value:
+          type: array
+          description: The DetectorDefinitionResource items on this page
+          items:
+            $ref: '#/components/schemas/DetectorDefinitionResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    ResponseMetaData:
+      type: object
+      properties:
+        dataSource:
+          $ref: '#/components/schemas/DataSource'
+          description: Source of the Data
+    Solution:
+      type: object
+      description: Class Representing Solution for problems detected.
+      properties:
+        id:
+          type: number
+          format: double
+          description: Solution Id.
+        displayName:
+          type: string
+          description: Display Name of the solution
+        order:
+          type: number
+          format: double
+          description: Order of the solution.
+        description:
+          type: string
+          description: Description of the solution
+        type:
+          $ref: '#/components/schemas/SolutionType'
+          description: Type of Solution
+        data:
+          type: array
+          description: Solution Data.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/NameValuePair'
+          x-ms-identifiers:
+          - name
+        metadata:
+          type: array
+          description: Solution Metadata.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/NameValuePair'
+          x-ms-identifiers:
+          - name
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DiagnosticMetricSample:
+      type: object
+      description: Class representing Diagnostic Metric
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Time at which metric is measured
+        roleInstance:
+          type: string
+          description: 'Role Instance. Null if this counter is not per instance
+
+            This is returned and should be whichever instance name we desire to be returned
+
+            i.e. CPU and Memory return RDWORKERNAME (LargeDed..._IN_0)
+
+            where RDWORKERNAME is Machine name below and RoleInstance name in parenthesis'
+        total:
+          type: number
+          format: double
+          description: Total value of the metric. If multiple measurements are made this will have sum of all.
+        maximum:
+          type: number
+          format: double
+          description: Maximum of the metric sampled during the time period
+        minimum:
+          type: number
+          format: double
+          description: Minimum of the metric sampled during the time period
+        isAggregated:
+          type: boolean
+          description: Whether the values are aggregates across all workers or not
+    DiagnosticCategoryCollection:
+      type: object
+      description: Collection of Diagnostic Categories
+      properties:
+        value:
+          type: array
+          description: The DiagnosticCategory items on this page
+          items:
+            $ref: '#/components/schemas/DiagnosticCategory'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    InsightStatus:
+      type: string
+      description: Level of the most severe insight generated by the detector.
+      enum:
+      - Critical
+      - Warning
+      - Info
+      - Success
+      - None
+      x-ms-enum:
+        name: InsightStatus
+        modelAsString: false
+    DiagnosticAnalysisProperties:
+      type: object
+      description: DiagnosticAnalysis resource specific properties
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Start time of the period
+        endTime:
+          type: string
+          format: date-time
+          description: End time of the period
+        abnormalTimePeriods:
+          type: array
+          description: List of time periods.
+          items:
+            $ref: '#/components/schemas/AbnormalTimePeriod'
+          x-ms-identifiers: []
+        payload:
+          type: array
+          description: Data by each detector
+          items:
+            $ref: '#/components/schemas/AnalysisData'
+          x-ms-identifiers:
+          - source
+        nonCorrelatedDetectors:
+          type: array
+          description: Data by each detector for detectors that did not corelate
+          items:
+            $ref: '#/components/schemas/DetectorDefinition'
+          x-ms-identifiers:
+          - displayName
+    DetectorAbnormalTimePeriod:
+      type: object
+      description: Class representing Abnormal Time Period detected.
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Start time of the correlated event
+        endTime:
+          type: string
+          format: date-time
+          description: End time of the correlated event
+        message:
+          type: string
+          description: Message describing the event
+        source:
+          type: string
+          description: Represents the name of the Detector
+        priority:
+          type: number
+          format: double
+          description: Represents the rank of the Detector
+        metaData:
+          type: array
+          description: Downtime metadata
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/NameValuePair'
+          x-ms-identifiers:
+          - name
+        type:
+          $ref: '#/components/schemas/IssueType'
+          description: Represents the type of the Detector
+        solutions:
+          type: array
+          description: List of proposed solutions
+          items:
+            $ref: '#/components/schemas/Solution'
+    DiagnosticAnalysis:
+      type: object
+      description: Class representing a diagnostic analysis done on an application
+      properties:
+        properties:
+          $ref: '#/components/schemas/DiagnosticAnalysisProperties'
+          description: DiagnosticAnalysis resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    AnalysisDefinition:
+      type: object
+      description: Definition of Analysis
+      properties:
+        properties:
+          $ref: '#/components/schemas/AnalysisDefinitionProperties'
+          description: AnalysisDefinition resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    RenderingType:
+      type: string
+      description: Rendering Type
+      enum:
+      - NoGraph
+      - Table
+      - TimeSeries
+      - TimeSeriesPerInstance
+      - PieChart
+      - DataSummary
+      - Email
+      - Insights
+      - DynamicInsight
+      - Markdown
+      - Detector
+      - DropDown
+      - Card
+      - Solution
+      - Guage
+      - Form
+      - ChangeSets
+      - ChangeAnalysisOnboarding
+      - ChangesView
+      - AppInsight
+      - DependencyGraph
+      - DownTime
+      - SummaryCard
+      - SearchComponent
+      - AppInsightEnablement
+      x-ms-enum:
+        name: RenderingType
+        modelAsString: false
+    DetectorResponse:
+      type: object
+      description: Class representing Response from Detector
+      properties:
+        properties:
+          $ref: '#/components/schemas/DetectorResponseProperties'
+          description: DetectorResponse resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    AnalysisDefinitionProperties:
+      type: object
+      description: AnalysisDefinition resource specific properties
+      properties:
+        description:
+          type: string
+          description: Description of the Analysis
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    DiagnosticDetectorResponseProperties:
+      type: object
+      description: DiagnosticDetectorResponse resource specific properties
+      properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Start time of the period
+        endTime:
+          type: string
+          format: date-time
+          description: End time of the period
+        issueDetected:
+          type: boolean
+          description: Flag representing Issue was detected.
+        detectorDefinition:
+          $ref: '#/components/schemas/DetectorDefinition'
+          description: Detector's definition
+        metrics:
+          type: array
+          description: Metrics provided by the detector
+          items:
+            $ref: '#/components/schemas/DiagnosticMetricSet'
+          x-ms-identifiers:
+          - name
+        abnormalTimePeriods:
+          type: array
+          description: List of Correlated events found by the detector
+          items:
+            $ref: '#/components/schemas/DetectorAbnormalTimePeriod'
+          x-ms-identifiers: []
+        data:
+          type: array
+          description: Additional Data that detector wants to send.
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/NameValuePair'
+          x-ms-identifiers:
+          - name
+        responseMetaData:
+          $ref: '#/components/schemas/ResponseMetaData'
+          description: Meta Data
+    Status:
+      type: object
+      description: Identify the status of the most severe insight generated by the detector.
+      properties:
+        message:
+          type: string
+          description: Descriptive message.
+        statusId:
+          $ref: '#/components/schemas/InsightStatus'
+          description: Level of the most severe insight generated by the detector.
+    QueryUtterancesResults:
+      type: object
+      description: Suggested utterances where the detector can be applicable
+      properties:
+        query:
+          type: string
+          description: Search Query.
+        results:
+          type: array
+          description: Array of utterance results for search query.
+          items:
+            $ref: '#/components/schemas/QueryUtterancesResult'
+          x-ms-identifiers: []
     DataSource:
       type: object
       description: Class representing data source used by the detectors
@@ -1980,6 +1878,108 @@ components:
             $ref: '#/components/schemas/NameValuePair'
           x-ms-identifiers:
           - name
+    DataProviderMetadata:
+      type: object
+      description: Additional configuration for a data providers
+      properties:
+        providerName:
+          type: string
+        propertyBag:
+          type: array
+          description: Settings for the data provider
+          items:
+            $ref: '#/components/schemas/KeyValuePairStringObject'
+          readOnly: true
+          x-ms-identifiers:
+          - key
+    NameValuePair:
+      type: object
+      description: Name value pair.
+      properties:
+        name:
+          type: string
+          description: Pair name.
+        value:
+          type: string
+          description: Pair value.
+    DataTableResponseObject:
+      type: object
+      description: Data Table which defines columns and raw row values
+      properties:
+        tableName:
+          type: string
+          description: Name of the table
+        columns:
+          type: array
+          description: List of columns with data types
+          items:
+            $ref: '#/components/schemas/DataTableResponseColumn'
+          x-ms-identifiers:
+          - columnName
+        rows:
+          type: array
+          description: Raw row values
+          items:
+            type: array
+            items:
+              type: string
+          x-ms-identifiers: []
+    DiagnosticData:
+      type: object
+      description: Set of data with rendering instructions
+      properties:
+        table:
+          $ref: '#/components/schemas/DataTableResponseObject'
+          description: Data in table form
+        renderingProperties:
+          $ref: '#/components/schemas/Rendering'
+          description: Properties that describe how the table should be rendered
+    DiagnosticCategoryProperties:
+      type: object
+      description: DiagnosticCategory resource specific properties
+      properties:
+        description:
+          type: string
+          description: Description of the diagnostic category
+          readOnly: true
+    DiagnosticDetectorResponse:
+      type: object
+      description: Class representing Response from Diagnostic Detectors
+      properties:
+        properties:
+          $ref: '#/components/schemas/DiagnosticDetectorResponseProperties'
+          description: DiagnosticDetectorResponse resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    IssueType:
+      type: string
+      description: Represents the type of the Detector
+      enum:
+      - ServiceIncident
+      - AppDeployment
+      - AppCrash
+      - RuntimeIssueDetected
+      - AseDeployment
+      - UserIssue
+      - PlatformIssue
+      - Other
+      x-ms-enum:
+        name: IssueType
+        modelAsString: false
+    DataTableResponseColumn:
+      type: object
+      description: Column definition
+      properties:
+        columnName:
+          type: string
+          description: Name of the column
+        dataType:
+          type: string
+          description: Data type which looks like 'String' or 'Int32'.
+        columnType:
+          type: string
+          description: Column Type
   securitySchemes:
     azure_auth:
       type: oauth2

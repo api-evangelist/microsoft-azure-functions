@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: WebApps API Client AppServiceEnvironments Deleted Web Apps API
+  title: WebApps API Client Deleted Web Apps API
   version: '2025-05-01'
   x-typespec-generated:
   - emitter: '@azure-tools/typespec-autorest'
@@ -17,7 +17,7 @@ paths:
       operationId: DeletedWebApps_List
       tags:
       - DeletedWebApps
-      summary: Get all deleted apps for a subscription.
+      summary: Get all deleted apps for a subscription
       description: Description for Get all deleted apps for a subscription.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -71,7 +71,7 @@ paths:
       operationId: DeletedWebApps_GetDeletedWebAppByLocation
       tags:
       - DeletedWebApps
-      summary: Get deleted app for a subscription at location.
+      summary: Get deleted app for a subscription at location
       description: Description for Get deleted app for a subscription at location.
       parameters:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/parameters/ApiVersionParameter
@@ -101,29 +101,35 @@ paths:
           $ref: ./examples/GetDeletedWebAppByLocation.json
 components:
   schemas:
-    DeletedWebAppCollection:
+    DefaultErrorResponseErrorDetailsItem:
       type: object
-      description: Collection of deleted apps.
+      description: Detailed errors.
       properties:
-        value:
-          type: array
-          description: The DeletedSite items on this page
-          items:
-            $ref: '#/components/schemas/DeletedSite'
-        nextLink:
+        code:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
+          description: Standardized string to programmatically identify the error.
           readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    DeletedSite:
+      type: object
+      description: A deleted app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DeletedSiteProperties'
+          description: DeletedSite resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
     DeletedSiteProperties:
       type: object
       description: DeletedSite resource specific properties
@@ -186,35 +192,29 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    DeletedSite:
+    DefaultErrorResponse:
       type: object
-      description: A deleted app.
+      description: App Service error response.
       properties:
-        properties:
-          $ref: '#/components/schemas/DeletedSiteProperties'
-          description: DeletedSite resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DefaultErrorResponseErrorDetailsItem:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    DeletedWebAppCollection:
       type: object
-      description: Detailed errors.
+      description: Collection of deleted apps.
       properties:
-        code:
+        value:
+          type: array
+          description: The DeletedSite items on this page
+          items:
+            $ref: '#/components/schemas/DeletedSite'
+        nextLink:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
   securitySchemes:
     azure_auth:
       type: oauth2
