@@ -474,108 +474,21 @@ paths:
           $ref: ./examples/DeleteSiteCertificateSlot.json
 components:
   schemas:
-    HostingEnvironmentProfile:
+    CertificateCollection:
       type: object
-      description: Specification for an App Service Environment to use for this resource.
+      description: Collection of certificates.
       properties:
-        id:
-          type: string
-          description: Resource ID of the App Service Environment.
-        name:
-          type: string
-          description: Name of the App Service Environment.
-          readOnly: true
-        type:
-          type: string
-          description: Resource type of the App Service Environment.
-          readOnly: true
-    CertificatePatchResourceProperties:
-      type: object
-      description: CertificatePatchResource resource specific properties
-      properties:
-        password:
-          type: string
-          description: Certificate password.
-          readOnly: true
-        friendlyName:
-          type: string
-          description: Friendly name of the certificate.
-          readOnly: true
-        subjectName:
-          type: string
-          description: Subject name of the certificate.
-          readOnly: true
-        hostNames:
+        value:
           type: array
-          description: Host names the certificate applies to.
+          description: The Certificate items on this page
           items:
-            type: string
-        pfxBlob:
+            $ref: '#/components/schemas/Certificate'
+        nextLink:
           type: string
-          format: byte
-          description: Pfx blob.
-        siteName:
-          type: string
-          description: App name.
-          readOnly: true
-        selfLink:
-          type: string
-          description: Self link.
-          readOnly: true
-        issuer:
-          type: string
-          description: Certificate issuer.
-          readOnly: true
-        issueDate:
-          type: string
-          format: date-time
-          description: Certificate issue Date.
-          readOnly: true
-        expirationDate:
-          type: string
-          format: date-time
-          description: Certificate expiration date.
-          readOnly: true
-        thumbprint:
-          type: string
-          description: Certificate thumbprint.
-          readOnly: true
-        valid:
-          type: boolean
-          description: Is the certificate valid?.
-          readOnly: true
-        cerBlob:
-          type: string
-          format: byte
-          description: Raw bytes of .cer file
-          readOnly: true
-        publicKeyHash:
-          type: string
-          description: Public key hash.
-          readOnly: true
-        hostingEnvironmentProfile:
-          $ref: '#/components/schemas/HostingEnvironmentProfile'
-          description: Specification for the App Service Environment to use for the certificate.
-          readOnly: true
-        keyVaultId:
-          type: string
-          description: Key Vault Csm resource Id.
-        keyVaultSecretName:
-          type: string
-          description: Key Vault secret name.
-        keyVaultSecretStatus:
-          $ref: '#/components/schemas/KeyVaultSecretStatus'
-          description: Status of the Key Vault secret.
-          readOnly: true
-        serverFarmId:
-          type: string
-          description: 'Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".'
-        canonicalName:
-          type: string
-          description: CNAME of the certificate to be issued via free certificate
-        domainValidationMethod:
-          type: string
-          description: Method of domain validation for free cert
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -592,34 +505,6 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-    KeyVaultSecretStatus:
-      type: string
-      description: Status of the Key Vault secret.
-      enum:
-      - Initialized
-      - WaitingOnCertificateOrder
-      - Succeeded
-      - CertificateOrderFailed
-      - OperationNotPermittedOnKeyVault
-      - AzureServiceUnauthorizedToAccessKeyVault
-      - KeyVaultDoesNotExist
-      - KeyVaultSecretDoesNotExist
-      - UnknownError
-      - ExternalPrivateKey
-      - Unknown
-      x-ms-enum:
-        name: KeyVaultSecretStatus
-        modelAsString: false
-    CertificatePatchResource:
-      type: object
-      description: ARM resource for a certificate.
-      properties:
-        properties:
-          $ref: '#/components/schemas/CertificatePatchResourceProperties'
-          description: CertificatePatchResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
     ProxyOnlyResource:
       type: object
       description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
@@ -639,6 +524,45 @@ components:
           type: string
           description: Resource type.
           readOnly: true
+    KeyVaultSecretStatus:
+      type: string
+      description: Status of the Key Vault secret.
+      enum:
+      - Initialized
+      - WaitingOnCertificateOrder
+      - Succeeded
+      - CertificateOrderFailed
+      - OperationNotPermittedOnKeyVault
+      - AzureServiceUnauthorizedToAccessKeyVault
+      - KeyVaultDoesNotExist
+      - KeyVaultSecretDoesNotExist
+      - UnknownError
+      - ExternalPrivateKey
+      - Unknown
+      x-ms-enum:
+        name: KeyVaultSecretStatus
+        modelAsString: false
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    Certificate:
+      type: object
+      description: SSL certificate for an app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/CertificateProperties'
+          description: Certificate resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -664,29 +588,6 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    CertificateCollection:
-      type: object
-      description: Collection of certificates.
-      properties:
-        value:
-          type: array
-          description: The Certificate items on this page
-          items:
-            $ref: '#/components/schemas/Certificate'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
     CertificateProperties:
       type: object
       description: Certificate resource specific properties
@@ -781,19 +682,118 @@ components:
         domainValidationMethod:
           type: string
           description: Method of domain validation for free cert
-    Certificate:
+    HostingEnvironmentProfile:
       type: object
-      description: SSL certificate for an app.
+      description: Specification for an App Service Environment to use for this resource.
+      properties:
+        id:
+          type: string
+          description: Resource ID of the App Service Environment.
+        name:
+          type: string
+          description: Name of the App Service Environment.
+          readOnly: true
+        type:
+          type: string
+          description: Resource type of the App Service Environment.
+          readOnly: true
+    CertificatePatchResource:
+      type: object
+      description: ARM resource for a certificate.
       properties:
         properties:
-          $ref: '#/components/schemas/CertificateProperties'
-          description: Certificate resource specific properties
+          $ref: '#/components/schemas/CertificatePatchResourceProperties'
+          description: CertificatePatchResource resource specific properties
           x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
       allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    CertificatePatchResourceProperties:
+      type: object
+      description: CertificatePatchResource resource specific properties
+      properties:
+        password:
+          type: string
+          description: Certificate password.
+          readOnly: true
+        friendlyName:
+          type: string
+          description: Friendly name of the certificate.
+          readOnly: true
+        subjectName:
+          type: string
+          description: Subject name of the certificate.
+          readOnly: true
+        hostNames:
+          type: array
+          description: Host names the certificate applies to.
+          items:
+            type: string
+        pfxBlob:
+          type: string
+          format: byte
+          description: Pfx blob.
+        siteName:
+          type: string
+          description: App name.
+          readOnly: true
+        selfLink:
+          type: string
+          description: Self link.
+          readOnly: true
+        issuer:
+          type: string
+          description: Certificate issuer.
+          readOnly: true
+        issueDate:
+          type: string
+          format: date-time
+          description: Certificate issue Date.
+          readOnly: true
+        expirationDate:
+          type: string
+          format: date-time
+          description: Certificate expiration date.
+          readOnly: true
+        thumbprint:
+          type: string
+          description: Certificate thumbprint.
+          readOnly: true
+        valid:
+          type: boolean
+          description: Is the certificate valid?.
+          readOnly: true
+        cerBlob:
+          type: string
+          format: byte
+          description: Raw bytes of .cer file
+          readOnly: true
+        publicKeyHash:
+          type: string
+          description: Public key hash.
+          readOnly: true
+        hostingEnvironmentProfile:
+          $ref: '#/components/schemas/HostingEnvironmentProfile'
+          description: Specification for the App Service Environment to use for the certificate.
+          readOnly: true
+        keyVaultId:
+          type: string
+          description: Key Vault Csm resource Id.
+        keyVaultSecretName:
+          type: string
+          description: Key Vault secret name.
+        keyVaultSecretStatus:
+          $ref: '#/components/schemas/KeyVaultSecretStatus'
+          description: Status of the Key Vault secret.
+          readOnly: true
+        serverFarmId:
+          type: string
+          description: 'Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}".'
+        canonicalName:
+          type: string
+          description: CNAME of the certificate to be issued via free certificate
+        domainValidationMethod:
+          type: string
+          description: Method of domain validation for free cert
   securitySchemes:
     azure_auth:
       type: oauth2

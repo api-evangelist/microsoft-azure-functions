@@ -41,26 +41,6 @@ paths:
         nextLinkName: nextLink
 components:
   schemas:
-    MetricAvailability:
-      type: object
-      description: Retention policy of a resource metric.
-      properties:
-        timeGrain:
-          type: string
-        blobDuration:
-          type: string
-    LogSpecification:
-      type: object
-      description: Log Definition of a single resource metric.
-      properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        blobDuration:
-          type: string
-        logFilterPattern:
-          type: string
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -76,6 +56,14 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
           readOnly: true
     CsmOperationCollection:
       type: object
@@ -108,6 +96,18 @@ components:
           type: string
         toBeExportedForShoebox:
           type: boolean
+    LogSpecification:
+      type: object
+      description: Log Definition of a single resource metric.
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        blobDuration:
+          type: string
+        logFilterPattern:
+          type: string
     CsmOperationDisplay:
       type: object
       description: Meta data about operation used for display in portal.
@@ -136,6 +136,31 @@ components:
             $ref: '#/components/schemas/LogSpecification'
           x-ms-identifiers:
           - name
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
     CsmOperationDescriptionProperties:
       type: object
       description: Properties available for a Microsoft.Web resource provider operation.
@@ -192,39 +217,6 @@ components:
           type: array
           items:
             type: string
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
     CsmOperationDescription:
       type: object
       description: Description of an operation available for Microsoft.Web resource provider.
@@ -241,6 +233,14 @@ components:
         properties:
           $ref: '#/components/schemas/CsmOperationDescriptionProperties'
           description: Properties available for a Microsoft.Web resource provider operation.
+    MetricAvailability:
+      type: object
+      description: Retention policy of a resource metric.
+      properties:
+        timeGrain:
+          type: string
+        blobDuration:
+          type: string
   securitySchemes:
     azure_auth:
       type: oauth2

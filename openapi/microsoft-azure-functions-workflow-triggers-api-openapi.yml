@@ -264,50 +264,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    WorkflowTriggerProperties:
-      type: object
-      description: The workflow trigger properties.
-      properties:
-        provisioningState:
-          $ref: '#/components/schemas/WorkflowTriggerProvisioningState'
-          description: Gets the provisioning state.
-          readOnly: true
-        createdTime:
-          type: string
-          format: date-time
-          description: Gets the created time.
-          readOnly: true
-        changedTime:
-          type: string
-          format: date-time
-          description: Gets the changed time.
-          readOnly: true
-        state:
-          $ref: '#/components/schemas/WorkflowState'
-          description: Gets the state.
-          readOnly: true
-        status:
-          $ref: '#/components/schemas/WorkflowStatus'
-          description: Gets the status.
-          readOnly: true
-        lastExecutionTime:
-          type: string
-          format: date-time
-          description: Gets the last execution time.
-          readOnly: true
-        nextExecutionTime:
-          type: string
-          format: date-time
-          description: Gets the next execution time.
-          readOnly: true
-        recurrence:
-          $ref: '#/components/schemas/WorkflowTriggerRecurrence'
-          description: Gets the workflow trigger recurrence.
-          readOnly: true
-        workflow:
-          $ref: '#/components/schemas/ResourceReference'
-          description: Gets the reference to workflow.
-          readOnly: true
     RecurrenceScheduleOccurrence:
       type: object
       description: The recurrence schedule occurrence.
@@ -319,61 +275,6 @@ components:
           type: integer
           format: int32
           description: The occurrence.
-    ErrorProperties:
-      type: object
-      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Error message indicating why the operation failed.
-    ResourceReference:
-      type: object
-      description: The resource reference.
-      properties:
-        id:
-          type: string
-          description: The resource id.
-        name:
-          type: string
-          description: Gets the resource name.
-          readOnly: true
-        type:
-          type: string
-          description: Gets the resource type.
-          readOnly: true
-    ErrorResponse:
-      type: object
-      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorProperties'
-          description: The error properties.
-    WorkflowTriggerRecurrence:
-      type: object
-      description: The workflow trigger recurrence.
-      properties:
-        frequency:
-          $ref: '#/components/schemas/RecurrenceFrequency'
-          description: The frequency.
-        interval:
-          type: integer
-          format: int32
-          description: The interval.
-        startTime:
-          type: string
-          description: The start time.
-        endTime:
-          type: string
-          description: The end time.
-        timeZone:
-          type: string
-          description: The time zone.
-        schedule:
-          $ref: '#/components/schemas/RecurrenceSchedule'
-          description: The recurrence schedule.
     WorkflowState:
       type: string
       description: The workflow state.
@@ -400,67 +301,71 @@ components:
           value: Deleted
         - name: Suspended
           value: Suspended
-    WorkflowTriggerCallbackUrl:
+    ErrorProperties:
       type: object
-      description: The workflow trigger callback URL.
+      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
       properties:
-        value:
+        code:
           type: string
-          description: Gets the workflow trigger callback URL.
-          readOnly: true
-        method:
+          description: Error code.
+        message:
           type: string
-          description: Gets the workflow trigger callback URL HTTP method.
-          readOnly: true
-        basePath:
-          type: string
-          description: Gets the workflow trigger callback URL base path.
-          readOnly: true
-        relativePath:
-          type: string
-          description: Gets the workflow trigger callback URL relative path.
-          readOnly: true
-        relativePathParameters:
-          type: array
-          description: Gets the workflow trigger callback URL relative path parameters.
-          items:
-            type: string
-        queries:
-          $ref: '#/components/schemas/WorkflowTriggerListCallbackUrlQueries'
-          description: Gets the workflow trigger callback URL query parameters.
-    WorkflowTriggerListCallbackUrlQueries:
-      type: object
-      description: Gets the workflow trigger callback URL query parameters.
-      properties:
-        api-version:
-          type: string
-          description: The api version.
-          x-ms-client-name: apiVersion
-        sp:
-          type: string
-          description: The SAS permissions.
-        sv:
-          type: string
-          description: The SAS version.
-        sig:
-          type: string
-          description: The SAS signature.
-        se:
-          type: string
-          description: The SAS timestamp.
-    DaysOfWeek:
+          description: Error message indicating why the operation failed.
+    RecurrenceFrequency:
       type: string
+      description: The recurrence frequency.
       enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
+      - NotSpecified
+      - Second
+      - Minute
+      - Hour
+      - Day
+      - Week
+      - Month
+      - Year
       x-ms-enum:
-        name: DaysOfWeek
-        modelAsString: false
+        name: RecurrenceFrequency
+        modelAsString: true
+        values:
+        - name: NotSpecified
+          value: NotSpecified
+        - name: Second
+          value: Second
+        - name: Minute
+          value: Minute
+        - name: Hour
+          value: Hour
+        - name: Day
+          value: Day
+        - name: Week
+          value: Week
+        - name: Month
+          value: Month
+        - name: Year
+          value: Year
+    WorkflowTriggerRecurrence:
+      type: object
+      description: The workflow trigger recurrence.
+      properties:
+        frequency:
+          $ref: '#/components/schemas/RecurrenceFrequency'
+          description: The frequency.
+        interval:
+          type: integer
+          format: int32
+          description: The interval.
+        startTime:
+          type: string
+          description: The start time.
+        endTime:
+          type: string
+          description: The end time.
+        timeZone:
+          type: string
+          description: The time zone.
+        schedule:
+          $ref: '#/components/schemas/RecurrenceSchedule'
+          description: The recurrence schedule.
     WorkflowStatus:
       type: string
       description: The workflow status.
@@ -508,6 +413,156 @@ components:
           value: Aborted
         - name: Ignored
           value: Ignored
+    WorkflowTrigger:
+      type: object
+      description: The workflow trigger.
+      properties:
+        properties:
+          $ref: '#/components/schemas/WorkflowTriggerProperties'
+          description: The workflow trigger properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    ResourceReference:
+      type: object
+      description: The resource reference.
+      properties:
+        id:
+          type: string
+          description: The resource id.
+        name:
+          type: string
+          description: Gets the resource name.
+          readOnly: true
+        type:
+          type: string
+          description: Gets the resource type.
+          readOnly: true
+    RecurrenceSchedule:
+      type: object
+      description: The recurrence schedule.
+      properties:
+        minutes:
+          type: array
+          description: The minutes.
+          items:
+            type: integer
+            format: int32
+        hours:
+          type: array
+          description: The hours.
+          items:
+            type: integer
+            format: int32
+        weekDays:
+          type: array
+          description: The days of the week.
+          items:
+            $ref: '#/components/schemas/DaysOfWeek'
+        monthDays:
+          type: array
+          description: The month days.
+          items:
+            type: integer
+            format: int32
+        monthlyOccurrences:
+          type: array
+          description: The monthly occurrences.
+          items:
+            $ref: '#/components/schemas/RecurrenceScheduleOccurrence'
+          x-ms-identifiers: []
+    WorkflowTriggerListResult:
+      type: object
+      description: The response of a WorkflowTrigger list operation.
+      properties:
+        value:
+          type: array
+          description: The WorkflowTrigger items on this page
+          items:
+            $ref: '#/components/schemas/WorkflowTrigger'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    WorkflowTriggerListCallbackUrlQueries:
+      type: object
+      description: Gets the workflow trigger callback URL query parameters.
+      properties:
+        api-version:
+          type: string
+          description: The api version.
+          x-ms-client-name: apiVersion
+        sp:
+          type: string
+          description: The SAS permissions.
+        sv:
+          type: string
+          description: The SAS version.
+        sig:
+          type: string
+          description: The SAS signature.
+        se:
+          type: string
+          description: The SAS timestamp.
+    DaysOfWeek:
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+      x-ms-enum:
+        name: DaysOfWeek
+        modelAsString: false
+    WorkflowTriggerProperties:
+      type: object
+      description: The workflow trigger properties.
+      properties:
+        provisioningState:
+          $ref: '#/components/schemas/WorkflowTriggerProvisioningState'
+          description: Gets the provisioning state.
+          readOnly: true
+        createdTime:
+          type: string
+          format: date-time
+          description: Gets the created time.
+          readOnly: true
+        changedTime:
+          type: string
+          format: date-time
+          description: Gets the changed time.
+          readOnly: true
+        state:
+          $ref: '#/components/schemas/WorkflowState'
+          description: Gets the state.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/WorkflowStatus'
+          description: Gets the status.
+          readOnly: true
+        lastExecutionTime:
+          type: string
+          format: date-time
+          description: Gets the last execution time.
+          readOnly: true
+        nextExecutionTime:
+          type: string
+          format: date-time
+          description: Gets the next execution time.
+          readOnly: true
+        recurrence:
+          $ref: '#/components/schemas/WorkflowTriggerRecurrence'
+          description: Gets the workflow trigger recurrence.
+          readOnly: true
+        workflow:
+          $ref: '#/components/schemas/ResourceReference'
+          description: Gets the reference to workflow.
+          readOnly: true
     WorkflowTriggerProvisioningState:
       type: string
       description: The workflow trigger provisioning state.
@@ -570,71 +625,6 @@ components:
           value: Unregistered
         - name: Completed
           value: Completed
-    RecurrenceSchedule:
-      type: object
-      description: The recurrence schedule.
-      properties:
-        minutes:
-          type: array
-          description: The minutes.
-          items:
-            type: integer
-            format: int32
-        hours:
-          type: array
-          description: The hours.
-          items:
-            type: integer
-            format: int32
-        weekDays:
-          type: array
-          description: The days of the week.
-          items:
-            $ref: '#/components/schemas/DaysOfWeek'
-        monthDays:
-          type: array
-          description: The month days.
-          items:
-            type: integer
-            format: int32
-        monthlyOccurrences:
-          type: array
-          description: The monthly occurrences.
-          items:
-            $ref: '#/components/schemas/RecurrenceScheduleOccurrence'
-          x-ms-identifiers: []
-    RecurrenceFrequency:
-      type: string
-      description: The recurrence frequency.
-      enum:
-      - NotSpecified
-      - Second
-      - Minute
-      - Hour
-      - Day
-      - Week
-      - Month
-      - Year
-      x-ms-enum:
-        name: RecurrenceFrequency
-        modelAsString: true
-        values:
-        - name: NotSpecified
-          value: NotSpecified
-        - name: Second
-          value: Second
-        - name: Minute
-          value: Minute
-        - name: Hour
-          value: Hour
-        - name: Day
-          value: Day
-        - name: Week
-          value: Week
-        - name: Month
-          value: Month
-        - name: Year
-          value: Year
     DayOfWeek:
       type: string
       description: The day of the week.
@@ -649,21 +639,34 @@ components:
       x-ms-enum:
         name: DayOfWeek
         modelAsString: false
-    WorkflowTriggerListResult:
+    WorkflowTriggerCallbackUrl:
       type: object
-      description: The response of a WorkflowTrigger list operation.
+      description: The workflow trigger callback URL.
       properties:
         value:
-          type: array
-          description: The WorkflowTrigger items on this page
-          items:
-            $ref: '#/components/schemas/WorkflowTrigger'
-        nextLink:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+          description: Gets the workflow trigger callback URL.
+          readOnly: true
+        method:
+          type: string
+          description: Gets the workflow trigger callback URL HTTP method.
+          readOnly: true
+        basePath:
+          type: string
+          description: Gets the workflow trigger callback URL base path.
+          readOnly: true
+        relativePath:
+          type: string
+          description: Gets the workflow trigger callback URL relative path.
+          readOnly: true
+        relativePathParameters:
+          type: array
+          description: Gets the workflow trigger callback URL relative path parameters.
+          items:
+            type: string
+        queries:
+          $ref: '#/components/schemas/WorkflowTriggerListCallbackUrlQueries'
+          description: Gets the workflow trigger callback URL query parameters.
     JsonSchema:
       type: object
       description: The JSON schema.
@@ -674,16 +677,13 @@ components:
         content:
           type: string
           description: The JSON content.
-    WorkflowTrigger:
+    ErrorResponse:
       type: object
-      description: The workflow trigger.
+      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
       properties:
-        properties:
-          $ref: '#/components/schemas/WorkflowTriggerProperties'
-          description: The workflow trigger properties.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+        error:
+          $ref: '#/components/schemas/ErrorProperties'
+          description: The error properties.
   securitySchemes:
     azure_auth:
       type: oauth2

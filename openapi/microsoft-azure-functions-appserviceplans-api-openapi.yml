@@ -1177,6 +1177,442 @@ paths:
                 $ref: '#/components/schemas/DefaultErrorResponse'
 components:
   schemas:
+    DefaultAction:
+      type: string
+      description: Default action for main access restriction if no rules are matched.
+      enum:
+      - Allow
+      - Deny
+      x-ms-enum:
+        name: DefaultAction
+        modelAsString: true
+        values:
+        - name: Allow
+          value: Allow
+        - name: Deny
+          value: Deny
+    TlsCipherSuites:
+      type: string
+      description: The minimum strength TLS cipher suite allowed for an application
+      enum:
+      - TLS_AES_256_GCM_SHA384
+      - TLS_AES_128_GCM_SHA256
+      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+      - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+      - TLS_RSA_WITH_AES_256_GCM_SHA384
+      - TLS_RSA_WITH_AES_128_GCM_SHA256
+      - TLS_RSA_WITH_AES_256_CBC_SHA256
+      - TLS_RSA_WITH_AES_128_CBC_SHA256
+      - TLS_RSA_WITH_AES_256_CBC_SHA
+      - TLS_RSA_WITH_AES_128_CBC_SHA
+      x-ms-enum:
+        name: TlsCipherSuites
+        modelAsString: true
+        values:
+        - name: TLS_AES_256_GCM_SHA384
+          value: TLS_AES_256_GCM_SHA384
+        - name: TLS_AES_128_GCM_SHA256
+          value: TLS_AES_128_GCM_SHA256
+        - name: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+          value: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - name: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+          value: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+        - name: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+          value: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - name: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+          value: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - name: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+          value: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - name: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+          value: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+        - name: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+          value: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+        - name: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+          value: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
+        - name: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+          value: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+        - name: TLS_RSA_WITH_AES_256_GCM_SHA384
+          value: TLS_RSA_WITH_AES_256_GCM_SHA384
+        - name: TLS_RSA_WITH_AES_128_GCM_SHA256
+          value: TLS_RSA_WITH_AES_128_GCM_SHA256
+        - name: TLS_RSA_WITH_AES_256_CBC_SHA256
+          value: TLS_RSA_WITH_AES_256_CBC_SHA256
+        - name: TLS_RSA_WITH_AES_128_CBC_SHA256
+          value: TLS_RSA_WITH_AES_128_CBC_SHA256
+        - name: TLS_RSA_WITH_AES_256_CBC_SHA
+          value: TLS_RSA_WITH_AES_256_CBC_SHA
+        - name: TLS_RSA_WITH_AES_128_CBC_SHA
+          value: TLS_RSA_WITH_AES_128_CBC_SHA
+    RegistryAdapter:
+      type: object
+      description: Server farm registry adapter configuration.
+      properties:
+        registryKey:
+          type: string
+          description: Registry key for the adapter.
+        type:
+          $ref: '#/components/schemas/RegistryAdapterType'
+          description: Type of the registry adapter.
+        keyVaultSecretReference:
+          $ref: '#/components/schemas/KeyVaultReferenceWithStatus'
+          description: Key vault reference to the value that will be placed in the registry location
+    HostingEnvironmentProfile:
+      type: object
+      description: Specification for an App Service Environment to use for this resource.
+      properties:
+        id:
+          type: string
+          description: Resource ID of the App Service Environment.
+        name:
+          type: string
+          description: Name of the App Service Environment.
+          readOnly: true
+        type:
+          type: string
+          description: Resource type of the App Service Environment.
+          readOnly: true
+    SiteLimits:
+      type: object
+      description: Metric limits set on an app.
+      properties:
+        maxPercentageCpu:
+          type: number
+          format: double
+          description: Maximum allowed CPU usage percentage.
+        maxMemoryInMb:
+          type: integer
+          format: int64
+          description: Maximum allowed memory usage in MB.
+        maxDiskSizeInMb:
+          type: integer
+          format: int64
+          description: Maximum allowed disk size usage in MB.
+    ResourceCollection:
+      type: object
+      description: Collection of resources.
+      properties:
+        value:
+          type: array
+          description: Collection of resources.
+          items:
+            type: string
+        nextLink:
+          type: string
+          description: Link to next page of resources.
+      required:
+      - value
+    AppServicePlanPatchResource:
+      type: object
+      description: ARM resource for a app service plan.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AppServicePlanPatchResourceProperties'
+          description: AppServicePlanPatchResource resource specific properties
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/ManagedServiceIdentity'
+          description: Managed service identity.
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    FunctionsDeploymentStorageType:
+      type: string
+      description: 'Property to select Azure Storage type. Available options: blobContainer.'
+      enum:
+      - blobContainer
+      x-ms-enum:
+        name: FunctionsDeploymentStorageType
+        modelAsString: true
+        values:
+        - name: blobContainer
+          value: blobContainer
+    ErrorEntity:
+      type: object
+      description: Body of the error response returned from the API.
+      properties:
+        extendedCode:
+          type: string
+          description: Type of error.
+        messageTemplate:
+          type: string
+          description: Message template.
+        parameters:
+          type: array
+          description: Parameters for the template.
+          items:
+            type: string
+        innerErrors:
+          type: array
+          description: Inner errors.
+          items:
+            $ref: '#/components/schemas/ErrorEntity'
+          x-ms-identifiers: []
+        details:
+          type: array
+          description: Error Details.
+          items:
+            $ref: '#/components/schemas/ErrorEntity'
+          x-ms-identifiers: []
+        target:
+          type: string
+          description: The error target.
+        code:
+          type: string
+          description: Basic error code.
+        message:
+          type: string
+          description: Any details of the error.
+    AutoHealActions:
+      type: object
+      description: Actions which to take by the auto-heal module when a rule is triggered.
+      properties:
+        actionType:
+          $ref: '#/components/schemas/AutoHealActionType'
+          description: Predefined action to be taken.
+        customAction:
+          $ref: '#/components/schemas/AutoHealCustomAction'
+          description: Custom action to be taken.
+        minProcessExecutionTime:
+          type: string
+          description: 'Minimum time the process must execute
+
+            before taking the action'
+    Capability:
+      type: object
+      description: Describes the capabilities/features allowed for a specific SKU.
+      properties:
+        name:
+          type: string
+          description: Name of the SKU capability.
+        value:
+          type: string
+          description: Value of the SKU capability.
+        reason:
+          type: string
+          description: Reason of the SKU capability.
+    VnetInfo:
+      type: object
+      description: Virtual Network information contract.
+      properties:
+        vnetResourceId:
+          type: string
+          description: The Virtual Network's resource ID.
+        certThumbprint:
+          type: string
+          description: The client certificate thumbprint.
+          readOnly: true
+        certBlob:
+          type: string
+          description: A certificate file (.cer) blob containing the public key of the private key used to authenticate a \nPoint-To-Site VPN connection.
+        routes:
+          type: array
+          description: The routes that this Virtual Network connection uses.
+          items:
+            $ref: '#/components/schemas/VnetRoute'
+          readOnly: true
+        resyncRequired:
+          type: boolean
+          description: <code>true</code> if a resync is required; otherwise, <code>false</code>.
+          readOnly: true
+        dnsServers:
+          type: string
+          description: DNS servers to be used by this Virtual Network. This should be a comma-separated list of IP addresses.
+        isSwift:
+          type: boolean
+          description: Flag that is used to denote if this is VNET injection
+    Experiments:
+      type: object
+      description: Routing rules in production experiments.
+      properties:
+        rampUpRules:
+          type: array
+          description: List of ramp-up rules.
+          items:
+            $ref: '#/components/schemas/RampUpRule'
+          x-ms-identifiers:
+          - name
+    AzureStorageType:
+      type: string
+      description: Type of storage.
+      enum:
+      - AzureFiles
+      - AzureBlob
+      x-ms-enum:
+        name: AzureStorageType
+        modelAsString: false
+    IpSecurityRestriction:
+      type: object
+      description: IP security restriction on an app.
+      properties:
+        ipAddress:
+          type: string
+          description: 'IP address the security restriction is valid for.
+
+            It can be in form of pure ipv4 address (required SubnetMask property) or
+
+            CIDR notation such as ipv4/mask (leading bit match). For CIDR,
+
+            SubnetMask property must not be specified.'
+        subnetMask:
+          type: string
+          description: Subnet mask for the range of IP addresses the restriction is valid for.
+        vnetSubnetResourceId:
+          type: string
+          description: Virtual network resource id
+        vnetTrafficTag:
+          type: integer
+          format: int32
+          description: (internal) Vnet traffic tag
+        subnetTrafficTag:
+          type: integer
+          format: int32
+          description: (internal) Subnet traffic tag
+        action:
+          type: string
+          description: Allow or Deny access for this IP range.
+        tag:
+          $ref: '#/components/schemas/IpFilterTag'
+          description: Defines what this IP filter will be used for. This is to support IP filtering on proxies.
+        priority:
+          type: integer
+          format: int32
+          description: Priority of IP restriction rule.
+        name:
+          type: string
+          description: IP restriction rule name.
+        description:
+          type: string
+          description: IP restriction rule description.
+        headers:
+          type: object
+          description: 'IP restriction rule headers.
+
+            X-Forwarded-Host (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host#Examples).
+
+            The matching logic is ..
+
+            - If the property is null or empty (default), all hosts(or lack of) are allowed.
+
+            - A value is compared using ordinal-ignore-case (excluding port number).
+
+            - Subdomain wildcards are permitted but don''t match the root domain. For example, *.contoso.com matches the subdomain foo.contoso.com
+
+            but not the root domain contoso.com or multi-level foo.bar.contoso.com
+
+            - Unicode host names are allowed but are converted to Punycode for matching.
+
+
+            X-Forwarded-For (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For#Examples).
+
+            The matching logic is ..
+
+            - If the property is null or empty (default), any forwarded-for chains (or lack of) are allowed.
+
+            - If any address (excluding port number) in the chain (comma separated) matches the CIDR defined by the property.
+
+
+            X-Azure-FDID and X-FD-HealthProbe.
+
+            The matching logic is exact match.'
+          additionalProperties:
+            items:
+              type: string
+            type: array
+    UsageState:
+      type: string
+      description: State indicating whether the app has exceeded its quota usage. Read-only.
+      enum:
+      - Normal
+      - Exceeded
+      x-ms-enum:
+        name: UsageState
+        modelAsString: false
+    AzureStorageState:
+      type: string
+      description: State of the storage account.
+      enum:
+      - Ok
+      - InvalidCredentials
+      - InvalidShare
+      - NotValidated
+      x-ms-enum:
+        name: AzureStorageState
+        modelAsString: false
+    NameValuePair:
+      type: object
+      description: Name value pair.
+      properties:
+        name:
+          type: string
+          description: Pair name.
+        value:
+          type: string
+          description: Pair value.
+    SslState:
+      type: string
+      description: SSL type
+      enum:
+      - Disabled
+      - SniEnabled
+      - IpBasedEnabled
+      x-ms-enum:
+        name: SslState
+        modelAsString: false
+    SiteDnsConfig:
+      type: object
+      properties:
+        dnsServers:
+          type: array
+          description: List of custom DNS servers to be used by an app for lookups. Maximum 5 dns servers can be set.
+          items:
+            type: string
+        dnsAltServer:
+          type: string
+          description: Alternate DNS server to be used by apps. This property replicates the WEBSITE_DNS_ALT_SERVER app setting.
+        dnsRetryAttemptTimeout:
+          type: integer
+          format: int32
+          description: 'Timeout for a single dns lookup in seconds. Allowed range: 1-30. Default is 3.'
+        dnsRetryAttemptCount:
+          type: integer
+          format: int32
+          description: 'Total number of retries for dns lookup. Allowed range: 1-5. Default is 3.'
+        dnsMaxCacheTimeout:
+          type: integer
+          format: int32
+          description: 'Custom time for DNS to be cached in seconds. Allowed range: 0-60. Default is 30 seconds. 0 means caching disabled.'
+        dnsLegacySortOrder:
+          type: boolean
+          description: Indicates that sites using Virtual network custom DNS servers are still sorting the list of DNS servers. Read-Only.
+          readOnly: true
+    HybridConnectionKeyProperties:
+      type: object
+      description: HybridConnectionKey resource specific properties
+      properties:
+        sendKeyName:
+          type: string
+          description: The name of the send key.
+          readOnly: true
+        sendKeyValue:
+          type: string
+          description: The value of the send key.
+          readOnly: true
+    SiteAvailabilityState:
+      type: string
+      description: Management information availability state for the app.
+      enum:
+      - Normal
+      - Limited
+      - DisasterRecoveryMode
+      x-ms-enum:
+        name: SiteAvailabilityState
+        modelAsString: false
     SiteProperties:
       type: object
       description: Site resource specific properties
@@ -1422,211 +1858,128 @@ components:
           type: string
           description: Current SKU of application based on associated App Service Plan. Some valid SKU values are Free, Shared, Basic, Dynamic, FlexConsumption, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2
           readOnly: true
-    VirtualApplication:
+    DaprConfig:
       type: object
-      description: Virtual application in an app.
+      description: App Dapr configuration.
       properties:
-        virtualPath:
-          type: string
-          description: Virtual path.
-        physicalPath:
-          type: string
-          description: Physical path.
-        preloadEnabled:
+        enabled:
           type: boolean
-          description: <code>true</code> if preloading is enabled; otherwise, <code>false</code>.
-        virtualDirectories:
-          type: array
-          description: Virtual directories for virtual application.
-          items:
-            $ref: '#/components/schemas/VirtualDirectory'
-          x-ms-identifiers:
-          - virtualPath
-    DefaultErrorResponseErrorDetailsItem:
+          description: Boolean indicating if the Dapr side car is enabled
+          default: false
+        appId:
+          type: string
+          description: Dapr application identifier
+        appPort:
+          type: integer
+          format: int32
+          description: Tells Dapr which port your application is listening on
+        httpReadBufferSize:
+          type: integer
+          format: int32
+          description: Dapr max size of http header read buffer in KB to handle when sending multi-KB headers. Default is 65KB.
+        httpMaxRequestSize:
+          type: integer
+          format: int32
+          description: Increasing max size of request body http servers parameter in MB to handle uploading of big files. Default is 4 MB.
+        logLevel:
+          $ref: '#/components/schemas/DaprLogLevel'
+          description: Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info.
+        enableApiLogging:
+          type: boolean
+          description: Enables API logging for the Dapr sidecar
+    VnetGateway:
       type: object
-      description: Detailed errors.
+      description: The Virtual Network gateway contract. This is used to give the Virtual Network gateway access to the VPN package.
       properties:
-        code:
+        properties:
+          $ref: '#/components/schemas/VnetGatewayProperties'
+          description: VnetGateway resource specific properties
+          x-ms-client-flatten: true
+        kind:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    OutboundVnetRouting:
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    ProxyOnlyResource:
       type: object
-      description: Outbound traffic options over virtual network.
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
       properties:
-        allTraffic:
-          type: boolean
-          description: Enables all other routing options defined in OutboundVnetRouting if this setting is set to true.
-        applicationTraffic:
-          type: boolean
-          description: This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. Previously called VnetRouteAllEnabled.
-        contentShareTraffic:
-          type: boolean
-          description: Enables accessing content over virtual network. Previously called VnetContentShareEnabled
-        imagePullTraffic:
-          type: boolean
-          description: Enables pulling image over Virtual Network. Previously called VnetImagePullEnabled.
-        backupRestoreTraffic:
-          type: boolean
-          description: Enables Backup and Restore operations over virtual network. Previously called VnetBackupRestoreEnabled
-    ExtendedLocation:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    FunctionsRuntime:
       type: object
-      description: Extended Location.
+      description: Function app runtime name and version.
+      properties:
+        name:
+          $ref: '#/components/schemas/RuntimeName'
+          description: 'Function app runtime name. Available options: dotnet-isolated, node, java, powershell, python, custom'
+        version:
+          type:
+          - string
+          - 'null'
+          description: 'Function app runtime version. Example: 8 (for dotnet-isolated)'
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    HostNameSslState:
+      type: object
+      description: SSL-enabled hostname.
       properties:
         name:
           type: string
-          description: Name of extended location.
+          description: Hostname.
+        sslState:
+          $ref: '#/components/schemas/SslState'
+          description: SSL type.
+        virtualIP:
+          type: string
+          description: Virtual IP address assigned to the hostname if IP based SSL is enabled.
+        thumbprint:
+          type: string
+          description: SSL certificate thumbprint.
+        toUpdate:
+          type: boolean
+          description: Set to <code>true</code> to update existing hostname.
+        hostType:
+          $ref: '#/components/schemas/HostType'
+          description: Indicates whether the hostname is a standard or repository hostname.
+    StorageMount:
+      type: object
+      description: Server farm storage mount configuration.
+      properties:
+        name:
+          type: string
+          description: Name of the storage mount.
         type:
+          $ref: '#/components/schemas/StorageMountType'
+          description: Type of the storage mount.
+        source:
           type: string
-          description: Type of extended location.
-          readOnly: true
-    ManagedServiceIdentity:
-      type: object
-      description: Managed service identity.
-      properties:
-        type:
-          $ref: '#/components/schemas/ManagedServiceIdentityType'
-          description: Type of managed service identity.
-        tenantId:
+          description: Source of the fileshare/storage.
+        destinationPath:
           type: string
-          description: Tenant of managed service identity.
-          readOnly: true
-        principalId:
-          type: string
-          description: Principal Id of managed service identity.
-          readOnly: true
-        userAssignedIdentities:
-          type: object
-          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
-          additionalProperties:
-            $ref: '#/components/schemas/UserAssignedIdentity'
-    FunctionsDeployment:
-      type: object
-      description: Configuration section for the function app deployment.
-      properties:
-        storage:
-          $ref: '#/components/schemas/FunctionsDeploymentStorage'
-          description: Storage for deployed package used by the function app.
-    SlotSwapStatus:
-      type: object
-      description: The status of the last successful slot swap operation.
-      properties:
-        timestampUtc:
-          type: string
-          format: date-time
-          description: The time the last successful slot swap completed.
-          readOnly: true
-        sourceSlotName:
-          type: string
-          description: The source slot of the last swap operation.
-          readOnly: true
-        destinationSlotName:
-          type: string
-          description: The destination slot of the last swap operation.
-          readOnly: true
-    AutoHealRules:
-      type: object
-      description: Rules that can be defined for auto-heal.
-      properties:
-        triggers:
-          $ref: '#/components/schemas/AutoHealTriggers'
-          description: Conditions that describe when to execute the auto-heal actions.
-        actions:
-          $ref: '#/components/schemas/AutoHealActions'
-          description: Actions to be executed when a rule is triggered.
-    FunctionsDeploymentStorageAuthentication:
-      type: object
-      description: Authentication method to access the storage account for deployment.
-      properties:
-        type:
-          $ref: '#/components/schemas/AuthenticationType'
-          description: 'Property to select authentication type to access the selected storage account. Available options: SystemAssignedIdentity, UserAssignedIdentity, StorageAccountConnectionString.'
-        userAssignedIdentityResourceId:
-          type: string
-          description: Use this property for UserAssignedIdentity. Set the resource ID of the identity. Do not set a value for this property when using other authentication type.
-        storageAccountConnectionStringName:
-          type: string
-          description: Use this property for StorageAccountConnectionString. Set the name of the app setting that has the storage account connection string. Do not set a value for this property when using other authentication type.
-    RequestsBasedTrigger:
-      type: object
-      description: Trigger based on total requests.
-      properties:
-        count:
-          type: integer
-          format: int32
-          description: Request Count.
-        timeInterval:
-          type: string
-          description: Time interval.
-    ErrorEntity:
-      type: object
-      description: Body of the error response returned from the API.
-      properties:
-        extendedCode:
-          type: string
-          description: Type of error.
-        messageTemplate:
-          type: string
-          description: Message template.
-        parameters:
-          type: array
-          description: Parameters for the template.
-          items:
-            type: string
-        innerErrors:
-          type: array
-          description: Inner errors.
-          items:
-            $ref: '#/components/schemas/ErrorEntity'
-          x-ms-identifiers: []
-        details:
-          type: array
-          description: Error Details.
-          items:
-            $ref: '#/components/schemas/ErrorEntity'
-          x-ms-identifiers: []
-        target:
-          type: string
-          description: The error target.
-        code:
-          type: string
-          description: Basic error code.
-        message:
-          type: string
-          description: Any details of the error.
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
+          description: Path on worker where storage will be mounted.
+        credentialsKeyVaultReference:
+          $ref: '#/components/schemas/KeyVaultReferenceWithStatus'
+          description: KV reference to the credentials to connect to the share.
     RampUpRule:
       type: object
       description: Routing rules for ramp up testing. This rule allows to redirect static traffic % to a slot or to gradually change routing % based on performance.
@@ -1664,100 +2017,360 @@ components:
         name:
           type: string
           description: Name of the routing rule. The recommended name would be to point to the slot which will receive the traffic in the experiment.
-    SkuCapacity:
+    AutoHealRules:
       type: object
-      description: Description of the App Service plan scale options.
+      description: Rules that can be defined for auto-heal.
       properties:
-        minimum:
-          type: integer
-          format: int32
-          description: Minimum number of workers for this App Service plan SKU.
-        maximum:
-          type: integer
-          format: int32
-          description: Maximum number of workers for this App Service plan SKU.
-        elasticMaximum:
-          type: integer
-          format: int32
-          description: Maximum number of Elastic workers for this App Service plan SKU.
-        default:
-          type: integer
-          format: int32
-          description: Default number of workers for this App Service plan SKU.
-        scaleType:
-          type: string
-          description: Available scale configurations for an App Service plan.
-    ClientCertMode:
-      type: string
-      description: 'This composes with ClientCertEnabled setting.
-
-        - ClientCertEnabled: false means ClientCert is ignored.
-
-        - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
-
-        - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted.'
-      enum:
-      - Required
-      - Optional
-      - OptionalInteractiveUser
-      x-ms-enum:
-        name: ClientCertMode
-        modelAsString: false
-    ServerFarmInstance:
+        triggers:
+          $ref: '#/components/schemas/AutoHealTriggers'
+          description: Conditions that describe when to execute the auto-heal actions.
+        actions:
+          $ref: '#/components/schemas/AutoHealActions'
+          description: Actions to be executed when a rule is triggered.
+    SiteMachineKey:
       type: object
-      description: Represents details of a single instance in a server farm.
+      description: MachineKey of an app.
       properties:
-        instanceName:
+        validation:
           type: string
-          description: The instance name.
-          minLength: 1
-          maxLength: 64
-          pattern: ^[a-zA-Z0-9]+$
-        ipAddress:
+          description: MachineKey validation.
+        validationKey:
           type: string
-          description: The instance IP address.
-        status:
+          description: Validation key.
+        decryption:
           type: string
-          description: The instance status.
-    HybridConnection:
+          description: Algorithm used for decryption.
+        decryptionKey:
+          type: string
+          description: Decryption key.
+    WebAppCollection:
       type: object
-      description: Hybrid Connection contract. This is used to configure a Hybrid Connection.
+      description: Collection of App Service apps.
+      properties:
+        value:
+          type: array
+          description: The Site items on this page
+          items:
+            $ref: '#/components/schemas/Site'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    HybridConnectionLimits:
+      type: object
+      description: Hybrid Connection limits contract. This is used to return the plan limits of Hybrid Connections.
       properties:
         properties:
-          $ref: '#/components/schemas/HybridConnectionProperties'
-          description: HybridConnection resource specific properties
+          $ref: '#/components/schemas/HybridConnectionLimitsProperties'
+          description: HybridConnectionLimits resource specific properties
           x-ms-client-flatten: true
         kind:
           type: string
           description: Kind of resource.
       allOf:
       - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    RegistryAdapterType:
+    CsmUsageQuota:
+      type: object
+      description: Usage of the quota resource.
+      properties:
+        unit:
+          type: string
+          description: Units of measurement for the quota resource.
+        nextResetTime:
+          type: string
+          format: date-time
+          description: Next reset time for the resource counter.
+        currentValue:
+          type: integer
+          format: int64
+          description: The current value of the resource counter.
+        limit:
+          type: integer
+          format: int64
+          description: The resource limit.
+        name:
+          $ref: '#/components/schemas/LocalizableString'
+          description: Quota name.
+    ConnStringInfo:
+      type: object
+      description: Database connection string information.
+      properties:
+        name:
+          type: string
+          description: Name of connection string.
+        connectionString:
+          type: string
+          description: Connection string value.
+        type:
+          $ref: '#/components/schemas/ConnectionStringType'
+          description: Type of database.
+    ApiDefinitionInfo:
+      type: object
+      description: Information about the formal API definition for the app.
+      properties:
+        url:
+          type: string
+          description: The URL of the API definition.
+    ConnectionStringType:
       type: string
-      description: Type of the registry adapter.
+      description: Type of database.
       enum:
-      - Binary
-      - String
-      - Expand_String
-      - Multi_String
-      - DWord
-      - QWord
+      - MySql
+      - SQLServer
+      - SQLAzure
+      - Custom
+      - NotificationHub
+      - ServiceBus
+      - EventHub
+      - ApiHub
+      - DocDb
+      - RedisCache
+      - PostgreSQL
       x-ms-enum:
-        name: RegistryAdapterType
+        name: ConnectionStringType
+        modelAsString: false
+    InstallScript:
+      type: object
+      description: Server farm install script configuration.
+      properties:
+        name:
+          type: string
+          description: Name of the install script.
+        source:
+          $ref: '#/components/schemas/InstallScriptSource'
+          description: Source of the install script.
+    StorageMountType:
+      type: string
+      description: Type of the storage mount.
+      enum:
+      - AzureFiles
+      - LocalStorage
+      - FileShare
+      x-ms-enum:
+        name: StorageMountType
         modelAsString: true
         values:
-        - name: Binary
-          value: Binary
-        - name: String
-          value: String
-        - name: Expand_String
-          value: Expand_String
-        - name: Multi_String
-          value: Multi_String
-        - name: DWord
-          value: DWord
-        - name: QWord
-          value: QWord
+        - name: AzureFiles
+          value: AzureFiles
+        - name: LocalStorage
+          value: LocalStorage
+        - name: FileShare
+          value: FileShare
+    AppServicePlanPatchResourceProperties:
+      type: object
+      description: AppServicePlanPatchResource resource specific properties
+      properties:
+        workerTierName:
+          type: string
+          description: Target worker tier assigned to the App Service plan.
+        status:
+          $ref: '#/components/schemas/StatusOptions'
+          description: App Service plan status.
+          readOnly: true
+        subscription:
+          type: string
+          description: App Service plan subscription.
+          readOnly: true
+        hostingEnvironmentProfile:
+          $ref: '#/components/schemas/HostingEnvironmentProfile'
+          description: Specification for the App Service Environment to use for the App Service plan.
+          x-ms-mutability:
+          - read
+          - create
+        maximumNumberOfWorkers:
+          type: integer
+          format: int32
+          description: Maximum number of instances that can be assigned to this App Service plan.
+          readOnly: true
+        numberOfWorkers:
+          type: integer
+          format: int32
+          description: The number of instances that are assigned to this App Service plan.
+          readOnly: true
+        geoRegion:
+          type: string
+          description: Geographical location for the App Service plan.
+          readOnly: true
+        perSiteScaling:
+          type: boolean
+          description: 'If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
+
+            If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.'
+          default: false
+        elasticScaleEnabled:
+          type: boolean
+          description: ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku
+        maximumElasticWorkerCount:
+          type: integer
+          format: int32
+          description: Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
+        numberOfSites:
+          type: integer
+          format: int32
+          description: Number of apps assigned to this App Service plan.
+          readOnly: true
+        isSpot:
+          type: boolean
+          description: If <code>true</code>, this App Service Plan owns spot instances.
+        spotExpirationTime:
+          type: string
+          format: date-time
+          description: The time when the server farm expires. Valid only if it is a spot server farm.
+        freeOfferExpirationTime:
+          type: string
+          format: date-time
+          description: The time when the server farm free offer expires.
+        resourceGroup:
+          type: string
+          description: Resource group of the App Service plan.
+          readOnly: true
+        reserved:
+          type: boolean
+          description: If Linux app service plan <code>true</code>, <code>false</code> otherwise.
+          default: false
+          x-ms-mutability:
+          - read
+          - create
+        isXenon:
+          type: boolean
+          description: 'Obsolete: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.'
+          default: false
+          x-ms-mutability:
+          - read
+          - create
+        hyperV:
+          type: boolean
+          description: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
+          default: false
+          x-ms-mutability:
+          - read
+          - create
+        targetWorkerCount:
+          type: integer
+          format: int32
+          description: Scaling worker count.
+        targetWorkerSizeId:
+          type: integer
+          format: int32
+          description: Scaling worker size ID.
+        provisioningState:
+          $ref: '#/components/schemas/ProvisioningState'
+          description: Provisioning state of the App Service Plan.
+          readOnly: true
+        kubeEnvironmentProfile:
+          $ref: '#/components/schemas/KubeEnvironmentProfile'
+          description: Specification for the Kubernetes Environment to use for the App Service plan.
+        zoneRedundant:
+          type: boolean
+          description: 'If <code>true</code>, this App Service Plan will perform availability zone balancing.
+
+            If <code>false</code>, this App Service Plan will not perform availability zone balancing.'
+          default: false
+    VnetRoute:
+      type: object
+      description: Virtual Network route contract used to pass routing information for a Virtual Network.
+      properties:
+        properties:
+          $ref: '#/components/schemas/VnetRouteProperties'
+          description: VnetRoute resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    CloningInfo:
+      type: object
+      description: Information needed for cloning operation.
+      properties:
+        correlationId:
+          type: string
+          format: uuid
+          description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
+
+            together to use the same snapshot.'
+        overwrite:
+          type: boolean
+          description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
+        cloneCustomHostNames:
+          type: boolean
+          description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
+        cloneSourceControl:
+          type: boolean
+          description: <code>true</code> to clone source control from source app; otherwise, <code>false</code>.
+        sourceWebAppId:
+          type: string
+          description: 'ARM resource ID of the source app. App resource ID is of the form
+
+            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and
+
+            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots.'
+        sourceWebAppLocation:
+          type: string
+          description: 'Location of source app ex: West US or North Europe'
+        hostingEnvironment:
+          type: string
+          description: App Service Environment.
+        appSettingsOverrides:
+          type: object
+          description: 'Application setting overrides for cloned app. If specified, these settings override the settings cloned
+
+            from source app. Otherwise, application settings from source app are retained.'
+          additionalProperties:
+            type: string
+        configureLoadBalancing:
+          type: boolean
+          description: <code>true</code> to configure load balancing for source and destination app.
+        trafficManagerProfileId:
+          type: string
+          description: 'ARM resource ID of the Traffic Manager profile to use, if it exists. Traffic Manager resource ID is of the form
+
+            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{profileName}.'
+        trafficManagerProfileName:
+          type: string
+          description: Name of Traffic Manager profile to create. This is only needed if Traffic Manager profile does not already exist.
+      required:
+      - sourceWebAppId
+    OperationStatus:
+      type: string
+      description: The current status of the operation.
+      enum:
+      - InProgress
+      - Failed
+      - Succeeded
+      - TimedOut
+      - Created
+      x-ms-enum:
+        name: OperationStatus
+        modelAsString: false
+    StatusCodesBasedTrigger:
+      type: object
+      description: Trigger based on status code.
+      properties:
+        status:
+          type: integer
+          format: int32
+          description: HTTP status code.
+        subStatus:
+          type: integer
+          format: int32
+          description: Request Sub Status.
+        win32Status:
+          type: integer
+          format: int32
+          description: Win32 error code.
+        count:
+          type: integer
+          format: int32
+          description: Request Count.
+        timeInterval:
+          type: string
+          description: Time interval.
+        path:
+          type: string
+          description: Request Path
     ScmType:
       type: string
       description: SCM type.
@@ -1808,26 +2421,176 @@ components:
           value: VSO
         - name: VSTSRM
           value: VSTSRM
-    ConnStringInfo:
+    FunctionsDeploymentStorageAuthentication:
       type: object
-      description: Database connection string information.
+      description: Authentication method to access the storage account for deployment.
+      properties:
+        type:
+          $ref: '#/components/schemas/AuthenticationType'
+          description: 'Property to select authentication type to access the selected storage account. Available options: SystemAssignedIdentity, UserAssignedIdentity, StorageAccountConnectionString.'
+        userAssignedIdentityResourceId:
+          type: string
+          description: Use this property for UserAssignedIdentity. Set the resource ID of the identity. Do not set a value for this property when using other authentication type.
+        storageAccountConnectionStringName:
+          type: string
+          description: Use this property for StorageAccountConnectionString. Set the name of the app setting that has the storage account connection string. Do not set a value for this property when using other authentication type.
+    ServerFarmNetworkSettings:
+      type: object
+      description: Network settings for an app service plan.
+      properties:
+        virtualNetworkSubnetId:
+          type: string
+          description: Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration. This must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}
+    AppServicePlan:
+      type: object
+      description: App Service plan.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AppServicePlanProperties'
+          description: AppServicePlan resource specific properties
+          x-ms-client-flatten: true
+        sku:
+          $ref: '#/components/schemas/SkuDescription'
+          description: Description of a SKU for a scalable resource.
+        extendedLocation:
+          $ref: '#/components/schemas/ExtendedLocation'
+          description: Extended Location.
+        kind:
+          type: string
+          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
+        identity:
+          $ref: '#/components/schemas/ManagedServiceIdentity'
+          description: Managed service identity.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+    FunctionsAlwaysReadyConfig:
+      type: object
+      description: Sets the number of 'Always Ready' instances for a function group or a specific function.
       properties:
         name:
           type: string
-          description: Name of connection string.
-        connectionString:
-          type: string
-          description: Connection string value.
-        type:
-          $ref: '#/components/schemas/ConnectionStringType'
-          description: Type of database.
-    ApiManagementConfig:
+          description: Either a function group or a function name is required. For additional information see https://aka.ms/flexconsumption/alwaysready.
+        instanceCount:
+          type: integer
+          format: int32
+          description: Sets the number of 'Always Ready' instances for a given function group or a specific function. For additional information see https://aka.ms/flexconsumption/alwaysready.
+    ServerFarmInstance:
       type: object
-      description: Azure API management (APIM) configuration linked to the app.
+      description: Represents details of a single instance in a server farm.
       properties:
-        id:
+        instanceName:
           type: string
-          description: APIM-Api Identifier.
+          description: The instance name.
+          minLength: 1
+          maxLength: 64
+          pattern: ^[a-zA-Z0-9]+$
+        ipAddress:
+          type: string
+          description: The instance IP address.
+        status:
+          type: string
+          description: The instance status.
+    ManagedServiceIdentity:
+      type: object
+      description: Managed service identity.
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedServiceIdentityType'
+          description: Type of managed service identity.
+        tenantId:
+          type: string
+          description: Tenant of managed service identity.
+          readOnly: true
+        principalId:
+          type: string
+          description: Principal Id of managed service identity.
+          readOnly: true
+        userAssignedIdentities:
+          type: object
+          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
+          additionalProperties:
+            $ref: '#/components/schemas/UserAssignedIdentity'
+    AutoGeneratedDomainNameLabelScope:
+      type: string
+      description: Specifies the scope of uniqueness for the default hostname during resource creation
+      enum:
+      - TenantReuse
+      - SubscriptionReuse
+      - ResourceGroupReuse
+      - NoReuse
+      x-ms-enum:
+        name: AutoGeneratedDomainNameLabelScope
+        modelAsString: false
+    HybridConnectionCollection:
+      type: object
+      description: Collection of hostname bindings.
+      properties:
+        value:
+          type: array
+          description: The HybridConnection items on this page
+          items:
+            $ref: '#/components/schemas/HybridConnection'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    VirtualApplication:
+      type: object
+      description: Virtual application in an app.
+      properties:
+        virtualPath:
+          type: string
+          description: Virtual path.
+        physicalPath:
+          type: string
+          description: Physical path.
+        preloadEnabled:
+          type: boolean
+          description: <code>true</code> if preloading is enabled; otherwise, <code>false</code>.
+        virtualDirectories:
+          type: array
+          description: Virtual directories for virtual application.
+          items:
+            $ref: '#/components/schemas/VirtualDirectory'
+          x-ms-identifiers:
+          - virtualPath
+    AutoHealTriggers:
+      type: object
+      description: Triggers for auto-heal.
+      properties:
+        requests:
+          $ref: '#/components/schemas/RequestsBasedTrigger'
+          description: A rule based on total requests.
+        privateBytesInKB:
+          type: integer
+          format: int32
+          description: A rule based on private bytes.
+        statusCodes:
+          type: array
+          description: A rule based on status codes.
+          items:
+            $ref: '#/components/schemas/StatusCodesBasedTrigger'
+          x-ms-identifiers:
+          - path
+        slowRequests:
+          $ref: '#/components/schemas/SlowRequestsBasedTrigger'
+          description: A rule based on request execution time.
+        slowRequestsWithPath:
+          type: array
+          description: A rule based on multiple Slow Requests Rule with path
+          items:
+            $ref: '#/components/schemas/SlowRequestsBasedTrigger'
+          x-ms-identifiers:
+          - path
+        statusCodesRange:
+          type: array
+          description: A rule based on status codes ranges.
+          items:
+            $ref: '#/components/schemas/StatusCodesRangeBasedTrigger'
+          x-ms-identifiers:
+          - path
     AppServicePlanProperties:
       type: object
       description: AppServicePlan resource specific properties
@@ -1968,1487 +2731,6 @@ components:
           description: 'If <code>true</code>, RDP access is enabled for this App Service plan. Only applicable for IsCustomMode ASPs.
 
             If <code>false</code>, RDP access is disabled.'
-    AuthenticationType:
-      type: string
-      description: 'Property to select authentication type to access the selected storage account. Available options: SystemAssignedIdentity, UserAssignedIdentity, StorageAccountConnectionString.'
-      enum:
-      - SystemAssignedIdentity
-      - UserAssignedIdentity
-      - StorageAccountConnectionString
-      x-ms-enum:
-        name: AuthenticationType
-        modelAsString: true
-        values:
-        - name: SystemAssignedIdentity
-          value: SystemAssignedIdentity
-        - name: UserAssignedIdentity
-          value: UserAssignedIdentity
-        - name: StorageAccountConnectionString
-          value: StorageAccountConnectionString
-    AzureStorageType:
-      type: string
-      description: Type of storage.
-      enum:
-      - AzureFiles
-      - AzureBlob
-      x-ms-enum:
-        name: AzureStorageType
-        modelAsString: false
-    RouteType:
-      type: string
-      description: 'The type of route this is:
-
-        DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
-
-        INHERITED - Routes inherited from the real Virtual Network routes
-
-        STATIC - Static route set on the app only
-
-
-        These values will be used for syncing an app''s routes with those from a Virtual Network.'
-      enum:
-      - DEFAULT
-      - INHERITED
-      - STATIC
-      x-ms-enum:
-        name: RouteType
-        modelAsString: true
-        values:
-        - name: DEFAULT
-          value: DEFAULT
-        - name: INHERITED
-          value: INHERITED
-        - name: STATIC
-          value: STATIC
-    FunctionsScaleAndConcurrencyTriggersHttp:
-      type: object
-      description: Scale and concurrency settings for the HTTP trigger.
-      properties:
-        perInstanceConcurrency:
-          type: integer
-          format: int32
-          description: The maximum number of concurrent HTTP trigger invocations per instance.
-    CsmUsageQuotaCollection:
-      type: object
-      description: Paged collection of CsmUsageQuota items
-      properties:
-        value:
-          type: array
-          description: The CsmUsageQuota items on this page
-          items:
-            $ref: '#/components/schemas/CsmUsageQuota'
-          x-ms-identifiers:
-          - name
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    SkuDescription:
-      type: object
-      description: Description of a SKU for a scalable resource.
-      properties:
-        name:
-          type: string
-          description: Name of the resource SKU.
-        tier:
-          type: string
-          description: Service tier of the resource SKU.
-        size:
-          type: string
-          description: Size specifier of the resource SKU.
-        family:
-          type: string
-          description: Family code of the resource SKU.
-        capacity:
-          type: integer
-          format: int32
-          description: Current number of instances assigned to the resource.
-        skuCapacity:
-          $ref: '#/components/schemas/SkuCapacity'
-          description: Min, max, and default scale values of the SKU.
-        locations:
-          type: array
-          description: Locations of the SKU.
-          items:
-            type: string
-        capabilities:
-          type: array
-          description: Capabilities of the SKU, e.g., is traffic manager enabled?
-          items:
-            $ref: '#/components/schemas/Capability'
-          x-ms-identifiers:
-          - name
-    Capability:
-      type: object
-      description: Describes the capabilities/features allowed for a specific SKU.
-      properties:
-        name:
-          type: string
-          description: Name of the SKU capability.
-        value:
-          type: string
-          description: Value of the SKU capability.
-        reason:
-          type: string
-          description: Reason of the SKU capability.
-    SiteMachineKey:
-      type: object
-      description: MachineKey of an app.
-      properties:
-        validation:
-          type: string
-          description: MachineKey validation.
-        validationKey:
-          type: string
-          description: Validation key.
-        decryption:
-          type: string
-          description: Algorithm used for decryption.
-        decryptionKey:
-          type: string
-          description: Decryption key.
-    VnetGateway:
-      type: object
-      description: The Virtual Network gateway contract. This is used to give the Virtual Network gateway access to the VPN package.
-      properties:
-        properties:
-          $ref: '#/components/schemas/VnetGatewayProperties'
-          description: VnetGateway resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    HybridConnectionProperties:
-      type: object
-      description: HybridConnection resource specific properties
-      properties:
-        serviceBusNamespace:
-          type: string
-          description: The name of the Service Bus namespace.
-          x-ms-mutability:
-          - read
-          - create
-        relayName:
-          type: string
-          description: The name of the Service Bus relay.
-          x-ms-mutability:
-          - read
-          - create
-        relayArmUri:
-          type: string
-          description: The ARM URI to the Service Bus relay.
-        hostname:
-          type: string
-          description: The hostname of the endpoint.
-        port:
-          type: integer
-          format: int32
-          description: The port of the endpoint.
-        sendKeyName:
-          type: string
-          description: The name of the Service Bus key which has Send permissions. This is used to authenticate to Service Bus.
-        sendKeyValue:
-          type: string
-          description: 'The value of the Service Bus key. This is used to authenticate to Service Bus. In ARM this key will not be returned
-
-            normally, use the POST /listKeys API instead.'
-        serviceBusSuffix:
-          type: string
-          description: The suffix for the service bus endpoint. By default this is .servicebus.windows.net
-    DefaultAction:
-      type: string
-      description: Default action for main access restriction if no rules are matched.
-      enum:
-      - Allow
-      - Deny
-      x-ms-enum:
-        name: DefaultAction
-        modelAsString: true
-        values:
-        - name: Allow
-          value: Allow
-        - name: Deny
-          value: Deny
-    DaprLogLevel:
-      type: string
-      description: Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info.
-      enum:
-      - info
-      - debug
-      - warn
-      - error
-      x-ms-enum:
-        name: DaprLogLevel
-        modelAsString: true
-        values:
-        - name: info
-          value: info
-        - name: debug
-          value: debug
-        - name: warn
-          value: warn
-        - name: error
-          value: error
-    PushSettingsProperties:
-      type: object
-      description: PushSettings resource specific properties
-      properties:
-        isPushEnabled:
-          type: boolean
-          description: Gets or sets a flag indicating whether the Push endpoint is enabled.
-        tagWhitelistJson:
-          type: string
-          description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
-        tagsRequiringAuth:
-          type: string
-          description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
-        dynamicTagsJson:
-          type: string
-          description: Gets or sets a JSON string containing a list of dynamic tags that will be evaluated from user claims in the push registration endpoint.
-      required:
-      - isPushEnabled
-    FunctionsScaleAndConcurrency:
-      type: object
-      description: Scale and concurrency settings for the function app.
-      properties:
-        alwaysReady:
-          type: array
-          description: '''Always Ready'' configuration for the function app.'
-          items:
-            $ref: '#/components/schemas/FunctionsAlwaysReadyConfig'
-        maximumInstanceCount:
-          type: integer
-          format: int32
-          description: The maximum number of instances for the function app.
-        instanceMemoryMB:
-          type: integer
-          format: int32
-          description: Set the amount of memory allocated to each instance of the function app in MB. CPU and network bandwidth are allocated proportionally.
-        triggers:
-          $ref: '#/components/schemas/FunctionsScaleAndConcurrencyTriggers'
-          description: Scale and concurrency settings for the function app triggers.
-    UsageState:
-      type: string
-      description: State indicating whether the app has exceeded its quota usage. Read-only.
-      enum:
-      - Normal
-      - Exceeded
-      x-ms-enum:
-        name: UsageState
-        modelAsString: false
-    ResourceConfig:
-      type: object
-      description: Function app resource requirements.
-      properties:
-        cpu:
-          type: number
-          format: double
-          description: Required CPU in cores, e.g. 0.5
-        memory:
-          type: string
-          description: Required memory, e.g. "1Gi"
-    HybridConnectionCollection:
-      type: object
-      description: Collection of hostname bindings.
-      properties:
-        value:
-          type: array
-          description: The HybridConnection items on this page
-          items:
-            $ref: '#/components/schemas/HybridConnection'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    InstallScript:
-      type: object
-      description: Server farm install script configuration.
-      properties:
-        name:
-          type: string
-          description: Name of the install script.
-        source:
-          $ref: '#/components/schemas/InstallScriptSource'
-          description: Source of the install script.
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    ManagedPipelineMode:
-      type: string
-      description: Managed pipeline mode.
-      enum:
-      - Integrated
-      - Classic
-      x-ms-enum:
-        name: ManagedPipelineMode
-        modelAsString: false
-    Experiments:
-      type: object
-      description: Routing rules in production experiments.
-      properties:
-        rampUpRules:
-          type: array
-          description: List of ramp-up rules.
-          items:
-            $ref: '#/components/schemas/RampUpRule'
-          x-ms-identifiers:
-          - name
-    ServerFarmRdpDetails:
-      type: object
-      description: Server Farm RDP connection details.
-      properties:
-        rdpPassword:
-          type: string
-          format: password
-          description: The RDP password for the server farm.
-          x-ms-secret: true
-        rdpPasswordExpiry:
-          type: string
-          format: date-time
-          description: The RDP password expiry date.
-    IpFilterTag:
-      type: string
-      description: Defines what this IP filter will be used for. This is to support IP filtering on proxies.
-      enum:
-      - Default
-      - XffProxy
-      - ServiceTag
-      x-ms-enum:
-        name: IpFilterTag
-        modelAsString: true
-        values:
-        - name: Default
-          value: Default
-        - name: XffProxy
-          value: XffProxy
-        - name: ServiceTag
-          value: ServiceTag
-    UserAssignedIdentity:
-      type: object
-      description: User Assigned identity.
-      properties:
-        principalId:
-          type: string
-          description: Principal Id of user assigned identity
-          readOnly: true
-        clientId:
-          type: string
-          description: Client Id of user assigned identity
-          readOnly: true
-    HostNameSslState:
-      type: object
-      description: SSL-enabled hostname.
-      properties:
-        name:
-          type: string
-          description: Hostname.
-        sslState:
-          $ref: '#/components/schemas/SslState'
-          description: SSL type.
-        virtualIP:
-          type: string
-          description: Virtual IP address assigned to the hostname if IP based SSL is enabled.
-        thumbprint:
-          type: string
-          description: SSL certificate thumbprint.
-        toUpdate:
-          type: boolean
-          description: Set to <code>true</code> to update existing hostname.
-        hostType:
-          $ref: '#/components/schemas/HostType'
-          description: Indicates whether the hostname is a standard or repository hostname.
-    ServerFarmNetworkSettings:
-      type: object
-      description: Network settings for an app service plan.
-      properties:
-        virtualNetworkSubnetId:
-          type: string
-          description: Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration. This must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}
-    ProvisioningState:
-      type: string
-      description: Provisioning state of the App Service Plan.
-      enum:
-      - Succeeded
-      - Failed
-      - Canceled
-      - InProgress
-      - Deleting
-      x-ms-enum:
-        name: ProvisioningState
-        modelAsString: false
-    FunctionAppConfig:
-      type: object
-      description: Function app configuration.
-      properties:
-        deployment:
-          $ref: '#/components/schemas/FunctionsDeployment'
-          description: Function app deployment configuration.
-        runtime:
-          $ref: '#/components/schemas/FunctionsRuntime'
-          description: Function app runtime settings.
-        scaleAndConcurrency:
-          $ref: '#/components/schemas/FunctionsScaleAndConcurrency'
-          description: Function app scale and concurrency settings.
-        siteUpdateStrategy:
-          $ref: '#/components/schemas/FunctionsSiteUpdateStrategy'
-          description: Function app site update strategy configuration.
-    AzureStorageInfoValue:
-      type: object
-      description: Azure Files or Blob Storage access information value for dictionary storage.
-      properties:
-        type:
-          $ref: '#/components/schemas/AzureStorageType'
-          description: Type of storage.
-        accountName:
-          type: string
-          description: Name of the storage account.
-        shareName:
-          type: string
-          description: Name of the file share (container name, for Blob storage).
-        accessKey:
-          type: string
-          format: password
-          description: Access key for the storage account.
-          x-ms-secret: true
-        mountPath:
-          type: string
-          description: Path to mount the storage within the site's runtime environment.
-        state:
-          $ref: '#/components/schemas/AzureStorageState'
-          description: State of the storage account.
-          readOnly: true
-        protocol:
-          $ref: '#/components/schemas/AzureStorageProtocol'
-          description: Mounting protocol to use for the storage account.
-    StorageMountType:
-      type: string
-      description: Type of the storage mount.
-      enum:
-      - AzureFiles
-      - LocalStorage
-      - FileShare
-      x-ms-enum:
-        name: StorageMountType
-        modelAsString: true
-        values:
-        - name: AzureFiles
-          value: AzureFiles
-        - name: LocalStorage
-          value: LocalStorage
-        - name: FileShare
-          value: FileShare
-    FunctionsDeploymentStorage:
-      type: object
-      description: Storage for deployed package used by the function app.
-      properties:
-        type:
-          $ref: '#/components/schemas/FunctionsDeploymentStorageType'
-          description: 'Property to select Azure Storage type. Available options: blobContainer.'
-        value:
-          type: string
-          format: uri
-          description: 'Property to set the URL for the selected Azure Storage type. Example: For blobContainer, the value could be https://<storageAccountName>.blob.core.windows.net/<containerName>.'
-        authentication:
-          $ref: '#/components/schemas/FunctionsDeploymentStorageAuthentication'
-          description: Authentication method to access the storage account for deployment.
-    VnetInfoResource:
-      type: object
-      description: Virtual Network information ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/VnetInfo'
-          description: Core resource properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    HybridConnectionLimits:
-      type: object
-      description: Hybrid Connection limits contract. This is used to return the plan limits of Hybrid Connections.
-      properties:
-        properties:
-          $ref: '#/components/schemas/HybridConnectionLimitsProperties'
-          description: HybridConnectionLimits resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    AppServicePlan:
-      type: object
-      description: App Service plan.
-      properties:
-        properties:
-          $ref: '#/components/schemas/AppServicePlanProperties'
-          description: AppServicePlan resource specific properties
-          x-ms-client-flatten: true
-        sku:
-          $ref: '#/components/schemas/SkuDescription'
-          description: Description of a SKU for a scalable resource.
-        extendedLocation:
-          $ref: '#/components/schemas/ExtendedLocation'
-          description: Extended Location.
-        kind:
-          type: string
-          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
-        identity:
-          $ref: '#/components/schemas/ManagedServiceIdentity'
-          description: Managed service identity.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    ResourceCollection:
-      type: object
-      description: Collection of resources.
-      properties:
-        value:
-          type: array
-          description: Collection of resources.
-          items:
-            type: string
-        nextLink:
-          type: string
-          description: Link to next page of resources.
-      required:
-      - value
-    CorsSettings:
-      type: object
-      description: Cross-Origin Resource Sharing (CORS) settings for the app.
-      properties:
-        allowedOrigins:
-          type: array
-          description: 'Gets or sets the list of origins that should be allowed to make cross-origin
-
-            calls (for example: http://example.com:12345). Use "*" to allow all.'
-          items:
-            type: string
-        supportCredentials:
-          type: boolean
-          description: 'Gets or sets whether CORS requests with credentials are allowed. See
-
-            https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials
-
-            for more details.'
-    NameValuePair:
-      type: object
-      description: Name value pair.
-      properties:
-        name:
-          type: string
-          description: Pair name.
-        value:
-          type: string
-          description: Pair value.
-    FunctionsRuntime:
-      type: object
-      description: Function app runtime name and version.
-      properties:
-        name:
-          $ref: '#/components/schemas/RuntimeName'
-          description: 'Function app runtime name. Available options: dotnet-isolated, node, java, powershell, python, custom'
-        version:
-          type:
-          - string
-          - 'null'
-          description: 'Function app runtime version. Example: 8 (for dotnet-isolated)'
-    Operation:
-      type: object
-      description: An operation on a resource.
-      properties:
-        id:
-          type: string
-          description: Operation ID.
-        name:
-          type: string
-          description: Operation name.
-        status:
-          $ref: '#/components/schemas/OperationStatus'
-          description: The current status of the operation.
-        errors:
-          type: array
-          description: Any errors associate with the operation.
-          items:
-            $ref: '#/components/schemas/ErrorEntity'
-          x-ms-identifiers: []
-        createdTime:
-          type: string
-          format: date-time
-          description: Time when operation has started.
-        modifiedTime:
-          type: string
-          format: date-time
-          description: Time when operation has been updated.
-        expirationTime:
-          type: string
-          format: date-time
-          description: Time when operation will expire.
-        geoMasterOperationId:
-          type: string
-          format: uuid
-          description: Applicable only for stamp operation ids.
-    VnetGatewayProperties:
-      type: object
-      description: VnetGateway resource specific properties
-      properties:
-        vnetName:
-          type: string
-          description: The Virtual Network name.
-          x-ms-mutability:
-          - read
-          - create
-        vpnPackageUri:
-          type: string
-          description: The URI where the VPN package can be downloaded.
-          x-ms-mutability:
-          - update
-          - create
-      required:
-      - vpnPackageUri
-    DefaultIdentity:
-      type: object
-      properties:
-        identityType:
-          $ref: '#/components/schemas/ManagedServiceIdentityType'
-        userAssignedIdentityResourceId:
-          type: string
-    HybridConnectionKey:
-      type: object
-      description: Hybrid Connection key contract. This has the send key name and value for a Hybrid Connection.
-      properties:
-        properties:
-          $ref: '#/components/schemas/HybridConnectionKeyProperties'
-          description: HybridConnectionKey resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    SlowRequestsBasedTrigger:
-      type: object
-      description: Trigger based on request execution time.
-      properties:
-        timeTaken:
-          type: string
-          description: Time taken.
-        path:
-          type: string
-          description: Request Path.
-        count:
-          type: integer
-          format: int32
-          description: Request Count.
-        timeInterval:
-          type: string
-          description: Time interval.
-    AutoHealTriggers:
-      type: object
-      description: Triggers for auto-heal.
-      properties:
-        requests:
-          $ref: '#/components/schemas/RequestsBasedTrigger'
-          description: A rule based on total requests.
-        privateBytesInKB:
-          type: integer
-          format: int32
-          description: A rule based on private bytes.
-        statusCodes:
-          type: array
-          description: A rule based on status codes.
-          items:
-            $ref: '#/components/schemas/StatusCodesBasedTrigger'
-          x-ms-identifiers:
-          - path
-        slowRequests:
-          $ref: '#/components/schemas/SlowRequestsBasedTrigger'
-          description: A rule based on request execution time.
-        slowRequestsWithPath:
-          type: array
-          description: A rule based on multiple Slow Requests Rule with path
-          items:
-            $ref: '#/components/schemas/SlowRequestsBasedTrigger'
-          x-ms-identifiers:
-          - path
-        statusCodesRange:
-          type: array
-          description: A rule based on status codes ranges.
-          items:
-            $ref: '#/components/schemas/StatusCodesRangeBasedTrigger'
-          x-ms-identifiers:
-          - path
-    LocalizableString:
-      type: object
-      description: Localizable string object containing the name and a localized value.
-      properties:
-        value:
-          type: string
-          description: Non-localized name.
-        localizedValue:
-          type: string
-          description: Localized name.
-    ManagedServiceIdentityType:
-      type: string
-      description: Type of managed service identity.
-      enum:
-      - SystemAssigned
-      - UserAssigned
-      - SystemAssigned, UserAssigned
-      - None
-      x-ms-enum:
-        name: ManagedServiceIdentityType
-        modelAsString: false
-    RuntimeName:
-      type: string
-      description: 'Function app runtime name. Available options: dotnet-isolated, node, java, powershell, python, custom'
-      enum:
-      - dotnet-isolated
-      - node
-      - java
-      - powershell
-      - python
-      - custom
-      x-ms-enum:
-        name: RuntimeName
-        modelAsString: true
-        values:
-        - name: dotnet-isolated
-          value: dotnet-isolated
-        - name: node
-          value: node
-        - name: java
-          value: java
-        - name: powershell
-          value: powershell
-        - name: python
-          value: python
-        - name: custom
-          value: custom
-    RegistryAdapter:
-      type: object
-      description: Server farm registry adapter configuration.
-      properties:
-        registryKey:
-          type: string
-          description: Registry key for the adapter.
-        type:
-          $ref: '#/components/schemas/RegistryAdapterType'
-          description: Type of the registry adapter.
-        keyVaultSecretReference:
-          $ref: '#/components/schemas/KeyVaultReferenceWithStatus'
-          description: Key vault reference to the value that will be placed in the registry location
-    StatusCodesBasedTrigger:
-      type: object
-      description: Trigger based on status code.
-      properties:
-        status:
-          type: integer
-          format: int32
-          description: HTTP status code.
-        subStatus:
-          type: integer
-          format: int32
-          description: Request Sub Status.
-        win32Status:
-          type: integer
-          format: int32
-          description: Win32 error code.
-        count:
-          type: integer
-          format: int32
-          description: Request Count.
-        timeInterval:
-          type: string
-          description: Time interval.
-        path:
-          type: string
-          description: Request Path
-    WebAppCollection:
-      type: object
-      description: Collection of App Service apps.
-      properties:
-        value:
-          type: array
-          description: The Site items on this page
-          items:
-            $ref: '#/components/schemas/Site'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    VirtualDirectory:
-      type: object
-      description: Directory for virtual application.
-      properties:
-        virtualPath:
-          type: string
-          description: Path to virtual application.
-        physicalPath:
-          type: string
-          description: Physical path.
-    SupportedTlsVersions:
-      type: string
-      description: 'MinTlsVersion: configures the minimum version of TLS required for SSL requests'
-      enum:
-      - '1.0'
-      - '1.1'
-      - '1.2'
-      - '1.3'
-      x-ms-enum:
-        name: SupportedTlsVersions
-        modelAsString: true
-        values:
-        - name: '1.0'
-          value: '1.0'
-        - name: '1.1'
-          value: '1.1'
-        - name: '1.2'
-          value: '1.2'
-        - name: '1.3'
-          value: '1.3'
-    KeyVaultReferenceWithStatus:
-      type: object
-      description: Object to hold key vault reference and the resolution status
-      properties:
-        secretUri:
-          type: string
-          description: Key vault secret URI.
-        referenceStatus:
-          type: string
-          description: Reference status of the key vault secret.
-    AutoHealActions:
-      type: object
-      description: Actions which to take by the auto-heal module when a rule is triggered.
-      properties:
-        actionType:
-          $ref: '#/components/schemas/AutoHealActionType'
-          description: Predefined action to be taken.
-        customAction:
-          $ref: '#/components/schemas/AutoHealCustomAction'
-          description: Custom action to be taken.
-        minProcessExecutionTime:
-          type: string
-          description: 'Minimum time the process must execute
-
-            before taking the action'
-    IpSecurityRestriction:
-      type: object
-      description: IP security restriction on an app.
-      properties:
-        ipAddress:
-          type: string
-          description: 'IP address the security restriction is valid for.
-
-            It can be in form of pure ipv4 address (required SubnetMask property) or
-
-            CIDR notation such as ipv4/mask (leading bit match). For CIDR,
-
-            SubnetMask property must not be specified.'
-        subnetMask:
-          type: string
-          description: Subnet mask for the range of IP addresses the restriction is valid for.
-        vnetSubnetResourceId:
-          type: string
-          description: Virtual network resource id
-        vnetTrafficTag:
-          type: integer
-          format: int32
-          description: (internal) Vnet traffic tag
-        subnetTrafficTag:
-          type: integer
-          format: int32
-          description: (internal) Subnet traffic tag
-        action:
-          type: string
-          description: Allow or Deny access for this IP range.
-        tag:
-          $ref: '#/components/schemas/IpFilterTag'
-          description: Defines what this IP filter will be used for. This is to support IP filtering on proxies.
-        priority:
-          type: integer
-          format: int32
-          description: Priority of IP restriction rule.
-        name:
-          type: string
-          description: IP restriction rule name.
-        description:
-          type: string
-          description: IP restriction rule description.
-        headers:
-          type: object
-          description: 'IP restriction rule headers.
-
-            X-Forwarded-Host (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host#Examples).
-
-            The matching logic is ..
-
-            - If the property is null or empty (default), all hosts(or lack of) are allowed.
-
-            - A value is compared using ordinal-ignore-case (excluding port number).
-
-            - Subdomain wildcards are permitted but don''t match the root domain. For example, *.contoso.com matches the subdomain foo.contoso.com
-
-            but not the root domain contoso.com or multi-level foo.bar.contoso.com
-
-            - Unicode host names are allowed but are converted to Punycode for matching.
-
-
-            X-Forwarded-For (https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For#Examples).
-
-            The matching logic is ..
-
-            - If the property is null or empty (default), any forwarded-for chains (or lack of) are allowed.
-
-            - If any address (excluding port number) in the chain (comma separated) matches the CIDR defined by the property.
-
-
-            X-Azure-FDID and X-FD-HealthProbe.
-
-            The matching logic is exact match.'
-          additionalProperties:
-            items:
-              type: string
-            type: array
-    HybridConnectionLimitsProperties:
-      type: object
-      description: HybridConnectionLimits resource specific properties
-      properties:
-        current:
-          type: integer
-          format: int32
-          description: The current number of Hybrid Connections.
-          readOnly: true
-        maximum:
-          type: integer
-          format: int32
-          description: The maximum number of Hybrid Connections allowed.
-          readOnly: true
-    ConnectionStringType:
-      type: string
-      description: Type of database.
-      enum:
-      - MySql
-      - SQLServer
-      - SQLAzure
-      - Custom
-      - NotificationHub
-      - ServiceBus
-      - EventHub
-      - ApiHub
-      - DocDb
-      - RedisCache
-      - PostgreSQL
-      x-ms-enum:
-        name: ConnectionStringType
-        modelAsString: false
-    CloningInfo:
-      type: object
-      description: Information needed for cloning operation.
-      properties:
-        correlationId:
-          type: string
-          format: uuid
-          description: 'Correlation ID of cloning operation. This ID ties multiple cloning operations
-
-            together to use the same snapshot.'
-        overwrite:
-          type: boolean
-          description: <code>true</code> to overwrite destination app; otherwise, <code>false</code>.
-        cloneCustomHostNames:
-          type: boolean
-          description: <code>true</code> to clone custom hostnames from source app; otherwise, <code>false</code>.
-        cloneSourceControl:
-          type: boolean
-          description: <code>true</code> to clone source control from source app; otherwise, <code>false</code>.
-        sourceWebAppId:
-          type: string
-          description: 'ARM resource ID of the source app. App resource ID is of the form
-
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName} for production slots and
-
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slotName} for other slots.'
-        sourceWebAppLocation:
-          type: string
-          description: 'Location of source app ex: West US or North Europe'
-        hostingEnvironment:
-          type: string
-          description: App Service Environment.
-        appSettingsOverrides:
-          type: object
-          description: 'Application setting overrides for cloned app. If specified, these settings override the settings cloned
-
-            from source app. Otherwise, application settings from source app are retained.'
-          additionalProperties:
-            type: string
-        configureLoadBalancing:
-          type: boolean
-          description: <code>true</code> to configure load balancing for source and destination app.
-        trafficManagerProfileId:
-          type: string
-          description: 'ARM resource ID of the Traffic Manager profile to use, if it exists. Traffic Manager resource ID is of the form
-
-            /subscriptions/{subId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/trafficManagerProfiles/{profileName}.'
-        trafficManagerProfileName:
-          type: string
-          description: Name of Traffic Manager profile to create. This is only needed if Traffic Manager profile does not already exist.
-      required:
-      - sourceWebAppId
-    Site:
-      type: object
-      description: A web app, a mobile app backend, or an API app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/SiteProperties'
-          description: Site resource specific properties
-          x-ms-client-flatten: true
-        identity:
-          $ref: '#/components/schemas/ManagedServiceIdentity'
-          description: Managed service identity.
-        extendedLocation:
-          $ref: '#/components/schemas/ExtendedLocation'
-          description: Extended Location.
-        kind:
-          type: string
-          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    AzureStorageState:
-      type: string
-      description: State of the storage account.
-      enum:
-      - Ok
-      - InvalidCredentials
-      - InvalidShare
-      - NotValidated
-      x-ms-enum:
-        name: AzureStorageState
-        modelAsString: false
-    VnetRouteProperties:
-      type: object
-      description: VnetRoute resource specific properties
-      properties:
-        startAddress:
-          type: string
-          description: The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified.
-        endAddress:
-          type: string
-          description: The ending address for this route. If the start address is specified in CIDR notation, this must be omitted.
-        routeType:
-          $ref: '#/components/schemas/RouteType'
-          description: 'The type of route this is:
-
-            DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
-
-            INHERITED - Routes inherited from the real Virtual Network routes
-
-            STATIC - Static route set on the app only
-
-
-            These values will be used for syncing an app''s routes with those from a Virtual Network.'
-    AutoHealActionType:
-      type: string
-      description: Predefined action to be taken.
-      enum:
-      - Recycle
-      - LogEvent
-      - CustomAction
-      x-ms-enum:
-        name: AutoHealActionType
-        modelAsString: false
-    SiteDnsConfig:
-      type: object
-      properties:
-        dnsServers:
-          type: array
-          description: List of custom DNS servers to be used by an app for lookups. Maximum 5 dns servers can be set.
-          items:
-            type: string
-        dnsAltServer:
-          type: string
-          description: Alternate DNS server to be used by apps. This property replicates the WEBSITE_DNS_ALT_SERVER app setting.
-        dnsRetryAttemptTimeout:
-          type: integer
-          format: int32
-          description: 'Timeout for a single dns lookup in seconds. Allowed range: 1-30. Default is 3.'
-        dnsRetryAttemptCount:
-          type: integer
-          format: int32
-          description: 'Total number of retries for dns lookup. Allowed range: 1-5. Default is 3.'
-        dnsMaxCacheTimeout:
-          type: integer
-          format: int32
-          description: 'Custom time for DNS to be cached in seconds. Allowed range: 0-60. Default is 30 seconds. 0 means caching disabled.'
-        dnsLegacySortOrder:
-          type: boolean
-          description: Indicates that sites using Virtual network custom DNS servers are still sorting the list of DNS servers. Read-Only.
-          readOnly: true
-    OperationStatus:
-      type: string
-      description: The current status of the operation.
-      enum:
-      - InProgress
-      - Failed
-      - Succeeded
-      - TimedOut
-      - Created
-      x-ms-enum:
-        name: OperationStatus
-        modelAsString: false
-    ServerFarmInstanceDetails:
-      type: object
-      description: Represents instance details for an app service plan.
-      properties:
-        serverFarmName:
-          type: string
-          description: The server farm name.
-        instances:
-          type: array
-          description: The list of server farm instances.
-          items:
-            $ref: '#/components/schemas/ServerFarmInstance'
-          x-ms-identifiers: []
-        instanceCount:
-          type: integer
-          format: int32
-          description: The total number of instances.
-    ApiDefinitionInfo:
-      type: object
-      description: Information about the formal API definition for the app.
-      properties:
-        url:
-          type: string
-          description: The URL of the API definition.
-    FunctionsAlwaysReadyConfig:
-      type: object
-      description: Sets the number of 'Always Ready' instances for a function group or a specific function.
-      properties:
-        name:
-          type: string
-          description: Either a function group or a function name is required. For additional information see https://aka.ms/flexconsumption/alwaysready.
-        instanceCount:
-          type: integer
-          format: int32
-          description: Sets the number of 'Always Ready' instances for a given function group or a specific function. For additional information see https://aka.ms/flexconsumption/alwaysready.
-    AppServicePlanPatchResourceProperties:
-      type: object
-      description: AppServicePlanPatchResource resource specific properties
-      properties:
-        workerTierName:
-          type: string
-          description: Target worker tier assigned to the App Service plan.
-        status:
-          $ref: '#/components/schemas/StatusOptions'
-          description: App Service plan status.
-          readOnly: true
-        subscription:
-          type: string
-          description: App Service plan subscription.
-          readOnly: true
-        hostingEnvironmentProfile:
-          $ref: '#/components/schemas/HostingEnvironmentProfile'
-          description: Specification for the App Service Environment to use for the App Service plan.
-          x-ms-mutability:
-          - read
-          - create
-        maximumNumberOfWorkers:
-          type: integer
-          format: int32
-          description: Maximum number of instances that can be assigned to this App Service plan.
-          readOnly: true
-        numberOfWorkers:
-          type: integer
-          format: int32
-          description: The number of instances that are assigned to this App Service plan.
-          readOnly: true
-        geoRegion:
-          type: string
-          description: Geographical location for the App Service plan.
-          readOnly: true
-        perSiteScaling:
-          type: boolean
-          description: 'If <code>true</code>, apps assigned to this App Service plan can be scaled independently.
-
-            If <code>false</code>, apps assigned to this App Service plan will scale to all instances of the plan.'
-          default: false
-        elasticScaleEnabled:
-          type: boolean
-          description: ServerFarm supports ElasticScale. Apps in this plan will scale as if the ServerFarm was ElasticPremium sku
-        maximumElasticWorkerCount:
-          type: integer
-          format: int32
-          description: Maximum number of total workers allowed for this ElasticScaleEnabled App Service Plan
-        numberOfSites:
-          type: integer
-          format: int32
-          description: Number of apps assigned to this App Service plan.
-          readOnly: true
-        isSpot:
-          type: boolean
-          description: If <code>true</code>, this App Service Plan owns spot instances.
-        spotExpirationTime:
-          type: string
-          format: date-time
-          description: The time when the server farm expires. Valid only if it is a spot server farm.
-        freeOfferExpirationTime:
-          type: string
-          format: date-time
-          description: The time when the server farm free offer expires.
-        resourceGroup:
-          type: string
-          description: Resource group of the App Service plan.
-          readOnly: true
-        reserved:
-          type: boolean
-          description: If Linux app service plan <code>true</code>, <code>false</code> otherwise.
-          default: false
-          x-ms-mutability:
-          - read
-          - create
-        isXenon:
-          type: boolean
-          description: 'Obsolete: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.'
-          default: false
-          x-ms-mutability:
-          - read
-          - create
-        hyperV:
-          type: boolean
-          description: If Hyper-V container app service plan <code>true</code>, <code>false</code> otherwise.
-          default: false
-          x-ms-mutability:
-          - read
-          - create
-        targetWorkerCount:
-          type: integer
-          format: int32
-          description: Scaling worker count.
-        targetWorkerSizeId:
-          type: integer
-          format: int32
-          description: Scaling worker size ID.
-        provisioningState:
-          $ref: '#/components/schemas/ProvisioningState'
-          description: Provisioning state of the App Service Plan.
-          readOnly: true
-        kubeEnvironmentProfile:
-          $ref: '#/components/schemas/KubeEnvironmentProfile'
-          description: Specification for the Kubernetes Environment to use for the App Service plan.
-        zoneRedundant:
-          type: boolean
-          description: 'If <code>true</code>, this App Service Plan will perform availability zone balancing.
-
-            If <code>false</code>, this App Service Plan will not perform availability zone balancing.'
-          default: false
-    SiteLimits:
-      type: object
-      description: Metric limits set on an app.
-      properties:
-        maxPercentageCpu:
-          type: number
-          format: double
-          description: Maximum allowed CPU usage percentage.
-        maxMemoryInMb:
-          type: integer
-          format: int64
-          description: Maximum allowed memory usage in MB.
-        maxDiskSizeInMb:
-          type: integer
-          format: int64
-          description: Maximum allowed disk size usage in MB.
-    AutoGeneratedDomainNameLabelScope:
-      type: string
-      description: Specifies the scope of uniqueness for the default hostname during resource creation
-      enum:
-      - TenantReuse
-      - SubscriptionReuse
-      - ResourceGroupReuse
-      - NoReuse
-      x-ms-enum:
-        name: AutoGeneratedDomainNameLabelScope
-        modelAsString: false
-    CsmUsageQuota:
-      type: object
-      description: Usage of the quota resource.
-      properties:
-        unit:
-          type: string
-          description: Units of measurement for the quota resource.
-        nextResetTime:
-          type: string
-          format: date-time
-          description: Next reset time for the resource counter.
-        currentValue:
-          type: integer
-          format: int64
-          description: The current value of the resource counter.
-        limit:
-          type: integer
-          format: int64
-          description: The resource limit.
-        name:
-          $ref: '#/components/schemas/LocalizableString'
-          description: Quota name.
-    VnetRoute:
-      type: object
-      description: Virtual Network route contract used to pass routing information for a Virtual Network.
-      properties:
-        properties:
-          $ref: '#/components/schemas/VnetRouteProperties'
-          description: VnetRoute resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StatusOptions:
-      type: string
-      description: App Service plan status.
-      enum:
-      - Ready
-      - Pending
-      - Creating
-      x-ms-enum:
-        name: StatusOptions
-        modelAsString: false
-    HandlerMapping:
-      type: object
-      description: 'The IIS handler mappings used to define which handler processes HTTP requests with certain extension.
-
-        For example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension.'
-      properties:
-        extension:
-          type: string
-          description: Requests with this extension will be handled using the specified FastCGI application.
-        scriptProcessor:
-          type: string
-          description: The absolute path to the FastCGI application.
-        arguments:
-          type: string
-          description: Command-line arguments to be passed to the script processor.
-    SslState:
-      type: string
-      description: SSL type
-      enum:
-      - Disabled
-      - SniEnabled
-      - IpBasedEnabled
-      x-ms-enum:
-        name: SslState
-        modelAsString: false
-    KubeEnvironmentProfile:
-      type: object
-      description: Specification for a Kubernetes Environment to use for this resource.
-      properties:
-        id:
-          type: string
-          description: Resource ID of the Kubernetes Environment.
-        name:
-          type: string
-          description: Name of the Kubernetes Environment.
-          readOnly: true
-        type:
-          type: string
-          description: Resource type of the Kubernetes Environment.
-          readOnly: true
-    SiteAvailabilityState:
-      type: string
-      description: Management information availability state for the app.
-      enum:
-      - Normal
-      - Limited
-      - DisasterRecoveryMode
-      x-ms-enum:
-        name: SiteAvailabilityState
-        modelAsString: false
-    DaprConfig:
-      type: object
-      description: App Dapr configuration.
-      properties:
-        enabled:
-          type: boolean
-          description: Boolean indicating if the Dapr side car is enabled
-          default: false
-        appId:
-          type: string
-          description: Dapr application identifier
-        appPort:
-          type: integer
-          format: int32
-          description: Tells Dapr which port your application is listening on
-        httpReadBufferSize:
-          type: integer
-          format: int32
-          description: Dapr max size of http header read buffer in KB to handle when sending multi-KB headers. Default is 65KB.
-        httpMaxRequestSize:
-          type: integer
-          format: int32
-          description: Increasing max size of request body http servers parameter in MB to handle uploading of big files. Default is 4 MB.
-        logLevel:
-          $ref: '#/components/schemas/DaprLogLevel'
-          description: Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info.
-        enableApiLogging:
-          type: boolean
-          description: Enables API logging for the Dapr sidecar
-    AppServicePlanCollection:
-      type: object
-      description: Collection of App Service plans.
-      properties:
-        value:
-          type: array
-          description: The AppServicePlan items on this page
-          items:
-            $ref: '#/components/schemas/AppServicePlan'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    InstallScriptType:
-      type: string
-      description: Type of the install script.
-      enum:
-      - RemoteAzureBlob
-      - PlatformStorage
-      x-ms-enum:
-        name: InstallScriptType
-        modelAsString: true
-        values:
-        - name: RemoteAzureBlob
-          value: RemoteAzureBlob
-        - name: PlatformStorage
-          value: PlatformStorage
     SiteConfig:
       type: object
       description: Configuration of an App Service app.
@@ -3750,46 +3032,77 @@ components:
         publicNetworkAccess:
           type: string
           description: Property to allow or block all public traffic.
-    VnetInfo:
+    Site:
       type: object
-      description: Virtual Network information contract.
+      description: A web app, a mobile app backend, or an API app.
       properties:
-        vnetResourceId:
+        properties:
+          $ref: '#/components/schemas/SiteProperties'
+          description: Site resource specific properties
+          x-ms-client-flatten: true
+        identity:
+          $ref: '#/components/schemas/ManagedServiceIdentity'
+          description: Managed service identity.
+        extendedLocation:
+          $ref: '#/components/schemas/ExtendedLocation'
+          description: Extended Location.
+        kind:
           type: string
-          description: The Virtual Network's resource ID.
-        certThumbprint:
+          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
+    ResourceConfig:
+      type: object
+      description: Function app resource requirements.
+      properties:
+        cpu:
+          type: number
+          format: double
+          description: Required CPU in cores, e.g. 0.5
+        memory:
           type: string
-          description: The client certificate thumbprint.
-          readOnly: true
-        certBlob:
+          description: Required memory, e.g. "1Gi"
+    VnetInfoResource:
+      type: object
+      description: Virtual Network information ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/VnetInfo'
+          description: Core resource properties
+          x-ms-client-flatten: true
+        kind:
           type: string
-          description: A certificate file (.cer) blob containing the public key of the private key used to authenticate a \nPoint-To-Site VPN connection.
-        routes:
-          type: array
-          description: The routes that this Virtual Network connection uses.
-          items:
-            $ref: '#/components/schemas/VnetRoute'
-          readOnly: true
-        resyncRequired:
-          type: boolean
-          description: <code>true</code> if a resync is required; otherwise, <code>false</code>.
-          readOnly: true
-        dnsServers:
-          type: string
-          description: DNS servers to be used by this Virtual Network. This should be a comma-separated list of IP addresses.
-        isSwift:
-          type: boolean
-          description: Flag that is used to denote if this is VNET injection
-    IPMode:
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    IpFilterTag:
       type: string
-      description: Specifies the IP mode of the app.
+      description: Defines what this IP filter will be used for. This is to support IP filtering on proxies.
       enum:
-      - IPv4
-      - IPv6
-      - IPv4AndIPv6
+      - Default
+      - XffProxy
+      - ServiceTag
       x-ms-enum:
-        name: IPMode
-        modelAsString: false
+        name: IpFilterTag
+        modelAsString: true
+        values:
+        - name: Default
+          value: Default
+        - name: XffProxy
+          value: XffProxy
+        - name: ServiceTag
+          value: ServiceTag
+    RequestsBasedTrigger:
+      type: object
+      description: Trigger based on total requests.
+      properties:
+        count:
+          type: integer
+          format: int32
+          description: Request Count.
+        timeInterval:
+          type: string
+          description: Time interval.
     FunctionsScaleAndConcurrencyTriggers:
       type: object
       description: Scale and concurrency settings for the function app triggers.
@@ -3797,37 +3110,35 @@ components:
         http:
           $ref: '#/components/schemas/FunctionsScaleAndConcurrencyTriggersHttp'
           description: Scale and concurrency settings for the HTTP trigger.
-    FunctionsSiteUpdateStrategy:
+    PushSettings:
       type: object
-      description: Function app site update strategy configuration for deployments and site config updates.
+      description: Push settings for the App.
       properties:
-        type:
-          $ref: '#/components/schemas/SiteUpdateStrategyType'
-          description: 'Function app site update strategy type. Available options: Recreate, RollingUpdate'
-    HybridConnectionKeyProperties:
+        properties:
+          $ref: '#/components/schemas/PushSettingsProperties'
+          description: PushSettings resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    OutboundVnetRouting:
       type: object
-      description: HybridConnectionKey resource specific properties
+      description: Outbound traffic options over virtual network.
       properties:
-        sendKeyName:
-          type: string
-          description: The name of the send key.
-          readOnly: true
-        sendKeyValue:
-          type: string
-          description: The value of the send key.
-          readOnly: true
-    RedundancyMode:
-      type: string
-      description: Site redundancy mode
-      enum:
-      - None
-      - Manual
-      - Failover
-      - ActiveActive
-      - GeoRedundant
-      x-ms-enum:
-        name: RedundancyMode
-        modelAsString: false
+        allTraffic:
+          type: boolean
+          description: Enables all other routing options defined in OutboundVnetRouting if this setting is set to true.
+        applicationTraffic:
+          type: boolean
+          description: This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. Previously called VnetRouteAllEnabled.
+        contentShareTraffic:
+          type: boolean
+          description: Enables accessing content over virtual network. Previously called VnetContentShareEnabled
+        imagePullTraffic:
+          type: boolean
+          description: Enables pulling image over Virtual Network. Previously called VnetImagePullEnabled.
+        backupRestoreTraffic:
+          type: boolean
+          description: Enables Backup and Restore operations over virtual network. Previously called VnetBackupRestoreEnabled
     InstallScriptSource:
       type: object
       description: Object to hold install script reference.
@@ -3838,6 +3149,90 @@ components:
         type:
           $ref: '#/components/schemas/InstallScriptType'
           description: Type of the install script.
+    FunctionsDeploymentStorage:
+      type: object
+      description: Storage for deployed package used by the function app.
+      properties:
+        type:
+          $ref: '#/components/schemas/FunctionsDeploymentStorageType'
+          description: 'Property to select Azure Storage type. Available options: blobContainer.'
+        value:
+          type: string
+          format: uri
+          description: 'Property to set the URL for the selected Azure Storage type. Example: For blobContainer, the value could be https://<storageAccountName>.blob.core.windows.net/<containerName>.'
+        authentication:
+          $ref: '#/components/schemas/FunctionsDeploymentStorageAuthentication'
+          description: Authentication method to access the storage account for deployment.
+    IPMode:
+      type: string
+      description: Specifies the IP mode of the app.
+      enum:
+      - IPv4
+      - IPv6
+      - IPv4AndIPv6
+      x-ms-enum:
+        name: IPMode
+        modelAsString: false
+    AppServicePlanCollection:
+      type: object
+      description: Collection of App Service plans.
+      properties:
+        value:
+          type: array
+          description: The AppServicePlan items on this page
+          items:
+            $ref: '#/components/schemas/AppServicePlan'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    FtpsState:
+      type: string
+      description: State of FTP / FTPS service
+      enum:
+      - AllAllowed
+      - FtpsOnly
+      - Disabled
+      x-ms-enum:
+        name: FtpsState
+        modelAsString: true
+        values:
+        - name: AllAllowed
+          value: AllAllowed
+        - name: FtpsOnly
+          value: FtpsOnly
+        - name: Disabled
+          value: Disabled
+    ExtendedLocation:
+      type: object
+      description: Extended Location.
+      properties:
+        name:
+          type: string
+          description: Name of extended location.
+        type:
+          type: string
+          description: Type of extended location.
+          readOnly: true
+    AuthenticationType:
+      type: string
+      description: 'Property to select authentication type to access the selected storage account. Available options: SystemAssignedIdentity, UserAssignedIdentity, StorageAccountConnectionString.'
+      enum:
+      - SystemAssignedIdentity
+      - UserAssignedIdentity
+      - StorageAccountConnectionString
+      x-ms-enum:
+        name: AuthenticationType
+        modelAsString: true
+        values:
+        - name: SystemAssignedIdentity
+          value: SystemAssignedIdentity
+        - name: UserAssignedIdentity
+          value: UserAssignedIdentity
+        - name: StorageAccountConnectionString
+          value: StorageAccountConnectionString
     AutoHealCustomAction:
       type: object
       description: 'Custom action to be executed
@@ -3850,6 +3245,177 @@ components:
         parameters:
           type: string
           description: Parameters for the executable.
+    HybridConnectionProperties:
+      type: object
+      description: HybridConnection resource specific properties
+      properties:
+        serviceBusNamespace:
+          type: string
+          description: The name of the Service Bus namespace.
+          x-ms-mutability:
+          - read
+          - create
+        relayName:
+          type: string
+          description: The name of the Service Bus relay.
+          x-ms-mutability:
+          - read
+          - create
+        relayArmUri:
+          type: string
+          description: The ARM URI to the Service Bus relay.
+        hostname:
+          type: string
+          description: The hostname of the endpoint.
+        port:
+          type: integer
+          format: int32
+          description: The port of the endpoint.
+        sendKeyName:
+          type: string
+          description: The name of the Service Bus key which has Send permissions. This is used to authenticate to Service Bus.
+        sendKeyValue:
+          type: string
+          description: 'The value of the Service Bus key. This is used to authenticate to Service Bus. In ARM this key will not be returned
+
+            normally, use the POST /listKeys API instead.'
+        serviceBusSuffix:
+          type: string
+          description: The suffix for the service bus endpoint. By default this is .servicebus.windows.net
+    FunctionsSiteUpdateStrategy:
+      type: object
+      description: Function app site update strategy configuration for deployments and site config updates.
+      properties:
+        type:
+          $ref: '#/components/schemas/SiteUpdateStrategyType'
+          description: 'Function app site update strategy type. Available options: Recreate, RollingUpdate'
+    FunctionsDeployment:
+      type: object
+      description: Configuration section for the function app deployment.
+      properties:
+        storage:
+          $ref: '#/components/schemas/FunctionsDeploymentStorage'
+          description: Storage for deployed package used by the function app.
+    VnetRouteProperties:
+      type: object
+      description: VnetRoute resource specific properties
+      properties:
+        startAddress:
+          type: string
+          description: The starting address for this route. This may also include a CIDR notation, in which case the end address must not be specified.
+        endAddress:
+          type: string
+          description: The ending address for this route. If the start address is specified in CIDR notation, this must be omitted.
+        routeType:
+          $ref: '#/components/schemas/RouteType'
+          description: 'The type of route this is:
+
+            DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
+
+            INHERITED - Routes inherited from the real Virtual Network routes
+
+            STATIC - Static route set on the app only
+
+
+            These values will be used for syncing an app''s routes with those from a Virtual Network.'
+    AzureStorageInfoValue:
+      type: object
+      description: Azure Files or Blob Storage access information value for dictionary storage.
+      properties:
+        type:
+          $ref: '#/components/schemas/AzureStorageType'
+          description: Type of storage.
+        accountName:
+          type: string
+          description: Name of the storage account.
+        shareName:
+          type: string
+          description: Name of the file share (container name, for Blob storage).
+        accessKey:
+          type: string
+          format: password
+          description: Access key for the storage account.
+          x-ms-secret: true
+        mountPath:
+          type: string
+          description: Path to mount the storage within the site's runtime environment.
+        state:
+          $ref: '#/components/schemas/AzureStorageState'
+          description: State of the storage account.
+          readOnly: true
+        protocol:
+          $ref: '#/components/schemas/AzureStorageProtocol'
+          description: Mounting protocol to use for the storage account.
+    InstallScriptType:
+      type: string
+      description: Type of the install script.
+      enum:
+      - RemoteAzureBlob
+      - PlatformStorage
+      x-ms-enum:
+        name: InstallScriptType
+        modelAsString: true
+        values:
+        - name: RemoteAzureBlob
+          value: RemoteAzureBlob
+        - name: PlatformStorage
+          value: PlatformStorage
+    HostType:
+      type: string
+      description: Indicates whether the hostname is a standard or repository hostname.
+      enum:
+      - Standard
+      - Repository
+      x-ms-enum:
+        name: HostType
+        modelAsString: false
+    SkuCapacity:
+      type: object
+      description: Description of the App Service plan scale options.
+      properties:
+        minimum:
+          type: integer
+          format: int32
+          description: Minimum number of workers for this App Service plan SKU.
+        maximum:
+          type: integer
+          format: int32
+          description: Maximum number of workers for this App Service plan SKU.
+        elasticMaximum:
+          type: integer
+          format: int32
+          description: Maximum number of Elastic workers for this App Service plan SKU.
+        default:
+          type: integer
+          format: int32
+          description: Default number of workers for this App Service plan SKU.
+        scaleType:
+          type: string
+          description: Available scale configurations for an App Service plan.
+    HybridConnectionKey:
+      type: object
+      description: Hybrid Connection key contract. This has the send key name and value for a Hybrid Connection.
+      properties:
+        properties:
+          $ref: '#/components/schemas/HybridConnectionKeyProperties'
+          description: HybridConnectionKey resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    HybridConnectionLimitsProperties:
+      type: object
+      description: HybridConnectionLimits resource specific properties
+      properties:
+        current:
+          type: integer
+          format: int32
+          description: The current number of Hybrid Connections.
+          readOnly: true
+        maximum:
+          type: integer
+          format: int32
+          description: The maximum number of Hybrid Connections allowed.
+          readOnly: true
     SiteLoadBalancing:
       type: string
       description: Site load balancing.
@@ -3864,6 +3430,483 @@ components:
       x-ms-enum:
         name: SiteLoadBalancing
         modelAsString: false
+    PushSettingsProperties:
+      type: object
+      description: PushSettings resource specific properties
+      properties:
+        isPushEnabled:
+          type: boolean
+          description: Gets or sets a flag indicating whether the Push endpoint is enabled.
+        tagWhitelistJson:
+          type: string
+          description: Gets or sets a JSON string containing a list of tags that are whitelisted for use by the push registration endpoint.
+        tagsRequiringAuth:
+          type: string
+          description: "Gets or sets a JSON string containing a list of tags that require user authentication to be used in the push registration endpoint.\nTags can consist of alphanumeric characters and the following:\n'_', '@', '#', '.', ':', '-'. \nValidation should be performed at the PushRequestHandler."
+        dynamicTagsJson:
+          type: string
+          description: Gets or sets a JSON string containing a list of dynamic tags that will be evaluated from user claims in the push registration endpoint.
+      required:
+      - isPushEnabled
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DaprLogLevel:
+      type: string
+      description: Sets the log level for the Dapr sidecar. Allowed values are debug, info, warn, error. Default is info.
+      enum:
+      - info
+      - debug
+      - warn
+      - error
+      x-ms-enum:
+        name: DaprLogLevel
+        modelAsString: true
+        values:
+        - name: info
+          value: info
+        - name: debug
+          value: debug
+        - name: warn
+          value: warn
+        - name: error
+          value: error
+    VirtualDirectory:
+      type: object
+      description: Directory for virtual application.
+      properties:
+        virtualPath:
+          type: string
+          description: Path to virtual application.
+        physicalPath:
+          type: string
+          description: Physical path.
+    RegistryAdapterType:
+      type: string
+      description: Type of the registry adapter.
+      enum:
+      - Binary
+      - String
+      - Expand_String
+      - Multi_String
+      - DWord
+      - QWord
+      x-ms-enum:
+        name: RegistryAdapterType
+        modelAsString: true
+        values:
+        - name: Binary
+          value: Binary
+        - name: String
+          value: String
+        - name: Expand_String
+          value: Expand_String
+        - name: Multi_String
+          value: Multi_String
+        - name: DWord
+          value: DWord
+        - name: QWord
+          value: QWord
+    HybridConnection:
+      type: object
+      description: Hybrid Connection contract. This is used to configure a Hybrid Connection.
+      properties:
+        properties:
+          $ref: '#/components/schemas/HybridConnectionProperties'
+          description: HybridConnection resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    RuntimeName:
+      type: string
+      description: 'Function app runtime name. Available options: dotnet-isolated, node, java, powershell, python, custom'
+      enum:
+      - dotnet-isolated
+      - node
+      - java
+      - powershell
+      - python
+      - custom
+      x-ms-enum:
+        name: RuntimeName
+        modelAsString: true
+        values:
+        - name: dotnet-isolated
+          value: dotnet-isolated
+        - name: node
+          value: node
+        - name: java
+          value: java
+        - name: powershell
+          value: powershell
+        - name: python
+          value: python
+        - name: custom
+          value: custom
+    FunctionsScaleAndConcurrency:
+      type: object
+      description: Scale and concurrency settings for the function app.
+      properties:
+        alwaysReady:
+          type: array
+          description: '''Always Ready'' configuration for the function app.'
+          items:
+            $ref: '#/components/schemas/FunctionsAlwaysReadyConfig'
+        maximumInstanceCount:
+          type: integer
+          format: int32
+          description: The maximum number of instances for the function app.
+        instanceMemoryMB:
+          type: integer
+          format: int32
+          description: Set the amount of memory allocated to each instance of the function app in MB. CPU and network bandwidth are allocated proportionally.
+        triggers:
+          $ref: '#/components/schemas/FunctionsScaleAndConcurrencyTriggers'
+          description: Scale and concurrency settings for the function app triggers.
+    SlowRequestsBasedTrigger:
+      type: object
+      description: Trigger based on request execution time.
+      properties:
+        timeTaken:
+          type: string
+          description: Time taken.
+        path:
+          type: string
+          description: Request Path.
+        count:
+          type: integer
+          format: int32
+          description: Request Count.
+        timeInterval:
+          type: string
+          description: Time interval.
+    Operation:
+      type: object
+      description: An operation on a resource.
+      properties:
+        id:
+          type: string
+          description: Operation ID.
+        name:
+          type: string
+          description: Operation name.
+        status:
+          $ref: '#/components/schemas/OperationStatus'
+          description: The current status of the operation.
+        errors:
+          type: array
+          description: Any errors associate with the operation.
+          items:
+            $ref: '#/components/schemas/ErrorEntity'
+          x-ms-identifiers: []
+        createdTime:
+          type: string
+          format: date-time
+          description: Time when operation has started.
+        modifiedTime:
+          type: string
+          format: date-time
+          description: Time when operation has been updated.
+        expirationTime:
+          type: string
+          format: date-time
+          description: Time when operation will expire.
+        geoMasterOperationId:
+          type: string
+          format: uuid
+          description: Applicable only for stamp operation ids.
+    ServerFarmRdpDetails:
+      type: object
+      description: Server Farm RDP connection details.
+      properties:
+        rdpPassword:
+          type: string
+          format: password
+          description: The RDP password for the server farm.
+          x-ms-secret: true
+        rdpPasswordExpiry:
+          type: string
+          format: date-time
+          description: The RDP password expiry date.
+    HandlerMapping:
+      type: object
+      description: 'The IIS handler mappings used to define which handler processes HTTP requests with certain extension.
+
+        For example, it is used to configure php-cgi.exe process to handle all HTTP requests with *.php extension.'
+      properties:
+        extension:
+          type: string
+          description: Requests with this extension will be handled using the specified FastCGI application.
+        scriptProcessor:
+          type: string
+          description: The absolute path to the FastCGI application.
+        arguments:
+          type: string
+          description: Command-line arguments to be passed to the script processor.
+    SupportedTlsVersions:
+      type: string
+      description: 'MinTlsVersion: configures the minimum version of TLS required for SSL requests'
+      enum:
+      - '1.0'
+      - '1.1'
+      - '1.2'
+      - '1.3'
+      x-ms-enum:
+        name: SupportedTlsVersions
+        modelAsString: true
+        values:
+        - name: '1.0'
+          value: '1.0'
+        - name: '1.1'
+          value: '1.1'
+        - name: '1.2'
+          value: '1.2'
+        - name: '1.3'
+          value: '1.3'
+    CsmUsageQuotaCollection:
+      type: object
+      description: Paged collection of CsmUsageQuota items
+      properties:
+        value:
+          type: array
+          description: The CsmUsageQuota items on this page
+          items:
+            $ref: '#/components/schemas/CsmUsageQuota'
+          x-ms-identifiers:
+          - name
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    ManagedServiceIdentityType:
+      type: string
+      description: Type of managed service identity.
+      enum:
+      - SystemAssigned
+      - UserAssigned
+      - SystemAssigned, UserAssigned
+      - None
+      x-ms-enum:
+        name: ManagedServiceIdentityType
+        modelAsString: false
+    CorsSettings:
+      type: object
+      description: Cross-Origin Resource Sharing (CORS) settings for the app.
+      properties:
+        allowedOrigins:
+          type: array
+          description: 'Gets or sets the list of origins that should be allowed to make cross-origin
+
+            calls (for example: http://example.com:12345). Use "*" to allow all.'
+          items:
+            type: string
+        supportCredentials:
+          type: boolean
+          description: 'Gets or sets whether CORS requests with credentials are allowed. See
+
+            https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Requests_with_credentials
+
+            for more details.'
+    SkuDescription:
+      type: object
+      description: Description of a SKU for a scalable resource.
+      properties:
+        name:
+          type: string
+          description: Name of the resource SKU.
+        tier:
+          type: string
+          description: Service tier of the resource SKU.
+        size:
+          type: string
+          description: Size specifier of the resource SKU.
+        family:
+          type: string
+          description: Family code of the resource SKU.
+        capacity:
+          type: integer
+          format: int32
+          description: Current number of instances assigned to the resource.
+        skuCapacity:
+          $ref: '#/components/schemas/SkuCapacity'
+          description: Min, max, and default scale values of the SKU.
+        locations:
+          type: array
+          description: Locations of the SKU.
+          items:
+            type: string
+        capabilities:
+          type: array
+          description: Capabilities of the SKU, e.g., is traffic manager enabled?
+          items:
+            $ref: '#/components/schemas/Capability'
+          x-ms-identifiers:
+          - name
+    DefaultIdentity:
+      type: object
+      properties:
+        identityType:
+          $ref: '#/components/schemas/ManagedServiceIdentityType'
+        userAssignedIdentityResourceId:
+          type: string
+    SlotSwapStatus:
+      type: object
+      description: The status of the last successful slot swap operation.
+      properties:
+        timestampUtc:
+          type: string
+          format: date-time
+          description: The time the last successful slot swap completed.
+          readOnly: true
+        sourceSlotName:
+          type: string
+          description: The source slot of the last swap operation.
+          readOnly: true
+        destinationSlotName:
+          type: string
+          description: The destination slot of the last swap operation.
+          readOnly: true
+    FunctionAppConfig:
+      type: object
+      description: Function app configuration.
+      properties:
+        deployment:
+          $ref: '#/components/schemas/FunctionsDeployment'
+          description: Function app deployment configuration.
+        runtime:
+          $ref: '#/components/schemas/FunctionsRuntime'
+          description: Function app runtime settings.
+        scaleAndConcurrency:
+          $ref: '#/components/schemas/FunctionsScaleAndConcurrency'
+          description: Function app scale and concurrency settings.
+        siteUpdateStrategy:
+          $ref: '#/components/schemas/FunctionsSiteUpdateStrategy'
+          description: Function app site update strategy configuration.
+    AzureStorageProtocol:
+      type: string
+      description: Mounting protocol to use for the storage account.
+      enum:
+      - Smb
+      - Http
+      - Nfs
+      x-ms-enum:
+        name: AzureStorageProtocol
+        modelAsString: true
+        values:
+        - name: Smb
+          value: Smb
+        - name: Http
+          value: Http
+        - name: Nfs
+          value: Nfs
+    LocalizableString:
+      type: object
+      description: Localizable string object containing the name and a localized value.
+      properties:
+        value:
+          type: string
+          description: Non-localized name.
+        localizedValue:
+          type: string
+          description: Localized name.
+    FunctionsScaleAndConcurrencyTriggersHttp:
+      type: object
+      description: Scale and concurrency settings for the HTTP trigger.
+      properties:
+        perInstanceConcurrency:
+          type: integer
+          format: int32
+          description: The maximum number of concurrent HTTP trigger invocations per instance.
+    AutoHealActionType:
+      type: string
+      description: Predefined action to be taken.
+      enum:
+      - Recycle
+      - LogEvent
+      - CustomAction
+      x-ms-enum:
+        name: AutoHealActionType
+        modelAsString: false
+    ManagedPipelineMode:
+      type: string
+      description: Managed pipeline mode.
+      enum:
+      - Integrated
+      - Classic
+      x-ms-enum:
+        name: ManagedPipelineMode
+        modelAsString: false
+    RedundancyMode:
+      type: string
+      description: Site redundancy mode
+      enum:
+      - None
+      - Manual
+      - Failover
+      - ActiveActive
+      - GeoRedundant
+      x-ms-enum:
+        name: RedundancyMode
+        modelAsString: false
+    KubeEnvironmentProfile:
+      type: object
+      description: Specification for a Kubernetes Environment to use for this resource.
+      properties:
+        id:
+          type: string
+          description: Resource ID of the Kubernetes Environment.
+        name:
+          type: string
+          description: Name of the Kubernetes Environment.
+          readOnly: true
+        type:
+          type: string
+          description: Resource type of the Kubernetes Environment.
+          readOnly: true
+    ServerFarmInstanceDetails:
+      type: object
+      description: Represents instance details for an app service plan.
+      properties:
+        serverFarmName:
+          type: string
+          description: The server farm name.
+        instances:
+          type: array
+          description: The list of server farm instances.
+          items:
+            $ref: '#/components/schemas/ServerFarmInstance'
+          x-ms-identifiers: []
+        instanceCount:
+          type: integer
+          format: int32
+          description: The total number of instances.
     StatusCodesRangeBasedTrigger:
       type: object
       description: Trigger based on range of status codes.
@@ -3880,17 +3923,107 @@ components:
         timeInterval:
           type: string
           description: Time interval.
-    FunctionsDeploymentStorageType:
+    RouteType:
       type: string
-      description: 'Property to select Azure Storage type. Available options: blobContainer.'
+      description: 'The type of route this is:
+
+        DEFAULT - By default, every app has routes to the local address ranges specified by RFC1918
+
+        INHERITED - Routes inherited from the real Virtual Network routes
+
+        STATIC - Static route set on the app only
+
+
+        These values will be used for syncing an app''s routes with those from a Virtual Network.'
       enum:
-      - blobContainer
+      - DEFAULT
+      - INHERITED
+      - STATIC
       x-ms-enum:
-        name: FunctionsDeploymentStorageType
+        name: RouteType
         modelAsString: true
         values:
-        - name: blobContainer
-          value: blobContainer
+        - name: DEFAULT
+          value: DEFAULT
+        - name: INHERITED
+          value: INHERITED
+        - name: STATIC
+          value: STATIC
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    UserAssignedIdentity:
+      type: object
+      description: User Assigned identity.
+      properties:
+        principalId:
+          type: string
+          description: Principal Id of user assigned identity
+          readOnly: true
+        clientId:
+          type: string
+          description: Client Id of user assigned identity
+          readOnly: true
+    ProvisioningState:
+      type: string
+      description: Provisioning state of the App Service Plan.
+      enum:
+      - Succeeded
+      - Failed
+      - Canceled
+      - InProgress
+      - Deleting
+      x-ms-enum:
+        name: ProvisioningState
+        modelAsString: false
+    ApiManagementConfig:
+      type: object
+      description: Azure API management (APIM) configuration linked to the app.
+      properties:
+        id:
+          type: string
+          description: APIM-Api Identifier.
+    VnetGatewayProperties:
+      type: object
+      description: VnetGateway resource specific properties
+      properties:
+        vnetName:
+          type: string
+          description: The Virtual Network name.
+          x-ms-mutability:
+          - read
+          - create
+        vpnPackageUri:
+          type: string
+          description: The URI where the VPN package can be downloaded.
+          x-ms-mutability:
+          - update
+          - create
+      required:
+      - vpnPackageUri
+    StatusOptions:
+      type: string
+      description: App Service plan status.
+      enum:
+      - Ready
+      - Pending
+      - Creating
+      x-ms-enum:
+        name: StatusOptions
+        modelAsString: false
     SiteUpdateStrategyType:
       type: string
       description: 'Function app site update strategy type. Available options: Recreate, RollingUpdate'
@@ -3911,165 +4044,32 @@ components:
           description: 'If the app is under load and a deployment or site state update occurs, pods will be drained in
 
             batches and gradually replaced, thus minimizing impact to throughput.'
-    AzureStorageProtocol:
+    ClientCertMode:
       type: string
-      description: Mounting protocol to use for the storage account.
+      description: 'This composes with ClientCertEnabled setting.
+
+        - ClientCertEnabled: false means ClientCert is ignored.
+
+        - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
+
+        - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted.'
       enum:
-      - Smb
-      - Http
-      - Nfs
+      - Required
+      - Optional
+      - OptionalInteractiveUser
       x-ms-enum:
-        name: AzureStorageProtocol
-        modelAsString: true
-        values:
-        - name: Smb
-          value: Smb
-        - name: Http
-          value: Http
-        - name: Nfs
-          value: Nfs
-    PushSettings:
-      type: object
-      description: Push settings for the App.
-      properties:
-        properties:
-          $ref: '#/components/schemas/PushSettingsProperties'
-          description: PushSettings resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    HostingEnvironmentProfile:
-      type: object
-      description: Specification for an App Service Environment to use for this resource.
-      properties:
-        id:
-          type: string
-          description: Resource ID of the App Service Environment.
-        name:
-          type: string
-          description: Name of the App Service Environment.
-          readOnly: true
-        type:
-          type: string
-          description: Resource type of the App Service Environment.
-          readOnly: true
-    StorageMount:
-      type: object
-      description: Server farm storage mount configuration.
-      properties:
-        name:
-          type: string
-          description: Name of the storage mount.
-        type:
-          $ref: '#/components/schemas/StorageMountType'
-          description: Type of the storage mount.
-        source:
-          type: string
-          description: Source of the fileshare/storage.
-        destinationPath:
-          type: string
-          description: Path on worker where storage will be mounted.
-        credentialsKeyVaultReference:
-          $ref: '#/components/schemas/KeyVaultReferenceWithStatus'
-          description: KV reference to the credentials to connect to the share.
-    FtpsState:
-      type: string
-      description: State of FTP / FTPS service
-      enum:
-      - AllAllowed
-      - FtpsOnly
-      - Disabled
-      x-ms-enum:
-        name: FtpsState
-        modelAsString: true
-        values:
-        - name: AllAllowed
-          value: AllAllowed
-        - name: FtpsOnly
-          value: FtpsOnly
-        - name: Disabled
-          value: Disabled
-    TlsCipherSuites:
-      type: string
-      description: The minimum strength TLS cipher suite allowed for an application
-      enum:
-      - TLS_AES_256_GCM_SHA384
-      - TLS_AES_128_GCM_SHA256
-      - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
-      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-      - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-      - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-      - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-      - TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-      - TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-      - TLS_RSA_WITH_AES_256_GCM_SHA384
-      - TLS_RSA_WITH_AES_128_GCM_SHA256
-      - TLS_RSA_WITH_AES_256_CBC_SHA256
-      - TLS_RSA_WITH_AES_128_CBC_SHA256
-      - TLS_RSA_WITH_AES_256_CBC_SHA
-      - TLS_RSA_WITH_AES_128_CBC_SHA
-      x-ms-enum:
-        name: TlsCipherSuites
-        modelAsString: true
-        values:
-        - name: TLS_AES_256_GCM_SHA384
-          value: TLS_AES_256_GCM_SHA384
-        - name: TLS_AES_128_GCM_SHA256
-          value: TLS_AES_128_GCM_SHA256
-        - name: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-          value: TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
-        - name: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
-          value: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
-        - name: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-          value: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
-        - name: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-          value: TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        - name: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-          value: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        - name: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-          value: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-        - name: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-          value: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-        - name: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-          value: TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA
-        - name: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-          value: TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
-        - name: TLS_RSA_WITH_AES_256_GCM_SHA384
-          value: TLS_RSA_WITH_AES_256_GCM_SHA384
-        - name: TLS_RSA_WITH_AES_128_GCM_SHA256
-          value: TLS_RSA_WITH_AES_128_GCM_SHA256
-        - name: TLS_RSA_WITH_AES_256_CBC_SHA256
-          value: TLS_RSA_WITH_AES_256_CBC_SHA256
-        - name: TLS_RSA_WITH_AES_128_CBC_SHA256
-          value: TLS_RSA_WITH_AES_128_CBC_SHA256
-        - name: TLS_RSA_WITH_AES_256_CBC_SHA
-          value: TLS_RSA_WITH_AES_256_CBC_SHA
-        - name: TLS_RSA_WITH_AES_128_CBC_SHA
-          value: TLS_RSA_WITH_AES_128_CBC_SHA
-    HostType:
-      type: string
-      description: Indicates whether the hostname is a standard or repository hostname.
-      enum:
-      - Standard
-      - Repository
-      x-ms-enum:
-        name: HostType
+        name: ClientCertMode
         modelAsString: false
-    AppServicePlanPatchResource:
+    KeyVaultReferenceWithStatus:
       type: object
-      description: ARM resource for a app service plan.
+      description: Object to hold key vault reference and the resolution status
       properties:
-        properties:
-          $ref: '#/components/schemas/AppServicePlanPatchResourceProperties'
-          description: AppServicePlanPatchResource resource specific properties
-          x-ms-client-flatten: true
-        identity:
-          $ref: '#/components/schemas/ManagedServiceIdentity'
-          description: Managed service identity.
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
+        secretUri:
+          type: string
+          description: Key vault secret URI.
+        referenceStatus:
+          type: string
+          description: Reference status of the key vault secret.
   securitySchemes:
     azure_auth:
       type: oauth2

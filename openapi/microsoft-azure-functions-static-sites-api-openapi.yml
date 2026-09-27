@@ -3272,147 +3272,85 @@ paths:
           $ref: ./examples/DeleteStaticSiteUser.json
 components:
   schemas:
-    StaticSiteUserProvidedFunctionApp:
+    StaticSiteUserCollection:
       type: object
-      description: A static site user provided function.
+      description: Collection of static site custom users.
       properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppProperties'
-          description: StaticSiteUserProvidedFunctionApp resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    DefaultErrorResponseErrorDetailsItem:
+        value:
+          type: array
+          description: The StaticSiteUserARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteUserARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    BuildStatus:
+      type: string
+      description: The status of the static site build.
+      enum:
+      - WaitingForDeployment
+      - Uploading
+      - Deploying
+      - Ready
+      - Failed
+      - Deleting
+      - Detached
+      x-ms-enum:
+        name: BuildStatus
+        modelAsString: true
+        values:
+        - name: WaitingForDeployment
+          value: WaitingForDeployment
+        - name: Uploading
+          value: Uploading
+        - name: Deploying
+          value: Deploying
+        - name: Ready
+          value: Ready
+        - name: Failed
+          value: Failed
+        - name: Deleting
+          value: Deleting
+        - name: Detached
+          value: Detached
+    StaticSitesWorkflowPreviewProperties:
       type: object
-      description: Detailed errors.
+      description: StaticSitesWorkflowPreview resource specific properties
       properties:
-        code:
+        path:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    ManagedServiceIdentity:
-      type: object
-      description: Managed service identity.
-      properties:
-        type:
-          $ref: '#/components/schemas/ManagedServiceIdentityType'
-          description: Type of managed service identity.
-        tenantId:
-          type: string
-          description: Tenant of managed service identity.
-          readOnly: true
-        principalId:
-          type: string
-          description: Principal Id of managed service identity.
-          readOnly: true
-        userAssignedIdentities:
-          type: object
-          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
-          additionalProperties:
-            $ref: '#/components/schemas/UserAssignedIdentity'
-    StaticSiteCustomDomainRequestPropertiesARMResourceProperties:
-      type: object
-      description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
-      properties:
-        validationMethod:
-          type: string
-          description: Validation method for adding a custom domain
-          default: cname-delegation
-    StaticSiteDatabaseConnectionConfigurationFileOverview:
-      type: object
-      description: A database connection configuration file
-      properties:
-        fileName:
-          type: string
-          description: The name of the configuration file.
+          description: The path for the workflow file to be generated
           readOnly: true
         contents:
           type: string
-          description: The Base64 encoding of the file contents.
+          description: The contents for the workflow file to be generated
           readOnly: true
-        type:
-          type: string
-          description: The type of configuration file.
-          readOnly: true
-    StaticSiteARMResource:
+    StaticSiteUserARMResource:
       type: object
-      description: Concrete tracked resource types can be created by aliasing this type using a specific property type.
+      description: Static Site User ARM resource.
       properties:
         properties:
-          $ref: '#/components/schemas/StaticSite'
-          description: Core resource properties
+          $ref: '#/components/schemas/StaticSiteUserARMResourceProperties'
+          description: StaticSiteUserARMResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    StaticSiteCustomDomainOverviewARMResource:
+      type: object
+      description: Static Site Custom Domain Overview ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteCustomDomainOverviewARMResourceProperties'
+          description: StaticSiteCustomDomainOverviewARMResource resource specific properties
           x-ms-client-flatten: true
         kind:
           type: string
           description: Kind of resource.
-        sku:
-          $ref: '#/components/schemas/SkuDescription'
-          description: Description of a SKU for a scalable resource.
-        identity:
-          $ref: '#/components/schemas/ManagedServiceIdentity'
-          description: Managed service identity.
       allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    StaticSiteCustomDomainOverviewARMResourceProperties:
-      type: object
-      description: StaticSiteCustomDomainOverviewARMResource resource specific properties
-      properties:
-        domainName:
-          type: string
-          description: The domain name for the static site custom domain.
-          readOnly: true
-        createdOn:
-          type: string
-          format: date-time
-          description: The date and time on which the custom domain was created for the static site.
-          readOnly: true
-        status:
-          $ref: '#/components/schemas/CustomDomainStatus'
-          description: The status of the custom domain
-          readOnly: true
-        validationToken:
-          type: string
-          description: The TXT record validation token
-          readOnly: true
-        errorMessage:
-          type: string
-          readOnly: true
-    DatabaseConnectionOverview:
-      type: object
-      description: Static Site Database Connection overview.
-      properties:
-        resourceId:
-          type: string
-          description: The resource id of the database.
-          readOnly: true
-        connectionIdentity:
-          type: string
-          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
-          readOnly: true
-        region:
-          type: string
-          description: The region of the database resource.
-          readOnly: true
-        configurationFiles:
-          type: array
-          description: A list of configuration files associated with this database connection.
-          items:
-            $ref: '#/components/schemas/StaticSiteDatabaseConnectionConfigurationFileOverview'
-          readOnly: true
-          x-ms-identifiers:
-          - fileName
-        name:
-          type: string
-          description: If present, the name of this database connection resource.
-          readOnly: true
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
     ErrorEntity:
       type: object
       description: Body of the error response returned from the API.
@@ -3449,6 +3387,79 @@ components:
         message:
           type: string
           description: Any details of the error.
+    StaticSiteLinkedBackendARMResource:
+      type: object
+      description: Static Site Linked Backend ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteLinkedBackendARMResourceProperties'
+          description: StaticSiteLinkedBackendARMResource resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSitesWorkflowPreview:
+      type: object
+      description: Preview for the Static Site Workflow to be generated
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSitesWorkflowPreviewProperties'
+          description: StaticSitesWorkflowPreview resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    Capability:
+      type: object
+      description: Describes the capabilities/features allowed for a specific SKU.
+      properties:
+        name:
+          type: string
+          description: Name of the SKU capability.
+        value:
+          type: string
+          description: Value of the SKU capability.
+        reason:
+          type: string
+          description: Reason of the SKU capability.
+    StaticSiteLinkedBackend:
+      type: object
+      description: Static Site Linked Backend ARM resource.
+      properties:
+        backendResourceId:
+          type: string
+          description: The resource id of the backend linked to the static site
+        region:
+          type: string
+          description: The region of the backend linked to the static site
+        createdOn:
+          type: string
+          format: date-time
+          description: The date and time on which the backend was linked to the static site.
+          readOnly: true
+        provisioningState:
+          type: string
+          description: The provisioning state of the linking process.
+          readOnly: true
+    DatabaseConnectionPatchRequest:
+      type: object
+      description: Static Site Database Connection Request Properties resource when patching
+      properties:
+        properties:
+          $ref: '#/components/schemas/DatabaseConnectionPatchRequestProperties'
+          description: DatabaseConnectionPatchRequest resource specific properties
+          x-ms-client-flatten: true
+    StaticSitesWorkflowPreviewRequest:
+      type: object
+      description: Request entity for previewing the Static Site workflow
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSitesWorkflowPreviewRequestProperties'
+          description: StaticSitesWorkflowPreviewRequest resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
     StaticSiteResetPropertiesARMResource:
       type: object
       description: Static Site Reset Properties ARM resource.
@@ -3459,6 +3470,580 @@ components:
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
+    DatabaseConnection:
+      type: object
+      description: Static Site Database Connection resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DatabaseConnectionProperties'
+          description: DatabaseConnection resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSiteUserProvidedFunctionAppARMResource:
+      type: object
+      description: Static Site User Provided Function App ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppARMResourceProperties'
+          description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSiteFunctionOverviewARMResourceProperties:
+      type: object
+      description: StaticSiteFunctionOverviewARMResource resource specific properties
+      properties:
+        functionName:
+          type: string
+          description: The name for the function
+          readOnly: true
+        triggerType:
+          $ref: '#/components/schemas/TriggerTypes'
+          description: The trigger type of the function
+          readOnly: true
+    StaticSiteUserInvitationRequestResourceProperties:
+      type: object
+      description: StaticSiteUserInvitationRequestResource resource specific properties
+      properties:
+        domain:
+          type: string
+          description: The domain name for the static site custom domain.
+        provider:
+          type: string
+          description: The identity provider for the static site user.
+        userDetails:
+          type: string
+          description: The user id for the static site user.
+        roles:
+          type: string
+          description: The roles for the static site user, in free-form string format
+        numHoursToExpiration:
+          type: integer
+          format: int32
+          description: The number of hours the sas token stays valid
+    StaticSiteBuildCollection:
+      type: object
+      description: Collection of static site builds.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteBuildARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteBuildARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    StaticSiteUserProvidedFunctionAppARMResourceProperties:
+      type: object
+      description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
+      properties:
+        functionAppResourceId:
+          type: string
+          description: The resource id of the function app registered with the static site
+        functionAppRegion:
+          type: string
+          description: The region of the function app registered with the static site
+        createdOn:
+          type: string
+          format: date-time
+          description: The date and time on which the function app was registered with the static site.
+          readOnly: true
+    StaticSitesWorkflowPreviewRequestProperties:
+      type: object
+      description: StaticSitesWorkflowPreviewRequest resource specific properties
+      properties:
+        repositoryUrl:
+          type: string
+          description: URL for the repository of the static site.
+        branch:
+          type: string
+          description: The target branch in the repository.
+        buildProperties:
+          $ref: '#/components/schemas/StaticSiteBuildProperties'
+          description: Build properties to configure on the repository.
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    RemotePrivateEndpointConnectionProperties:
+      type: object
+      description: RemotePrivateEndpointConnection resource specific properties
+      properties:
+        provisioningState:
+          type: string
+          readOnly: true
+        privateEndpoint:
+          $ref: '#/components/schemas/ArmIdWrapper'
+          description: PrivateEndpoint of a remote private endpoint connection
+        privateLinkServiceConnectionState:
+          $ref: '#/components/schemas/PrivateLinkConnectionState'
+          description: The state of a private link connection
+        ipAddresses:
+          type: array
+          description: Private IPAddresses mapped to the remote private endpoint
+          items:
+            type: string
+    StagingEnvironmentPolicy:
+      type: string
+      description: State indicating whether staging environments are allowed or not allowed for a static web app.
+      enum:
+      - Enabled
+      - Disabled
+      x-ms-enum:
+        name: StagingEnvironmentPolicy
+        modelAsString: false
+    ArmPlan:
+      type: object
+      description: The plan object in Azure Resource Manager, represents a marketplace plan.
+      properties:
+        name:
+          type: string
+          description: The name.
+        publisher:
+          type: string
+          description: The publisher.
+        product:
+          type: string
+          description: The product.
+        promotionCode:
+          type: string
+          description: The promotion code.
+        version:
+          type: string
+          description: Version of product.
+    RemotePrivateEndpointConnection:
+      type: object
+      description: A remote private endpoint connection
+      properties:
+        properties:
+          $ref: '#/components/schemas/RemotePrivateEndpointConnectionProperties'
+          description: RemotePrivateEndpointConnection resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    ArmIdWrapper:
+      type: object
+      description: A wrapper for an ARM resource id
+      properties:
+        id:
+          type: string
+          readOnly: true
+    StaticSiteUserInvitationResponseResource:
+      type: object
+      description: Static sites user roles invitation link resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteUserInvitationResponseResourceProperties'
+          description: StaticSiteUserInvitationResponseResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    StringDictionary:
+      type: object
+      description: String dictionary resource.
+      properties:
+        properties:
+          type: object
+          description: Settings.
+          additionalProperties:
+            type: string
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    PrivateEndpointConnectionCollection:
+      type: object
+      description: Paged collection of RemotePrivateEndpointConnectionARMResource items
+      properties:
+        value:
+          type: array
+          description: The RemotePrivateEndpointConnectionARMResource items on this page
+          items:
+            $ref: '#/components/schemas/RemotePrivateEndpointConnectionARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    PrivateLinkResourceProperties:
+      type: object
+      description: Properties of a private link resource
+      properties:
+        groupId:
+          type: string
+          description: GroupId of a private link resource
+          readOnly: true
+        requiredMembers:
+          type: array
+          description: RequiredMembers of a private link resource
+          items:
+            type: string
+          readOnly: true
+        requiredZoneNames:
+          type: array
+          description: RequiredZoneNames of a private link resource
+          items:
+            type: string
+          readOnly: true
+    DatabaseConnectionOverview:
+      type: object
+      description: Static Site Database Connection overview.
+      properties:
+        resourceId:
+          type: string
+          description: The resource id of the database.
+          readOnly: true
+        connectionIdentity:
+          type: string
+          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+          readOnly: true
+        region:
+          type: string
+          description: The region of the database resource.
+          readOnly: true
+        configurationFiles:
+          type: array
+          description: A list of configuration files associated with this database connection.
+          items:
+            $ref: '#/components/schemas/StaticSiteDatabaseConnectionConfigurationFileOverview'
+          readOnly: true
+          x-ms-identifiers:
+          - fileName
+        name:
+          type: string
+          description: If present, the name of this database connection resource.
+          readOnly: true
+    ManagedServiceIdentity:
+      type: object
+      description: Managed service identity.
+      properties:
+        type:
+          $ref: '#/components/schemas/ManagedServiceIdentityType'
+          description: Type of managed service identity.
+        tenantId:
+          type: string
+          description: Tenant of managed service identity.
+          readOnly: true
+        principalId:
+          type: string
+          description: Principal Id of managed service identity.
+          readOnly: true
+        userAssignedIdentities:
+          type: object
+          description: 'The list of user assigned identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: ''/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'
+          additionalProperties:
+            $ref: '#/components/schemas/UserAssignedIdentity'
+    PrivateLinkConnectionState:
+      type: object
+      description: The state of a private link connection
+      properties:
+        status:
+          type: string
+          description: Status of a private link connection
+        description:
+          type: string
+          description: Description of a private link connection
+        actionsRequired:
+          type: string
+          description: ActionsRequired for a private link connection
+    RemotePrivateEndpointConnectionARMResourceProperties:
+      type: object
+      description: RemotePrivateEndpointConnectionARMResource resource specific properties
+      properties:
+        provisioningState:
+          type: string
+          readOnly: true
+        privateEndpoint:
+          $ref: '#/components/schemas/ArmIdWrapper'
+          description: PrivateEndpoint of a remote private endpoint connection
+        privateLinkServiceConnectionState:
+          $ref: '#/components/schemas/PrivateLinkConnectionState'
+          description: The state of a private link connection
+        ipAddresses:
+          type: array
+          description: Private IPAddresses mapped to the remote private endpoint
+          items:
+            type: string
+    StaticSiteBasicAuthPropertiesARMResource:
+      type: object
+      description: Static site basic auth properties ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteBasicAuthPropertiesARMResourceProperties'
+          description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSiteCollection:
+      type: object
+      description: Collection of static sites.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    CustomDomainStatus:
+      type: string
+      description: The status of the custom domain
+      enum:
+      - RetrievingValidationToken
+      - Validating
+      - Adding
+      - Ready
+      - Failed
+      - Deleting
+      - Unhealthy
+      x-ms-enum:
+        name: CustomDomainStatus
+        modelAsString: true
+        values:
+        - name: RetrievingValidationToken
+          value: RetrievingValidationToken
+        - name: Validating
+          value: Validating
+        - name: Adding
+          value: Adding
+        - name: Ready
+          value: Ready
+        - name: Failed
+          value: Failed
+        - name: Deleting
+          value: Deleting
+        - name: Unhealthy
+          value: Unhealthy
+    StaticSiteLinkedBackendARMResourceProperties:
+      type: object
+      description: StaticSiteLinkedBackendARMResource resource specific properties
+      properties:
+        backendResourceId:
+          type: string
+          description: The resource id of the backend linked to the static site
+        region:
+          type: string
+          description: The region of the backend linked to the static site
+        createdOn:
+          type: string
+          format: date-time
+          description: The date and time on which the backend was linked to the static site.
+          readOnly: true
+        provisioningState:
+          type: string
+          description: The provisioning state of the linking process.
+          readOnly: true
+    StaticSiteBuildARMResource:
+      type: object
+      description: Static Site Build ARM resource.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteBuildARMResourceProperties'
+          description: StaticSiteBuildARMResource resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSiteResetPropertiesARMResourceProperties:
+      type: object
+      description: StaticSiteResetPropertiesARMResource resource specific properties
+      properties:
+        repositoryToken:
+          type: string
+          description: The token which proves admin privileges to the repository.
+        shouldUpdateRepository:
+          type: boolean
+          description: Determines whether the repository should be updated with the new properties.
+    StaticSiteUserProvidedFunctionApp:
+      type: object
+      description: A static site user provided function.
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppProperties'
+          description: StaticSiteUserProvidedFunctionApp resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    DatabaseConnectionProperties:
+      type: object
+      description: DatabaseConnection resource specific properties
+      properties:
+        resourceId:
+          type: string
+          description: The resource id of the database.
+        connectionIdentity:
+          type: string
+          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+        connectionString:
+          type: string
+          description: The connection string to use to connect to the database.
+        region:
+          type: string
+          description: The region of the database resource.
+        configurationFiles:
+          type: array
+          description: A list of configuration files associated with this database connection.
+          items:
+            $ref: '#/components/schemas/StaticSiteDatabaseConnectionConfigurationFileOverview'
+          readOnly: true
+          x-ms-identifiers:
+          - fileName
+      required:
+      - resourceId
+      - region
+    StaticSiteUserProvidedFunctionAppProperties:
+      type: object
+      description: StaticSiteUserProvidedFunctionApp resource specific properties
+      properties:
+        functionAppResourceId:
+          type: string
+          description: The resource id of the function app registered with the static site
+        functionAppRegion:
+          type: string
+          description: The region of the function app registered with the static site
+        createdOn:
+          type: string
+          format: date-time
+          description: The date and time on which the function app was registered with the static site.
+          readOnly: true
+    StaticSiteBasicAuthPropertiesARMResourceProperties:
+      type: object
+      description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
+      properties:
+        password:
+          type: string
+          description: The password for basic auth.
+        secretUrl:
+          type: string
+          description: Url to the secret in Key Vault.
+        applicableEnvironmentsMode:
+          type: string
+          description: State indicating if basic auth is enabled and for what environments it is active.
+        environments:
+          type: array
+          description: The list of enabled environments for Basic Auth if ApplicableEnvironmentsMode is set to SpecifiedEnvironments.
+          items:
+            type: string
+        secretState:
+          type: string
+          description: State indicating if basic auth has a secret and what type it is.
+          readOnly: true
+      required:
+      - applicableEnvironmentsMode
+    StaticSitePatchResource:
+      type: object
+      description: ARM resource for a static site when patching
+      properties:
+        properties:
+          $ref: '#/components/schemas/StaticSite'
+          description: Core resource properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    StaticSiteFunctionOverviewCollection:
+      type: object
+      description: Collection of static site functions.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteFunctionOverviewARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteFunctionOverviewARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    SkuCapacity:
+      type: object
+      description: Description of the App Service plan scale options.
+      properties:
+        minimum:
+          type: integer
+          format: int32
+          description: Minimum number of workers for this App Service plan SKU.
+        maximum:
+          type: integer
+          format: int32
+          description: Maximum number of workers for this App Service plan SKU.
+        elasticMaximum:
+          type: integer
+          format: int32
+          description: Maximum number of Elastic workers for this App Service plan SKU.
+        default:
+          type: integer
+          format: int32
+          description: Default number of workers for this App Service plan SKU.
+        scaleType:
+          type: string
+          description: Available scale configurations for an App Service plan.
+    StaticSiteCustomDomainOverviewARMResourceProperties:
+      type: object
+      description: StaticSiteCustomDomainOverviewARMResource resource specific properties
+      properties:
+        domainName:
+          type: string
+          description: The domain name for the static site custom domain.
+          readOnly: true
+        createdOn:
+          type: string
+          format: date-time
+          description: The date and time on which the custom domain was created for the static site.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/CustomDomainStatus'
+          description: The status of the custom domain
+          readOnly: true
+        validationToken:
+          type: string
+          description: The TXT record validation token
+          readOnly: true
+        errorMessage:
+          type: string
+          readOnly: true
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -3484,95 +4069,34 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    StaticSitesWorkflowPreviewRequestProperties:
+    StaticSiteBuildProperties:
       type: object
-      description: StaticSitesWorkflowPreviewRequest resource specific properties
+      description: Build properties for the static site.
       properties:
-        repositoryUrl:
+        appLocation:
           type: string
-          description: URL for the repository of the static site.
-        branch:
+          description: The path to the app code within the repository.
+        apiLocation:
           type: string
-          description: The target branch in the repository.
-        buildProperties:
-          $ref: '#/components/schemas/StaticSiteBuildProperties'
-          description: Build properties to configure on the repository.
-    SkuCapacity:
-      type: object
-      description: Description of the App Service plan scale options.
-      properties:
-        minimum:
-          type: integer
-          format: int32
-          description: Minimum number of workers for this App Service plan SKU.
-        maximum:
-          type: integer
-          format: int32
-          description: Maximum number of workers for this App Service plan SKU.
-        elasticMaximum:
-          type: integer
-          format: int32
-          description: Maximum number of Elastic workers for this App Service plan SKU.
-        default:
-          type: integer
-          format: int32
-          description: Default number of workers for this App Service plan SKU.
-        scaleType:
+          description: The path to the api code within the repository.
+        appArtifactLocation:
           type: string
-          description: Available scale configurations for an App Service plan.
-    StaticSiteBasicAuthPropertiesCollection:
-      type: object
-      description: Collection of static site basic auth.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteBasicAuthPropertiesARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteBasicAuthPropertiesARMResource'
-        nextLink:
+          description: 'Deprecated: The path of the app artifacts after building (deprecated in favor of OutputLocation)'
+        outputLocation:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    StaticSiteCollection:
-      type: object
-      description: Collection of static sites.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteARMResource'
-        nextLink:
+          description: The output path of the app after building.
+        appBuildCommand:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    StaticSiteBasicAuthPropertiesARMResource:
-      type: object
-      description: Static site basic auth properties ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteBasicAuthPropertiesARMResourceProperties'
-          description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
+          description: A custom command to run during deployment of the static content application.
+        apiBuildCommand:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StaticSitePatchResource:
-      type: object
-      description: ARM resource for a static site when patching
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSite'
-          description: Core resource properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
+          description: A custom command to run during deployment of the Azure Functions API application.
+        skipGithubActionWorkflowGeneration:
+          type: boolean
+          description: Skip Github Action workflow generation.
+        githubActionSecretNameOverride:
+          type: string
+          description: Github Action secret name override.
     StaticSiteZipDeploymentARMResource:
       type: object
       description: Static site zip deployment ARM resource.
@@ -3583,383 +4107,35 @@ components:
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
-    StagingEnvironmentPolicy:
-      type: string
-      description: State indicating whether staging environments are allowed or not allowed for a static web app.
-      enum:
-      - Enabled
-      - Disabled
-      x-ms-enum:
-        name: StagingEnvironmentPolicy
-        modelAsString: false
-    PrivateLinkResourceProperties:
+    StaticSiteUserARMResourceProperties:
       type: object
-      description: Properties of a private link resource
+      description: StaticSiteUserARMResource resource specific properties
       properties:
-        groupId:
-          type: string
-          description: GroupId of a private link resource
-          readOnly: true
-        requiredMembers:
-          type: array
-          description: RequiredMembers of a private link resource
-          items:
-            type: string
-          readOnly: true
-        requiredZoneNames:
-          type: array
-          description: RequiredZoneNames of a private link resource
-          items:
-            type: string
-          readOnly: true
-    SkuDescription:
-      type: object
-      description: Description of a SKU for a scalable resource.
-      properties:
-        name:
-          type: string
-          description: Name of the resource SKU.
-        tier:
-          type: string
-          description: Service tier of the resource SKU.
-        size:
-          type: string
-          description: Size specifier of the resource SKU.
-        family:
-          type: string
-          description: Family code of the resource SKU.
-        capacity:
-          type: integer
-          format: int32
-          description: Current number of instances assigned to the resource.
-        skuCapacity:
-          $ref: '#/components/schemas/SkuCapacity'
-          description: Min, max, and default scale values of the SKU.
-        locations:
-          type: array
-          description: Locations of the SKU.
-          items:
-            type: string
-        capabilities:
-          type: array
-          description: Capabilities of the SKU, e.g., is traffic manager enabled?
-          items:
-            $ref: '#/components/schemas/Capability'
-          x-ms-identifiers:
-          - name
-    StaticSitesWorkflowPreview:
-      type: object
-      description: Preview for the Static Site Workflow to be generated
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSitesWorkflowPreviewProperties'
-          description: StaticSitesWorkflowPreview resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    Capability:
-      type: object
-      description: Describes the capabilities/features allowed for a specific SKU.
-      properties:
-        name:
-          type: string
-          description: Name of the SKU capability.
-        value:
-          type: string
-          description: Value of the SKU capability.
-        reason:
-          type: string
-          description: Reason of the SKU capability.
-    StaticSiteFunctionOverviewCollection:
-      type: object
-      description: Collection of static site functions.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteFunctionOverviewARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteFunctionOverviewARMResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    StaticSiteLinkedBackend:
-      type: object
-      description: Static Site Linked Backend ARM resource.
-      properties:
-        backendResourceId:
-          type: string
-          description: The resource id of the backend linked to the static site
-        region:
-          type: string
-          description: The region of the backend linked to the static site
-        createdOn:
-          type: string
-          format: date-time
-          description: The date and time on which the backend was linked to the static site.
-          readOnly: true
-        provisioningState:
-          type: string
-          description: The provisioning state of the linking process.
-          readOnly: true
-    StaticSiteUserInvitationRequestResource:
-      type: object
-      description: Static sites user roles invitation resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteUserInvitationRequestResourceProperties'
-          description: StaticSiteUserInvitationRequestResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    StaticSiteTemplateOptions:
-      type: object
-      description: Template Options for the static site.
-      properties:
-        templateRepositoryUrl:
-          type: string
-          description: URL of the template repository. The newly generated repository will be based on this one.
-        owner:
-          type: string
-          description: Owner of the newly generated repository.
-        repositoryName:
-          type: string
-          description: Name of the newly generated repository.
-        description:
-          type: string
-          description: Description of the newly generated repository.
-        isPrivate:
-          type: boolean
-          description: Whether or not the newly generated repository is a private repository. Defaults to false (i.e. public).
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    StaticSiteBuildARMResourceProperties:
-      type: object
-      description: StaticSiteBuildARMResource resource specific properties
-      properties:
-        buildId:
-          type: string
-          description: An identifier for the static site build.
-          readOnly: true
-        sourceBranch:
-          type: string
-          description: The source branch.
-          readOnly: true
-        pullRequestTitle:
-          type: string
-          description: The title of a pull request that a static site build is related to.
-          readOnly: true
-        hostname:
-          type: string
-          description: The hostname for a static site build.
-          readOnly: true
-        createdTimeUtc:
-          type: string
-          format: date-time
-          description: When this build was created.
-          readOnly: true
-        lastUpdatedOn:
-          type: string
-          format: date-time
-          description: When this build was updated.
-          readOnly: true
-        status:
-          $ref: '#/components/schemas/BuildStatus'
-          description: The status of the static site build.
-          readOnly: true
-        userProvidedFunctionApps:
-          type: array
-          description: User provided function apps registered with the static site build
-          items:
-            $ref: '#/components/schemas/StaticSiteUserProvidedFunctionApp'
-          readOnly: true
-        linkedBackends:
-          type: array
-          description: Backends linked to the static side build
-          items:
-            $ref: '#/components/schemas/StaticSiteLinkedBackend'
-          readOnly: true
-          x-ms-identifiers: []
-        databaseConnections:
-          type: array
-          description: Database connections for the static site build
-          items:
-            $ref: '#/components/schemas/DatabaseConnectionOverview'
-          readOnly: true
-          x-ms-identifiers:
-          - name
-    StaticSiteResetPropertiesARMResourceProperties:
-      type: object
-      description: StaticSiteResetPropertiesARMResource resource specific properties
-      properties:
-        repositoryToken:
-          type: string
-          description: The token which proves admin privileges to the repository.
-        shouldUpdateRepository:
-          type: boolean
-          description: Determines whether the repository should be updated with the new properties.
-    TriggerTypes:
-      type: string
-      description: The trigger type of the function
-      enum:
-      - HttpTrigger
-      - Unknown
-      x-ms-enum:
-        name: TriggerTypes
-        modelAsString: true
-        values:
-        - name: HttpTrigger
-          value: HttpTrigger
-        - name: Unknown
-          value: Unknown
-    UserAssignedIdentity:
-      type: object
-      description: User Assigned identity.
-      properties:
-        principalId:
-          type: string
-          description: Principal Id of user assigned identity
-          readOnly: true
-        clientId:
-          type: string
-          description: Client Id of user assigned identity
-          readOnly: true
-    RemotePrivateEndpointConnectionARMResourceProperties:
-      type: object
-      description: RemotePrivateEndpointConnectionARMResource resource specific properties
-      properties:
-        provisioningState:
-          type: string
-          readOnly: true
-        privateEndpoint:
-          $ref: '#/components/schemas/ArmIdWrapper'
-          description: PrivateEndpoint of a remote private endpoint connection
-        privateLinkServiceConnectionState:
-          $ref: '#/components/schemas/PrivateLinkConnectionState'
-          description: The state of a private link connection
-        ipAddresses:
-          type: array
-          description: Private IPAddresses mapped to the remote private endpoint
-          items:
-            type: string
-    StaticSiteCustomDomainOverviewARMResource:
-      type: object
-      description: Static Site Custom Domain Overview ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteCustomDomainOverviewARMResourceProperties'
-          description: StaticSiteCustomDomainOverviewARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    PrivateEndpointConnectionCollection:
-      type: object
-      description: Paged collection of RemotePrivateEndpointConnectionARMResource items
-      properties:
-        value:
-          type: array
-          description: The RemotePrivateEndpointConnectionARMResource items on this page
-          items:
-            $ref: '#/components/schemas/RemotePrivateEndpointConnectionARMResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    EnterpriseGradeCdnStatus:
-      type: string
-      description: State indicating the status of the enterprise grade CDN serving traffic to the static web app.
-      enum:
-      - Enabled
-      - Enabling
-      - Disabled
-      - Disabling
-      x-ms-enum:
-        name: EnterpriseGradeCdnStatus
-        modelAsString: true
-        values:
-        - name: Enabled
-          value: Enabled
-        - name: Enabling
-          value: Enabling
-        - name: Disabled
-          value: Disabled
-        - name: Disabling
-          value: Disabling
-    RemotePrivateEndpointConnectionARMResource:
-      type: object
-      description: Remote Private Endpoint Connection ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/RemotePrivateEndpointConnectionARMResourceProperties'
-          description: RemotePrivateEndpointConnectionARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StaticSiteUserInvitationRequestResourceProperties:
-      type: object
-      description: StaticSiteUserInvitationRequestResource resource specific properties
-      properties:
-        domain:
-          type: string
-          description: The domain name for the static site custom domain.
         provider:
           type: string
           description: The identity provider for the static site user.
-        userDetails:
+          readOnly: true
+        userId:
           type: string
           description: The user id for the static site user.
+          readOnly: true
+        displayName:
+          type: string
+          description: The display name for the static site user.
+          readOnly: true
         roles:
           type: string
           description: The roles for the static site user, in free-form string format
-        numHoursToExpiration:
-          type: integer
-          format: int32
-          description: The number of hours the sas token stays valid
-    RemotePrivateEndpointConnectionProperties:
+    StaticSiteCustomDomainRequestPropertiesARMResource:
       type: object
-      description: RemotePrivateEndpointConnection resource specific properties
+      description: Static Site Custom Domain Request Properties ARM resource.
       properties:
-        provisioningState:
-          type: string
-          readOnly: true
-        privateEndpoint:
-          $ref: '#/components/schemas/ArmIdWrapper'
-          description: PrivateEndpoint of a remote private endpoint connection
-        privateLinkServiceConnectionState:
-          $ref: '#/components/schemas/PrivateLinkConnectionState'
-          description: The state of a private link connection
-        ipAddresses:
-          type: array
-          description: Private IPAddresses mapped to the remote private endpoint
-          items:
-            type: string
+        properties:
+          $ref: '#/components/schemas/StaticSiteCustomDomainRequestPropertiesARMResourceProperties'
+          description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
     StaticSite:
       type: object
       description: A static site.
@@ -4039,368 +4215,25 @@ components:
           readOnly: true
           x-ms-identifiers:
           - name
-    DefaultErrorResponse:
+    StaticSiteARMResource:
       type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    StaticSiteBasicAuthPropertiesARMResourceProperties:
-      type: object
-      description: StaticSiteBasicAuthPropertiesARMResource resource specific properties
-      properties:
-        password:
-          type: string
-          description: The password for basic auth.
-        secretUrl:
-          type: string
-          description: Url to the secret in Key Vault.
-        applicableEnvironmentsMode:
-          type: string
-          description: State indicating if basic auth is enabled and for what environments it is active.
-        environments:
-          type: array
-          description: The list of enabled environments for Basic Auth if ApplicableEnvironmentsMode is set to SpecifiedEnvironments.
-          items:
-            type: string
-        secretState:
-          type: string
-          description: State indicating if basic auth has a secret and what type it is.
-          readOnly: true
-      required:
-      - applicableEnvironmentsMode
-    StaticSiteLinkedBackendsCollection:
-      type: object
-      description: Collection of static site linked backends.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteLinkedBackendARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteLinkedBackendARMResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    StaticSiteUserProvidedFunctionAppARMResourceProperties:
-      type: object
-      description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
-      properties:
-        functionAppResourceId:
-          type: string
-          description: The resource id of the function app registered with the static site
-        functionAppRegion:
-          type: string
-          description: The region of the function app registered with the static site
-        createdOn:
-          type: string
-          format: date-time
-          description: The date and time on which the function app was registered with the static site.
-          readOnly: true
-    StaticSiteUserCollection:
-      type: object
-      description: Collection of static site custom users.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteUserARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteUserARMResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    StaticSitesWorkflowPreviewRequest:
-      type: object
-      description: Request entity for previewing the Static Site workflow
+      description: Concrete tracked resource types can be created by aliasing this type using a specific property type.
       properties:
         properties:
-          $ref: '#/components/schemas/StaticSitesWorkflowPreviewRequestProperties'
-          description: StaticSitesWorkflowPreviewRequest resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    StaticSiteUserProvidedFunctionAppsCollection:
-      type: object
-      description: Collection of static site user provided function apps.
-      properties:
-        value:
-          type: array
-          description: The StaticSiteUserProvidedFunctionAppARMResource items on this page
-          items:
-            $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppARMResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    DatabaseConnectionPatchRequestProperties:
-      type: object
-      description: DatabaseConnectionPatchRequest resource specific properties
-      properties:
-        resourceId:
-          type: string
-          description: The resource id of the database.
-        connectionIdentity:
-          type: string
-          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
-        connectionString:
-          type: string
-          description: The connection string to use to connect to the database.
-        region:
-          type: string
-          description: The region of the database resource.
-    DatabaseConnection:
-      type: object
-      description: Static Site Database Connection resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/DatabaseConnectionProperties'
-          description: DatabaseConnection resource specific properties
+          $ref: '#/components/schemas/StaticSite'
+          description: Core resource properties
           x-ms-client-flatten: true
         kind:
           type: string
           description: Kind of resource.
+        sku:
+          $ref: '#/components/schemas/SkuDescription'
+          description: Description of a SKU for a scalable resource.
+        identity:
+          $ref: '#/components/schemas/ManagedServiceIdentity'
+          description: Managed service identity.
       allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    ManagedServiceIdentityType:
-      type: string
-      description: Type of managed service identity.
-      enum:
-      - SystemAssigned
-      - UserAssigned
-      - SystemAssigned, UserAssigned
-      - None
-      x-ms-enum:
-        name: ManagedServiceIdentityType
-        modelAsString: false
-    StaticSiteBuildARMResource:
-      type: object
-      description: Static Site Build ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteBuildARMResourceProperties'
-          description: StaticSiteBuildARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StaticSiteCustomDomainRequestPropertiesARMResource:
-      type: object
-      description: Static Site Custom Domain Request Properties ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteCustomDomainRequestPropertiesARMResourceProperties'
-          description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    PrivateLinkConnectionState:
-      type: object
-      description: The state of a private link connection
-      properties:
-        status:
-          type: string
-          description: Status of a private link connection
-        description:
-          type: string
-          description: Description of a private link connection
-        actionsRequired:
-          type: string
-          description: ActionsRequired for a private link connection
-    BuildStatus:
-      type: string
-      description: The status of the static site build.
-      enum:
-      - WaitingForDeployment
-      - Uploading
-      - Deploying
-      - Ready
-      - Failed
-      - Deleting
-      - Detached
-      x-ms-enum:
-        name: BuildStatus
-        modelAsString: true
-        values:
-        - name: WaitingForDeployment
-          value: WaitingForDeployment
-        - name: Uploading
-          value: Uploading
-        - name: Deploying
-          value: Deploying
-        - name: Ready
-          value: Ready
-        - name: Failed
-          value: Failed
-        - name: Deleting
-          value: Deleting
-        - name: Detached
-          value: Detached
-    StaticSiteUserProvidedFunctionAppARMResource:
-      type: object
-      description: Static Site User Provided Function App ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppARMResourceProperties'
-          description: StaticSiteUserProvidedFunctionAppARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StaticSiteLinkedBackendARMResourceProperties:
-      type: object
-      description: StaticSiteLinkedBackendARMResource resource specific properties
-      properties:
-        backendResourceId:
-          type: string
-          description: The resource id of the backend linked to the static site
-        region:
-          type: string
-          description: The region of the backend linked to the static site
-        createdOn:
-          type: string
-          format: date-time
-          description: The date and time on which the backend was linked to the static site.
-          readOnly: true
-        provisioningState:
-          type: string
-          description: The provisioning state of the linking process.
-          readOnly: true
-    ArmIdWrapper:
-      type: object
-      description: A wrapper for an ARM resource id
-      properties:
-        id:
-          type: string
-          readOnly: true
-    PrivateLinkResourcesWrapper:
-      type: object
-      description: Wrapper for a collection of private link resources
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/PrivateLinkResource'
-      required:
-      - value
-    DatabaseConnectionProperties:
-      type: object
-      description: DatabaseConnection resource specific properties
-      properties:
-        resourceId:
-          type: string
-          description: The resource id of the database.
-        connectionIdentity:
-          type: string
-          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
-        connectionString:
-          type: string
-          description: The connection string to use to connect to the database.
-        region:
-          type: string
-          description: The region of the database resource.
-        configurationFiles:
-          type: array
-          description: A list of configuration files associated with this database connection.
-          items:
-            $ref: '#/components/schemas/StaticSiteDatabaseConnectionConfigurationFileOverview'
-          readOnly: true
-          x-ms-identifiers:
-          - fileName
-      required:
-      - resourceId
-      - region
-    PrivateLinkResource:
-      type: object
-      description: A private link resource
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-          description: Name of a private link resource
-        type:
-          type: string
-        properties:
-          $ref: '#/components/schemas/PrivateLinkResourceProperties'
-          description: Properties of a private link resource
-      required:
-      - id
-      - name
-      - type
-      - properties
-    ArmPlan:
-      type: object
-      description: The plan object in Azure Resource Manager, represents a marketplace plan.
-      properties:
-        name:
-          type: string
-          description: The name.
-        publisher:
-          type: string
-          description: The publisher.
-        product:
-          type: string
-          description: The product.
-        promotionCode:
-          type: string
-          description: The promotion code.
-        version:
-          type: string
-          description: Version of product.
-    StaticSiteUserInvitationResponseResourceProperties:
-      type: object
-      description: StaticSiteUserInvitationResponseResource resource specific properties
-      properties:
-        expiresOn:
-          type: string
-          format: date-time
-          description: The expiration time of the invitation
-          readOnly: true
-        invitationUrl:
-          type: string
-          description: The url for the invitation link
-          readOnly: true
-    StaticSiteBuildProperties:
-      type: object
-      description: Build properties for the static site.
-      properties:
-        appLocation:
-          type: string
-          description: The path to the app code within the repository.
-        apiLocation:
-          type: string
-          description: The path to the api code within the repository.
-        appArtifactLocation:
-          type: string
-          description: 'Deprecated: The path of the app artifacts after building (deprecated in favor of OutputLocation)'
-        outputLocation:
-          type: string
-          description: The output path of the app after building.
-        appBuildCommand:
-          type: string
-          description: A custom command to run during deployment of the static content application.
-        apiBuildCommand:
-          type: string
-          description: A custom command to run during deployment of the Azure Functions API application.
-        skipGithubActionWorkflowGeneration:
-          type: boolean
-          description: Skip Github Action workflow generation.
-        githubActionSecretNameOverride:
-          type: string
-          description: Github Action secret name override.
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
     ResponseMessageEnvelopeRemotePrivateEndpointConnection:
       type: object
       description: Message envelope that contains the common Azure resource manager properties and the resource provider specific content.
@@ -4449,24 +4282,62 @@ components:
           description: Logical Availability Zones the service is hosted in
           items:
             type: string
-    StaticSiteUserInvitationResponseResource:
+    StaticSiteBasicAuthPropertiesCollection:
       type: object
-      description: Static sites user roles invitation link resource.
+      description: Collection of static site basic auth.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteBasicAuthPropertiesARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteBasicAuthPropertiesARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    StaticSiteLinkedBackendsCollection:
+      type: object
+      description: Collection of static site linked backends.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteLinkedBackendARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteLinkedBackendARMResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    RemotePrivateEndpointConnectionARMResource:
+      type: object
+      description: Remote Private Endpoint Connection ARM resource.
       properties:
         properties:
-          $ref: '#/components/schemas/StaticSiteUserInvitationResponseResourceProperties'
-          description: StaticSiteUserInvitationResponseResource resource specific properties
+          $ref: '#/components/schemas/RemotePrivateEndpointConnectionARMResourceProperties'
+          description: RemotePrivateEndpointConnectionARMResource resource specific properties
           x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
       allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    DatabaseConnectionPatchRequest:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    StaticSiteUserInvitationResponseResourceProperties:
       type: object
-      description: Static Site Database Connection Request Properties resource when patching
+      description: StaticSiteUserInvitationResponseResource resource specific properties
       properties:
-        properties:
-          $ref: '#/components/schemas/DatabaseConnectionPatchRequestProperties'
-          description: DatabaseConnectionPatchRequest resource specific properties
-          x-ms-client-flatten: true
+        expiresOn:
+          type: string
+          format: date-time
+          description: The expiration time of the invitation
+          readOnly: true
+        invitationUrl:
+          type: string
+          description: The url for the invitation link
+          readOnly: true
     DatabaseConnectionCollection:
       type: object
       description: Collection of static site database connections.
@@ -4482,127 +4353,72 @@ components:
           description: The link to the next page of items
       required:
       - value
-    StringDictionary:
+    ManagedServiceIdentityType:
+      type: string
+      description: Type of managed service identity.
+      enum:
+      - SystemAssigned
+      - UserAssigned
+      - SystemAssigned, UserAssigned
+      - None
+      x-ms-enum:
+        name: ManagedServiceIdentityType
+        modelAsString: false
+    SkuDescription:
       type: object
-      description: String dictionary resource.
+      description: Description of a SKU for a scalable resource.
       properties:
-        properties:
-          type: object
-          description: Settings.
-          additionalProperties:
-            type: string
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    StaticSiteLinkedBackendARMResource:
-      type: object
-      description: Static Site Linked Backend ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteLinkedBackendARMResourceProperties'
-          description: StaticSiteLinkedBackendARMResource resource specific properties
-          x-ms-client-flatten: true
-        kind:
+        name:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    StringList:
-      type: object
-      description: String list resource.
-      properties:
-        properties:
+          description: Name of the resource SKU.
+        tier:
+          type: string
+          description: Service tier of the resource SKU.
+        size:
+          type: string
+          description: Size specifier of the resource SKU.
+        family:
+          type: string
+          description: Family code of the resource SKU.
+        capacity:
+          type: integer
+          format: int32
+          description: Current number of instances assigned to the resource.
+        skuCapacity:
+          $ref: '#/components/schemas/SkuCapacity'
+          description: Min, max, and default scale values of the SKU.
+        locations:
           type: array
-          description: List of string resources.
+          description: Locations of the SKU.
           items:
             type: string
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    CustomDomainStatus:
+        capabilities:
+          type: array
+          description: Capabilities of the SKU, e.g., is traffic manager enabled?
+          items:
+            $ref: '#/components/schemas/Capability'
+          x-ms-identifiers:
+          - name
+    EnterpriseGradeCdnStatus:
       type: string
-      description: The status of the custom domain
+      description: State indicating the status of the enterprise grade CDN serving traffic to the static web app.
       enum:
-      - RetrievingValidationToken
-      - Validating
-      - Adding
-      - Ready
-      - Failed
-      - Deleting
-      - Unhealthy
+      - Enabled
+      - Enabling
+      - Disabled
+      - Disabling
       x-ms-enum:
-        name: CustomDomainStatus
+        name: EnterpriseGradeCdnStatus
         modelAsString: true
         values:
-        - name: RetrievingValidationToken
-          value: RetrievingValidationToken
-        - name: Validating
-          value: Validating
-        - name: Adding
-          value: Adding
-        - name: Ready
-          value: Ready
-        - name: Failed
-          value: Failed
-        - name: Deleting
-          value: Deleting
-        - name: Unhealthy
-          value: Unhealthy
-    RemotePrivateEndpointConnection:
-      type: object
-      description: A remote private endpoint connection
-      properties:
-        properties:
-          $ref: '#/components/schemas/RemotePrivateEndpointConnectionProperties'
-          description: RemotePrivateEndpointConnection resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    StaticSiteUserARMResourceProperties:
-      type: object
-      description: StaticSiteUserARMResource resource specific properties
-      properties:
-        provider:
-          type: string
-          description: The identity provider for the static site user.
-          readOnly: true
-        userId:
-          type: string
-          description: The user id for the static site user.
-          readOnly: true
-        displayName:
-          type: string
-          description: The display name for the static site user.
-          readOnly: true
-        roles:
-          type: string
-          description: The roles for the static site user, in free-form string format
-    StaticSiteUserProvidedFunctionAppProperties:
-      type: object
-      description: StaticSiteUserProvidedFunctionApp resource specific properties
-      properties:
-        functionAppResourceId:
-          type: string
-          description: The resource id of the function app registered with the static site
-        functionAppRegion:
-          type: string
-          description: The region of the function app registered with the static site
-        createdOn:
-          type: string
-          format: date-time
-          description: The date and time on which the function app was registered with the static site.
-          readOnly: true
-    StaticSiteFunctionOverviewARMResourceProperties:
-      type: object
-      description: StaticSiteFunctionOverviewARMResource resource specific properties
-      properties:
-        functionName:
-          type: string
-          description: The name for the function
-          readOnly: true
-        triggerType:
-          $ref: '#/components/schemas/TriggerTypes'
-          description: The trigger type of the function
-          readOnly: true
+        - name: Enabled
+          value: Enabled
+        - name: Enabling
+          value: Enabling
+        - name: Disabled
+          value: Disabled
+        - name: Disabling
+          value: Disabling
     StaticSiteZipDeployment:
       type: object
       description: A static site zip deployment.
@@ -4622,43 +4438,223 @@ components:
         functionLanguage:
           type: string
           description: The language of the api content, if it exists
-    StaticSiteUserARMResource:
+    StaticSiteFunctionOverviewARMResource:
       type: object
-      description: Static Site User ARM resource.
+      description: Static Site Function Overview ARM resource.
       properties:
         properties:
-          $ref: '#/components/schemas/StaticSiteUserARMResourceProperties'
-          description: StaticSiteUserARMResource resource specific properties
+          $ref: '#/components/schemas/StaticSiteFunctionOverviewARMResourceProperties'
+          description: StaticSiteFunctionOverviewARMResource resource specific properties
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
-    StaticSitesWorkflowPreviewProperties:
+    StaticSiteUserInvitationRequestResource:
       type: object
-      description: StaticSitesWorkflowPreview resource specific properties
+      description: Static sites user roles invitation resource.
       properties:
-        path:
+        properties:
+          $ref: '#/components/schemas/StaticSiteUserInvitationRequestResourceProperties'
+          description: StaticSiteUserInvitationRequestResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    DatabaseConnectionPatchRequestProperties:
+      type: object
+      description: DatabaseConnectionPatchRequest resource specific properties
+      properties:
+        resourceId:
           type: string
-          description: The path for the workflow file to be generated
+          description: The resource id of the database.
+        connectionIdentity:
+          type: string
+          description: If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource.
+        connectionString:
+          type: string
+          description: The connection string to use to connect to the database.
+        region:
+          type: string
+          description: The region of the database resource.
+    StaticSiteBuildARMResourceProperties:
+      type: object
+      description: StaticSiteBuildARMResource resource specific properties
+      properties:
+        buildId:
+          type: string
+          description: An identifier for the static site build.
+          readOnly: true
+        sourceBranch:
+          type: string
+          description: The source branch.
+          readOnly: true
+        pullRequestTitle:
+          type: string
+          description: The title of a pull request that a static site build is related to.
+          readOnly: true
+        hostname:
+          type: string
+          description: The hostname for a static site build.
+          readOnly: true
+        createdTimeUtc:
+          type: string
+          format: date-time
+          description: When this build was created.
+          readOnly: true
+        lastUpdatedOn:
+          type: string
+          format: date-time
+          description: When this build was updated.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/BuildStatus'
+          description: The status of the static site build.
+          readOnly: true
+        userProvidedFunctionApps:
+          type: array
+          description: User provided function apps registered with the static site build
+          items:
+            $ref: '#/components/schemas/StaticSiteUserProvidedFunctionApp'
+          readOnly: true
+        linkedBackends:
+          type: array
+          description: Backends linked to the static side build
+          items:
+            $ref: '#/components/schemas/StaticSiteLinkedBackend'
+          readOnly: true
+          x-ms-identifiers: []
+        databaseConnections:
+          type: array
+          description: Database connections for the static site build
+          items:
+            $ref: '#/components/schemas/DatabaseConnectionOverview'
+          readOnly: true
+          x-ms-identifiers:
+          - name
+    StringList:
+      type: object
+      description: String list resource.
+      properties:
+        properties:
+          type: array
+          description: List of string resources.
+          items:
+            type: string
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    StaticSiteTemplateOptions:
+      type: object
+      description: Template Options for the static site.
+      properties:
+        templateRepositoryUrl:
+          type: string
+          description: URL of the template repository. The newly generated repository will be based on this one.
+        owner:
+          type: string
+          description: Owner of the newly generated repository.
+        repositoryName:
+          type: string
+          description: Name of the newly generated repository.
+        description:
+          type: string
+          description: Description of the newly generated repository.
+        isPrivate:
+          type: boolean
+          description: Whether or not the newly generated repository is a private repository. Defaults to false (i.e. public).
+    StaticSiteDatabaseConnectionConfigurationFileOverview:
+      type: object
+      description: A database connection configuration file
+      properties:
+        fileName:
+          type: string
+          description: The name of the configuration file.
           readOnly: true
         contents:
           type: string
-          description: The contents for the workflow file to be generated
+          description: The Base64 encoding of the file contents.
           readOnly: true
-    StaticSiteBuildCollection:
+        type:
+          type: string
+          description: The type of configuration file.
+          readOnly: true
+    PrivateLinkResource:
       type: object
-      description: Collection of static site builds.
+      description: A private link resource
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Name of a private link resource
+        type:
+          type: string
+        properties:
+          $ref: '#/components/schemas/PrivateLinkResourceProperties'
+          description: Properties of a private link resource
+      required:
+      - id
+      - name
+      - type
+      - properties
+    PrivateLinkResourcesWrapper:
+      type: object
+      description: Wrapper for a collection of private link resources
       properties:
         value:
           type: array
-          description: The StaticSiteBuildARMResource items on this page
           items:
-            $ref: '#/components/schemas/StaticSiteBuildARMResource'
+            $ref: '#/components/schemas/PrivateLinkResource'
+      required:
+      - value
+    StaticSiteUserProvidedFunctionAppsCollection:
+      type: object
+      description: Collection of static site user provided function apps.
+      properties:
+        value:
+          type: array
+          description: The StaticSiteUserProvidedFunctionAppARMResource items on this page
+          items:
+            $ref: '#/components/schemas/StaticSiteUserProvidedFunctionAppARMResource'
         nextLink:
           type: string
           format: uri
           description: The link to the next page of items
       required:
       - value
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    StaticSiteCustomDomainRequestPropertiesARMResourceProperties:
+      type: object
+      description: StaticSiteCustomDomainRequestPropertiesARMResource resource specific properties
+      properties:
+        validationMethod:
+          type: string
+          description: Validation method for adding a custom domain
+          default: cname-delegation
+    UserAssignedIdentity:
+      type: object
+      description: User Assigned identity.
+      properties:
+        principalId:
+          type: string
+          description: Principal Id of user assigned identity
+          readOnly: true
+        clientId:
+          type: string
+          description: Client Id of user assigned identity
+          readOnly: true
     StaticSiteCustomDomainOverviewCollection:
       type: object
       description: Collection of static site custom domains.
@@ -4674,16 +4670,20 @@ components:
           description: The link to the next page of items
       required:
       - value
-    StaticSiteFunctionOverviewARMResource:
-      type: object
-      description: Static Site Function Overview ARM resource.
-      properties:
-        properties:
-          $ref: '#/components/schemas/StaticSiteFunctionOverviewARMResourceProperties'
-          description: StaticSiteFunctionOverviewARMResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
+    TriggerTypes:
+      type: string
+      description: The trigger type of the function
+      enum:
+      - HttpTrigger
+      - Unknown
+      x-ms-enum:
+        name: TriggerTypes
+        modelAsString: true
+        values:
+        - name: HttpTrigger
+          value: HttpTrigger
+        - name: Unknown
+          value: Unknown
   securitySchemes:
     azure_auth:
       type: oauth2
