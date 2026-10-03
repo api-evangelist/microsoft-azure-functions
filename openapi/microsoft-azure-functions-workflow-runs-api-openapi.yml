@@ -157,61 +157,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ParameterType:
-      type: string
-      description: The parameter type.
-      enum:
-      - NotSpecified
-      - String
-      - SecureString
-      - Int
-      - Float
-      - Bool
-      - Array
-      - Object
-      - SecureObject
-      x-ms-enum:
-        name: ParameterType
-        modelAsString: true
-        values:
-        - name: NotSpecified
-          value: NotSpecified
-        - name: String
-          value: String
-        - name: SecureString
-          value: SecureString
-        - name: Int
-          value: Int
-        - name: Float
-          value: Float
-        - name: Bool
-          value: Bool
-        - name: Array
-          value: Array
-        - name: Object
-          value: Object
-        - name: SecureObject
-          value: SecureObject
-    WorkflowRun:
-      type: object
-      description: The workflow run.
-      properties:
-        properties:
-          $ref: '#/components/schemas/WorkflowRunProperties'
-          description: The workflow run properties.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    ErrorProperties:
-      type: object
-      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
-      properties:
-        code:
-          type: string
-          description: Error code.
-        message:
-          type: string
-          description: Error message indicating why the operation failed.
     WorkflowStatus:
       type: string
       description: The workflow status.
@@ -259,38 +204,65 @@ components:
           value: Aborted
         - name: Ignored
           value: Ignored
-    ContentHash:
+    WorkflowRun:
       type: object
-      description: The content hash.
+      description: The workflow run.
       properties:
-        algorithm:
-          type: string
-          description: The algorithm of the content hash.
-        value:
-          type: string
-          description: The value of the content hash.
-    Correlation:
+        properties:
+          $ref: '#/components/schemas/WorkflowRunProperties'
+          description: The workflow run properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    ParameterType:
+      type: string
+      description: The parameter type.
+      enum:
+      - NotSpecified
+      - String
+      - SecureString
+      - Int
+      - Float
+      - Bool
+      - Array
+      - Object
+      - SecureObject
+      x-ms-enum:
+        name: ParameterType
+        modelAsString: true
+        values:
+        - name: NotSpecified
+          value: NotSpecified
+        - name: String
+          value: String
+        - name: SecureString
+          value: SecureString
+        - name: Int
+          value: Int
+        - name: Float
+          value: Float
+        - name: Bool
+          value: Bool
+        - name: Array
+          value: Array
+        - name: Object
+          value: Object
+        - name: SecureObject
+          value: SecureObject
+    WorkflowParameter:
       type: object
-      description: The correlation property.
+      description: The workflow parameters.
       properties:
-        clientTrackingId:
-          type: string
-          description: The client tracking id.
-    ResourceReference:
-      type: object
-      description: The resource reference.
-      properties:
-        id:
-          type: string
-          description: The resource id.
-        name:
-          type: string
-          description: Gets the resource name.
-          readOnly: true
         type:
+          $ref: '#/components/schemas/ParameterType'
+          description: The type.
+        value:
+          description: The value.
+        metadata:
+          description: The metadata.
+        description:
           type: string
-          description: Gets the resource type.
-          readOnly: true
+          description: The description.
     WorkflowRunProperties:
       type: object
       description: The workflow run properties.
@@ -346,35 +318,41 @@ components:
           $ref: '#/components/schemas/WorkflowRunTrigger'
           description: Gets the response of the flow run.
           readOnly: true
-    WorkflowParameter:
+    ContentHash:
       type: object
-      description: The workflow parameters.
+      description: The content hash.
       properties:
+        algorithm:
+          type: string
+          description: The algorithm of the content hash.
+        value:
+          type: string
+          description: The value of the content hash.
+    ErrorProperties:
+      type: object
+      description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
+      properties:
+        code:
+          type: string
+          description: Error code.
+        message:
+          type: string
+          description: Error message indicating why the operation failed.
+    ResourceReference:
+      type: object
+      description: The resource reference.
+      properties:
+        id:
+          type: string
+          description: The resource id.
+        name:
+          type: string
+          description: Gets the resource name.
+          readOnly: true
         type:
-          $ref: '#/components/schemas/ParameterType'
-          description: The type.
-        value:
-          description: The value.
-        metadata:
-          description: The metadata.
-        description:
           type: string
-          description: The description.
-    WorkflowRunListResult:
-      type: object
-      description: The response of a WorkflowRun list operation.
-      properties:
-        value:
-          type: array
-          description: The WorkflowRun items on this page
-          items:
-            $ref: '#/components/schemas/WorkflowRun'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+          description: Gets the resource type.
+          readOnly: true
     ContentLink:
       type: object
       description: The content link.
@@ -398,6 +376,20 @@ components:
         metadata:
           description: The metadata.
           readOnly: true
+    ErrorResponse:
+      type: object
+      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorProperties'
+          description: The error properties.
+    Correlation:
+      type: object
+      description: The correlation property.
+      properties:
+        clientTrackingId:
+          type: string
+          description: The client tracking id.
     WorkflowOutputParameter:
       type: object
       description: The workflow output parameter.
@@ -407,6 +399,21 @@ components:
           readOnly: true
       allOf:
       - $ref: '#/components/schemas/WorkflowParameter'
+    WorkflowRunListResult:
+      type: object
+      description: The response of a WorkflowRun list operation.
+      properties:
+        value:
+          type: array
+          description: The WorkflowRun items on this page
+          items:
+            $ref: '#/components/schemas/WorkflowRun'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     WorkflowRunTrigger:
       type: object
       description: The workflow run trigger.
@@ -465,13 +472,6 @@ components:
         trackedProperties:
           description: Gets the tracked properties.
           readOnly: true
-    ErrorResponse:
-      type: object
-      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorProperties'
-          description: The error properties.
   securitySchemes:
     azure_auth:
       type: oauth2

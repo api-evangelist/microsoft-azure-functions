@@ -218,56 +218,6 @@ paths:
           $ref: ./examples/DeleteCertificate.json
 components:
   schemas:
-    CertificateCollection:
-      type: object
-      description: Collection of certificates.
-      properties:
-        value:
-          type: array
-          description: The Certificate items on this page
-          items:
-            $ref: '#/components/schemas/Certificate'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
     KeyVaultSecretStatus:
       type: string
       description: Status of the Key Vault secret.
@@ -286,30 +236,9 @@ components:
       x-ms-enum:
         name: KeyVaultSecretStatus
         modelAsString: false
-    DefaultErrorResponse:
+    DefaultErrorResponseErrorDetailsItem:
       type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    Certificate:
-      type: object
-      description: SSL certificate for an app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/CertificateProperties'
-          description: Certificate resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
+      description: Detailed errors.
       properties:
         code:
           type: string
@@ -323,15 +252,21 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-        details:
+    CertificateCollection:
+      type: object
+      description: Collection of certificates.
+      properties:
+        value:
           type: array
+          description: The Certificate items on this page
           items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
+            $ref: '#/components/schemas/Certificate'
+        nextLink:
           type: string
-          description: More information to debug error.
-          readOnly: true
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     CertificateProperties:
       type: object
       description: Certificate resource specific properties
@@ -426,20 +361,38 @@ components:
         domainValidationMethod:
           type: string
           description: Method of domain validation for free cert
-    HostingEnvironmentProfile:
+    DefaultErrorResponseError:
       type: object
-      description: Specification for an App Service Environment to use for this resource.
+      description: Error model.
       properties:
-        id:
+        code:
           type: string
-          description: Resource ID of the App Service Environment.
-        name:
-          type: string
-          description: Name of the App Service Environment.
+          description: Standardized string to programmatically identify the error.
           readOnly: true
-        type:
+        message:
           type: string
-          description: Resource type of the App Service Environment.
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
           readOnly: true
     CertificatePatchResource:
       type: object
@@ -451,6 +404,19 @@ components:
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
+    Certificate:
+      type: object
+      description: SSL certificate for an app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/CertificateProperties'
+          description: Certificate resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
     CertificatePatchResourceProperties:
       type: object
       description: CertificatePatchResource resource specific properties
@@ -538,6 +504,40 @@ components:
         domainValidationMethod:
           type: string
           description: Method of domain validation for free cert
+    HostingEnvironmentProfile:
+      type: object
+      description: Specification for an App Service Environment to use for this resource.
+      properties:
+        id:
+          type: string
+          description: Resource ID of the App Service Environment.
+        name:
+          type: string
+          description: Name of the App Service Environment.
+          readOnly: true
+        type:
+          type: string
+          description: Resource type of the App Service Environment.
+          readOnly: true
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
   securitySchemes:
     azure_auth:
       type: oauth2

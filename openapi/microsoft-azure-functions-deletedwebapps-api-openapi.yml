@@ -117,29 +117,6 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-    DeletedWebAppCollection:
-      type: object
-      description: Collection of deleted apps.
-      properties:
-        value:
-          type: array
-          description: The DeletedSite items on this page
-          items:
-            $ref: '#/components/schemas/DeletedSite'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
     DeletedSiteProperties:
       type: object
       description: DeletedSite resource specific properties
@@ -177,6 +154,19 @@ components:
           type: string
           description: Geo Region of the deleted site
           readOnly: true
+    DeletedSite:
+      type: object
+      description: A deleted app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DeletedSiteProperties'
+          description: DeletedSite resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -202,19 +192,29 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    DeletedSite:
+    DeletedWebAppCollection:
       type: object
-      description: A deleted app.
+      description: Collection of deleted apps.
       properties:
-        properties:
-          $ref: '#/components/schemas/DeletedSiteProperties'
-          description: DeletedSite resource specific properties
-          x-ms-client-flatten: true
-        kind:
+        value:
+          type: array
+          description: The DeletedSite items on this page
+          items:
+            $ref: '#/components/schemas/DeletedSite'
+        nextLink:
           type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
   securitySchemes:
     azure_auth:
       type: oauth2
