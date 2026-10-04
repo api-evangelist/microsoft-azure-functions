@@ -1,25 +1,23 @@
-# Kin Score artifact — microsoft-azure-functions — 2026-08-26T215308
+# Kin Score artifact — microsoft-azure-functions — 2026-10-03T000835
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: microsoft-azure-functions
-  schema_version: 0.15.0
-  scored_at: '2026-08-26'
-  run_ts: 2026-08-26T215308
-  composite: 60.9
-  band: strong
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T000835
+  composite: 69.4
+  band: exemplar
   facets:
-    discoverability: 74.1
-    contract_quality: 54.0
-    governance: 54.5
+    discoverability: 71.7
+    contract_quality: 50.2
+    contract_governance: 62.7
     operational_transparency: 52.6
-    developer_ergonomics: 85.7
-    commercial_clarity: 47.4
-    contract_governance: 54.5
+    developer_ergonomics: 82.1
     access_clarity: 47.4
   agent_readiness:
-    score: 27.5
-    band: agent-aware
+    score: 29.7
+    band: agent-ready
     dimensions:
       spec_presence: true
       agentic_access: derived
@@ -28,7 +26,7 @@ kin_score:
       auth_clarity: bearer
       idempotency: false
       error_semantics: false
-      openapi_examples: false
+      openapi_examples: partial
       rate_limit_signal: verified
       event_surface_described: false
       agent_skills: false
@@ -40,6 +38,15 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 34.3
+    matched_via: fallback
+  open_source:
+    applies: true
+    score: 100.0
   provenance:
     agentic_access: derived
     contracts:

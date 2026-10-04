@@ -1,21 +1,19 @@
-# Kin Score artifact — microsoft-azure-functions — 2026-09-01T063623
+# Kin Score artifact — microsoft-azure-functions — 2026-09-24T161608
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: microsoft-azure-functions
-  schema_version: 0.17.2
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T063623
-  composite: 64.3
-  band: strong
+  schema_version: 0.22.0
+  scored_at: '2026-09-24'
+  run_ts: 2026-09-24T161608
+  composite: 68.8
+  band: exemplar
   facets:
-    discoverability: 68.5
-    contract_quality: 54.0
-    governance: 54.5
+    discoverability: 75.9
+    contract_quality: 54.9
+    contract_governance: 69.7
     operational_transparency: 52.6
-    developer_ergonomics: 85.7
-    commercial_clarity: 47.4
-    contract_governance: 54.5
+    developer_ergonomics: 82.1
     access_clarity: 47.4
   agent_readiness:
     score: 30.0

@@ -430,6 +430,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
+  - Web App
+  tags_raw:
   - Web Apps
   properties:
   - type: OpenAPI
@@ -469,6 +471,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
+  - WorkflowTriggers
+  tags_raw:
   - Workflow Triggers
   properties:
   - type: OpenAPI
@@ -489,6 +493,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
+  - WorkflowVersions
+  tags_raw:
   - Workflow Versions
   properties:
   - type: OpenAPI
@@ -503,6 +509,9 @@ apis:
     url: >-
       https://learn.microsoft.com/en-us/rest/api/azure/#register-your-client-application-with-azure-ad
 common:
+  - type: CapabilityMap
+    url: capabilities/microsoft-azure-functions-capability-edges.yml
+    name: Microsoft Azure Functions Business Capability Map
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-evangelist/azure-functions/refs/heads/main/rules/azure-functions-spectral-rules.yml
   - type: Vocabulary
