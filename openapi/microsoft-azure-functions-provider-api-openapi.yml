@@ -330,18 +330,71 @@ paths:
         nextLinkName: nextLink
 components:
   schemas:
-    GitHubActionWebAppStackSettings:
+    AppInsightsWebAppStackSettings:
       type: object
-      description: GitHub Actions Web App stack settings.
+      description: App Insights Web App stack settings.
       properties:
         isSupported:
           type: boolean
-          description: <code>true</code> if GitHub Actions is supported for the stack; otherwise, <code>false</code>.
+          description: <code>true</code> if remote Application Insights is supported for the stack; otherwise, <code>false</code>.
           readOnly: true
-        supportedVersion:
+        isDefaultOff:
+          type: boolean
+          description: <code>true</code> if Application Insights is disabled by default for the stack; otherwise, <code>false</code>.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    MetricAvailability:
+      type: object
+      description: Retention policy of a resource metric.
+      properties:
+        timeGrain:
           type: string
-          description: The minor version that is supported for GitHub Actions.
+        blobDuration:
+          type: string
+    StackPreferredOs:
+      type: string
+      description: Function App stack preferred OS.
+      enum:
+      - Windows
+      - Linux
+      x-ms-enum:
+        name: StackPreferredOs
+        modelAsString: false
+    FunctionAppRuntimes:
+      type: object
+      description: Function App stack runtimes.
+      properties:
+        linuxRuntimeSettings:
+          $ref: '#/components/schemas/FunctionAppRuntimeSettings'
+          description: Linux-specific settings associated with the minor version.
           readOnly: true
+        windowsRuntimeSettings:
+          $ref: '#/components/schemas/FunctionAppRuntimeSettings'
+          description: Windows-specific settings associated with the minor version.
+          readOnly: true
+    ServiceSpecification:
+      type: object
+      description: Resource metrics service provided by Microsoft.Insights resource provider.
+      properties:
+        metricSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricSpecification'
+          x-ms-identifiers:
+          - name
+        logSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogSpecification'
+          x-ms-identifiers:
+          - name
     WebAppMajorVersion:
       type: object
       description: Web App stack major version.
@@ -362,78 +415,6 @@ components:
           readOnly: true
           x-ms-identifiers:
           - value
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
-    StackPreferredOs:
-      type: string
-      description: Function App stack preferred OS.
-      enum:
-      - Windows
-      - Linux
-      x-ms-enum:
-        name: StackPreferredOs
-        modelAsString: false
-    FunctionAppStack:
-      type: object
-      description: Function App Stack.
-      properties:
-        location:
-          type: string
-          description: Function App stack location.
-          readOnly: true
-        properties:
-          $ref: '#/components/schemas/FunctionAppStackProperties'
-          description: FunctionAppStack resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    FunctionAppStackProperties:
-      type: object
-      description: FunctionAppStack resource specific properties
-      properties:
-        displayText:
-          type: string
-          description: Function App stack (display only).
-          readOnly: true
-        value:
-          type: string
-          description: Function App stack name.
-          readOnly: true
-        majorVersions:
-          type: array
-          description: List of major versions available.
-          items:
-            $ref: '#/components/schemas/FunctionAppMajorVersion'
-          readOnly: true
-          x-ms-identifiers:
-          - value
-        preferredOs:
-          $ref: '#/components/schemas/StackPreferredOs'
-          description: Function App stack preferred OS.
-          readOnly: true
     WebAppMinorVersion:
       type: object
       description: Web App stack minor version.
@@ -450,326 +431,6 @@ components:
           $ref: '#/components/schemas/WebAppRuntimes'
           description: Settings associated with the minor version.
           readOnly: true
-    WebAppStack:
-      type: object
-      description: Web App stack.
-      properties:
-        location:
-          type: string
-          description: Web App stack location.
-          readOnly: true
-        properties:
-          $ref: '#/components/schemas/WebAppStackProperties'
-          description: WebAppStack resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    StackMinorVersion:
-      type: object
-      description: Application stack minor version.
-      properties:
-        displayVersion:
-          type: string
-          description: Application stack minor version (display only).
-        runtimeVersion:
-          type: string
-          description: Application stack minor version (runtime only).
-        isDefault:
-          type: boolean
-          description: <code>true</code> if this is the default minor version; otherwise, <code>false</code>.
-        isRemoteDebuggingEnabled:
-          type: boolean
-          description: <code>true</code> if this supports Remote Debugging, otherwise <code>false</code>.
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    ApplicationStack:
-      type: object
-      description: Application stack.
-      properties:
-        name:
-          type: string
-          description: Application stack name.
-        display:
-          type: string
-          description: Application stack display name.
-        dependency:
-          type: string
-          description: Application stack dependency.
-        majorVersions:
-          type: array
-          description: List of major versions available.
-          items:
-            $ref: '#/components/schemas/StackMajorVersion'
-          x-ms-identifiers:
-          - runtimeVersion
-        frameworks:
-          type: array
-          description: List of frameworks associated with application stack.
-          items:
-            $ref: '#/components/schemas/ApplicationStack'
-          x-ms-identifiers:
-          - name
-        isDeprecated:
-          type: array
-          description: <code>true</code> if this is the stack is deprecated; otherwise, <code>false</code>.
-          items:
-            $ref: '#/components/schemas/ApplicationStack'
-          x-ms-identifiers:
-          - name
-    FunctionAppStackCollection:
-      type: object
-      description: Collection of Function app Stacks
-      properties:
-        value:
-          type: array
-          description: The FunctionAppStack items on this page
-          items:
-            $ref: '#/components/schemas/FunctionAppStack'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    ServiceSpecification:
-      type: object
-      description: Resource metrics service provided by Microsoft.Insights resource provider.
-      properties:
-        metricSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricSpecification'
-          x-ms-identifiers:
-          - name
-        logSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/LogSpecification'
-          x-ms-identifiers:
-          - name
-    Dimension:
-      type: object
-      description: 'Dimension of a resource metric. For e.g. instance specific HTTP requests for a web app,
-
-        where instance name is dimension of the metric HTTP request'
-      properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        internalName:
-          type: string
-        toBeExportedForShoebox:
-          type: boolean
-    ApplicationStackCollection:
-      type: object
-      description: Collection of Application Stacks
-      properties:
-        value:
-          type: array
-          description: The ApplicationStackResource items on this page
-          items:
-            $ref: '#/components/schemas/ApplicationStackResource'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    SiteConfigPropertiesDictionary:
-      type: object
-      description: Site config properties dictionary.
-      properties:
-        use32BitWorkerProcess:
-          type: boolean
-          description: <code>true</code> if use32BitWorkerProcess should be set to true for the stack; otherwise, <code>false</code>.
-          readOnly: true
-        linuxFxVersion:
-          type: string
-          description: LinuxFxVersion configuration setting.
-          readOnly: true
-        javaVersion:
-          type: string
-          description: JavaVersion configuration setting.
-          readOnly: true
-        powerShellVersion:
-          type: string
-          description: PowerShellVersion configuration setting.
-          readOnly: true
-    CsmOperationCollection:
-      type: object
-      description: Collection of Azure resource manager operation metadata.
-      properties:
-        value:
-          type: array
-          description: Collection of resources.
-          items:
-            $ref: '#/components/schemas/CsmOperationDescription'
-          x-ms-identifiers:
-          - name
-        nextLink:
-          type: string
-          description: Link to next page of resources.
-          readOnly: true
-      required:
-      - value
-    WebAppStackProperties:
-      type: object
-      description: WebAppStack resource specific properties
-      properties:
-        displayText:
-          type: string
-          description: Web App stack (display only).
-          readOnly: true
-        value:
-          type: string
-          description: Web App stack name.
-          readOnly: true
-        majorVersions:
-          type: array
-          description: List of major versions available.
-          items:
-            $ref: '#/components/schemas/WebAppMajorVersion'
-          readOnly: true
-          x-ms-identifiers:
-          - value
-        preferredOs:
-          $ref: '#/components/schemas/StackPreferredOs'
-          description: Web App stack preferred OS.
-          readOnly: true
-    CsmOperationDisplay:
-      type: object
-      description: Meta data about operation used for display in portal.
-      properties:
-        provider:
-          type: string
-        resource:
-          type: string
-        operation:
-          type: string
-        description:
-          type: string
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    MetricAvailability:
-      type: object
-      description: Retention policy of a resource metric.
-      properties:
-        timeGrain:
-          type: string
-        blobDuration:
-          type: string
-    WebAppStackCollection:
-      type: object
-      description: Collection of Web app Stacks
-      properties:
-        value:
-          type: array
-          description: The WebAppStack items on this page
-          items:
-            $ref: '#/components/schemas/WebAppStack'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    WebAppRuntimeSettings:
-      type: object
-      description: Web App runtime settings.
-      properties:
-        runtimeVersion:
-          type: string
-          description: Web App stack minor version (runtime only).
-          readOnly: true
-        remoteDebuggingSupported:
-          type: boolean
-          description: <code>true</code> if remote debugging is supported for the stack; otherwise, <code>false</code>.
-          readOnly: true
-        appInsightsSettings:
-          $ref: '#/components/schemas/AppInsightsWebAppStackSettings'
-          description: Application Insights settings associated with the minor version.
-          readOnly: true
-        gitHubActionSettings:
-          $ref: '#/components/schemas/GitHubActionWebAppStackSettings'
-          description: GitHub Actions settings associated with the minor version.
-          readOnly: true
-        isPreview:
-          type: boolean
-          description: <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
-          readOnly: true
-        isDeprecated:
-          type: boolean
-          description: <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
-          readOnly: true
-        isHidden:
-          type: boolean
-          description: <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
-          readOnly: true
-        endOfLifeDate:
-          type: string
-          format: date-time
-          description: End-of-life date for the minor version.
-          readOnly: true
-        isAutoUpdate:
-          type: boolean
-          description: <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
-          readOnly: true
-        isEarlyAccess:
-          type: boolean
-          description: <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
-          readOnly: true
-    LogSpecification:
-      type: object
-      description: Log Definition of a single resource metric.
-      properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        blobDuration:
-          type: string
-        logFilterPattern:
-          type: string
     LinuxJavaContainerSettings:
       type: object
       description: Linux Java Container settings.
@@ -807,6 +468,149 @@ components:
           type: boolean
           description: <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
           readOnly: true
+    SiteConfigPropertiesDictionary:
+      type: object
+      description: Site config properties dictionary.
+      properties:
+        use32BitWorkerProcess:
+          type: boolean
+          description: <code>true</code> if use32BitWorkerProcess should be set to true for the stack; otherwise, <code>false</code>.
+          readOnly: true
+        linuxFxVersion:
+          type: string
+          description: LinuxFxVersion configuration setting.
+          readOnly: true
+        javaVersion:
+          type: string
+          description: JavaVersion configuration setting.
+          readOnly: true
+        powerShellVersion:
+          type: string
+          description: PowerShellVersion configuration setting.
+          readOnly: true
+    FunctionAppStack:
+      type: object
+      description: Function App Stack.
+      properties:
+        location:
+          type: string
+          description: Function App stack location.
+          readOnly: true
+        properties:
+          $ref: '#/components/schemas/FunctionAppStackProperties'
+          description: FunctionAppStack resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    WebAppStack:
+      type: object
+      description: Web App stack.
+      properties:
+        location:
+          type: string
+          description: Web App stack location.
+          readOnly: true
+        properties:
+          $ref: '#/components/schemas/WebAppStackProperties'
+          description: WebAppStack resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    GitHubActionWebAppStackSettings:
+      type: object
+      description: GitHub Actions Web App stack settings.
+      properties:
+        isSupported:
+          type: boolean
+          description: <code>true</code> if GitHub Actions is supported for the stack; otherwise, <code>false</code>.
+          readOnly: true
+        supportedVersion:
+          type: string
+          description: The minor version that is supported for GitHub Actions.
+          readOnly: true
+    MetricSpecification:
+      type: object
+      description: Definition of a single resource metric.
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        displayDescription:
+          type: string
+        unit:
+          type: string
+        aggregationType:
+          type: string
+        supportsInstanceLevelAggregation:
+          type: boolean
+        enableRegionalMdmAccount:
+          type: boolean
+        sourceMdmAccount:
+          type: string
+        sourceMdmNamespace:
+          type: string
+        metricFilterPattern:
+          type: string
+        fillGapWithZero:
+          type: boolean
+        isInternal:
+          type: boolean
+        dimensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dimension'
+          x-ms-identifiers:
+          - name
+        category:
+          type: string
+        availabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricAvailability'
+          x-ms-identifiers: []
+        supportedTimeGrainTypes:
+          type: array
+          items:
+            type: string
+        supportedAggregationTypes:
+          type: array
+          items:
+            type: string
+    ApplicationStack:
+      type: object
+      description: Application stack.
+      properties:
+        name:
+          type: string
+          description: Application stack name.
+        display:
+          type: string
+          description: Application stack display name.
+        dependency:
+          type: string
+          description: Application stack dependency.
+        majorVersions:
+          type: array
+          description: List of major versions available.
+          items:
+            $ref: '#/components/schemas/StackMajorVersion'
+          x-ms-identifiers:
+          - runtimeVersion
+        frameworks:
+          type: array
+          description: List of frameworks associated with application stack.
+          items:
+            $ref: '#/components/schemas/ApplicationStack'
+          x-ms-identifiers:
+          - name
+        isDeprecated:
+          type: array
+          description: <code>true</code> if this is the stack is deprecated; otherwise, <code>false</code>.
+          items:
+            $ref: '#/components/schemas/ApplicationStack'
+          x-ms-identifiers:
+          - name
     StackMajorVersion:
       type: object
       description: Application stack major version.
@@ -859,22 +663,78 @@ components:
 
             Example: All Linux Function Apps, need Use32BitWorkerProcess to be set to 0'
           additionalProperties: {}
-    FunctionAppMinorVersion:
+    WebAppStackProperties:
       type: object
-      description: Function App stack minor version.
+      description: WebAppStack resource specific properties
       properties:
         displayText:
           type: string
-          description: Function App stack (display only).
+          description: Web App stack (display only).
           readOnly: true
         value:
           type: string
-          description: Function App stack name.
+          description: Web App stack name.
           readOnly: true
-        stackSettings:
-          $ref: '#/components/schemas/FunctionAppRuntimes'
-          description: Settings associated with the minor version.
+        majorVersions:
+          type: array
+          description: List of major versions available.
+          items:
+            $ref: '#/components/schemas/WebAppMajorVersion'
           readOnly: true
+          x-ms-identifiers:
+          - value
+        preferredOs:
+          $ref: '#/components/schemas/StackPreferredOs'
+          description: Web App stack preferred OS.
+          readOnly: true
+    StackMinorVersion:
+      type: object
+      description: Application stack minor version.
+      properties:
+        displayVersion:
+          type: string
+          description: Application stack minor version (display only).
+        runtimeVersion:
+          type: string
+          description: Application stack minor version (runtime only).
+        isDefault:
+          type: boolean
+          description: <code>true</code> if this is the default minor version; otherwise, <code>false</code>.
+        isRemoteDebuggingEnabled:
+          type: boolean
+          description: <code>true</code> if this supports Remote Debugging, otherwise <code>false</code>.
+    WebAppRuntimes:
+      type: object
+      description: Web App stack runtimes.
+      properties:
+        linuxRuntimeSettings:
+          $ref: '#/components/schemas/WebAppRuntimeSettings'
+          description: Linux-specific settings associated with the minor version.
+          readOnly: true
+        windowsRuntimeSettings:
+          $ref: '#/components/schemas/WebAppRuntimeSettings'
+          description: Windows-specific settings associated with the minor version.
+          readOnly: true
+        linuxContainerSettings:
+          $ref: '#/components/schemas/LinuxJavaContainerSettings'
+          description: Linux-specific settings associated with the Java container minor version.
+          readOnly: true
+        windowsContainerSettings:
+          $ref: '#/components/schemas/WindowsJavaContainerSettings'
+          description: Windows-specific settings associated with the Java container minor version.
+          readOnly: true
+    LogSpecification:
+      type: object
+      description: Log Definition of a single resource metric.
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        blobDuration:
+          type: string
+        logFilterPattern:
+          type: string
     CsmOperationDescription:
       type: object
       description: Description of an operation available for Microsoft.Web resource provider.
@@ -891,6 +751,193 @@ components:
         properties:
           $ref: '#/components/schemas/CsmOperationDescriptionProperties'
           description: Properties available for a Microsoft.Web resource provider operation.
+    CsmOperationDescriptionProperties:
+      type: object
+      description: Properties available for a Microsoft.Web resource provider operation.
+      properties:
+        serviceSpecification:
+          $ref: '#/components/schemas/ServiceSpecification'
+          description: Resource metrics service provided by Microsoft.Insights resource provider.
+    FunctionAppMinorVersion:
+      type: object
+      description: Function App stack minor version.
+      properties:
+        displayText:
+          type: string
+          description: Function App stack (display only).
+          readOnly: true
+        value:
+          type: string
+          description: Function App stack name.
+          readOnly: true
+        stackSettings:
+          $ref: '#/components/schemas/FunctionAppRuntimes'
+          description: Settings associated with the minor version.
+          readOnly: true
+    Dimension:
+      type: object
+      description: 'Dimension of a resource metric. For e.g. instance specific HTTP requests for a web app,
+
+        where instance name is dimension of the metric HTTP request'
+      properties:
+        name:
+          type: string
+        displayName:
+          type: string
+        internalName:
+          type: string
+        toBeExportedForShoebox:
+          type: boolean
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    CsmOperationDisplay:
+      type: object
+      description: Meta data about operation used for display in portal.
+      properties:
+        provider:
+          type: string
+        resource:
+          type: string
+        operation:
+          type: string
+        description:
+          type: string
+    ApplicationStackCollection:
+      type: object
+      description: Collection of Application Stacks
+      properties:
+        value:
+          type: array
+          description: The ApplicationStackResource items on this page
+          items:
+            $ref: '#/components/schemas/ApplicationStackResource'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    WebAppRuntimeSettings:
+      type: object
+      description: Web App runtime settings.
+      properties:
+        runtimeVersion:
+          type: string
+          description: Web App stack minor version (runtime only).
+          readOnly: true
+        remoteDebuggingSupported:
+          type: boolean
+          description: <code>true</code> if remote debugging is supported for the stack; otherwise, <code>false</code>.
+          readOnly: true
+        appInsightsSettings:
+          $ref: '#/components/schemas/AppInsightsWebAppStackSettings'
+          description: Application Insights settings associated with the minor version.
+          readOnly: true
+        gitHubActionSettings:
+          $ref: '#/components/schemas/GitHubActionWebAppStackSettings'
+          description: GitHub Actions settings associated with the minor version.
+          readOnly: true
+        isPreview:
+          type: boolean
+          description: <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+          readOnly: true
+        isDeprecated:
+          type: boolean
+          description: <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+          readOnly: true
+        isHidden:
+          type: boolean
+          description: <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+          readOnly: true
+        endOfLifeDate:
+          type: string
+          format: date-time
+          description: End-of-life date for the minor version.
+          readOnly: true
+        isAutoUpdate:
+          type: boolean
+          description: <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+          readOnly: true
+        isEarlyAccess:
+          type: boolean
+          description: <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+          readOnly: true
+    WindowsJavaContainerSettings:
+      type: object
+      description: Windows Java Container settings.
+      properties:
+        javaContainer:
+          type: string
+          description: Java container (runtime only).
+          readOnly: true
+        javaContainerVersion:
+          type: string
+          description: Java container version (runtime only).
+          readOnly: true
+        isPreview:
+          type: boolean
+          description: <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
+          readOnly: true
+        isDeprecated:
+          type: boolean
+          description: <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
+          readOnly: true
+        isHidden:
+          type: boolean
+          description: <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
+          readOnly: true
+        endOfLifeDate:
+          type: string
+          format: date-time
+          description: End-of-life date for the minor version.
+          readOnly: true
+        isAutoUpdate:
+          type: boolean
+          description: <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
+          readOnly: true
+        isEarlyAccess:
+          type: boolean
+          description: <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
+          readOnly: true
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
     FunctionAppRuntimeSettings:
       type: object
       description: Function App runtime settings.
@@ -956,55 +1003,23 @@ components:
           type: boolean
           description: <code>true</code> if the minor version the default; otherwise, <code>false</code>.
           readOnly: true
-    WindowsJavaContainerSettings:
+    CsmOperationCollection:
       type: object
-      description: Windows Java Container settings.
+      description: Collection of Azure resource manager operation metadata.
       properties:
-        javaContainer:
+        value:
+          type: array
+          description: Collection of resources.
+          items:
+            $ref: '#/components/schemas/CsmOperationDescription'
+          x-ms-identifiers:
+          - name
+        nextLink:
           type: string
-          description: Java container (runtime only).
+          description: Link to next page of resources.
           readOnly: true
-        javaContainerVersion:
-          type: string
-          description: Java container version (runtime only).
-          readOnly: true
-        isPreview:
-          type: boolean
-          description: <code>true</code> if the stack is in preview; otherwise, <code>false</code>.
-          readOnly: true
-        isDeprecated:
-          type: boolean
-          description: <code>true</code> if the stack is deprecated; otherwise, <code>false</code>.
-          readOnly: true
-        isHidden:
-          type: boolean
-          description: <code>true</code> if the stack should be hidden; otherwise, <code>false</code>.
-          readOnly: true
-        endOfLifeDate:
-          type: string
-          format: date-time
-          description: End-of-life date for the minor version.
-          readOnly: true
-        isAutoUpdate:
-          type: boolean
-          description: <code>true</code> if the stack version is auto-updated; otherwise, <code>false</code>.
-          readOnly: true
-        isEarlyAccess:
-          type: boolean
-          description: <code>true</code> if the minor version is early-access; otherwise, <code>false</code>.
-          readOnly: true
-    AppInsightsWebAppStackSettings:
-      type: object
-      description: App Insights Web App stack settings.
-      properties:
-        isSupported:
-          type: boolean
-          description: <code>true</code> if remote Application Insights is supported for the stack; otherwise, <code>false</code>.
-          readOnly: true
-        isDefaultOff:
-          type: boolean
-          description: <code>true</code> if Application Insights is disabled by default for the stack; otherwise, <code>false</code>.
-          readOnly: true
+      required:
+      - value
     ApplicationStackResource:
       type: object
       description: ARM resource for a ApplicationStack.
@@ -1015,55 +1030,49 @@ components:
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
-    MetricSpecification:
+    ProxyOnlyResource:
       type: object
-      description: Definition of a single resource metric.
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
       properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
         name:
           type: string
-        displayName:
+          description: Resource Name.
+          readOnly: true
+        kind:
           type: string
-        displayDescription:
+          description: Kind of resource.
+        type:
           type: string
-        unit:
+          description: Resource type.
+          readOnly: true
+    FunctionAppStackProperties:
+      type: object
+      description: FunctionAppStack resource specific properties
+      properties:
+        displayText:
           type: string
-        aggregationType:
+          description: Function App stack (display only).
+          readOnly: true
+        value:
           type: string
-        supportsInstanceLevelAggregation:
-          type: boolean
-        enableRegionalMdmAccount:
-          type: boolean
-        sourceMdmAccount:
-          type: string
-        sourceMdmNamespace:
-          type: string
-        metricFilterPattern:
-          type: string
-        fillGapWithZero:
-          type: boolean
-        isInternal:
-          type: boolean
-        dimensions:
+          description: Function App stack name.
+          readOnly: true
+        majorVersions:
           type: array
+          description: List of major versions available.
           items:
-            $ref: '#/components/schemas/Dimension'
+            $ref: '#/components/schemas/FunctionAppMajorVersion'
+          readOnly: true
           x-ms-identifiers:
-          - name
-        category:
-          type: string
-        availabilities:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricAvailability'
-          x-ms-identifiers: []
-        supportedTimeGrainTypes:
-          type: array
-          items:
-            type: string
-        supportedAggregationTypes:
-          type: array
-          items:
-            type: string
+          - value
+        preferredOs:
+          $ref: '#/components/schemas/StackPreferredOs'
+          description: Function App stack preferred OS.
+          readOnly: true
     FunctionAppMajorVersion:
       type: object
       description: Function App stack major version.
@@ -1084,45 +1093,36 @@ components:
           readOnly: true
           x-ms-identifiers:
           - value
-    CsmOperationDescriptionProperties:
+    WebAppStackCollection:
       type: object
-      description: Properties available for a Microsoft.Web resource provider operation.
+      description: Collection of Web app Stacks
       properties:
-        serviceSpecification:
-          $ref: '#/components/schemas/ServiceSpecification'
-          description: Resource metrics service provided by Microsoft.Insights resource provider.
-    FunctionAppRuntimes:
+        value:
+          type: array
+          description: The WebAppStack items on this page
+          items:
+            $ref: '#/components/schemas/WebAppStack'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    FunctionAppStackCollection:
       type: object
-      description: Function App stack runtimes.
+      description: Collection of Function app Stacks
       properties:
-        linuxRuntimeSettings:
-          $ref: '#/components/schemas/FunctionAppRuntimeSettings'
-          description: Linux-specific settings associated with the minor version.
-          readOnly: true
-        windowsRuntimeSettings:
-          $ref: '#/components/schemas/FunctionAppRuntimeSettings'
-          description: Windows-specific settings associated with the minor version.
-          readOnly: true
-    WebAppRuntimes:
-      type: object
-      description: Web App stack runtimes.
-      properties:
-        linuxRuntimeSettings:
-          $ref: '#/components/schemas/WebAppRuntimeSettings'
-          description: Linux-specific settings associated with the minor version.
-          readOnly: true
-        windowsRuntimeSettings:
-          $ref: '#/components/schemas/WebAppRuntimeSettings'
-          description: Windows-specific settings associated with the minor version.
-          readOnly: true
-        linuxContainerSettings:
-          $ref: '#/components/schemas/LinuxJavaContainerSettings'
-          description: Linux-specific settings associated with the Java container minor version.
-          readOnly: true
-        windowsContainerSettings:
-          $ref: '#/components/schemas/WindowsJavaContainerSettings'
-          description: Windows-specific settings associated with the Java container minor version.
-          readOnly: true
+        value:
+          type: array
+          description: The FunctionAppStack items on this page
+          items:
+            $ref: '#/components/schemas/FunctionAppStack'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
   securitySchemes:
     azure_auth:
       type: oauth2

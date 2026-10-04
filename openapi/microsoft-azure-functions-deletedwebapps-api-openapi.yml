@@ -101,6 +101,14 @@ paths:
           $ref: ./examples/GetDeletedWebAppByLocation.json
 components:
   schemas:
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -116,43 +124,6 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
-          readOnly: true
-    DeletedSiteProperties:
-      type: object
-      description: DeletedSite resource specific properties
-      properties:
-        deletedSiteId:
-          type: integer
-          format: int32
-          description: Numeric id for the deleted site
-          readOnly: true
-        deletedTimestamp:
-          type: string
-          description: Time in UTC when the app was deleted.
-          readOnly: true
-        subscription:
-          type: string
-          description: Subscription containing the deleted site
-          readOnly: true
-        resourceGroup:
-          type: string
-          description: ResourceGroup that contained the deleted site
-          readOnly: true
-        deletedSiteName:
-          type: string
-          description: Name of the deleted site
-          readOnly: true
-        slot:
-          type: string
-          description: Slot of the deleted site
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of site that was deleted
-          readOnly: true
-        geoRegionName:
-          type: string
-          description: Geo Region of the deleted site
           readOnly: true
     DeletedSite:
       type: object
@@ -192,6 +163,43 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
+    DeletedSiteProperties:
+      type: object
+      description: DeletedSite resource specific properties
+      properties:
+        deletedSiteId:
+          type: integer
+          format: int32
+          description: Numeric id for the deleted site
+          readOnly: true
+        deletedTimestamp:
+          type: string
+          description: Time in UTC when the app was deleted.
+          readOnly: true
+        subscription:
+          type: string
+          description: Subscription containing the deleted site
+          readOnly: true
+        resourceGroup:
+          type: string
+          description: ResourceGroup that contained the deleted site
+          readOnly: true
+        deletedSiteName:
+          type: string
+          description: Name of the deleted site
+          readOnly: true
+        slot:
+          type: string
+          description: Slot of the deleted site
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of site that was deleted
+          readOnly: true
+        geoRegionName:
+          type: string
+          description: Geo Region of the deleted site
+          readOnly: true
     DeletedWebAppCollection:
       type: object
       description: Collection of deleted apps.
@@ -207,14 +215,6 @@ components:
           description: The link to the next page of items
       required:
       - value
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
   securitySchemes:
     azure_auth:
       type: oauth2

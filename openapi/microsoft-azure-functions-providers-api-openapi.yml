@@ -150,6 +150,29 @@ paths:
       - Providers
 components:
   schemas:
+    SourceControlCollection:
+      type: object
+      description: Collection of source controls.
+      properties:
+        value:
+          type: array
+          description: The SourceControl items on this page
+          items:
+            $ref: '#/components/schemas/SourceControl'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -165,74 +188,6 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
-          readOnly: true
-    SourceControl:
-      type: object
-      description: The source control OAuth token.
-      properties:
-        properties:
-          $ref: '#/components/schemas/SourceControlProperties'
-          description: SourceControl resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    User:
-      type: object
-      description: User credentials used for publishing activity.
-      properties:
-        properties:
-          $ref: '#/components/schemas/UserProperties'
-          description: User resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    SourceControlProperties:
-      type: object
-      description: SourceControl resource specific properties
-      properties:
-        token:
-          type: string
-          description: OAuth access token.
-        tokenSecret:
-          type: string
-          description: OAuth access token secret.
-        refreshToken:
-          type: string
-          description: OAuth refresh token.
-        expirationTime:
-          type: string
-          format: date-time
-          description: OAuth token expiration.
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
           readOnly: true
     UserProperties:
       type: object
@@ -261,29 +216,74 @@ components:
           description: Url of SCM site.
       required:
       - publishingUserName
-    DefaultErrorResponse:
+    SourceControl:
       type: object
-      description: App Service error response.
+      description: The source control OAuth token.
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    SourceControlCollection:
-      type: object
-      description: Collection of source controls.
-      properties:
-        value:
-          type: array
-          description: The SourceControl items on this page
-          items:
-            $ref: '#/components/schemas/SourceControl'
-        nextLink:
+        properties:
+          $ref: '#/components/schemas/SourceControlProperties'
+          description: SourceControl resource specific properties
+          x-ms-client-flatten: true
+        kind:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    User:
+      type: object
+      description: User credentials used for publishing activity.
+      properties:
+        properties:
+          $ref: '#/components/schemas/UserProperties'
+          description: User resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    SourceControlProperties:
+      type: object
+      description: SourceControl resource specific properties
+      properties:
+        token:
+          type: string
+          description: OAuth access token.
+        tokenSecret:
+          type: string
+          description: OAuth access token secret.
+        refreshToken:
+          type: string
+          description: OAuth refresh token.
+        expirationTime:
+          type: string
+          format: date-time
+          description: OAuth token expiration.
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -527,219 +527,85 @@ paths:
       - Subscriptions
 components:
   schemas:
-    BillingMeterProperties:
+    NameValuePair:
       type: object
-      description: BillingMeter resource specific properties
+      description: Name value pair.
       properties:
-        meterId:
-          type: string
-          description: Meter GUID onboarded in Commerce
-        billingLocation:
-          type: string
-          description: Azure Location of billable resource
-        shortName:
-          type: string
-          description: Short Name from App Service Azure pricing Page
-        friendlyName:
-          type: string
-          description: Friendly name of the meter
-        resourceType:
-          type: string
-          description: App Service ResourceType meter used for
-        osType:
-          type: string
-          description: App Service OS type meter used for
-        multiplier:
-          type: number
-          format: double
-          description: Meter Multiplier
-    VirtualNetworkProfile:
-      type: object
-      description: Specification for using a Virtual Network.
-      properties:
-        id:
-          type: string
-          description: Resource id of the Virtual Network.
         name:
           type: string
-          description: Name of the Virtual Network (read-only).
-          readOnly: true
-        type:
-          type: string
-          description: Resource type of the Virtual Network (read-only).
-          readOnly: true
-        subnet:
-          type: string
-          description: Subnet within the Virtual Network.
-      required:
-      - id
-    HostingEnvironmentStatus:
-      type: string
-      description: Current status of the App Service Environment.
-      enum:
-      - Preparing
-      - Ready
-      - Scaling
-      - Deleting
-      x-ms-enum:
-        name: HostingEnvironmentStatus
-        modelAsString: false
-    LocalizableString:
-      type: object
-      description: Localizable string object containing the name and a localized value.
-      properties:
+          description: Pair name.
         value:
           type: string
-          description: Non-localized name.
-        localizedValue:
-          type: string
-          description: Localized name.
-    CustomDnsSuffixConfigurationProperties:
+          description: Pair value.
+    BillingMeter:
       type: object
-      description: CustomDnsSuffixConfiguration resource specific properties
-      properties:
-        provisioningState:
-          $ref: '#/components/schemas/CustomDnsSuffixProvisioningState'
-          readOnly: true
-        provisioningDetails:
-          type: string
-          readOnly: true
-        dnsSuffix:
-          type: string
-          description: The default custom domain suffix to use for all sites deployed on the ASE.
-        certificateUrl:
-          type: string
-          description: The URL referencing the Azure Key Vault certificate secret that should be used as the default SSL/TLS certificate for sites with the custom domain suffix.
-        keyVaultReferenceIdentity:
-          type: string
-          description: The user-assigned identity to use for resolving the key vault certificate reference. If not specified, the system-assigned ASE identity will be used if available.
-    VnetParametersProperties:
-      type: object
-      description: VnetParameters resource specific properties
-      properties:
-        vnetResourceGroup:
-          type: string
-          description: The Resource Group of the VNET to be validated
-        vnetName:
-          type: string
-          description: The name of the VNET to be validated
-        vnetSubnetName:
-          type: string
-          description: The subnet name to be validated
-        subnetResourceId:
-          type: string
-          description: The ARM Resource ID of the subnet to validate
-    VnetValidationFailureDetailsProperties:
-      type: object
-      description: VnetValidationFailureDetails resource specific properties
-      properties:
-        message:
-          type: string
-          description: Text describing the validation outcome.
-        failed:
-          type: boolean
-          description: A flag describing whether or not validation failed.
-        failedTests:
-          type: array
-          description: A list of tests that failed in the validation.
-          items:
-            $ref: '#/components/schemas/VnetValidationTestFailure'
-        warnings:
-          type: array
-          description: A list of warnings generated during validation.
-          items:
-            $ref: '#/components/schemas/VnetValidationTestFailure'
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
-          readOnly: true
-    GeoRegion:
-      type: object
-      description: Geographical region.
+      description: App Service billing entity that contains information about meter which the Azure billing system utilizes to charge users for services.
       properties:
         properties:
-          $ref: '#/components/schemas/GeoRegionProperties'
-          description: GeoRegion resource specific properties
+          $ref: '#/components/schemas/BillingMeterProperties'
+          description: BillingMeter resource specific properties
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
-    BillingMeterCollection:
+    AseV3NetworkingConfigurationProperties:
       type: object
-      description: Collection of Billing Meters
+      description: AseV3NetworkingConfiguration resource specific properties
       properties:
-        value:
+        windowsOutboundIpAddresses:
           type: array
-          description: The BillingMeter items on this page
           items:
-            $ref: '#/components/schemas/BillingMeter'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    CustomDnsSuffixConfiguration:
-      type: object
-      description: Full view of the custom domain suffix configuration for ASEv3.
-      properties:
-        properties:
-          $ref: '#/components/schemas/CustomDnsSuffixConfigurationProperties'
-          description: CustomDnsSuffixConfiguration resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    Capability:
-      type: object
-      description: Describes the capabilities/features allowed for a specific SKU.
-      properties:
-        name:
-          type: string
-          description: Name of the SKU capability.
-        value:
-          type: string
-          description: Value of the SKU capability.
-        reason:
-          type: string
-          description: Reason of the SKU capability.
-    GeoRegionProperties:
-      type: object
-      description: GeoRegion resource specific properties
-      properties:
-        description:
-          type: string
-          description: Region description.
+            type: string
           readOnly: true
-        displayName:
-          type: string
-          description: Display name for region.
+        linuxOutboundIpAddresses:
+          type: array
+          items:
+            type: string
           readOnly: true
-        orgDomain:
+        externalInboundIpAddresses:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        internalInboundIpAddresses:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        allowNewPrivateEndpointConnections:
+          type: boolean
+          description: Property to enable and disable new private endpoint connection creation on ASE
+        ftpEnabled:
+          type: boolean
+          description: Property to enable and disable FTP on ASEV3
+        remoteDebugEnabled:
+          type: boolean
+          description: Property to enable and disable Remote Debug on ASEV3
+        inboundIpAddressOverride:
           type: string
-          description: Display name for region.
+          description: Customer provided Inbound IP Address. Only able to be set on Ase create.
+    UpgradeAvailability:
+      type: string
+      description: Whether an upgrade is available for this App Service Environment.
+      enum:
+      - None
+      - Ready
+      x-ms-enum:
+        name: UpgradeAvailability
+        modelAsString: true
+        values:
+        - name: None
+          value: None
+          description: No upgrade is currently available for this App Service Environment
+        - name: Ready
+          value: Ready
+          description: An upgrade is ready to be manually initiated on this App Service Environment
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
           readOnly: true
     PremierAddOnOfferProperties:
       type: object
@@ -796,113 +662,13 @@ components:
           value: Publishing
         - name: Web, Publishing
           value: Web, Publishing
-    ProxyOnlyResource:
+    GeoRegion:
       type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    DefaultErrorResponseErrorDetailsItem:
-      type: object
-      description: Detailed errors.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    PremierAddOnOfferCollection:
-      type: object
-      description: Collection of premier add-on offers.
-      properties:
-        value:
-          type: array
-          description: The PremierAddOnOffer items on this page
-          items:
-            $ref: '#/components/schemas/PremierAddOnOffer'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    NameIdentifier:
-      type: object
-      description: Identifies an object.
-      properties:
-        name:
-          type: string
-          description: Name of the object.
-    UpgradeAvailability:
-      type: string
-      description: Whether an upgrade is available for this App Service Environment.
-      enum:
-      - None
-      - Ready
-      x-ms-enum:
-        name: UpgradeAvailability
-        modelAsString: true
-        values:
-        - name: None
-          value: None
-          description: No upgrade is currently available for this App Service Environment
-        - name: Ready
-          value: Ready
-          description: An upgrade is ready to be manually initiated on this App Service Environment
-    AseRegionCollection:
-      type: object
-      description: Collection of ASE regions.
-      properties:
-        value:
-          type: array
-          description: The AseRegion items on this page
-          items:
-            $ref: '#/components/schemas/AseRegion'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    CustomHostnameSitesProperties:
-      type: object
-      description: CustomHostnameSites resource specific properties
-      properties:
-        customHostname:
-          type: string
-        region:
-          type: string
-        siteResourceIds:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identifier'
-    VnetValidationFailureDetails:
-      type: object
-      description: A class that describes the reason for a validation failure.
+      description: Geographical region.
       properties:
         properties:
-          $ref: '#/components/schemas/VnetValidationFailureDetailsProperties'
-          description: VnetValidationFailureDetails resource specific properties
+          $ref: '#/components/schemas/GeoRegionProperties'
+          description: GeoRegion resource specific properties
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
@@ -916,220 +682,21 @@ components:
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
-    AseV3NetworkingConfiguration:
+    CustomHostnameSitesCollection:
       type: object
-      description: Full view of networking configuration for an ASE.
-      properties:
-        properties:
-          $ref: '#/components/schemas/AseV3NetworkingConfigurationProperties'
-          description: AseV3NetworkingConfiguration resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    SkuInfos:
-      type: object
-      description: Collection of SKU information.
-      properties:
-        resourceType:
-          type: string
-          description: Resource type that this SKU applies to.
-        skus:
-          type: array
-          description: List of SKUs the subscription is able to use.
-          items:
-            $ref: '#/components/schemas/GlobalCsmSkuDescription'
-          x-ms-identifiers:
-          - name
-    HostingEnvironmentDeploymentInfo:
-      type: object
-      description: Information needed to create resources on an App Service Environment.
-      properties:
-        name:
-          type: string
-          description: Name of the App Service Environment.
-        location:
-          type: string
-          description: Location of the App Service Environment.
-    DnlResourceNameAvailability:
-      type: object
-      description: Information regarding availability of a resource name for DNL apps with regionalized default hostnames.
-      properties:
-        hostName:
-          type: string
-        nameAvailable:
-          type: boolean
-          description: <code>true</code> indicates name is valid and available. <code>false</code> indicates the name is invalid, unavailable, or both.
-        reason:
-          $ref: '#/components/schemas/InAvailabilityReasonType'
-          description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
-        message:
-          type: string
-          description: If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that resource name is already in use, and direct them to select a different name.
-    AppServicePlanRestrictions:
-      type: string
-      description: App Service plans this offer is restricted to.
-      enum:
-      - None
-      - Free
-      - Shared
-      - Basic
-      - Standard
-      - Premium
-      x-ms-enum:
-        name: AppServicePlanRestrictions
-        modelAsString: false
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    IdentifierProperties:
-      type: object
-      description: Identifier resource specific properties
-      properties:
-        id:
-          type: string
-          description: String representation of the identity.
-          x-ms-client-name: value
-    ValidateResponse:
-      type: object
-      description: Describes the result of resource validation.
-      properties:
-        status:
-          type: string
-          description: Result of validation.
-        error:
-          $ref: '#/components/schemas/ValidateResponseError'
-          description: Error details for the case when validation fails.
-    DnlResourceNameAvailabilityRequest:
-      type: object
-      properties:
-        resourceGroupName:
-          type: string
-          description: Resource group name
-        autoGeneratedDomainNameLabelScope:
-          type: string
-          description: 'Indicates the endpoint name reuse scope.The default value is TenantReuse.
-
-            Supported values are TenantReuse, SubscriptionReuse, ResourceGroupReuse, NoReuse'
-        name:
-          type: string
-          description: Resource name to verify.
-        type:
-          $ref: '#/components/schemas/CheckNameResourceTypes'
-          description: Resource type used for verification.
-      required:
-      - name
-      - type
-    IdentifierCollection:
-      type: object
-      description: Collection of identifiers.
+      description: Collection of custom hostname sites
       properties:
         value:
           type: array
-          description: The Identifier items on this page
+          description: The CustomHostnameSites items on this page
           items:
-            $ref: '#/components/schemas/Identifier'
+            $ref: '#/components/schemas/CustomHostnameSites'
         nextLink:
           type: string
           format: uri
           description: The link to the next page of items
       required:
       - value
-    ResourceNameAvailability:
-      type: object
-      description: Information regarding availability of a resource name.
-      properties:
-        nameAvailable:
-          type: boolean
-          description: <code>true</code> indicates name is valid and available. <code>false</code> indicates the name is invalid, unavailable, or both.
-        reason:
-          $ref: '#/components/schemas/InAvailabilityReasonType'
-          description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
-        message:
-          type: string
-          description: If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that resource name is already in use, and direct them to select a different name.
-    NameValuePair:
-      type: object
-      description: Name value pair.
-      properties:
-        name:
-          type: string
-          description: Pair name.
-        value:
-          type: string
-          description: Pair value.
-    ResourceNameAvailabilityRequest:
-      type: object
-      description: Resource name availability request content.
-      properties:
-        name:
-          type: string
-          description: Resource name to verify.
-        type:
-          $ref: '#/components/schemas/CheckNameResourceTypes'
-          description: Resource type used for verification.
-        isFqdn:
-          type: boolean
-          description: Is fully qualified domain name.
-        environmentId:
-          type: string
-          description: Azure Resource Manager ID of the customer's selected Container Apps Environment on which to host the Function app. This must be of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.App/managedEnvironments/{managedEnvironmentName}
-      required:
-      - name
-      - type
-    InAvailabilityReasonType:
-      type: string
-      description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
-      enum:
-      - Invalid
-      - AlreadyExists
-      x-ms-enum:
-        name: InAvailabilityReasonType
-        modelAsString: true
-        values:
-        - name: Invalid
-          value: Invalid
-        - name: AlreadyExists
-          value: AlreadyExists
-    ValidateRequest:
-      type: object
-      description: Resource validation request content.
-      properties:
-        name:
-          type: string
-          description: Resource name to verify.
-        type:
-          $ref: '#/components/schemas/ValidateResourceTypes'
-          description: Resource type used for verification.
-        location:
-          type: string
-          description: Expected location of the resource.
-        properties:
-          $ref: '#/components/schemas/ValidateProperties'
-          description: Properties of the resource to validate.
-          x-ms-client-flatten: true
-      required:
-      - name
-      - type
-      - location
-      - properties
-    PremierAddOnOffer:
-      type: object
-      description: Premier add-on offer.
-      properties:
-        properties:
-          $ref: '#/components/schemas/PremierAddOnOfferProperties'
-          description: PremierAddOnOffer resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
     CsmUsageQuota:
       type: object
       description: Usage of the quota resource.
@@ -1152,16 +719,621 @@ components:
         name:
           $ref: '#/components/schemas/LocalizableString'
           description: Quota name.
-    BillingMeter:
+    LocalizableString:
       type: object
-      description: App Service billing entity that contains information about meter which the Azure billing system utilizes to charge users for services.
+      description: Localizable string object containing the name and a localized value.
+      properties:
+        value:
+          type: string
+          description: Non-localized name.
+        localizedValue:
+          type: string
+          description: Localized name.
+    HostingEnvironmentDeploymentInfo:
+      type: object
+      description: Information needed to create resources on an App Service Environment.
+      properties:
+        name:
+          type: string
+          description: Name of the App Service Environment.
+        location:
+          type: string
+          description: Location of the App Service Environment.
+    AppServicePlanRestrictions:
+      type: string
+      description: App Service plans this offer is restricted to.
+      enum:
+      - None
+      - Free
+      - Shared
+      - Basic
+      - Standard
+      - Premium
+      x-ms-enum:
+        name: AppServicePlanRestrictions
+        modelAsString: false
+    CustomHostnameSitesProperties:
+      type: object
+      description: CustomHostnameSites resource specific properties
+      properties:
+        customHostname:
+          type: string
+        region:
+          type: string
+        siteResourceIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identifier'
+    CheckNameResourceTypes:
+      type: string
+      description: Resource type used for verification.
+      enum:
+      - Site
+      - Slot
+      - HostingEnvironment
+      - PublishingUser
+      - Microsoft.Web/sites
+      - Microsoft.Web/sites/slots
+      - Microsoft.Web/hostingEnvironments
+      - Microsoft.Web/publishingUsers
+      x-ms-enum:
+        name: CheckNameResourceTypes
+        modelAsString: true
+        values:
+        - name: Site
+          value: Site
+        - name: Slot
+          value: Slot
+        - name: HostingEnvironment
+          value: HostingEnvironment
+        - name: PublishingUser
+          value: PublishingUser
+        - name: Microsoft.Web/sites
+          value: Microsoft.Web/sites
+        - name: Microsoft.Web/sites/slots
+          value: Microsoft.Web/sites/slots
+        - name: Microsoft.Web/hostingEnvironments
+          value: Microsoft.Web/hostingEnvironments
+        - name: Microsoft.Web/publishingUsers
+          value: Microsoft.Web/publishingUsers
+    ValidateResponse:
+      type: object
+      description: Describes the result of resource validation.
+      properties:
+        status:
+          type: string
+          description: Result of validation.
+        error:
+          $ref: '#/components/schemas/ValidateResponseError'
+          description: Error details for the case when validation fails.
+    AseRegionProperties:
+      type: object
+      description: ASE region resource specific properties
+      properties:
+        displayName:
+          type: string
+          description: Display name for region.
+          readOnly: true
+        standard:
+          type: boolean
+          description: Is region standard.
+          readOnly: true
+        dedicatedHost:
+          type: boolean
+          description: Dedicated host enabled.
+          readOnly: true
+        zoneRedundant:
+          type: boolean
+          description: Zone redundant deployment enabled.
+          readOnly: true
+        availableSku:
+          type: array
+          description: Available Skus in region.
+          items:
+            type: string
+        availableOS:
+          type: array
+          description: Available OSs in region.
+          items:
+            type: string
+    GeoRegionCollection:
+      type: object
+      description: Collection of geographical regions.
+      properties:
+        value:
+          type: array
+          description: The GeoRegion items on this page
+          items:
+            $ref: '#/components/schemas/GeoRegion'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    Capability:
+      type: object
+      description: Describes the capabilities/features allowed for a specific SKU.
+      properties:
+        name:
+          type: string
+          description: Name of the SKU capability.
+        value:
+          type: string
+          description: Value of the SKU capability.
+        reason:
+          type: string
+          description: Reason of the SKU capability.
+    CustomHostnameSites:
+      type: object
+      description: A hostname and its assigned sites
       properties:
         properties:
-          $ref: '#/components/schemas/BillingMeterProperties'
-          description: BillingMeter resource specific properties
+          $ref: '#/components/schemas/CustomHostnameSitesProperties'
+          description: CustomHostnameSites resource specific properties
           x-ms-client-flatten: true
       allOf:
       - $ref: '#/components/schemas/ProxyOnlyResource'
+    HostingEnvironmentStatus:
+      type: string
+      description: Current status of the App Service Environment.
+      enum:
+      - Preparing
+      - Ready
+      - Scaling
+      - Deleting
+      x-ms-enum:
+        name: HostingEnvironmentStatus
+        modelAsString: false
+    CustomDnsSuffixConfigurationProperties:
+      type: object
+      description: CustomDnsSuffixConfiguration resource specific properties
+      properties:
+        provisioningState:
+          $ref: '#/components/schemas/CustomDnsSuffixProvisioningState'
+          readOnly: true
+        provisioningDetails:
+          type: string
+          readOnly: true
+        dnsSuffix:
+          type: string
+          description: The default custom domain suffix to use for all sites deployed on the ASE.
+        certificateUrl:
+          type: string
+          description: The URL referencing the Azure Key Vault certificate secret that should be used as the default SSL/TLS certificate for sites with the custom domain suffix.
+        keyVaultReferenceIdentity:
+          type: string
+          description: The user-assigned identity to use for resolving the key vault certificate reference. If not specified, the system-assigned ASE identity will be used if available.
+    Identifier:
+      type: object
+      description: A domain specific resource identifier.
+      properties:
+        properties:
+          $ref: '#/components/schemas/IdentifierProperties'
+          description: Identifier resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    GlobalCsmSkuDescription:
+      type: object
+      description: A Global SKU Description.
+      properties:
+        name:
+          type: string
+          description: Name of the resource SKU.
+        tier:
+          type: string
+          description: Service Tier of the resource SKU.
+        size:
+          type: string
+          description: Size specifier of the resource SKU.
+        family:
+          type: string
+          description: Family code of the resource SKU.
+        capacity:
+          $ref: '#/components/schemas/SkuCapacity'
+          description: Min, max, and default scale values of the SKU.
+        locations:
+          type: array
+          description: Locations of the SKU.
+          items:
+            type: string
+        capabilities:
+          type: array
+          description: Capabilities of the SKU, e.g., is traffic manager enabled?
+          items:
+            $ref: '#/components/schemas/Capability'
+          x-ms-identifiers:
+          - name
+    SkuCapacity:
+      type: object
+      description: Description of the App Service plan scale options.
+      properties:
+        minimum:
+          type: integer
+          format: int32
+          description: Minimum number of workers for this App Service plan SKU.
+        maximum:
+          type: integer
+          format: int32
+          description: Maximum number of workers for this App Service plan SKU.
+        elasticMaximum:
+          type: integer
+          format: int32
+          description: Maximum number of Elastic workers for this App Service plan SKU.
+        default:
+          type: integer
+          format: int32
+          description: Default number of workers for this App Service plan SKU.
+        scaleType:
+          type: string
+          description: Available scale configurations for an App Service plan.
+    ValidateProperties:
+      type: object
+      description: App properties used for validation.
+      properties:
+        serverFarmId:
+          type: string
+          description: ARM resource ID of an App Service plan that would host the app.
+        skuName:
+          type: string
+          description: Name of the target SKU for the App Service plan.
+        needLinuxWorkers:
+          type: boolean
+          description: <code>true</code> if App Service plan is for Linux workers; otherwise, <code>false</code>.
+        isSpot:
+          type: boolean
+          description: <code>true</code> if App Service plan is for Spot instances; otherwise, <code>false</code>.
+        capacity:
+          type: integer
+          format: int32
+          description: Target capacity of the App Service plan (number of VMs).
+          minimum: 1
+        hostingEnvironment:
+          type: string
+          description: Name of App Service Environment where app or App Service plan should be created.
+        isXenon:
+          type: boolean
+          description: <code>true</code> if App Service plan is running as a windows container
+        containerRegistryBaseUrl:
+          type: string
+          description: Base URL of the container registry
+        containerRegistryUsername:
+          type: string
+          description: Username for to access the container registry
+        containerRegistryPassword:
+          type: string
+          description: Password for to access the container registry
+        containerImageRepository:
+          type: string
+          description: Repository name (image name)
+        containerImageTag:
+          type: string
+          description: Image tag
+        containerImagePlatform:
+          type: string
+          description: Platform (windows or linux)
+        appServiceEnvironment:
+          $ref: '#/components/schemas/AppServiceEnvironment'
+          description: App Service Environment Properties
+    VnetValidationFailureDetailsProperties:
+      type: object
+      description: VnetValidationFailureDetails resource specific properties
+      properties:
+        message:
+          type: string
+          description: Text describing the validation outcome.
+        failed:
+          type: boolean
+          description: A flag describing whether or not validation failed.
+        failedTests:
+          type: array
+          description: A list of tests that failed in the validation.
+          items:
+            $ref: '#/components/schemas/VnetValidationTestFailure'
+        warnings:
+          type: array
+          description: A list of warnings generated during validation.
+          items:
+            $ref: '#/components/schemas/VnetValidationTestFailure'
+    AseRegionCollection:
+      type: object
+      description: Collection of ASE regions.
+      properties:
+        value:
+          type: array
+          description: The AseRegion items on this page
+          items:
+            $ref: '#/components/schemas/AseRegion'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    DnlResourceNameAvailability:
+      type: object
+      description: Information regarding availability of a resource name for DNL apps with regionalized default hostnames.
+      properties:
+        hostName:
+          type: string
+        nameAvailable:
+          type: boolean
+          description: <code>true</code> indicates name is valid and available. <code>false</code> indicates the name is invalid, unavailable, or both.
+        reason:
+          $ref: '#/components/schemas/InAvailabilityReasonType'
+          description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
+        message:
+          type: string
+          description: If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that resource name is already in use, and direct them to select a different name.
+    VnetValidationFailureDetails:
+      type: object
+      description: A class that describes the reason for a validation failure.
+      properties:
+        properties:
+          $ref: '#/components/schemas/VnetValidationFailureDetailsProperties'
+          description: VnetValidationFailureDetails resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    VnetParametersProperties:
+      type: object
+      description: VnetParameters resource specific properties
+      properties:
+        vnetResourceGroup:
+          type: string
+          description: The Resource Group of the VNET to be validated
+        vnetName:
+          type: string
+          description: The name of the VNET to be validated
+        vnetSubnetName:
+          type: string
+          description: The subnet name to be validated
+        subnetResourceId:
+          type: string
+          description: The ARM Resource ID of the subnet to validate
+    AseV3NetworkingConfiguration:
+      type: object
+      description: Full view of networking configuration for an ASE.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AseV3NetworkingConfigurationProperties'
+          description: AseV3NetworkingConfiguration resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    VnetValidationTestFailure:
+      type: object
+      description: A class that describes a test that failed during NSG and UDR validation.
+      properties:
+        properties:
+          $ref: '#/components/schemas/VnetValidationTestFailureProperties'
+          description: VnetValidationTestFailure resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    BillingMeterCollection:
+      type: object
+      description: Collection of Billing Meters
+      properties:
+        value:
+          type: array
+          description: The BillingMeter items on this page
+          items:
+            $ref: '#/components/schemas/BillingMeter'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    SkuInfos:
+      type: object
+      description: Collection of SKU information.
+      properties:
+        resourceType:
+          type: string
+          description: Resource type that this SKU applies to.
+        skus:
+          type: array
+          description: List of SKUs the subscription is able to use.
+          items:
+            $ref: '#/components/schemas/GlobalCsmSkuDescription'
+          x-ms-identifiers:
+          - name
+    NameIdentifier:
+      type: object
+      description: Identifies an object.
+      properties:
+        name:
+          type: string
+          description: Name of the object.
+    CsmMoveResourceEnvelope:
+      type: object
+      description: Object with a list of the resources that need to be moved and the resource group they should be moved to.
+      properties:
+        targetResourceGroup:
+          type: string
+          minLength: 1
+          maxLength: 90
+          pattern: ' ^[-\w\._\(\)]+[^\.]$'
+        resources:
+          type: array
+          items:
+            type: string
+    DeploymentLocations:
+      type: object
+      description: 'List of available locations (regions or App Service Environments) for
+
+        deployment of App Service resources.'
+      properties:
+        locations:
+          type: array
+          description: Available regions.
+          items:
+            $ref: '#/components/schemas/GeoRegion'
+        hostingEnvironments:
+          type: array
+          description: Available App Service Environments with full descriptions of the environments.
+          items:
+            $ref: '#/components/schemas/AppServiceEnvironment'
+          x-ms-identifiers: []
+        hostingEnvironmentDeploymentInfos:
+          type: array
+          description: Available App Service Environments with basic information.
+          items:
+            $ref: '#/components/schemas/HostingEnvironmentDeploymentInfo'
+          x-ms-identifiers:
+          - name
+    ValidateResponseError:
+      type: object
+      description: Error details for when validation fails.
+      properties:
+        code:
+          type: string
+          description: Validation error code.
+        message:
+          type: string
+          description: Validation error message.
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    DnlResourceNameAvailabilityRequest:
+      type: object
+      properties:
+        resourceGroupName:
+          type: string
+          description: Resource group name
+        autoGeneratedDomainNameLabelScope:
+          type: string
+          description: 'Indicates the endpoint name reuse scope.The default value is TenantReuse.
+
+            Supported values are TenantReuse, SubscriptionReuse, ResourceGroupReuse, NoReuse'
+        name:
+          type: string
+          description: Resource name to verify.
+        type:
+          $ref: '#/components/schemas/CheckNameResourceTypes'
+          description: Resource type used for verification.
+      required:
+      - name
+      - type
+    ProvisioningState:
+      type: string
+      description: Provisioning state of the App Service Plan.
+      enum:
+      - Succeeded
+      - Failed
+      - Canceled
+      - InProgress
+      - Deleting
+      x-ms-enum:
+        name: ProvisioningState
+        modelAsString: false
+    ResourceNameAvailabilityRequest:
+      type: object
+      description: Resource name availability request content.
+      properties:
+        name:
+          type: string
+          description: Resource name to verify.
+        type:
+          $ref: '#/components/schemas/CheckNameResourceTypes'
+          description: Resource type used for verification.
+        isFqdn:
+          type: boolean
+          description: Is fully qualified domain name.
+        environmentId:
+          type: string
+          description: Azure Resource Manager ID of the customer's selected Container Apps Environment on which to host the Function app. This must be of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.App/managedEnvironments/{managedEnvironmentName}
+      required:
+      - name
+      - type
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    ResourceNameAvailability:
+      type: object
+      description: Information regarding availability of a resource name.
+      properties:
+        nameAvailable:
+          type: boolean
+          description: <code>true</code> indicates name is valid and available. <code>false</code> indicates the name is invalid, unavailable, or both.
+        reason:
+          $ref: '#/components/schemas/InAvailabilityReasonType'
+          description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
+        message:
+          type: string
+          description: If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that resource name is already in use, and direct them to select a different name.
+    VirtualNetworkProfile:
+      type: object
+      description: Specification for using a Virtual Network.
+      properties:
+        id:
+          type: string
+          description: Resource id of the Virtual Network.
+        name:
+          type: string
+          description: Name of the Virtual Network (read-only).
+          readOnly: true
+        type:
+          type: string
+          description: Resource type of the Virtual Network (read-only).
+          readOnly: true
+        subnet:
+          type: string
+          description: Subnet within the Virtual Network.
+      required:
+      - id
+    IdentifierProperties:
+      type: object
+      description: Identifier resource specific properties
+      properties:
+        id:
+          type: string
+          description: String representation of the identity.
+          x-ms-client-name: value
     AppServiceEnvironment:
       type: object
       description: Description of an App Service Environment.
@@ -1270,197 +1442,16 @@ components:
           readOnly: true
       required:
       - virtualNetwork
-    ProvisioningState:
+    CustomDnsSuffixProvisioningState:
       type: string
-      description: Provisioning state of the App Service Plan.
       enum:
       - Succeeded
       - Failed
-      - Canceled
+      - Degraded
       - InProgress
-      - Deleting
       x-ms-enum:
-        name: ProvisioningState
+        name: CustomDnsSuffixProvisioningState
         modelAsString: false
-    CsmUsageQuotaCollection:
-      type: object
-      description: Paged collection of CsmUsageQuota items
-      properties:
-        value:
-          type: array
-          description: The CsmUsageQuota items on this page
-          items:
-            $ref: '#/components/schemas/CsmUsageQuota'
-          x-ms-identifiers:
-          - name
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    Identifier:
-      type: object
-      description: A domain specific resource identifier.
-      properties:
-        properties:
-          $ref: '#/components/schemas/IdentifierProperties'
-          description: Identifier resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    AseRegionProperties:
-      type: object
-      description: ASE region resource specific properties
-      properties:
-        displayName:
-          type: string
-          description: Display name for region.
-          readOnly: true
-        standard:
-          type: boolean
-          description: Is region standard.
-          readOnly: true
-        dedicatedHost:
-          type: boolean
-          description: Dedicated host enabled.
-          readOnly: true
-        zoneRedundant:
-          type: boolean
-          description: Zone redundant deployment enabled.
-          readOnly: true
-        availableSku:
-          type: array
-          description: Available Skus in region.
-          items:
-            type: string
-        availableOS:
-          type: array
-          description: Available OSs in region.
-          items:
-            type: string
-    CustomHostnameSitesCollection:
-      type: object
-      description: Collection of custom hostname sites
-      properties:
-        value:
-          type: array
-          description: The CustomHostnameSites items on this page
-          items:
-            $ref: '#/components/schemas/CustomHostnameSites'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    ValidateResponseError:
-      type: object
-      description: Error details for when validation fails.
-      properties:
-        code:
-          type: string
-          description: Validation error code.
-        message:
-          type: string
-          description: Validation error message.
-    GlobalCsmSkuDescription:
-      type: object
-      description: A Global SKU Description.
-      properties:
-        name:
-          type: string
-          description: Name of the resource SKU.
-        tier:
-          type: string
-          description: Service Tier of the resource SKU.
-        size:
-          type: string
-          description: Size specifier of the resource SKU.
-        family:
-          type: string
-          description: Family code of the resource SKU.
-        capacity:
-          $ref: '#/components/schemas/SkuCapacity'
-          description: Min, max, and default scale values of the SKU.
-        locations:
-          type: array
-          description: Locations of the SKU.
-          items:
-            type: string
-        capabilities:
-          type: array
-          description: Capabilities of the SKU, e.g., is traffic manager enabled?
-          items:
-            $ref: '#/components/schemas/Capability'
-          x-ms-identifiers:
-          - name
-    ValidateProperties:
-      type: object
-      description: App properties used for validation.
-      properties:
-        serverFarmId:
-          type: string
-          description: ARM resource ID of an App Service plan that would host the app.
-        skuName:
-          type: string
-          description: Name of the target SKU for the App Service plan.
-        needLinuxWorkers:
-          type: boolean
-          description: <code>true</code> if App Service plan is for Linux workers; otherwise, <code>false</code>.
-        isSpot:
-          type: boolean
-          description: <code>true</code> if App Service plan is for Spot instances; otherwise, <code>false</code>.
-        capacity:
-          type: integer
-          format: int32
-          description: Target capacity of the App Service plan (number of VMs).
-          minimum: 1
-        hostingEnvironment:
-          type: string
-          description: Name of App Service Environment where app or App Service plan should be created.
-        isXenon:
-          type: boolean
-          description: <code>true</code> if App Service plan is running as a windows container
-        containerRegistryBaseUrl:
-          type: string
-          description: Base URL of the container registry
-        containerRegistryUsername:
-          type: string
-          description: Username for to access the container registry
-        containerRegistryPassword:
-          type: string
-          description: Password for to access the container registry
-        containerImageRepository:
-          type: string
-          description: Repository name (image name)
-        containerImageTag:
-          type: string
-          description: Image tag
-        containerImagePlatform:
-          type: string
-          description: Platform (windows or linux)
-        appServiceEnvironment:
-          $ref: '#/components/schemas/AppServiceEnvironment'
-          description: App Service Environment Properties
-    GeoRegionCollection:
-      type: object
-      description: Collection of geographical regions.
-      properties:
-        value:
-          type: array
-          description: The GeoRegion items on this page
-          items:
-            $ref: '#/components/schemas/GeoRegion'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
     ValidateResourceTypes:
       type: string
       description: Resource type used for verification.
@@ -1478,174 +1469,6 @@ components:
           value: Site
         - name: Microsoft.Web/hostingEnvironments
           value: Microsoft.Web/hostingEnvironments
-    CsmMoveResourceEnvelope:
-      type: object
-      description: Object with a list of the resources that need to be moved and the resource group they should be moved to.
-      properties:
-        targetResourceGroup:
-          type: string
-          minLength: 1
-          maxLength: 90
-          pattern: ' ^[-\w\._\(\)]+[^\.]$'
-        resources:
-          type: array
-          items:
-            type: string
-    AseV3NetworkingConfigurationProperties:
-      type: object
-      description: AseV3NetworkingConfiguration resource specific properties
-      properties:
-        windowsOutboundIpAddresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        linuxOutboundIpAddresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        externalInboundIpAddresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        internalInboundIpAddresses:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        allowNewPrivateEndpointConnections:
-          type: boolean
-          description: Property to enable and disable new private endpoint connection creation on ASE
-        ftpEnabled:
-          type: boolean
-          description: Property to enable and disable FTP on ASEV3
-        remoteDebugEnabled:
-          type: boolean
-          description: Property to enable and disable Remote Debug on ASEV3
-        inboundIpAddressOverride:
-          type: string
-          description: Customer provided Inbound IP Address. Only able to be set on Ase create.
-    DeploymentLocations:
-      type: object
-      description: 'List of available locations (regions or App Service Environments) for
-
-        deployment of App Service resources.'
-      properties:
-        locations:
-          type: array
-          description: Available regions.
-          items:
-            $ref: '#/components/schemas/GeoRegion'
-        hostingEnvironments:
-          type: array
-          description: Available App Service Environments with full descriptions of the environments.
-          items:
-            $ref: '#/components/schemas/AppServiceEnvironment'
-          x-ms-identifiers: []
-        hostingEnvironmentDeploymentInfos:
-          type: array
-          description: Available App Service Environments with basic information.
-          items:
-            $ref: '#/components/schemas/HostingEnvironmentDeploymentInfo'
-          x-ms-identifiers:
-          - name
-    SkuCapacity:
-      type: object
-      description: Description of the App Service plan scale options.
-      properties:
-        minimum:
-          type: integer
-          format: int32
-          description: Minimum number of workers for this App Service plan SKU.
-        maximum:
-          type: integer
-          format: int32
-          description: Maximum number of workers for this App Service plan SKU.
-        elasticMaximum:
-          type: integer
-          format: int32
-          description: Maximum number of Elastic workers for this App Service plan SKU.
-        default:
-          type: integer
-          format: int32
-          description: Default number of workers for this App Service plan SKU.
-        scaleType:
-          type: string
-          description: Available scale configurations for an App Service plan.
-    CustomDnsSuffixProvisioningState:
-      type: string
-      enum:
-      - Succeeded
-      - Failed
-      - Degraded
-      - InProgress
-      x-ms-enum:
-        name: CustomDnsSuffixProvisioningState
-        modelAsString: false
-    AseRegion:
-      type: object
-      description: ASE region.
-      properties:
-        properties:
-          $ref: '#/components/schemas/AseRegionProperties'
-          description: ASE region resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    CustomHostnameSites:
-      type: object
-      description: A hostname and its assigned sites
-      properties:
-        properties:
-          $ref: '#/components/schemas/CustomHostnameSitesProperties'
-          description: CustomHostnameSites resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    CheckNameResourceTypes:
-      type: string
-      description: Resource type used for verification.
-      enum:
-      - Site
-      - Slot
-      - HostingEnvironment
-      - PublishingUser
-      - Microsoft.Web/sites
-      - Microsoft.Web/sites/slots
-      - Microsoft.Web/hostingEnvironments
-      - Microsoft.Web/publishingUsers
-      x-ms-enum:
-        name: CheckNameResourceTypes
-        modelAsString: true
-        values:
-        - name: Site
-          value: Site
-        - name: Slot
-          value: Slot
-        - name: HostingEnvironment
-          value: HostingEnvironment
-        - name: PublishingUser
-          value: PublishingUser
-        - name: Microsoft.Web/sites
-          value: Microsoft.Web/sites
-        - name: Microsoft.Web/sites/slots
-          value: Microsoft.Web/sites/slots
-        - name: Microsoft.Web/hostingEnvironments
-          value: Microsoft.Web/hostingEnvironments
-        - name: Microsoft.Web/publishingUsers
-          value: Microsoft.Web/publishingUsers
-    VnetValidationTestFailure:
-      type: object
-      description: A class that describes a test that failed during NSG and UDR validation.
-      properties:
-        properties:
-          $ref: '#/components/schemas/VnetValidationTestFailureProperties'
-          description: VnetValidationTestFailure resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
     VnetValidationTestFailureProperties:
       type: object
       description: VnetValidationTestFailure resource specific properties
@@ -1656,6 +1479,183 @@ components:
         details:
           type: string
           description: The details of what caused the failure, e.g. the blocking rule name, etc.
+    GeoRegionProperties:
+      type: object
+      description: GeoRegion resource specific properties
+      properties:
+        description:
+          type: string
+          description: Region description.
+          readOnly: true
+        displayName:
+          type: string
+          description: Display name for region.
+          readOnly: true
+        orgDomain:
+          type: string
+          description: Display name for region.
+          readOnly: true
+    PremierAddOnOfferCollection:
+      type: object
+      description: Collection of premier add-on offers.
+      properties:
+        value:
+          type: array
+          description: The PremierAddOnOffer items on this page
+          items:
+            $ref: '#/components/schemas/PremierAddOnOffer'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    PremierAddOnOffer:
+      type: object
+      description: Premier add-on offer.
+      properties:
+        properties:
+          $ref: '#/components/schemas/PremierAddOnOfferProperties'
+          description: PremierAddOnOffer resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
+    AseRegion:
+      type: object
+      description: ASE region.
+      properties:
+        properties:
+          $ref: '#/components/schemas/AseRegionProperties'
+          description: ASE region resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    CsmUsageQuotaCollection:
+      type: object
+      description: Paged collection of CsmUsageQuota items
+      properties:
+        value:
+          type: array
+          description: The CsmUsageQuota items on this page
+          items:
+            $ref: '#/components/schemas/CsmUsageQuota'
+          x-ms-identifiers:
+          - name
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    InAvailabilityReasonType:
+      type: string
+      description: <code>Invalid</code> indicates the name provided does not match Azure App Service naming requirements. <code>AlreadyExists</code> indicates that the name is already in use and is therefore unavailable.
+      enum:
+      - Invalid
+      - AlreadyExists
+      x-ms-enum:
+        name: InAvailabilityReasonType
+        modelAsString: true
+        values:
+        - name: Invalid
+          value: Invalid
+        - name: AlreadyExists
+          value: AlreadyExists
+    BillingMeterProperties:
+      type: object
+      description: BillingMeter resource specific properties
+      properties:
+        meterId:
+          type: string
+          description: Meter GUID onboarded in Commerce
+        billingLocation:
+          type: string
+          description: Azure Location of billable resource
+        shortName:
+          type: string
+          description: Short Name from App Service Azure pricing Page
+        friendlyName:
+          type: string
+          description: Friendly name of the meter
+        resourceType:
+          type: string
+          description: App Service ResourceType meter used for
+        osType:
+          type: string
+          description: App Service OS type meter used for
+        multiplier:
+          type: number
+          format: double
+          description: Meter Multiplier
+    IdentifierCollection:
+      type: object
+      description: Collection of identifiers.
+      properties:
+        value:
+          type: array
+          description: The Identifier items on this page
+          items:
+            $ref: '#/components/schemas/Identifier'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    ValidateRequest:
+      type: object
+      description: Resource validation request content.
+      properties:
+        name:
+          type: string
+          description: Resource name to verify.
+        type:
+          $ref: '#/components/schemas/ValidateResourceTypes'
+          description: Resource type used for verification.
+        location:
+          type: string
+          description: Expected location of the resource.
+        properties:
+          $ref: '#/components/schemas/ValidateProperties'
+          description: Properties of the resource to validate.
+          x-ms-client-flatten: true
+      required:
+      - name
+      - type
+      - location
+      - properties
+    CustomDnsSuffixConfiguration:
+      type: object
+      description: Full view of the custom domain suffix configuration for ASEv3.
+      properties:
+        properties:
+          $ref: '#/components/schemas/CustomDnsSuffixConfigurationProperties'
+          description: CustomDnsSuffixConfiguration resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
   securitySchemes:
     azure_auth:
       type: oauth2

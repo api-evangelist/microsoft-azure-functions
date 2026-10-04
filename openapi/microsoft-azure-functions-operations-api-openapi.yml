@@ -41,6 +41,14 @@ paths:
         nextLinkName: nextLink
 components:
   schemas:
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -57,34 +65,13 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-    LogSpecification:
+    CsmOperationDescriptionProperties:
       type: object
-      description: Log Definition of a single resource metric.
+      description: Properties available for a Microsoft.Web resource provider operation.
       properties:
-        name:
-          type: string
-        displayName:
-          type: string
-        blobDuration:
-          type: string
-        logFilterPattern:
-          type: string
-    ServiceSpecification:
-      type: object
-      description: Resource metrics service provided by Microsoft.Insights resource provider.
-      properties:
-        metricSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/MetricSpecification'
-          x-ms-identifiers:
-          - name
-        logSpecifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/LogSpecification'
-          x-ms-identifiers:
-          - name
+        serviceSpecification:
+          $ref: '#/components/schemas/ServiceSpecification'
+          description: Resource metrics service provided by Microsoft.Insights resource provider.
     Dimension:
       type: object
       description: 'Dimension of a resource metric. For e.g. instance specific HTTP requests for a web app,
@@ -99,22 +86,6 @@ components:
           type: string
         toBeExportedForShoebox:
           type: boolean
-    CsmOperationDescription:
-      type: object
-      description: Description of an operation available for Microsoft.Web resource provider.
-      properties:
-        name:
-          type: string
-        isDataAction:
-          type: boolean
-        display:
-          $ref: '#/components/schemas/CsmOperationDisplay'
-          description: Meta data about operation used for display in portal.
-        origin:
-          type: string
-        properties:
-          $ref: '#/components/schemas/CsmOperationDescriptionProperties'
-          description: Properties available for a Microsoft.Web resource provider operation.
     MetricSpecification:
       type: object
       description: Definition of a single resource metric.
@@ -164,23 +135,42 @@ components:
           type: array
           items:
             type: string
-    CsmOperationCollection:
+    MetricAvailability:
       type: object
-      description: Collection of Azure resource manager operation metadata.
+      description: Retention policy of a resource metric.
       properties:
-        value:
+        timeGrain:
+          type: string
+        blobDuration:
+          type: string
+    CsmOperationDisplay:
+      type: object
+      description: Meta data about operation used for display in portal.
+      properties:
+        provider:
+          type: string
+        resource:
+          type: string
+        operation:
+          type: string
+        description:
+          type: string
+    ServiceSpecification:
+      type: object
+      description: Resource metrics service provided by Microsoft.Insights resource provider.
+      properties:
+        metricSpecifications:
           type: array
-          description: Collection of resources.
           items:
-            $ref: '#/components/schemas/CsmOperationDescription'
+            $ref: '#/components/schemas/MetricSpecification'
           x-ms-identifiers:
           - name
-        nextLink:
-          type: string
-          description: Link to next page of resources.
-          readOnly: true
-      required:
-      - value
+        logSpecifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogSpecification'
+          x-ms-identifiers:
+          - name
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -206,41 +196,51 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    CsmOperationDescriptionProperties:
+    LogSpecification:
       type: object
-      description: Properties available for a Microsoft.Web resource provider operation.
+      description: Log Definition of a single resource metric.
       properties:
-        serviceSpecification:
-          $ref: '#/components/schemas/ServiceSpecification'
-          description: Resource metrics service provided by Microsoft.Insights resource provider.
-    CsmOperationDisplay:
-      type: object
-      description: Meta data about operation used for display in portal.
-      properties:
-        provider:
+        name:
           type: string
-        resource:
-          type: string
-        operation:
-          type: string
-        description:
-          type: string
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    MetricAvailability:
-      type: object
-      description: Retention policy of a resource metric.
-      properties:
-        timeGrain:
+        displayName:
           type: string
         blobDuration:
           type: string
+        logFilterPattern:
+          type: string
+    CsmOperationDescription:
+      type: object
+      description: Description of an operation available for Microsoft.Web resource provider.
+      properties:
+        name:
+          type: string
+        isDataAction:
+          type: boolean
+        display:
+          $ref: '#/components/schemas/CsmOperationDisplay'
+          description: Meta data about operation used for display in portal.
+        origin:
+          type: string
+        properties:
+          $ref: '#/components/schemas/CsmOperationDescriptionProperties'
+          description: Properties available for a Microsoft.Web resource provider operation.
+    CsmOperationCollection:
+      type: object
+      description: Collection of Azure resource manager operation metadata.
+      properties:
+        value:
+          type: array
+          description: Collection of resources.
+          items:
+            $ref: '#/components/schemas/CsmOperationDescription'
+          x-ms-identifiers:
+          - name
+        nextLink:
+          type: string
+          description: Link to next page of resources.
+          readOnly: true
+      required:
+      - value
   securitySchemes:
     azure_auth:
       type: oauth2

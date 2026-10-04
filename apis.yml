@@ -430,8 +430,6 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
-  - Web App
-  tags_raw:
   - Web Apps
   properties:
   - type: OpenAPI
@@ -471,8 +469,6 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
-  - WorkflowTriggers
-  tags_raw:
   - Workflow Triggers
   properties:
   - type: OpenAPI
@@ -493,8 +489,6 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference
   baseURL: https://{functionapp}.azurewebsites.net
   tags:
-  - WorkflowVersions
-  tags_raw:
   - Workflow Versions
   properties:
   - type: OpenAPI

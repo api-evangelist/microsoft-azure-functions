@@ -109,6 +109,24 @@ paths:
           $ref: ./examples/GetSubscriptionOperationWithAsyncResponse.json
 components:
   schemas:
+    Snapshot:
+      type: object
+      description: A snapshot of an app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/SnapshotProperties'
+          description: Snapshot resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -125,42 +143,32 @@ components:
           type: string
           description: Detailed error description and debugging information.
           readOnly: true
-    DeletedSiteProperties:
+    SnapshotProperties:
       type: object
-      description: DeletedSite resource specific properties
+      description: Snapshot resource specific properties
       properties:
-        deletedSiteId:
-          type: integer
-          format: int32
-          description: Numeric id for the deleted site
-          readOnly: true
-        deletedTimestamp:
+        time:
           type: string
-          description: Time in UTC when the app was deleted.
+          description: The time the snapshot was taken.
           readOnly: true
-        subscription:
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
           type: string
-          description: Subscription containing the deleted site
+          description: Resource Id.
           readOnly: true
-        resourceGroup:
+        name:
           type: string
-          description: ResourceGroup that contained the deleted site
-          readOnly: true
-        deletedSiteName:
-          type: string
-          description: Name of the deleted site
-          readOnly: true
-        slot:
-          type: string
-          description: Slot of the deleted site
+          description: Resource Name.
           readOnly: true
         kind:
           type: string
-          description: Kind of site that was deleted
-          readOnly: true
-        geoRegionName:
+          description: Kind of resource.
+        type:
           type: string
-          description: Geo Region of the deleted site
+          description: Resource type.
           readOnly: true
     DeletedSite:
       type: object
@@ -200,50 +208,42 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    DefaultErrorResponse:
+    DeletedSiteProperties:
       type: object
-      description: App Service error response.
+      description: DeletedSite resource specific properties
       properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
+        deletedSiteId:
+          type: integer
+          format: int32
+          description: Numeric id for the deleted site
           readOnly: true
-    Snapshot:
-      type: object
-      description: A snapshot of an app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/SnapshotProperties'
-          description: Snapshot resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    SnapshotProperties:
-      type: object
-      description: Snapshot resource specific properties
-      properties:
-        time:
+        deletedTimestamp:
           type: string
-          description: The time the snapshot was taken.
+          description: Time in UTC when the app was deleted.
           readOnly: true
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
+        subscription:
           type: string
-          description: Resource Id.
+          description: Subscription containing the deleted site
           readOnly: true
-        name:
+        resourceGroup:
           type: string
-          description: Resource Name.
+          description: ResourceGroup that contained the deleted site
+          readOnly: true
+        deletedSiteName:
+          type: string
+          description: Name of the deleted site
+          readOnly: true
+        slot:
+          type: string
+          description: Slot of the deleted site
           readOnly: true
         kind:
           type: string
-          description: Kind of resource.
-        type:
+          description: Kind of site that was deleted
+          readOnly: true
+        geoRegionName:
           type: string
-          description: Resource type.
+          description: Geo Region of the deleted site
           readOnly: true
   securitySchemes:
     azure_auth:

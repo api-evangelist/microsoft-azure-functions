@@ -253,34 +253,22 @@ paths:
       x-ms-long-running-operation: true
 components:
   schemas:
-    DefaultErrorResponseErrorDetailsItem:
+    KubeEnvironment:
       type: object
-      description: Detailed errors.
+      description: A Kubernetes cluster specialized for web workloads by Azure App Service
       properties:
-        code:
+        properties:
+          $ref: '#/components/schemas/KubeEnvironmentProperties'
+          description: KubeEnvironment resource specific properties
+          x-ms-client-flatten: true
+        extendedLocation:
+          $ref: '#/components/schemas/ExtendedLocation'
+          description: Extended Location.
+        kind:
           type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-    LogAnalyticsConfiguration:
-      type: object
-      properties:
-        customerId:
-          type: string
-        sharedKey:
-          type: string
-          format: password
-          x-ms-mutability:
-          - update
-          - create
-          x-ms-secret: true
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
     KubeEnvironmentProvisioningState:
       type: string
       description: Provisioning state of the Kubernetes Environment.
@@ -298,13 +286,152 @@ components:
       x-ms-enum:
         name: KubeEnvironmentProvisioningState
         modelAsString: false
-    AppLogsConfiguration:
+    KubeEnvironmentCollection:
+      type: object
+      description: Collection of Kubernetes Environments
+      properties:
+        value:
+          type: array
+          description: The KubeEnvironment items on this page
+          items:
+            $ref: '#/components/schemas/KubeEnvironment'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
+    LogAnalyticsConfiguration:
       type: object
       properties:
-        destination:
+        customerId:
           type: string
-        logAnalyticsConfiguration:
-          $ref: '#/components/schemas/LogAnalyticsConfiguration'
+        sharedKey:
+          type: string
+          format: password
+          x-ms-mutability:
+          - update
+          - create
+          x-ms-secret: true
+    KubeEnvironmentPatchResourceProperties:
+      type: object
+      description: KubeEnvironmentPatchResource resource specific properties
+      properties:
+        provisioningState:
+          $ref: '#/components/schemas/KubeEnvironmentProvisioningState'
+          description: Provisioning state of the Kubernetes Environment.
+          readOnly: true
+        deploymentErrors:
+          type: string
+          description: Any errors that occurred during deployment or deployment validation
+          readOnly: true
+        internalLoadBalancerEnabled:
+          type: boolean
+          description: Only visible within Vnet/Subnet
+          x-ms-mutability:
+          - read
+          - create
+        defaultDomain:
+          type: string
+          description: Default Domain Name for the cluster
+          readOnly: true
+        staticIp:
+          type: string
+          description: Static IP of the KubeEnvironment
+          x-ms-mutability:
+          - read
+          - create
+        arcConfiguration:
+          $ref: '#/components/schemas/ArcConfiguration'
+          description: 'Cluster configuration which determines the ARC cluster
+
+            components types. Eg: Choosing between BuildService kind,
+
+            FrontEnd Service ArtifactsStorageType etc.'
+        appLogsConfiguration:
+          $ref: '#/components/schemas/AppLogsConfiguration'
+          description: 'Cluster configuration which enables the log daemon to export
+
+            app logs to a destination. Currently only "log-analytics" is
+
+            supported'
+        containerAppsConfiguration:
+          $ref: '#/components/schemas/ContainerAppsConfiguration'
+          description: Cluster configuration for Container Apps Environments to configure Dapr Instrumentation Key and VNET Configuration
+        aksResourceID:
+          type: string
+          x-ms-mutability:
+          - read
+          - create
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    FrontEndConfiguration:
+      type: object
+      properties:
+        kind:
+          $ref: '#/components/schemas/FrontEndServiceType'
+    DefaultErrorResponseErrorDetailsItem:
+      type: object
+      description: Detailed errors.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+    KubeEnvironmentPatchResource:
+      type: object
+      description: ARM resource for a KubeEnvironment when patching
+      properties:
+        properties:
+          $ref: '#/components/schemas/KubeEnvironmentPatchResourceProperties'
+          description: KubeEnvironmentPatchResource resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    ExtendedLocation:
+      type: object
+      description: Extended Location.
+      properties:
+        name:
+          type: string
+          description: Name of extended location.
+        type:
+          type: string
+          description: Type of extended location.
+          readOnly: true
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
+          readOnly: true
     KubeEnvironmentProperties:
       type: object
       description: KubeEnvironment resource specific properties
@@ -361,29 +488,58 @@ components:
           x-ms-mutability:
           - read
           - create
-    FrontEndServiceType:
+    AppLogsConfiguration:
+      type: object
+      properties:
+        destination:
+          type: string
+        logAnalyticsConfiguration:
+          $ref: '#/components/schemas/LogAnalyticsConfiguration'
+    StorageType:
       type: string
       enum:
-      - NodePort
-      - LoadBalancer
+      - LocalNode
+      - NetworkFileSystem
       x-ms-enum:
-        name: FrontEndServiceType
+        name: StorageType
         modelAsString: false
-    KubeEnvironmentCollection:
+    ArcConfiguration:
       type: object
-      description: Collection of Kubernetes Environments
       properties:
-        value:
-          type: array
-          description: The KubeEnvironment items on this page
-          items:
-            $ref: '#/components/schemas/KubeEnvironment'
-        nextLink:
+        artifactsStorageType:
+          $ref: '#/components/schemas/StorageType'
+          x-ms-mutability:
+          - read
+          - create
+        artifactStorageClassName:
           type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
+          x-ms-mutability:
+          - read
+          - create
+        artifactStorageMountPath:
+          type: string
+          x-ms-mutability:
+          - read
+          - create
+        artifactStorageNodeName:
+          type: string
+          x-ms-mutability:
+          - read
+          - create
+        artifactStorageAccessMode:
+          type: string
+          x-ms-mutability:
+          - read
+          - create
+        frontEndServiceConfiguration:
+          $ref: '#/components/schemas/FrontEndConfiguration'
+        kubeConfig:
+          type: string
+          format: password
+          x-ms-mutability:
+          - update
+          - create
+          x-ms-secret: true
     DefaultErrorResponseError:
       type: object
       description: Error model.
@@ -409,14 +565,6 @@ components:
           type: string
           description: More information to debug error.
           readOnly: true
-    StorageType:
-      type: string
-      enum:
-      - LocalNode
-      - NetworkFileSystem
-      x-ms-enum:
-        name: StorageType
-        modelAsString: false
     ContainerAppsConfiguration:
       type: object
       properties:
@@ -456,162 +604,14 @@ components:
           x-ms-mutability:
           - read
           - create
-    KubeEnvironment:
-      type: object
-      description: A Kubernetes cluster specialized for web workloads by Azure App Service
-      properties:
-        properties:
-          $ref: '#/components/schemas/KubeEnvironmentProperties'
-          description: KubeEnvironment resource specific properties
-          x-ms-client-flatten: true
-        extendedLocation:
-          $ref: '#/components/schemas/ExtendedLocation'
-          description: Extended Location.
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/TrackedResource
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
-    KubeEnvironmentPatchResource:
-      type: object
-      description: ARM resource for a KubeEnvironment when patching
-      properties:
-        properties:
-          $ref: '#/components/schemas/KubeEnvironmentPatchResourceProperties'
-          description: KubeEnvironmentPatchResource resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    KubeEnvironmentPatchResourceProperties:
-      type: object
-      description: KubeEnvironmentPatchResource resource specific properties
-      properties:
-        provisioningState:
-          $ref: '#/components/schemas/KubeEnvironmentProvisioningState'
-          description: Provisioning state of the Kubernetes Environment.
-          readOnly: true
-        deploymentErrors:
-          type: string
-          description: Any errors that occurred during deployment or deployment validation
-          readOnly: true
-        internalLoadBalancerEnabled:
-          type: boolean
-          description: Only visible within Vnet/Subnet
-          x-ms-mutability:
-          - read
-          - create
-        defaultDomain:
-          type: string
-          description: Default Domain Name for the cluster
-          readOnly: true
-        staticIp:
-          type: string
-          description: Static IP of the KubeEnvironment
-          x-ms-mutability:
-          - read
-          - create
-        arcConfiguration:
-          $ref: '#/components/schemas/ArcConfiguration'
-          description: 'Cluster configuration which determines the ARC cluster
-
-            components types. Eg: Choosing between BuildService kind,
-
-            FrontEnd Service ArtifactsStorageType etc.'
-        appLogsConfiguration:
-          $ref: '#/components/schemas/AppLogsConfiguration'
-          description: 'Cluster configuration which enables the log daemon to export
-
-            app logs to a destination. Currently only "log-analytics" is
-
-            supported'
-        containerAppsConfiguration:
-          $ref: '#/components/schemas/ContainerAppsConfiguration'
-          description: Cluster configuration for Container Apps Environments to configure Dapr Instrumentation Key and VNET Configuration
-        aksResourceID:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-    ArcConfiguration:
-      type: object
-      properties:
-        artifactsStorageType:
-          $ref: '#/components/schemas/StorageType'
-          x-ms-mutability:
-          - read
-          - create
-        artifactStorageClassName:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-        artifactStorageMountPath:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-        artifactStorageNodeName:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-        artifactStorageAccessMode:
-          type: string
-          x-ms-mutability:
-          - read
-          - create
-        frontEndServiceConfiguration:
-          $ref: '#/components/schemas/FrontEndConfiguration'
-        kubeConfig:
-          type: string
-          format: password
-          x-ms-mutability:
-          - update
-          - create
-          x-ms-secret: true
-    FrontEndConfiguration:
-      type: object
-      properties:
-        kind:
-          $ref: '#/components/schemas/FrontEndServiceType'
-    ExtendedLocation:
-      type: object
-      description: Extended Location.
-      properties:
-        name:
-          type: string
-          description: Name of extended location.
-        type:
-          type: string
-          description: Type of extended location.
-          readOnly: true
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
+    FrontEndServiceType:
+      type: string
+      enum:
+      - NodePort
+      - LoadBalancer
+      x-ms-enum:
+        name: FrontEndServiceType
+        modelAsString: false
   securitySchemes:
     azure_auth:
       type: oauth2
