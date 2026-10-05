@@ -1,0 +1,34 @@
+slug: microsoft-azure-functions
+provider: Microsoft Azure Functions
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: AppServiceEnvironments
+  spec_file: microsoft-azure-functions-appserviceenvironments-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: '"Create or update an App Service Environment", "Get the used, available, and total worker
+    capacity an App Service Environment"'
+  reason: Provisioning and capacity/VNET/DNS configuration of hosting environments is cloud compute infrastructure
+    management.
+- tag: AppServicePlans
+  spec_file: microsoft-azure-functions-appserviceplans-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: '"Creates or updates an App Service Plan", "List all capabilities of an App Service plan"'
+  reason: App Service plans are compute capacity units (serverfarms); lifecycle management of them is
+    cloud infrastructure management, not a commercial 'plan' capability.
