@@ -109,24 +109,6 @@ paths:
           $ref: ./examples/GetSubscriptionOperationWithAsyncResponse.json
 components:
   schemas:
-    Snapshot:
-      type: object
-      description: A snapshot of an app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/SnapshotProperties'
-          description: Snapshot resource specific properties
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: '#/components/schemas/ProxyOnlyResource'
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -142,71 +124,6 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
-          readOnly: true
-    SnapshotProperties:
-      type: object
-      description: Snapshot resource specific properties
-      properties:
-        time:
-          type: string
-          description: The time the snapshot was taken.
-          readOnly: true
-    ProxyOnlyResource:
-      type: object
-      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
-      properties:
-        id:
-          type: string
-          description: Resource Id.
-          readOnly: true
-        name:
-          type: string
-          description: Resource Name.
-          readOnly: true
-        kind:
-          type: string
-          description: Kind of resource.
-        type:
-          type: string
-          description: Resource type.
-          readOnly: true
-    DeletedSite:
-      type: object
-      description: A deleted app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/DeletedSiteProperties'
-          description: DeletedSite resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
           readOnly: true
     DeletedSiteProperties:
       type: object
@@ -244,6 +161,89 @@ components:
         geoRegionName:
           type: string
           description: Geo Region of the deleted site
+          readOnly: true
+    Snapshot:
+      type: object
+      description: A snapshot of an app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/SnapshotProperties'
+          description: Snapshot resource specific properties
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: '#/components/schemas/ProxyOnlyResource'
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DeletedSite:
+      type: object
+      description: A deleted app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DeletedSiteProperties'
+          description: DeletedSite resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    SnapshotProperties:
+      type: object
+      description: Snapshot resource specific properties
+      properties:
+        time:
+          type: string
+          description: The time the snapshot was taken.
+          readOnly: true
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
+    ProxyOnlyResource:
+      type: object
+      description: Azure proxy only resource. This resource is not tracked by Azure Resource Manager.
+      properties:
+        id:
+          type: string
+          description: Resource Id.
+          readOnly: true
+        name:
+          type: string
+          description: Resource Name.
+          readOnly: true
+        kind:
+          type: string
+          description: Kind of resource.
+        type:
+          type: string
+          description: Resource type.
           readOnly: true
   securitySchemes:
     azure_auth:

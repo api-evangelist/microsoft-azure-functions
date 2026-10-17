@@ -101,14 +101,6 @@ paths:
           $ref: ./examples/GetDeletedWebAppByLocation.json
 components:
   schemas:
-    DefaultErrorResponse:
-      type: object
-      description: App Service error response.
-      properties:
-        error:
-          $ref: '#/components/schemas/DefaultErrorResponseError'
-          description: Error model.
-          readOnly: true
     DefaultErrorResponseErrorDetailsItem:
       type: object
       description: Detailed errors.
@@ -124,44 +116,6 @@ components:
         target:
           type: string
           description: Detailed error description and debugging information.
-          readOnly: true
-    DeletedSite:
-      type: object
-      description: A deleted app.
-      properties:
-        properties:
-          $ref: '#/components/schemas/DeletedSiteProperties'
-          description: DeletedSite resource specific properties
-          x-ms-client-flatten: true
-        kind:
-          type: string
-          description: Kind of resource.
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
-    DefaultErrorResponseError:
-      type: object
-      description: Error model.
-      properties:
-        code:
-          type: string
-          description: Standardized string to programmatically identify the error.
-          readOnly: true
-        message:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        target:
-          type: string
-          description: Detailed error description and debugging information.
-          readOnly: true
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
-          x-ms-identifiers: []
-        innererror:
-          type: string
-          description: More information to debug error.
           readOnly: true
     DeletedSiteProperties:
       type: object
@@ -200,6 +154,44 @@ components:
           type: string
           description: Geo Region of the deleted site
           readOnly: true
+    DefaultErrorResponseError:
+      type: object
+      description: Error model.
+      properties:
+        code:
+          type: string
+          description: Standardized string to programmatically identify the error.
+          readOnly: true
+        message:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        target:
+          type: string
+          description: Detailed error description and debugging information.
+          readOnly: true
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/DefaultErrorResponseErrorDetailsItem'
+          x-ms-identifiers: []
+        innererror:
+          type: string
+          description: More information to debug error.
+          readOnly: true
+    DeletedSite:
+      type: object
+      description: A deleted app.
+      properties:
+        properties:
+          $ref: '#/components/schemas/DeletedSiteProperties'
+          description: DeletedSite resource specific properties
+          x-ms-client-flatten: true
+        kind:
+          type: string
+          description: Kind of resource.
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
     DeletedWebAppCollection:
       type: object
       description: Collection of deleted apps.
@@ -215,6 +207,14 @@ components:
           description: The link to the next page of items
       required:
       - value
+    DefaultErrorResponse:
+      type: object
+      description: App Service error response.
+      properties:
+        error:
+          $ref: '#/components/schemas/DefaultErrorResponseError'
+          description: Error model.
+          readOnly: true
   securitySchemes:
     azure_auth:
       type: oauth2

@@ -188,74 +188,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    WorkflowTriggerHistoryListResult:
-      type: object
-      description: The response of a WorkflowTriggerHistory list operation.
-      properties:
-        value:
-          type: array
-          description: The WorkflowTriggerHistory items on this page
-          items:
-            $ref: '#/components/schemas/WorkflowTriggerHistory'
-        nextLink:
-          type: string
-          format: uri
-          description: The link to the next page of items
-      required:
-      - value
-    WorkflowTriggerHistoryProperties:
-      type: object
-      description: The workflow trigger history properties.
-      properties:
-        startTime:
-          type: string
-          format: date-time
-          description: Gets the start time.
-          readOnly: true
-        endTime:
-          type: string
-          format: date-time
-          description: Gets the end time.
-          readOnly: true
-        scheduledTime:
-          type: string
-          format: date-time
-          description: The scheduled time.
-          readOnly: true
-        status:
-          $ref: '#/components/schemas/WorkflowStatus'
-          description: Gets the status.
-          readOnly: true
-        code:
-          type: string
-          description: Gets the code.
-          readOnly: true
-        error:
-          description: Gets the error.
-          readOnly: true
-        trackingId:
-          type: string
-          description: Gets the tracking id.
-          readOnly: true
-        correlation:
-          $ref: '#/components/schemas/Correlation'
-          description: The run correlation.
-        inputsLink:
-          $ref: '#/components/schemas/ContentLink'
-          description: Gets the link to input parameters.
-          readOnly: true
-        outputsLink:
-          $ref: '#/components/schemas/ContentLink'
-          description: Gets the link to output parameters.
-          readOnly: true
-        fired:
-          type: boolean
-          description: The value indicating whether trigger was fired.
-          readOnly: true
-        run:
-          $ref: '#/components/schemas/ResourceReference'
-          description: Gets the reference to workflow run.
-          readOnly: true
     ErrorProperties:
       type: object
       description: Error properties indicate why the Logic service was not able to process the incoming request. The reason is provided in the error message.
@@ -266,13 +198,6 @@ components:
         message:
           type: string
           description: Error message indicating why the operation failed.
-    Correlation:
-      type: object
-      description: The correlation property.
-      properties:
-        clientTrackingId:
-          type: string
-          description: The client tracking id.
     ContentHash:
       type: object
       description: The content hash.
@@ -330,6 +255,31 @@ components:
           value: Aborted
         - name: Ignored
           value: Ignored
+    WorkflowTriggerHistory:
+      type: object
+      description: The workflow trigger history.
+      properties:
+        properties:
+          $ref: '#/components/schemas/WorkflowTriggerHistoryProperties'
+          description: Gets the workflow trigger history properties.
+          x-ms-client-flatten: true
+      allOf:
+      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+    WorkflowTriggerHistoryListResult:
+      type: object
+      description: The response of a WorkflowTriggerHistory list operation.
+      properties:
+        value:
+          type: array
+          description: The WorkflowTriggerHistory items on this page
+          items:
+            $ref: '#/components/schemas/WorkflowTriggerHistory'
+        nextLink:
+          type: string
+          format: uri
+          description: The link to the next page of items
+      required:
+      - value
     ResourceReference:
       type: object
       description: The resource reference.
@@ -345,23 +295,59 @@ components:
           type: string
           description: Gets the resource type.
           readOnly: true
-    ErrorResponse:
+    WorkflowTriggerHistoryProperties:
       type: object
-      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      description: The workflow trigger history properties.
       properties:
+        startTime:
+          type: string
+          format: date-time
+          description: Gets the start time.
+          readOnly: true
+        endTime:
+          type: string
+          format: date-time
+          description: Gets the end time.
+          readOnly: true
+        scheduledTime:
+          type: string
+          format: date-time
+          description: The scheduled time.
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/WorkflowStatus'
+          description: Gets the status.
+          readOnly: true
+        code:
+          type: string
+          description: Gets the code.
+          readOnly: true
         error:
-          $ref: '#/components/schemas/ErrorProperties'
-          description: The error properties.
-    WorkflowTriggerHistory:
-      type: object
-      description: The workflow trigger history.
-      properties:
-        properties:
-          $ref: '#/components/schemas/WorkflowTriggerHistoryProperties'
-          description: Gets the workflow trigger history properties.
-          x-ms-client-flatten: true
-      allOf:
-      - $ref: ../../../../../../common-types/resource-management/v5/types.json#/definitions/ProxyResource
+          description: Gets the error.
+          readOnly: true
+        trackingId:
+          type: string
+          description: Gets the tracking id.
+          readOnly: true
+        correlation:
+          $ref: '#/components/schemas/Correlation'
+          description: The run correlation.
+        inputsLink:
+          $ref: '#/components/schemas/ContentLink'
+          description: Gets the link to input parameters.
+          readOnly: true
+        outputsLink:
+          $ref: '#/components/schemas/ContentLink'
+          description: Gets the link to output parameters.
+          readOnly: true
+        fired:
+          type: boolean
+          description: The value indicating whether trigger was fired.
+          readOnly: true
+        run:
+          $ref: '#/components/schemas/ResourceReference'
+          description: Gets the reference to workflow run.
+          readOnly: true
     ContentLink:
       type: object
       description: The content link.
@@ -385,6 +371,20 @@ components:
         metadata:
           description: The metadata.
           readOnly: true
+    ErrorResponse:
+      type: object
+      description: Error response indicates Logic service is not able to process the incoming request. The error property contains the error details.
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorProperties'
+          description: The error properties.
+    Correlation:
+      type: object
+      description: The correlation property.
+      properties:
+        clientTrackingId:
+          type: string
+          description: The client tracking id.
   securitySchemes:
     azure_auth:
       type: oauth2
